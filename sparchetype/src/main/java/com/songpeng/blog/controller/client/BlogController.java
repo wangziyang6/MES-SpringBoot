@@ -1,0 +1,20 @@
+package com.songpeng.blog.controller.client;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+/**
+ * Controller
+ * Created by songpeng on 2019/5/11.
+ */
+@RequestMapping("/blog")
+@Controller("clientBlogController")
+public class BlogController {
+
+    @GetMapping()
+    String blog() {
+        return "client/blog/index";
+    }
+
+}
