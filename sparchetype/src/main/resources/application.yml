@@ -8,3 +8,40 @@ spring:
     encoding: UTF-8
     servlet:
       content-type: text/html
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/sparchetype
+    username: postgres
+    password: 123456
+    druid:
+      #初始化连接大小
+      initial-size: 8
+      #最小空闲连接数
+      min-idle: 5
+      #最大连接数
+      max-active: 10
+      #查询超时时间
+      query-timeout: 6000
+      #事务查询超时时间
+      transaction-query-timeout: 6000
+      #关闭空闲连接超时时间
+      remove-abandoned-timeout: 1800
+      filters: stat,config
+
+mybatis:
+  mapper-locations: mybatis/**/*Mapper.xml
+  type-aliases-package: com.songpeng.**.domain
+  configuration:
+    log-impl: org.apache.ibatis.logging.log4j.Log4jImpl
+mapper:
+  mappers:
+    - com.songpeng.common.utils.SpMapper
+  not-empty: false
+  identity: POSTGRESQL
+
+pagehelper:
+  helperDialect: postgresql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql

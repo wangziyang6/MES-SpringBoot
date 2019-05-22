@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2019-04-19
  */
 @SpringBootApplication
+@tk.mybatis.spring.annotation.MapperScan(basePackages = "com.songpeng.*.mapper")
 public class SpArchetypeApplication {
 
     public static void main(String[] args) {

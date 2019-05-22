@@ -1,5 +1,7 @@
 package com.songpeng.blog.controller.client;
 
+import com.songpeng.blog.service.BlogService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,8 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller("clientBlogController")
 public class BlogController {
 
-    @GetMapping()
+    @Autowired
+    private BlogService blogService;
+
+    @GetMapping("/hello")
     String blog() {
+        String hello = blogService.hello();
+        System.out.println(hello);
         return "client/blog/index";
     }
 
