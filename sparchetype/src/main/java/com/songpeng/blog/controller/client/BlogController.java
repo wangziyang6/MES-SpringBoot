@@ -17,10 +17,8 @@ public class BlogController {
     @Autowired
     private BlogService blogService;
 
-    @GetMapping("/hello")
+    @GetMapping
     String blog() {
-        String hello = blogService.hello();
-        System.out.println(hello);
         return "client/blog/index";
     }
 

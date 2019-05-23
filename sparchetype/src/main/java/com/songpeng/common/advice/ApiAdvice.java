@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class ApiAdvice {
 
-    public static final Logger logger = LoggerFactory.getLogger(ApiAdvice.class);
+    public static final Logger LOGGER = LoggerFactory.getLogger(ApiAdvice.class);
 
     /**
      * 应用到所有@RequestMapping注解方法，在其执行之前初始化数据绑定器
@@ -65,7 +65,7 @@ public class ApiAdvice {
     @ExceptionHandler(Exception.class)
     @ResponseBody
     public ApiResponse handle(HttpServletRequest request, Exception e) throws Exception {
-        logger.error("API接口调用异常: {}", request.getRequestURI(), e);
+        LOGGER.error("API接口调用异常: {}", request.getRequestURI(), e);
         return ApiResponse.error(ApiResponse.ERROR_CODE, ApiResponse.ERROR_MSG);
     }
 
