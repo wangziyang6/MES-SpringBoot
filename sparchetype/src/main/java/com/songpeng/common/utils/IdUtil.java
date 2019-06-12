@@ -65,8 +65,8 @@ public final class IdUtil {
 
     private static long lastEpoch = 0;
 
-    public static long nextId() {
-        return nextId(System.currentTimeMillis() / 1000);
+    public static String nextId() {
+        return String.valueOf(nextId(System.currentTimeMillis() / 1000));
     }
 
     private static synchronized long nextId(long epochSecond) {

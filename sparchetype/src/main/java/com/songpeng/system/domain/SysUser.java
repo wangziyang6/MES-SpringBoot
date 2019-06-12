@@ -18,7 +18,7 @@ public class SysUser implements Serializable {
 
     @Id
     @Column(name = "ID")
-    private Long id;
+    private String id;
     @Column(name = "NAME")
     private String name;
     @Column(name = "USERNAME")
@@ -26,11 +26,11 @@ public class SysUser implements Serializable {
     @Column(name = "PASSWORD")
     private String password;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

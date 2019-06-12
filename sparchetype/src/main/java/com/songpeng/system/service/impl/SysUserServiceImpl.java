@@ -76,4 +76,5 @@ public class SysUserServiceImpl implements SysUserService, UserDetailsService {
         LOGGER.info("user insert id: {}", sysUser.getId());
         sysUserMapper.insertSelective(sysUser);
     }
+
 }

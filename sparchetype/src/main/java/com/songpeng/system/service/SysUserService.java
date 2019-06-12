@@ -9,6 +9,7 @@ import java.util.Map;
 
 /**
  * UserService
+ *
  * @author songpeng
  * @date 2019/4/20.
  */
@@ -16,6 +17,7 @@ public interface SysUserService {
 
     /**
      * 获取用户分页
+     *
      * @param pageRequest
      * @return
      */
@@ -23,6 +25,7 @@ public interface SysUserService {
 
     /**
      * 获取用户信息（包含权限）
+     *
      * @param paramMap
      * @return
      */

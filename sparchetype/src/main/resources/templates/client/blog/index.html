@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org/">
 <html>
 <meta charset="utf-8">
 <head th:include="client/blog/include::header"></head>
 <body>
-<nav th:include="client/blog/include::nav"  class="navbar navbar-default navbar-custom navbar-fixed-top" ></nav>
+<nav th:include="client/blog/include::nav" class="navbar navbar-default navbar-custom navbar-fixed-top"></nav>
 <header class="intro-header"
-        style="background-image: url('/img/blog/home-bg.jpg')">
+        style="background-image: url('/img/blog/home-bg-old.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading">
                     <h1>SongPeng Blog</h1>
-                    <span class="subheading">宋鹏的博客</span>
+                    <span class="subheading">博客</span>
                 </div>
             </div>
         </div>
@@ -31,6 +31,7 @@
             </div>
         </div>
     </div>
+    <div id="allmap"></div>
 </div>
 </body>
 <div th:include="client/blog/include::footer"></div>
@@ -38,45 +39,46 @@
     var limit = 10;
     var currentPage = 0;
     var total;
-    $(function(){
+    $(function () {
         bindList(0);
     });
 
     function nextPage() {
         bindList(currentPage * limit)
     }
+
     function bindList(offset) {
         $.ajax({
-                url : 'blog/open/list?type=article&limit=10&offset=' + offset,
-                method : 'get',
-                dataType : 'json',
-                success : function(data) {
-                    var rows = data.rows;
-                    total = data.total;
-                    var htmlText = "";
-                    for (i = 0; i < rows.length; i++) {
-                        htmlText += '<div class="post-preview">';
-                        htmlText += '<a href="/blog/open/post/' + rows[i].cid + '">';
-                        htmlText += '<h2 class="post-title">';
-                        htmlText += rows[i].title;
-                        htmlText += '</h2>';
-                        htmlText += '</a>';
-                        htmlText += '<p class="post-meta">作者：<a href="#">'
-                            + rows[i].author
-                            + '</a> &nbsp;&nbsp; '
-                            + rows[i].gtmModified + '</p>';
-                        htmlText += '</div>';
-                        htmlText += '<hr>';
-                    }
-                    $("#incomeNum").append(htmlText);
-                    document.getElementById("flagLoad").style.display = "block";
-                    currentPage++;
-                    if (total <= currentPage * limit) {
-                        document.getElementById("flagLoaded").style.display = "block";
-                        document.getElementById("flagLoad").style.display = "none";
-                    }
+            url: 'blog/open/list?type=article&limit=10&offset=' + offset,
+            method: 'get',
+            dataType: 'json',
+            success: function (data) {
+                var rows = data.rows;
+                total = data.total;
+                var htmlText = "";
+                for (i = 0; i < rows.length; i++) {
+                    htmlText += '<div class="post-preview">';
+                    htmlText += '<a href="/blog/open/post/' + rows[i].cid + '">';
+                    htmlText += '<h2 class="post-title">';
+                    htmlText += rows[i].title;
+                    htmlText += '</h2>';
+                    htmlText += '</a>';
+                    htmlText += '<p class="post-meta">作者：<a href="#">'
+                        + rows[i].author
+                        + '</a> &nbsp;&nbsp; '
+                        + rows[i].gtmModified + '</p>';
+                    htmlText += '</div>';
+                    htmlText += '<hr>';
                 }
-            });
+                $("#incomeNum").append(htmlText);
+                document.getElementById("flagLoad").style.display = "block";
+                currentPage++;
+                if (total <= currentPage * limit) {
+                    document.getElementById("flagLoaded").style.display = "block";
+                    document.getElementById("flagLoad").style.display = "none";
+                }
+            }
+        });
     }
 </script>
 </html>
