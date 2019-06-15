@@ -1,9 +1,12 @@
 package com.songpeng.system.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 系统用户
@@ -25,6 +28,11 @@ public class SysUser implements Serializable {
     private String username;
     @Column(name = "PASSWORD")
     private String password;
+    @Column(name = "BIRTHDAY")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    private Date birthday;
+    @Column(name = "STATUS")
+    private String status;
 
     public String getId() {
         return id;
@@ -58,14 +66,19 @@ public class SysUser implements Serializable {
         this.password = password;
     }
 
-    @Override
-    public String toString() {
-        final StringBuffer sb = new StringBuffer("SysUser{");
-        sb.append("id=").append(id);
-        sb.append(", name='").append(name).append('\'');
-        sb.append(", username='").append(username).append('\'');
-        sb.append(", password='").append(password).append('\'');
-        sb.append('}');
-        return sb.toString();
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

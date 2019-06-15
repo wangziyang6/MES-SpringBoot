@@ -40,7 +40,7 @@ public class SysUserController {
     public ApiResponse getPage(PageRequest pageRequest) {
         LOGGER.info("获取用户列表");
         PageInfo<SysUserDto> pageInfo = sysUserService.getPage(pageRequest);
-        Map<String, Object> result = new HashMap<>(1);
+        Map<String, Object> result = new HashMap<>(2);
         result.put("result", pageInfo);
         return ApiResponse.ok(result);
     }

@@ -7,6 +7,7 @@ import com.songpeng.common.utils.PageRequest;
 import com.songpeng.common.utils.StringUtils;
 import com.songpeng.system.domain.SysUser;
 import com.songpeng.system.dto.SysUserDto;
+import com.songpeng.system.enmus.ESysUser;
 import com.songpeng.system.mapper.SysUserMapper;
 import com.songpeng.system.service.SysUserService;
 import org.slf4j.Logger;
@@ -36,6 +37,13 @@ public class SysUserServiceImpl implements SysUserService, UserDetailsService {
     @Autowired
     private SysUserMapper sysUserMapper;
 
+    /**
+     * 实现 spring security UserDetailsService 中的方法
+     *
+     * @param username
+     * @return
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         if (StringUtils.isBlank(username)) {
@@ -55,6 +63,12 @@ public class SysUserServiceImpl implements SysUserService, UserDetailsService {
         return userDto;
     }
 
+    /**
+     * 用户分页查询
+     *
+     * @param pageRequest
+     * @return
+     */
     @Override
     public PageInfo<SysUserDto> getPage(PageRequest pageRequest) {
         // 将参数传给这个方法就可以实现物理分页了
@@ -70,9 +84,16 @@ public class SysUserServiceImpl implements SysUserService, UserDetailsService {
         return userDtos.isEmpty() ? null : userDtos.get(0);
     }
 
+    /**
+     * 创建用户
+     *
+     * @param sysUser
+     * @param roles
+     */
     @Override
     public void add(SysUser sysUser, String[] roles) {
         sysUser.setId(IdUtil.nextId());
+        sysUser.setStatus(ESysUser.STATUS_NORMAL.getValue());
         LOGGER.info("user insert id: {}", sysUser.getId());
         sysUserMapper.insertSelective(sysUser);
     }

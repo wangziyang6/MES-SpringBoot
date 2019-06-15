@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.songpeng.system.mapper.SysUserMapper" >
+<mapper namespace="com.songpeng.system.mapper.SysUserMapper">
 
-    <resultMap id="BaseResultMap" type="com.songpeng.system.domain.SysUser" >
-        <result column="ID" jdbcType="VARCHAR" property="id" />
-        <result column="NAME" jdbcType="VARCHAR" property="name" />
-        <result column="USERNAME" jdbcType="VARCHAR" property="username" />
-        <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <resultMap id="BaseResultMap" type="com.songpeng.system.domain.SysUser">
+        <result column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="NAME" jdbcType="VARCHAR" property="name"/>
+        <result column="USERNAME" jdbcType="VARCHAR" property="username"/>
+        <result column="PASSWORD" jdbcType="VARCHAR" property="password"/>
     </resultMap>
 
-    <!-- SysUserRolesDto 返回 -->
+    <!--SysUserRolesDto 返回-->
     <resultMap id="SysUserDtoRolesMap" type="com.songpeng.system.dto.SysUserDto" extends="BaseResultMap">
         <collection property="roleList"
-                    ofType="com.tn.iip.zu.system.model.SysRole"
+                    ofType="com.songpeng.system.domain.SysRole"
                     column="id"
-                    select="com.tn.iip.zu.system.mapper.SysRoleMapper.selectRolesByUserId"/>
+                    select="com.songpeng.system.mapper.SysUserMapper.selectRolesByUserId"/>
     </resultMap>
 
     <!--分页查询用户-->
     <select id="getPage" resultType="com.songpeng.system.dto.SysUserDto">
         SELECT
-        t.*
+            t.*
         FROM
-        sys_user t
+            sys_user t
     </select>
 
     <!--查询用户列表（包含角色列表）-->
     <select id="getSysUserDtosRoles" parameterType="java.lang.String" resultMap="SysUserDtoRolesMap">
         SELECT
-        t.*
+            t.*
         FROM
-        sys_user t
+            sys_user t
         WHERE t.username = #{username}
     </select>
 </mapper>

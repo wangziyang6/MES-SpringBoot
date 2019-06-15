@@ -8,7 +8,6 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 import java.util.Map;
 
-@Mapper
 public interface SysUserMapper extends SpMapper<SysUser> {
 
     List<SysUserDto> getPage(Map<String, Object> params);

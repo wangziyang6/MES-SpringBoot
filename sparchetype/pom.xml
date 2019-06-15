@@ -49,6 +49,7 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!--spring security-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
@@ -65,11 +66,13 @@
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
         </dependency>
+
         <!--渲染模板-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
+
         <!--非严格的Html-->
         <dependency>
             <groupId>net.sourceforge.nekohtml</groupId>
@@ -91,6 +94,7 @@
             <version>2.1.5</version>
         </dependency>
 
+        <!--数据库驱动-->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -98,6 +102,7 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!--分页插件-->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>

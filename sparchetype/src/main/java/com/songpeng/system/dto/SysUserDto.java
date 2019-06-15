@@ -1,13 +1,10 @@
 package com.songpeng.system.dto;
 
-import com.songpeng.system.domain.SysRole;
 import com.songpeng.system.domain.SysUser;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 /**
  * 系统用户 dto
@@ -36,6 +33,7 @@ public class SysUserDto extends SysUser implements UserDetails {
 
     /**
      * 账户是否过期，过期无法验证
+     *
      * @return
      */
     @Override
@@ -45,6 +43,7 @@ public class SysUserDto extends SysUser implements UserDetails {
 
     /**
      * 指定用户是否被锁定或者解锁，锁定的用户无法进行身份验证
+     *
      * @return
      */
     @Override
@@ -54,6 +53,7 @@ public class SysUserDto extends SysUser implements UserDetails {
 
     /**
      * 指示是否已过期的用户的凭据(密码)，过期的凭据防止认证
+     *
      * @return
      */
     @Override
@@ -63,6 +63,7 @@ public class SysUserDto extends SysUser implements UserDetails {
 
     /**
      * 是否被禁用，禁用的用户不能身份验证
+     *
      * @return
      */
     @Override

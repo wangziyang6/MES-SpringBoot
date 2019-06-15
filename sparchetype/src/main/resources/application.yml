@@ -8,6 +8,8 @@ spring:
     encoding: UTF-8
     servlet:
       content-type: text/html
+    prefix: classpath:/templates/
+    suffix: .html
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: org.postgresql.Driver
@@ -45,3 +47,4 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
+
