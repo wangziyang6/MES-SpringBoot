@@ -1,10 +1,16 @@
 package com.songpeng.system.dto;
 
+import com.songpeng.common.security.RoleGrantedAuthority;
+import com.songpeng.common.utils.StringUtils;
+import com.songpeng.system.domain.SysRole;
 import com.songpeng.system.domain.SysUser;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * 系统用户 dto
@@ -14,20 +20,24 @@ import java.util.Collection;
  */
 public class SysUserDto extends SysUser implements UserDetails {
 
+    /**
+     * 用户角色集合
+     */
+    private List<SysRole> roleList;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-//        List<RoleGrantedAuthority> authorityList = new ArrayList<>();
-//        authorityList.add(new RoleGrantedAuthority("ROLE_USER"));
-//
-//        // 加入角色权限
-//        if (roleList != null && !roleList.isEmpty()) {
-//            for (SysRole role : roleList) {
-//                if (StringUtils.isNotBlank(role.getCode())) {
-//                    authorityList.add(new RoleGrantedAuthority("ROLE_" + role.getCode().toUpperCase()));
-//                }
-//            }
-//        }
-//        return authorityList;
+        List<RoleGrantedAuthority> authorityList = new ArrayList<>();
+        authorityList.add(new RoleGrantedAuthority("ROLE_USER"));
+
+        // 加入角色权限
+        if (CollectionUtils.isEmpty(roleList)) {
+            for (SysRole role : roleList) {
+                if (StringUtils.isNotBlank(role.getCode())) {
+                    authorityList.add(new RoleGrantedAuthority("ROLE_" + role.getCode().toUpperCase()));
+                }
+            }
+        }
         return null;
     }
 
@@ -69,5 +79,13 @@ public class SysUserDto extends SysUser implements UserDetails {
     @Override
     public boolean isEnabled() {
         return false;
+    }
+
+    public List<SysRole> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<SysRole> roleList) {
+        this.roleList = roleList;
     }
 }

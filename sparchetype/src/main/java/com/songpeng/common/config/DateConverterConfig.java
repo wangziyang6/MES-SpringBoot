@@ -25,6 +25,10 @@ public class DateConverterConfig implements Converter<String, Date> {
         FORMATS.add("yyyy-MM-dd");
         FORMATS.add("yyyy-MM-dd hh:mm");
         FORMATS.add("yyyy-MM-dd hh:mm:ss");
+        FORMATS.add("yyyy/MM");
+        FORMATS.add("yyyy/MM/dd");
+        FORMATS.add("yyyy/MM/dd hh:mm");
+        FORMATS.add("yyyy/MM/dd hh:mm:ss");
     }
 
     @Override

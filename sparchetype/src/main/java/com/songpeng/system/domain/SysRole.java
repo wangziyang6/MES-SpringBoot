@@ -9,6 +9,7 @@ package com.songpeng.system.domain;
 public class SysRole {
     private Long id;
     private String name;
+    private String code;
 
     public Long getId() {
         return id;
@@ -26,13 +27,11 @@ public class SysRole {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        final StringBuffer sb = new StringBuffer("SysRole{");
-        sb.append("id=").append(id);
-        sb.append(", name='").append(name).append('\'');
-        sb.append('}');
-        return sb.toString();
+    public String getCode() {
+        return code;
     }
 
+    public void setCode(String code) {
+        this.code = code;
+    }
 }
