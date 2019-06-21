@@ -11,7 +11,7 @@ import java.util.Map;
  * UserService
  *
  * @author songpeng
- * @date 2019/4/20.
+ * @date 2019/4/20
  */
 public interface SysUserService {
 

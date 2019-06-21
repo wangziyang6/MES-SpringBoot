@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.songpeng.system.mapper.SysUserMapper">
+
+    <resultMap id="BaseResultMap" type="com.songpeng.system.domain.SysUser">
+        <id column="id" jdbcType="VARCHAR" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="username" jdbcType="VARCHAR" property="username" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="dept_id" jdbcType="VARCHAR" property="deptId" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+        <result column="tel" jdbcType="VARCHAR" property="tel" />
+        <result column="sex" jdbcType="CHAR" property="sex" />
+        <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
+        <result column="pic_id" jdbcType="VARCHAR" property="picId" />
+        <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+        <result column="hobby" jdbcType="VARCHAR" property="hobby" />
+        <result column="province" jdbcType="VARCHAR" property="province" />
+        <result column="city" jdbcType="VARCHAR" property="city" />
+        <result column="district" jdbcType="VARCHAR" property="district" />
+        <result column="street" jdbcType="VARCHAR" property="street" />
+        <result column="street_number" jdbcType="VARCHAR" property="streetNumber" />
+        <result column="description" jdbcType="VARCHAR" property="description" />
+        <result column="status" jdbcType="CHAR" property="status" />
+        <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+        <result column="created" jdbcType="TIMESTAMP" property="created" />
+        <result column="last_upd_by" jdbcType="VARCHAR" property="lastUpdBy" />
+        <result column="last_upd" jdbcType="TIMESTAMP" property="lastUpd" />
+    </resultMap>
+
+    <!--SysUserRolesDto 返回-->
+    <resultMap id="SysUserDtoRolesMap" type="com.songpeng.system.dto.SysUserDto" extends="BaseResultMap">
+        <collection property="roleList"
+                    ofType="com.songpeng.system.domain.SysRole"
+                    column="id"
+                    select="com.songpeng.system.mapper.SysRoleMapper.getRolesByUserId"/>
+    </resultMap>
+
+    <!--分页查询用户-->
+    <select id="getPage" resultType="com.songpeng.system.dto.SysUserDto">
+        SELECT
+            t.*
+        FROM
+            sys_user t
+    </select>
+
+    <!--查询用户列表（包含角色列表）-->
+    <select id="getSysUserDtosRoles" parameterType="java.lang.String" resultMap="SysUserDtoRolesMap">
+        SELECT
+            t.*
+        FROM
+            sys_user t
+        WHERE t.username = #{username}
+    </select>
+</mapper>

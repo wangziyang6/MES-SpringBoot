@@ -57,14 +57,14 @@ public class PageRequest implements Serializable {
 
     public Map<String, Object> getParams() {
         String key;
-        if (StringUtils.isNotEmpty(this.order)) {
+        if (StringUtil.isNotEmpty(this.order)) {
             String[] orders = this.order.split(",");
             String[] sorts = this.sort.split(",");
             key = "";
             int i = 0;
 
             for (int j = orders.length; i < j; ++i) {
-                key = StringUtils.assemblyString(new String[]{key, orders[i], " ", sorts[i], ","});
+                key = StringUtil.assemblyString(new String[]{key, orders[i], " ", sorts[i], ","});
             }
 
             this.params.put("orderByClause", key.substring(0, key.length() - 1));
@@ -85,7 +85,7 @@ public class PageRequest implements Serializable {
                         key = (String) entry.getKey();
                         value = entry.getValue();
                     } while (value == null);
-                } while (StringUtils.isBlank(String.valueOf(value)));
+                } while (StringUtil.isBlank(String.valueOf(value)));
 
                 if ((key.endsWith("IN") || key.endsWith("NI")) && value instanceof String) {
                     this.params.put(key, Arrays.asList(value.toString().split(",")));
@@ -93,7 +93,7 @@ public class PageRequest implements Serializable {
             } while (!key.endsWith("TimeEnd") && !key.endsWith("DateEnd"));
 
             if (String.valueOf(value).length() == 10) {
-                this.params.put(key, DateUtils.formatDateTime(DateUtils.getDateEnd(DateUtils.parseDate(value))));
+                this.params.put(key, DateUtil.formatDateTime(DateUtil.getDateEnd(DateUtil.parseDate(value))));
             }
         }
     }

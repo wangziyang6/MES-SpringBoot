@@ -1,10 +1,10 @@
 package com.songpeng.system.dto;
 
-import com.songpeng.common.security.RoleGrantedAuthority;
-import com.songpeng.common.utils.StringUtils;
+import com.songpeng.common.utils.StringUtil;
 import com.songpeng.system.domain.SysRole;
 import com.songpeng.system.domain.SysUser;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.util.CollectionUtils;
 
@@ -27,14 +27,14 @@ public class SysUserDto extends SysUser implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<RoleGrantedAuthority> authorityList = new ArrayList<>();
-        authorityList.add(new RoleGrantedAuthority("ROLE_USER"));
+        List<SimpleGrantedAuthority> authorityList = new ArrayList<>();
+        authorityList.add(new SimpleGrantedAuthority("ROLE_USER"));
 
         // 加入角色权限
         if (CollectionUtils.isEmpty(roleList)) {
             for (SysRole role : roleList) {
-                if (StringUtils.isNotBlank(role.getCode())) {
-                    authorityList.add(new RoleGrantedAuthority("ROLE_" + role.getCode().toUpperCase()));
+                if (StringUtil.isNotBlank(role.getCode())) {
+                    authorityList.add(new SimpleGrantedAuthority("ROLE_" + role.getCode().toUpperCase()));
                 }
             }
         }
@@ -58,17 +58,18 @@ public class SysUserDto extends SysUser implements UserDetails {
      */
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     /**
      * 指示是否已过期的用户的凭据(密码)，过期的凭据防止认证
+     * 帐户密码是否过期，一般有的密码要求性高的系统会使用到，比较每隔一段时间就要求用户重置密码
      *
      * @return
      */
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     /**
@@ -78,7 +79,7 @@ public class SysUserDto extends SysUser implements UserDetails {
      */
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
     public List<SysRole> getRoleList() {

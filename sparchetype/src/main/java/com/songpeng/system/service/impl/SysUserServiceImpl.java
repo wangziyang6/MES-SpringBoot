@@ -4,7 +4,8 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.songpeng.common.utils.IdUtil;
 import com.songpeng.common.utils.PageRequest;
-import com.songpeng.common.utils.StringUtils;
+import com.songpeng.common.utils.PasswordEncoderUtil;
+import com.songpeng.common.utils.StringUtil;
 import com.songpeng.system.domain.SysUser;
 import com.songpeng.system.dto.SysUserDto;
 import com.songpeng.system.enmus.ESysUser;
@@ -46,17 +47,18 @@ public class SysUserServiceImpl implements SysUserService, UserDetailsService {
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        if (StringUtils.isBlank(username)) {
+        if (StringUtil.isBlank(username)) {
             throw new BadCredentialsException("用户名不能为空！");
         }
 
         // 根据用户名和正常状态获取用户信息
         Map<String, Object> paraMap = new HashMap(1) {{
-            put("userName", username);
+            put("username", username);
         }};
         SysUserDto userDto = getUserDtoRoles(paraMap);
 
         if (userDto == null) {
+            LOGGER.error("未找到用户名为 {} 的用户信息", username);
             throw new BadCredentialsException("未找到用户名为 " + username + " 的用户信息");
         }
 
@@ -93,6 +95,7 @@ public class SysUserServiceImpl implements SysUserService, UserDetailsService {
     @Override
     public void add(SysUser sysUser, String[] roles) {
         sysUser.setId(IdUtil.nextId());
+        sysUser.setPassword(PasswordEncoderUtil.passwordEncoder(sysUser.getPassword()));
         sysUser.setStatus(ESysUser.STATUS_NORMAL.getValue());
         LOGGER.info("user insert id: {}", sysUser.getId());
         sysUserMapper.insertSelective(sysUser);

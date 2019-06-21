@@ -127,4 +127,9 @@ public final class IdUtil {
         throw new IllegalArgumentException("Invalid id: " + stringId);
     }
 
+    public static void main(String[] args) {
+        String s = IdUtil.nextId();
+        System.out.println(s);
+    }
+
 }

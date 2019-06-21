@@ -8,7 +8,7 @@ package com.songpeng.common.utils;
  */
 public class FileType {
     public static int fileType(String fileName) {
-        if (StringUtils.isBlank(fileName)) {
+        if (StringUtil.isBlank(fileName)) {
             fileName = "文件名为空！";
             return 500;
 

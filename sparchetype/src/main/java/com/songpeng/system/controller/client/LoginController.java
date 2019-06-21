@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 登录 Controller
@@ -59,6 +61,12 @@ public class LoginController {
     @GetMapping("/main")
     String main() {
         return "admin/main";
+    }
+
+    @RequestMapping("/personal_center")
+    @ResponseBody
+    String loginSuccess() {
+        return "success";
     }
 
 }
