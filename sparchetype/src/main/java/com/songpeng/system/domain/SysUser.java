@@ -1,5 +1,6 @@
 package com.songpeng.system.domain;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.Column;
@@ -26,6 +27,7 @@ public class SysUser implements Serializable {
     private String name;
     @Column(name = "USERNAME")
     private String username;
+    @JSONField(serialize = false)
     @Column(name = "PASSWORD")
     private String password;
     @Column(name = "DEPT_ID")

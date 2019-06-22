@@ -38,7 +38,7 @@ mybatis:
     log-impl: org.apache.ibatis.logging.log4j.Log4jImpl
 mapper:
   mappers:
-    - com.songpeng.common.utils.SpMapper
+    - com.songpeng.common.utils.CustomMapper
   not-empty: false
   identity: POSTGRESQL
 
@@ -48,3 +48,8 @@ pagehelper:
   supportMethodsArguments: true
   params: count=countSql
 
+security:
+  ignoring: "/, /css/**, /fonts/**, /img/**, /js/**, /lib/**, /favicon.ico, /blog, /sign_in"
+  intercept: "/**/*.jsp, /**/*.html"
+  successUrl: "/index.html"
+  logoutSuccessUrl: "/login.html"

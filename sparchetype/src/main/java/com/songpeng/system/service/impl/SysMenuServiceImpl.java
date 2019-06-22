@@ -4,6 +4,7 @@ import com.songpeng.system.domain.SysMenu;
 import com.songpeng.system.mapper.SysMenuMapper;
 import com.songpeng.system.service.SysMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.PathMatcher;
 
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
  * @author songpeng
  * @date 2019/6/21
  */
+@Service
 public class SysMenuServiceImpl implements SysMenuService {
 
     @Autowired

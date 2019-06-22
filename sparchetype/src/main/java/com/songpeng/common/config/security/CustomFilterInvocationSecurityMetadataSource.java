@@ -8,11 +8,13 @@ import com.songpeng.system.service.SysRoleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.PropertySource;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
+import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.PathMatcher;
 
@@ -27,18 +29,22 @@ import java.util.List;
  * @author SongPeng
  * @date 2019/6/21
  */
+@Component
 public class CustomFilterInvocationSecurityMetadataSource implements FilterInvocationSecurityMetadataSource {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CustomFilterInvocationSecurityMetadataSource.class);
+
+    @Value("${security.ignoring}")
+    private String securityIgnoring;
+
+    @Value("${security.intercept}")
+    private String securityIntercept;
 
     @Autowired
     private SysMenuService sysMenuService;
 
     @Autowired
     private SysRoleService sysRoleService;
-
-    @Autowired
-    private PropertySource propertySourceBean;
 
     private PathMatcher matcher = new AntPathMatcher();
 
@@ -65,8 +71,8 @@ public class CustomFilterInvocationSecurityMetadataSource implements FilterInvoc
 
         try {
             //设置不拦截
-            if (propertySourceBean.getProperty("security.ignoring") != null) {
-                String[] paths = propertySourceBean.getProperty("security.ignoring").toString().split(",");
+            if (StringUtil.isNotBlank(securityIgnoring)) {
+                String[] paths = securityIgnoring.split(",");
                 //判断是否符合规则
                 for (String path : paths) {
                     String temp = StringUtil.clearSpace(path);
@@ -122,10 +128,12 @@ public class CustomFilterInvocationSecurityMetadataSource implements FilterInvoc
      * @return
      */
     public boolean isIntercept(String url) {
-        String[] filterPaths = propertySourceBean.getProperty("security.intercept").toString().split(",");
-        for (String filter : filterPaths) {
-            if (matcher.match(StringUtil.clearSpace(filter), url) & !matcher.match(indexUrl, url)) {
-                return true;
+        if (StringUtil.isNotBlank(securityIntercept)) {
+            String[] filterPaths = securityIntercept.split(",");
+            for (String filter : filterPaths) {
+                if (matcher.match(StringUtil.clearSpace(filter), url) & !matcher.match(indexUrl, url)) {
+                    return true;
+                }
             }
         }
 

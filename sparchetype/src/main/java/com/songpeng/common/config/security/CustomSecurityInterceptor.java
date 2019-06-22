@@ -10,10 +10,11 @@ import javax.servlet.*;
 import java.io.IOException;
 
 /**
- * @author songpeng
- * @date 2019/6/20
+ *
+ * @author SongPeng
+ * @date 2019/6/22
  */
-public class CustomFilterSecurityInterceptor extends AbstractSecurityInterceptor implements Filter {
+public class CustomSecurityInterceptor extends AbstractSecurityInterceptor implements Filter {
     private FilterInvocationSecurityMetadataSource securityMetadataSource;
 
     @Override

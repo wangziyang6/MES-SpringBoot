@@ -1,5 +1,6 @@
 package com.songpeng.common.config;
 
+import com.songpeng.common.utils.StringUtil;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -34,7 +35,7 @@ public class DateConverterConfig implements Converter<String, Date> {
     @Override
     public Date convert(String source) {
         String value = source.trim();
-        if ("".equals(value)) {
+        if (StringUtil.isBlank(value)) {
             return null;
         }
         if (source.matches("^\\d{4}-\\d{1,2}$")) {
