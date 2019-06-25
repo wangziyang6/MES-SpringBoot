@@ -40,8 +40,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        LOGGER.debug("权限框架配置");
-
         String[] paths = null;
         //设置不拦截
         if (StringUtil.isNotBlank(securityIgnoring)) {
@@ -117,7 +115,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         try {
             filter.setAuthenticationManager(this.authenticationManagerBean());
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error("登录失败", e);
         }
         filter.setAuthenticationSuccessHandler(getCustomLoginAuthSuccessHandler());
         filter.setAuthenticationFailureHandler(getCustomLoginAuthFailureHandler());
@@ -166,7 +164,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         try {
             interceptor.setAuthenticationManager(this.authenticationManagerBean());
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error("", e);
         }
         return interceptor;
     }

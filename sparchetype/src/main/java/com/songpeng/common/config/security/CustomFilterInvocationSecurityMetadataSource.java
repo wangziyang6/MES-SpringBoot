@@ -16,6 +16,7 @@ import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.PathMatcher;
 
 import java.util.ArrayList;
@@ -48,7 +49,7 @@ public class CustomFilterInvocationSecurityMetadataSource implements FilterInvoc
 
     private PathMatcher matcher = new AntPathMatcher();
 
-    private String indexUrl = "/index.jsp";
+    private String indexUrl = "/index.html";
 
     /**
      * 方法返回本次访问需要的权限，可以有多个权限。
@@ -63,6 +64,7 @@ public class CustomFilterInvocationSecurityMetadataSource implements FilterInvoc
     public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
         //获取当前访问url
         String url = ((FilterInvocation) object).getRequestUrl();
+        LOGGER.info("获取当前访问url = {}", url);
         int firstQuestionMarkIndex = url.indexOf("?");
         if (firstQuestionMarkIndex != -1) {
             url = url.substring(0, firstQuestionMarkIndex);
@@ -93,13 +95,14 @@ public class CustomFilterInvocationSecurityMetadataSource implements FilterInvoc
 
             //查询匹配的url
             List<SysMenu> menuList = sysMenuService.getMenusByUrl(url);
-            if (menuList != null && menuList.size() > 0) {
+            if (!CollectionUtils.isEmpty(menuList)) {
                 for (SysMenu menu : menuList) {
                     //查询拥有该菜单权限的角色列表
                     List<SysRole> roles = sysRoleService.getRolesByMenuId(menu.getId());
-                    if (roles != null && roles.size() > 0) {
+                    if (!CollectionUtils.isEmpty(roles)) {
                         for (SysRole role : roles) {
-                            ConfigAttribute conf = new SecurityConfig(role.getCode());
+//                            ConfigAttribute conf = new SecurityConfig(role.getCode());
+                            ConfigAttribute conf = new SecurityConfig("ROLE_" + role.getCode().toUpperCase());
                             result.add(conf);
                         }
                     }

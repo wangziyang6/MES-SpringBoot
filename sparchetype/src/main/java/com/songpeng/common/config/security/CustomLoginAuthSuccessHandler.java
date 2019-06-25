@@ -34,7 +34,7 @@ public class CustomLoginAuthSuccessHandler implements AuthenticationSuccessHandl
 
     protected final void clearAuthenticationAttributes(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
-        if (session == null) {
+        if (null == session) {
             return;
         }
         session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);

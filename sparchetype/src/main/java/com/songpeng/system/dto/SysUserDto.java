@@ -31,7 +31,7 @@ public class SysUserDto extends SysUser implements UserDetails {
         authorityList.add(new SimpleGrantedAuthority("ROLE_USER"));
 
         // 加入角色权限
-        if (CollectionUtils.isEmpty(roleList)) {
+        if (!CollectionUtils.isEmpty(roleList)) {
             for (SysRole role : roleList) {
                 if (StringUtil.isNotBlank(role.getCode())) {
                     authorityList.add(new SimpleGrantedAuthority("ROLE_" + role.getCode().toUpperCase()));

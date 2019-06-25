@@ -34,7 +34,7 @@ public class CustomAccessDecisionManager implements AccessDecisionManager {
      */
     @Override
     public void decide(Authentication authentication, Object object, Collection<ConfigAttribute> collection) throws AccessDeniedException, InsufficientAuthenticationException {
-        if (collection == null) {
+        if (CollectionUtils.isEmpty(collection)) {
             return;
         }
         for (ConfigAttribute configAttribute : collection) {

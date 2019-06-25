@@ -22,8 +22,9 @@
     <!-- 根据菜单id查询所属角色 -->
     <select id="getRolesByMenuId" resultMap="BaseResultMap">
         SELECT t.*
-        FROM BASE_ROLE t
+        FROM SYS_ROLE t
                  LEFT JOIN SYS_ROLE_MENU srm ON t.ID = srm.ROLE_ID
         WHERE srm.MENU_ID = #{menuId}
+        AND t.STATUS = '1'
     </select>
 </mapper>

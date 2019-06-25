@@ -28,8 +28,6 @@ public class SysMenu implements Serializable {
     private String url;
     @Column(name = "PARENT_ID")
     private String parentId;
-    @Column(name = "GRADE")
-    private String grade;
     @Column(name = "SORT_NUM")
     private String sortNum;
     @Column(name = "TYPE")
@@ -81,14 +79,6 @@ public class SysMenu implements Serializable {
 
     public void setParentId(String parentId) {
         this.parentId = parentId;
-    }
-
-    public String getGrade() {
-        return grade;
-    }
-
-    public void setGrade(String grade) {
-        this.grade = grade;
     }
 
     public String getSortNum() {

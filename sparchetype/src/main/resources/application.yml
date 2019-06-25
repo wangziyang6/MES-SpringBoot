@@ -49,7 +49,7 @@ pagehelper:
   params: count=countSql
 
 security:
-  ignoring: "/, /css/**, /fonts/**, /img/**, /js/**, /lib/**, /favicon.ico, /blog, /sign_in"
-  intercept: "/**/*.jsp, /**/*.html"
-  successUrl: "/index.html"
-  logoutSuccessUrl: "/login.html"
+  ignoring: "/, /css/**, /fonts/**, /img/**, /js/**, /lib/**, /favicon.ico, /blog, /sign_in, /client/**"
+  intercept: "/**/*.jsp, /**/*.html, /admin/**"
+  successUrl: "/sign_in"
+  logoutSuccessUrl: "/sign_in"

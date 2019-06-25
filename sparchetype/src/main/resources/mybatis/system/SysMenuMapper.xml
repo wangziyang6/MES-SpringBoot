@@ -7,7 +7,6 @@
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="url" jdbcType="VARCHAR" property="url"/>
         <result column="parent_id" jdbcType="VARCHAR" property="parentId"/>
-        <result column="grade" jdbcType="CHAR" property="grade"/>
         <result column="sort_num" jdbcType="INTEGER" property="sortNum"/>
         <result column="type" jdbcType="CHAR" property="type"/>
         <result column="permission" jdbcType="VARCHAR" property="permission"/>

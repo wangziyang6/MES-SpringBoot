@@ -1,5 +1,6 @@
 package com.songpeng.common.config.security;
 
+import com.songpeng.common.utils.StringUtil;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -33,10 +34,10 @@ public class CustomLoginFilter extends AbstractAuthenticationProcessingFilter {
         }
         String username = obtainUsername(request);
         String password = obtainPassword(request);
-        if (username == null) {
+        if (StringUtil.isBlank(username)) {
             username = "";
         }
-        if (password == null) {
+        if (StringUtil.isBlank(password)) {
             password = "";
         }
         username = username.trim();
