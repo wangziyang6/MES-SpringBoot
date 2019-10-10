@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @date 2019/9/27 16:05
  */
 @RequestMapping("/blog")
-@Controller
+@Controller("adminBlogController")
 public class BlogController {
 
-	@GetMapping()
-	public String blog(Model model) {
-		return "blog/index";
+	@GetMapping("/article/listui")
+	public String listUI(Model model) {
+		return "blog/article/list";
 	}
 }

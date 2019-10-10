@@ -3,24 +3,15 @@ package com.songpeng.sparchetype.system.controller.admin;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @author SongPeng
  * @date 2019/9/27 16:05
  */
-@Controller
+@RequestMapping("/admin")
+@Controller("adminSysLoginController")
 public class SysLoginController {
-
-	/**
-	 * 博客主页
-	 *
-	 * @param model
-	 * @return
-	 */
-	@GetMapping({"/", ""})
-	public String welcome(Model model) {
-		return "redirect:/blog";
-	}
 
 	/**
 	 * 后台管理首页
@@ -28,15 +19,20 @@ public class SysLoginController {
 	 * @param model
 	 * @return
 	 */
-	@GetMapping("/index")
-	public String index(Model model) {
+	@GetMapping({"", "/index"})
+	public String indexUI(Model model) {
 		// TODO 菜单树
 		return "index";
 	}
 
-	@GetMapping("/admin/welcome")
-	public String welcomePage(Model model) {
-		// TODO 菜单树
+	/**
+	 * 后台管理欢迎页
+	 *
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/welcome")
+	public String welcomeUI(Model model) {
 		return "admin/welcome";
 	}
 }

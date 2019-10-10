@@ -14,7 +14,6 @@
  * 也可以采用点击时获取下级子菜单的方式
  * 当然，具体的情况要参照自己的需求及api返回结构
  **/
-
 layui.define('jquery', function(exports) {
 	var $ = layui.jquery;
 	var menu = {

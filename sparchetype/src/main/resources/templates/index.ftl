@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<title>后台管理-WeAdmin Frame型后台管理系统-WeAdmin 1.0</title>
+		<title>后台管理系统</title>
 		<meta name="renderer" content="webkit|ie-comp|ie-stand">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -14,12 +14,11 @@
 		<!-- 顶部开始 -->
 		<div class="container">
 			<div class="logo">
-				<a href="./index.html">WeAdmin v1.0</a>
+				<a href="./index.html">后台管理系统</a>
 			</div>
 			<div class="left_open">
 				<!-- <i title="展开左侧栏" class="iconfont">&#xe699;</i> -->
 				<i title="展开左侧栏" class="layui-icon layui-icon-shrink-right"></i>
-
 			</div>
 			<ul class="layui-nav left fast-add" lay-filter="">
 				<li class="layui-nav-item">
@@ -86,12 +85,12 @@
 		<!-- 中部结束 -->
 		<!-- 底部开始 -->
 		<div class="footer">
-			<div class="copyright">Copyright ©2018 WeAdmin v1.0 All Rights Reserved</div>
+			<div class="copyright">Copyright ©2019 SpArchetype v1.0 All Rights Reserved</div>
 		</div>
 		<!-- 底部结束 -->
 		<script type="text/javascript">
 			layui.config({
-				base: './js/'
+				base: '${request.contextPath}/js/'
 				,version: '101100'
 			}).extend({ //设定模块别名
 				admin: 'admin'
@@ -102,7 +101,7 @@
 					admin = layui.admin,
 					menu = layui.menu;
 				$(function(){
-					menu.getMenu('./json/menu.json');
+					menu.getMenu('${request.contextPath}/json/menu.json');
 					var login = JSON.parse(localStorage.getItem("login"));
 					/*if(login){
 						if(login===0){
