@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/sp-archetype.iml" filepath="$PROJECT_DIR$/.idea/sp-archetype.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sparchetype/sparchetype.iml" filepath="$PROJECT_DIR$/sparchetype/sparchetype.iml" />
+    </modules>
+  </component>
+</project>
