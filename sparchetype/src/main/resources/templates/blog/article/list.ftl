@@ -5,6 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>blog list</h1>
+    <h1>list</h1>
+    <h1>list</h1>
+    <h1>list</h1>
 </body>
 </html>

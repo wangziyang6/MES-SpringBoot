@@ -53,8 +53,9 @@ layui.define('jquery', function(exports) {
 			var subItems = [];
 			var subUl = $('<ul></ul>').addClass('sub-menu');
 			$.each(subList, function(idx, sub) {
-				var subItem = '<li id="menu' + sub.id + '"><a _href="' + sub.url + '"><i class="iconfont">&#xe6a7;</i><cite>' +
-					sub.name + '</cite></a></li>';
+			    var leftIcon = sub.icon ? sub.icon : '&#xe64e;';
+				var subItem = '<li id="menu' + sub.id + '"><a _href="' + sub.url + '"><i class="layui-icon">' + leftIcon + '</i><cite>' +
+					sub.name + '</cite><i class="iconfont nav_right">&#xe697;</i></a></li>';
 				subItems.push(subItem);
 				if (sub.children && sub.children.length) {
 					setTimeout(function() {
