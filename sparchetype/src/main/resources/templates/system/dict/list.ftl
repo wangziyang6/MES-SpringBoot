@@ -2,20 +2,19 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>文章列表</title>
+		<title>系统字典列表</title>
 		<meta name="Description" content="基于layUI数据表格操作"/>
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
 		<#include "${request.contextPath}/common/common.ftl">
 	</head>
-
 	<body>
 		<div class="weadmin-nav">
 			<span class="layui-breadcrumb">
                 <a href="">首页</a>
-                <a href="">文章管理</a>
-                <a><cite>文章列表</cite></a>
+                <a href="">系统字典列表管理</a>
+                <a><cite>系统字典列表</cite></a>
             </span>
 			<a class="layui-btn layui-btn-sm" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
 				<i class="layui-icon" style="line-height:30px">&#xe669;</i>
@@ -44,7 +43,6 @@
 					<button class="layui-btn" lay-submit lay-filter="search-form-btn-filter"><i class="layui-icon">&#xe615;</i></button>
 				</form>
 			</div>
-
 			<!--数据表格-->
 			<table class="layui-hide" id="articleList" lay-filter="table-filter"></table>
 		</div>
@@ -55,7 +53,7 @@
         <button class="layui-btn layui-btn-sm" lay-event="recommend"><i class="layui-icon">&#xe6c6;</i>推荐</button>
         <button class="layui-btn layui-btn-sm" lay-event="top"><i class="layui-icon">&#xe619;</i>置顶</button>
         <button class="layui-btn layui-btn-sm" lay-event="review"><i class="layui-icon">&#xe6b2;</i>审核</button>
-        <button class="layui-btn layui-btn-sm" onclick="WeAdminShow('添加用户','./add.html',600,400)"><i class="layui-icon">&#xe61f;</i>添加</button>
+        <button class="layui-btn layui-btn-sm" onclick="WeAdminShow('添加用户','${request.contextPath}/admin/sys/dict/add-or-upd-ui',600,400)"><i class="layui-icon">&#xe61f;</i>添加</button>
       </div>
     </script>
     <script type="text/html" id="recommendTpl">
@@ -103,48 +101,44 @@
                 elem: '#articleList',
                 cellMinWidth: 80,
                 toolbar: '#toolbar-top',
+                method: 'POST',
+                event: true,
+                page: true,
+                url: '${request.contextPath}/admin/sys/dict/page',
+                request: {
+                  pageName: 'current' //页码的参数名称，默认：page
+                  ,limitName: 'size' //每页数据量的参数名，默认：limit
+                },
+                parseData: function(res){ //res 即为原始返回的数据
+                    return {
+                        "code": res.code, //解析接口状态
+                        "msg": res.msg, //解析提示文本
+                        "count": res.data ? res.data.total : 0, //解析数据长度
+                        "data": res.data ? res.data.records : [] //解析数据列表
+                    };
+                },
                 cols: [
                     [{
                         type: 'checkbox'
                     }, {
-                        field: 'id',title: 'ID',sort: true
+                        field: 'name', title: '标签名',sort: true
                     }, {
-                        field: 'title',title: '标题',templet: '#usernameTpl'
+                        field: 'value',title: '标签值',templet: '#usernameTpl'
                     }, {
-                        field: 'date',title: '发布时间',sort: true
+                        field: 'type',title: '类别',sort: true
                     }, {
-                        field: 'category',title: '分类',sort: true
+                        field: 'descr',title: '描述',sort: true
                     }, {
-                        field: 'sort',title: '排序',sort: true
-                    }, {
-                        field: 'recommend',title: '推荐',templet: '#recommendTpl',unresize: true
-                    }, {
-                        field: 'top',title: '置顶',templet: '#topTpl',unresize: true
-                    }, {
-                        field: 'review',title: '审核',templet: '#reviewTpl',unresize: true
+                        field: 'status',title: '状态',sort: true
                     }, {
                         field: 'operate',title: '操作',toolbar: '#operateTpl',unresize: true
                     }]
                 ],
-                data: [{
-                    "id": "1",
-                    "title": "WeAdmin的第一个版本在不断地抽空完善学习中",
-                    "date": "2018-02-03",
-                    "category": "官方动态",
-                    "sort": "1",
-                    "recommend": "checked",
-                    "top": "checked"
-                }, {
-                    "id": "2",
-                    "title": "WeAdmin的测试数据一二三四五六七",
-                    "date": "2018-02-03",
-                    "category": "新闻资讯",
-                    "sort": "1",
-                    "recommend": "",
-                    "top": "checked"
-                }],
-                event: true,
-                page: true
+                done: function(res, curr, count){
+                    //如果是异步请求数据方式，res即为你接口返回的信息。
+                    //如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
+                    console.log(res);
+                }
             });
 
             /*

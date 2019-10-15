@@ -1,5 +1,6 @@
 package com.songpeng.sparchetype.system.controller.admin;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @RequestMapping("/admin")
 @Controller("adminSysLoginController")
+@Slf4j
 public class SysLoginController {
 
 	/**

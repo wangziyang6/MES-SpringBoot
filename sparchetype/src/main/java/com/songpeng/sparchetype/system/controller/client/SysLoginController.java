@@ -1,5 +1,6 @@
 package com.songpeng.sparchetype.system.controller.client;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @date 2019/9/27 16:05
  */
 @Controller("clientSysLoginController")
+@Slf4j
 public class SysLoginController {
 
 	/**
@@ -22,6 +24,17 @@ public class SysLoginController {
 	@GetMapping({"/", ""})
 	public String welcomeUI(Model model) {
 		return "redirect:/blog";
+	}
+
+	/**
+	 * 登录页面
+	 *
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/login")
+	public String loginUI(Model model) {
+		return "login";
 	}
 
 }

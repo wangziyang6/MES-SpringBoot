@@ -1,4 +1,4 @@
-package com.songpeng.sparchetype.common.entity;
+package com.songpeng.sparchetype.system.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.songpeng.sparchetype.common.BaseEntity;

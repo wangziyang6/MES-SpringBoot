@@ -1,7 +1,7 @@
-package com.songpeng.sparchetype.common.service;
+package com.songpeng.sparchetype.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.songpeng.sparchetype.common.entity.SysDict;
+import com.songpeng.sparchetype.system.entity.SysDict;
 
 /**
  * <p>

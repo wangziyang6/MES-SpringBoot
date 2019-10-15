@@ -10,12 +10,12 @@
 				"id": 2,
 				"name": "会员列表",
 				"icon": "",
-				"url": "/blog/article/listui"
+				"url": "/admin/sys/dict/list-ui"
 			}, {
 				"id": 3,
 				"name": "会员删除",
 				"icon": "",
-				"url": "/blog/article/listui"
+				"url": "/admin/article/list-ui"
 			}, {
 				"id": 4,
 				"name": "会员管理",
@@ -25,7 +25,7 @@
 					"id": 5,
 					"name": "输入框操作",
 					"icon": "",
-					"url": "/blog/article/listui"
+					"url": "/blog/article/list-ui"
 				}, {
 					"id": 6,
 					"name": "三级菜单演示",

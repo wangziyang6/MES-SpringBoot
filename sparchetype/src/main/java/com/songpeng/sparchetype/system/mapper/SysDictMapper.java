@@ -1,7 +1,7 @@
-package com.songpeng.sparchetype.common.mapper;
+package com.songpeng.sparchetype.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.songpeng.sparchetype.common.entity.SysDict;
+import com.songpeng.sparchetype.system.entity.SysDict;
 
 /**
  * <p>

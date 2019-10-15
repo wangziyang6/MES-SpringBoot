@@ -7,7 +7,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
 		<meta http-equiv="Cache-Control" content="no-siteapp" />
-        <#include "./common/common.ftl">
+        <#include "${request.contextPath}/common/common.ftl">
 	</head>
 
 	<body>
@@ -46,15 +46,15 @@
 							<a onclick="WeAdminShow('个人信息','http://www.baidu.com')">个人信息</a>
 						</dd>
 						<dd>
-							<a onclick="WeAdminShow('切换帐号','./login.html')">切换帐号</a>
+							<a onclick="WeAdminShow('切换帐号','${request.contextPath}/login')">切换帐号</a>
 						</dd>
 						<dd>
-							<a class="loginout" href="./login.html">退出</a>
+							<a class="loginout" href="${request.contextPath}/login">退出</a>
 						</dd>
 					</dl>
 				</li>
 				<li class="layui-nav-item to-index">
-					<a href="https://www.jiuwei.com/" target="_blank">前台首页</a>
+					<a href="https://www.iconfont.cn" target="_blank">前台首页</a>
 				</li>
 			</ul>
 
@@ -101,6 +101,7 @@
 					admin = layui.admin,
 					menu = layui.menu;
 				$(function(){
+				    // TODO 测试用，后台建立完成后更改为数据库查询
 					menu.getMenu('${request.contextPath}/json/menu.json');
 					var login = JSON.parse(localStorage.getItem("login"));
 					/*if(login){
