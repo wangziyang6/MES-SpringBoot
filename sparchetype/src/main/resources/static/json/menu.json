@@ -77,7 +77,7 @@
 				"id": 14,
 				"name": "管理员列表",
 				"icon": "",
-				"url": "/blog/article/listui"
+				"url": "/admin/sys/user/list-ui"
 			},
 			{
 				"id": 15,

@@ -22,7 +22,7 @@
 		                <span class="we-red">*</span>标签名
 		            </label>
 					<div class="layui-input-inline">
-						<input type="text" id="js-name" name="name" lay-verify="required" autocomplete="off" class="layui-input">
+						<input type="text" id="js-name" name="name" lay-verify="required" autocomplete="off" class="layui-input" value="${dict.name}">
 					</div>
 				</div>
 
@@ -31,7 +31,7 @@
 		                <span class="we-red">*</span>标签值
 		            </label>
 					<div class="layui-input-inline">
-						<input type="text" id="js-value" name="value" lay-verify="required" autocomplete="off" class="layui-input">
+						<input type="text" id="js-value" name="value" lay-verify="required" autocomplete="off" class="layui-input" value="${dict.value}">
 					</div>
 				</div>
 
@@ -40,7 +40,7 @@
 		                <span class="we-red">*</span>类别
 		            </label>
 					<div class="layui-input-inline">
-						<input type="text" id="js-type" name="type" lay-verify="required" autocomplete="off" class="layui-input">
+						<input type="text" id="js-type" name="type" lay-verify="required" autocomplete="off" class="layui-input" value="${dict.type}">
 					</div>
 				</div>
 
@@ -49,7 +49,7 @@
 		                <span class="we-red">*</span>描述
 		            </label>
 					<div class="layui-input-inline">
-						<input type="text" id="js-descr" name="descr" lay-verify="required" autocomplete="off" class="layui-input">
+						<input type="text" id="js-descr" name="descr" lay-verify="required" autocomplete="off" class="layui-input" value="${dict.descr}">
 					</div>
 				</div>
 
@@ -58,12 +58,12 @@
 		                <span class="we-red">*</span>排序
 		            </label>
 					<div class="layui-input-inline">
-						<input type="text" id="js-sort-num" name="sortNum" lay-verify="required|number" autocomplete="off" class="layui-input">
+						<input type="text" id="js-sort-num" name="sortNum" lay-verify="required|number" autocomplete="off" class="layui-input" value="${dict.sortNum}">
 					</div>
 				</div>
 
 				<div class="layui-form-item">
-				    <label for="js-status" class="layui-form-label">状态</label>
+				    <label for="js-status" class="layui-form-label"><span class="we-red">*</span>状态</label>
 				    <div class="layui-input-block" id="js-status">
 				      <input type="radio" name="status" value="0" title="正常" checked>
 				      <input type="radio" name="status" value="1" title="已删除">
@@ -71,6 +71,7 @@
 				</div>
 
 				<div class="layui-form-item">
+				    <input type="hidden" name="id" id="js-id" value="" />
 					<label for="js-add-btn" class="layui-form-label"></label>
 					<button id="js-add-btn" class="layui-btn" lay-filter="add" lay-submit="">确定</button>
 				</div>
@@ -100,16 +101,14 @@
 
             //监听提交
             form.on('submit(add)', function(data) {
-                console.log(data.field);
                 $.ajax({
                     type: "POST",
                     //请求的媒体类型
                     //contentType: "application/json;charset=UTF-8",
-                    url: "${request.contextPath}/admin/sys/dict/add",
+                    url: "${request.contextPath}/admin/sys/dict/add-or-upd",
                     //data: JSON.stringify(data),
                     data: data.field,
                     success: function(result) {
-                        console.log(result);
                         if (result.code === 0) {
                             //获取提交成功的时间
                             var time = new Date();
@@ -127,7 +126,6 @@
                         }
                     },
                     error: function(e){
-                        console.log(e);
                         layer.alert(e, {
                           icon: 2
                         })

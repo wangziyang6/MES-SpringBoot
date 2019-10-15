@@ -192,14 +192,11 @@
                         if(data.length > 0) {
                             layer.msg("您点击了推荐操作");
                             for(var i = 0; i < data.length; i++) {
-                                console.log("a:" + data[i].recommend);
                                 data[i].recommend = "checked";
-                                console.log("aa:" + data[i].recommend);
                                 form.render();
                             }
 
                         } else {
-                            console.log("b");
                             layer.msg("请先选择");
                         }
                         break;

@@ -14,6 +14,8 @@ spring:
     cache: false
     expose-spring-macro-helpers: false
     request-context-attribute: request
+    settings:
+      classic_compatible: true
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver

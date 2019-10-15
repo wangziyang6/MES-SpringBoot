@@ -280,7 +280,7 @@ layui.define(['jquery', 'form', 'layer', 'element'], function(exports) {
 	 * @todo 重新计算iframe高度
 	 */
 	function FrameWH() {
-		var h = $(window).height() - 164;
+		var h = $(window).height() - 126;
 		$("iframe").css("height", h + "px");
 	}
 	$(window).resize(function() {
@@ -346,11 +346,11 @@ layui.define(['jquery', 'form', 'layer', 'element'], function(exports) {
 			shadeClose: true,
 			shade: 0.4,
 			title: title,
-			content: url,
+			content: url + '?id=' + id,
 			success: function(layero, index) {
 				//向iframe页的id=house的元素传值  // 参考 https://yq.aliyun.com/ziliao/133150
 				var body = layer.getChildFrame('body', index);
-				body.contents().find("#dataId").val(id);
+				body.contents().find("#js-id").val(id);
 				console.log(id);
 			},
 			error: function(layero, index) {

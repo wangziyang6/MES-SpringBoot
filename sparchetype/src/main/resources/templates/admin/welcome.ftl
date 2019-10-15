@@ -412,7 +412,6 @@
 			function setTimeAgo(y, M, d, H, m, s,id){
 			    var str = util.timeAgo(new Date(y, M||0, d||1, H||0, m||0, s||0));
 			    $(id).html(str);
-			    console.log(str);
 			 };
 		});
 	</script>

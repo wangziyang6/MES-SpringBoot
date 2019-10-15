@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>系统字典列表</title>
+		<title>系统用户列表</title>
 		<meta name="Description" content="基于layUI数据表格操作"/>
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -13,8 +13,8 @@
 		<div class="weadmin-nav">
 			<span class="layui-breadcrumb">
                 <a href="">首页</a>
-                <a href="">系统字典列表管理</a>
-                <a><cite>系统字典列表</cite></a>
+                <a href="">系统用户列表管理</a>
+                <a><cite>系统用户列表</cite></a>
             </span>
 			<a class="layui-btn layui-btn-sm" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
 				<i class="layui-icon" style="line-height:30px">&#xe669;</i>
@@ -53,7 +53,7 @@
         <button class="layui-btn layui-btn-sm" lay-event="recommend"><i class="layui-icon">&#xe6c6;</i>推荐</button>
         <button class="layui-btn layui-btn-sm" lay-event="top"><i class="layui-icon">&#xe619;</i>置顶</button>
         <button class="layui-btn layui-btn-sm" lay-event="review"><i class="layui-icon">&#xe6b2;</i>审核</button>
-        <button class="layui-btn layui-btn-sm" onclick="WeAdminShow('添加用户','${request.contextPath}/admin/sys/dict/add-or-upd-ui',600,400)"><i class="layui-icon">&#xe61f;</i>添加</button>
+        <button class="layui-btn layui-btn-sm" onclick="WeAdminShow('添加用户','${request.contextPath}/admin/sys/user/add-or-upd-ui',600,400)"><i class="layui-icon">&#xe61f;</i>添加</button>
       </div>
     </script>
     <script type="text/html" id="recommendTpl">
@@ -68,7 +68,7 @@
     </script>
 
     <script type="text/html" id="operateTpl">
-        <a title="编辑" onclick="WeAdminEdit('编辑','${request.contextPath}/admin/sys/dict/add-or-upd-ui', '{{ d.id }}', 600, 400)" href="javascript:;">
+        <a title="编辑" onclick="WeAdminEdit('编辑','${request.contextPath}/admin/sys/user/add-or-upd-ui', '{{ d.id }}', 600, 400)" href="javascript:;">
             <i class="layui-icon">&#xe642;</i>
         </a>
         <a title="查看" onclick="WeAdminShow('查看文章','./show.html',600,400)" href="javascript:;">
@@ -104,7 +104,7 @@
                 method: 'POST',
                 event: true,
                 page: true,
-                url: '${request.contextPath}/admin/sys/dict/page',
+                url: '${request.contextPath}/admin/sys/user/page',
                 request: {
                   pageName: 'current' //页码的参数名称，默认：page
                   ,limitName: 'size' //每页数据量的参数名，默认：limit
@@ -121,17 +121,45 @@
                     [{
                         type: 'checkbox'
                     }, {
-                        field: 'name', title: '标签名'
+                        field: 'name', title: '姓名'
                     }, {
-                        field: 'value',title: '标签值'
+                        field: 'username', title: '用户名', width: 130
                     }, {
-                        field: 'type',title: '类别'
+                        field: 'password', title: '密码', width: 90
                     }, {
-                        field: 'descr',title: '描述'
+                        field: 'deptId', title: '部门id', width: 90
                     }, {
-                        field: 'status',title: '状态'
+                        field: 'email', title: '邮箱', width: 90
                     }, {
-                        field: 'operate',title: '操作', toolbar: '#operateTpl', unresize: true
+                        field: 'mobile', title: '手机号', width: 120
+                    }, {
+                        field: 'tel', title: '固定电话', width: 120
+                    }, {
+                        field: 'sex', title: '性别', width: 60
+                    }, {
+                        field: 'birthday', title: '出生年月日', width: 120
+                    }, {
+                        field: 'picId', title: '图片id', width: 90
+                    }, {
+                        field: 'idCard', title: '身份证', width: 120
+                    }, {
+                        field: 'hobby', title: '爱好', width: 90
+                    }, {
+                        field: 'province', title: '省份', width: 90
+                    }, {
+                        field: 'city', title: '城市', width: 90
+                    }, {
+                        field: 'district', title: '区县', width: 90
+                    }, {
+                        field: 'street', title: '街道', width: 90
+                    }, {
+                        field: 'streetNumber', title: '门牌号', width: 90
+                    }, {
+                        field: 'descr', title: '描述', width: 90
+                    }, {
+                        field: 'status', title: '状态', width: 90
+                    }, {
+                        fixed: 'right', field: 'operate',title: '操作', toolbar: '#operateTpl', unresize: true, width: 90
                     }]
                 ],
                 done: function(res, curr, count){

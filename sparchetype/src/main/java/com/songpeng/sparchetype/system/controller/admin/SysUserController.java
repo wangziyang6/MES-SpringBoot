@@ -5,8 +5,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.songpeng.sparchetype.common.BaseController;
 import com.songpeng.sparchetype.common.Result;
-import com.songpeng.sparchetype.system.entity.SysDict;
-import com.songpeng.sparchetype.system.service.ISysDictService;
+import com.songpeng.sparchetype.system.entity.SysUser;
+import com.songpeng.sparchetype.system.service.ISysUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,45 +19,45 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * <p>
- * 系统字典表 前端控制器
+ * 前端控制器
  * </p>
  *
  * @author SongPeng
- * @since 2019-08-26
+ * @since 2019-10-15
  */
-@Controller("adminSysDictController")
-@RequestMapping("/admin/sys/dict")
+@Controller
+@RequestMapping("/admin/sys/user")
 @Slf4j
-public class SysDictController extends BaseController {
+public class SysUserController extends BaseController {
 
 	@Autowired
-	private ISysDictService sysDictService;
+	private ISysUserService sysUserService;
 
 	@GetMapping("/list-ui")
 	public String listUI(Model model) {
-		return "system/dict/list";
+		return "system/user/list";
 	}
 
 	@PostMapping("/page")
 	@ResponseBody
 	public Result page(Page page) {
-		IPage result = sysDictService.page(page);
+		IPage result = sysUserService.page(page);
 		return Result.success(result);
 	}
 
 	@GetMapping("/add-or-upd-ui")
-	public String addOrUpdUI(Model model, SysDict record) {
+	public String addOrUpdUI(Model model, SysUser record) {
 		if (StringUtils.isNotEmpty(record.getId())) {
-			SysDict dict = sysDictService.getById(record.getId());
-			model.addAttribute("dict", dict);
+			SysUser user = sysUserService.getById(record.getId());
+			model.addAttribute("user", user);
 		}
-		return "system/dict/addOrUpd";
+		return "system/user/addOrUpd";
 	}
 
 	@PostMapping("/add-or-upd")
 	@ResponseBody
-	public Result add(SysDict record) {
-		sysDictService.saveOrUpdate(record);
+	public Result add(SysUser record) {
+		sysUserService.saveOrUpdate(record);
 		return Result.success(record.getId());
 	}
 }
