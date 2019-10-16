@@ -106,7 +106,8 @@ public class CodeGenerator {
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         strategy.setSuperEntityClass("com.songpeng.sparchetype.common.BaseEntity");
         strategy.setEntityLombokModel(true);
-        strategy.setRestControllerStyle(true);
+        //strategy.setRestControllerStyle(true);
+        strategy.setRestControllerStyle(false);
         // 公共父类
         strategy.setSuperControllerClass("com.songpeng.sparchetype.common.BaseController");
         // 写于父类中的公共字段

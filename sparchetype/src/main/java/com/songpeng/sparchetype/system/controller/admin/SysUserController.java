@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author SongPeng
  * @since 2019-10-15
  */
-@Controller
+@Controller("adminSysUserController")
 @RequestMapping("/admin/sys/user")
 @Slf4j
 public class SysUserController extends BaseController {

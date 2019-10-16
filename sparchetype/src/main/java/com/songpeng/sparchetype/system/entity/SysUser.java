@@ -119,5 +119,4 @@ public class SysUser extends BaseEntity {
      */
     private String status;
 
-
 }
