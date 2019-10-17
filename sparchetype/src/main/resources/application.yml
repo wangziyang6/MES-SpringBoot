@@ -1,6 +1,9 @@
 server:
-  port: 9090
-
+  session-timeout: 1800
 spring:
   profiles:
     active: dev
+  cache:
+    type: ehcache
+    ehcache:
+      config: classpath:config/ehcache.xml

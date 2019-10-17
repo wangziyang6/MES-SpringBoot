@@ -6,6 +6,8 @@ import com.songpeng.sparchetype.system.mapper.SysMenuMapper;
 import com.songpeng.sparchetype.system.service.ISysMenuService;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
+
 /**
  * <p>
  * 服务实现类
@@ -17,4 +19,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> implements ISysMenuService {
 
+	/**
+	 * 根据用户 id 获取用户权限集合
+	 *
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public Set<String> getMenusByUserId(String userId) throws Exception {
+		return null;
+	}
 }

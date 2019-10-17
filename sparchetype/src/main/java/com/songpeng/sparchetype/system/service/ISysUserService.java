@@ -1,11 +1,12 @@
 package com.songpeng.sparchetype.system.service;
 
-import com.songpeng.sparchetype.system.entity.SysUser;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.songpeng.sparchetype.system.dto.SysUserDto;
+import com.songpeng.sparchetype.system.entity.SysUser;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author SongPeng
@@ -13,4 +14,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ISysUserService extends IService<SysUser> {
 
+	/**
+	 * 获取用户角色菜单
+	 *
+	 * @param username
+	 * @return
+	 * @throws Exception
+	 */
+	SysUserDto getUserAndRoleAndMenuByUsername(String username) throws Exception;
 }

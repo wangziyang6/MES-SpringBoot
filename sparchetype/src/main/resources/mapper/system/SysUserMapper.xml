@@ -2,4 +2,58 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.songpeng.sparchetype.system.mapper.SysUserMapper">
 
+    <resultMap id="userRoleAndMenuResultMap" type="com.songpeng.sparchetype.system.dto.SysUserDto">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="dept_id" property="deptId"/>
+        <result column="email" property="email"/>
+        <result column="mobile" property="mobile"/>
+        <result column="tel" property="tel"/>
+        <result column="sex" property="sex"/>
+        <result column="birthday" property="birthday"/>
+        <result column="pic_id" property="picId"/>
+        <result column="id_card" property="idCard"/>
+        <result column="hobby" property="hobby"/>
+        <result column="province" property="province"/>
+        <result column="city" property="city"/>
+        <result column="district" property="district"/>
+        <result column="street" property="street"/>
+        <result column="street_number" property="streetNumber"/>
+        <result column="descr" property="descr"/>
+        <result column="status" property="status"/>
+<!--        <collection property="sysRoleDtos" ofType="com.songpeng.sparchetype.system.dto.SysRoleDto">-->
+<!--            <id column="id" property="id"/>-->
+<!--            <result column="name" property="name"/>-->
+<!--            <result column="code" property="code"/>-->
+<!--            <result column="descr" property="descr"/>-->
+<!--            <result column="status" property="status"/>-->
+<!--            <collection property="sysMenuDtos" ofType="com.songpeng.sparchetype.system.dto.SysMenuDto">-->
+<!--                <id column="id" property="id"/>-->
+<!--                <result column="name" property="name"/>-->
+<!--                <result column="url" property="url"/>-->
+<!--                <result column="parent_id" property="parentId"/>-->
+<!--                <result column="grade" property="grade"/>-->
+<!--                <result column="sort_num" property="sortNum"/>-->
+<!--                <result column="type" property="type"/>-->
+<!--                <result column="permission" property="permission"/>-->
+<!--                <result column="icon" property="icon"/>-->
+<!--                <result column="descr" property="descr"/>-->
+<!--            </collection>-->
+<!--        </collection>-->
+    </resultMap>
+
+    <select id="getUserAndRoleAndMenuByUsername" parameterType="java.lang.String" resultMap="userRoleAndMenuResultMap">
+        SELECT t.*,
+        sr.name, sr.code, sr.descr, sr.status,
+        sm.name, sm.url, sm.parent_id, sm.grade, sm.sort_num, sm.type, sm.permission, sm.icon, sm.descr
+        FROM sp_sys_user t, sp_sys_user_role sur, sp_sys_role sr, sp_sys_role_menu srm, sp_sys_menu sm
+        WHERE
+        t.username = #{username}
+        AND t.id = sur.user_id
+        AND sur.user_id = sr.id
+        AND srm.role_id = sr.id
+        AND sm.id = srm.menu_id
+    </select>
 </mapper>

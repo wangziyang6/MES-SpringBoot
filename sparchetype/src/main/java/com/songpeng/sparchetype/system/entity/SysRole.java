@@ -7,7 +7,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author SongPeng
@@ -18,27 +18,25 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class SysRole extends BaseEntity {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * 角色名称
-     */
-    private String name;
+	/**
+	 * 角色名称
+	 */
+	private String name;
 
-    /**
-     * 角色编码
-     */
-    private String code;
+	/**
+	 * 角色编码
+	 */
+	private String code;
 
-    /**
-     * 角色描述
-     */
-    private String descr;
+	/**
+	 * 角色描述
+	 */
+	private String descr;
 
-    /**
-     * 状态(00:删除;01:正常;02:禁用)
-     */
-    private String status;
-
-
+	/**
+	 * 状态(00:删除;01:正常;02:禁用)
+	 */
+	private String status;
 }
