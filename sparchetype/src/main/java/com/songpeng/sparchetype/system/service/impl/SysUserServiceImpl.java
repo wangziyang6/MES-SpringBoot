@@ -31,6 +31,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 	 */
 	@Override
 	public SysUserDto getUserAndRoleAndMenuByUsername(String username) throws Exception {
-		return sysUserMapper.getUserAndRoleAndMenuByUsername(username);
+		SysUserDto result = sysUserMapper.getUserAndRoleByUsername(username);
+		return result;
 	}
 }

@@ -1,10 +1,19 @@
 package com.songpeng.sparchetype.system.controller.admin;
 
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.songpeng.sparchetype.common.BaseController;
+import com.songpeng.sparchetype.common.Result;
+import com.songpeng.sparchetype.system.entity.SysMenu;
+import com.songpeng.sparchetype.system.entity.SysRole;
+import com.songpeng.sparchetype.system.service.ISysMenuService;
+import com.songpeng.sparchetype.system.service.ISysRoleService;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -18,4 +27,34 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/admin/sys/menu")
 public class SysMenuController extends BaseController {
 
+	@Autowired
+	private ISysMenuService sysMenuService;
+
+	@GetMapping("/list-ui")
+	public String listUI(Model model) {
+		return "system/menu/list";
+	}
+
+	@PostMapping("/page")
+	@ResponseBody
+	public Result page(Page page) {
+		IPage result = sysMenuService.page(page);
+		return Result.success(result);
+	}
+
+	@GetMapping("/add-or-upd-ui")
+	public String addOrUpdUI(Model model, SysMenu record) {
+		if (StringUtils.isNotEmpty(record.getId())) {
+			SysMenu result = sysMenuService.getById(record.getId());
+			model.addAttribute("result", result);
+		}
+		return "system/menu/addOrUpd";
+	}
+
+	@PostMapping("/add-or-upd")
+	@ResponseBody
+	public Result add(SysMenu record) {
+		sysMenuService.saveOrUpdate(record);
+		return Result.success(record.getId());
+	}
 }

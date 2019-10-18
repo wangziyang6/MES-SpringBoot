@@ -83,7 +83,7 @@
 				"id": 15,
 				"name": "角色管理",
 				"icon": "",
-				"url": "/blog/article/listui"
+				"url": "/admin/sys/role/list-ui"
 			},
 			{
 				"id": 16,

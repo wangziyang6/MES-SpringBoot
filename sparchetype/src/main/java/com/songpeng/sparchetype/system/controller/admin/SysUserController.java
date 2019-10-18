@@ -48,8 +48,8 @@ public class SysUserController extends BaseController {
 	@GetMapping("/add-or-upd-ui")
 	public String addOrUpdUI(Model model, SysUser record) {
 		if (StringUtils.isNotEmpty(record.getId())) {
-			SysUser user = sysUserService.getById(record.getId());
-			model.addAttribute("user", user);
+			SysUser result = sysUserService.getById(record.getId());
+			model.addAttribute("result", result);
 		}
 		return "system/user/addOrUpd";
 	}

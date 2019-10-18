@@ -1,15 +1,24 @@
 package com.songpeng.sparchetype.system.controller.admin;
 
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.songpeng.sparchetype.common.BaseController;
+import com.songpeng.sparchetype.common.Result;
+import com.songpeng.sparchetype.system.entity.SysRole;
+import com.songpeng.sparchetype.system.service.ISysRoleService;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author SongPeng
@@ -19,4 +28,34 @@ import com.songpeng.sparchetype.common.BaseController;
 @RequestMapping("/admin/sys/role")
 public class SysRoleController extends BaseController {
 
+	@Autowired
+	private ISysRoleService sysRoleService;
+
+	@GetMapping("/list-ui")
+	public String listUI(Model model) {
+		return "system/role/list";
+	}
+
+	@PostMapping("/page")
+	@ResponseBody
+	public Result page(Page page) {
+		IPage result = sysRoleService.page(page);
+		return Result.success(result);
+	}
+
+	@GetMapping("/add-or-upd-ui")
+	public String addOrUpdUI(Model model, SysRole record) {
+		if (StringUtils.isNotEmpty(record.getId())) {
+			SysRole result = sysRoleService.getById(record.getId());
+			model.addAttribute("result", result);
+		}
+		return "system/role/addOrUpd";
+	}
+
+	@PostMapping("/add-or-upd")
+	@ResponseBody
+	public Result add(SysRole record) {
+		sysRoleService.saveOrUpdate(record);
+		return Result.success(record.getId());
+	}
 }

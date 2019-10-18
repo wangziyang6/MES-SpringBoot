@@ -22,7 +22,7 @@
 		                <span class="we-red">*</span>姓名
 		            </label>
 					<div class="layui-input-inline">
-						<input type="text" id="js-name" name="name" lay-verify="required" autocomplete="off" class="layui-input" value="${user.name}">
+						<input type="text" id="js-name" name="name" lay-verify="required" autocomplete="off" class="layui-input" value="${result.name}">
 					</div>
 				</div>
 
@@ -31,7 +31,7 @@
 		                <span class="we-red">*</span>用户名
 		            </label>
 					<div class="layui-input-inline">
-						<input type="text" id="js-username" name="username" lay-verify="required" autocomplete="off" class="layui-input" value="${user.username}">
+						<input type="text" id="js-username" name="username" lay-verify="required" autocomplete="off" class="layui-input" value="${result.username}">
 					</div>
 				</div>
 
@@ -40,7 +40,7 @@
 		                <span class="we-red">*</span>密码
 		            </label>
 					<div class="layui-input-inline">
-						<input type="password" id="js-password" name="password" lay-verify="required" autocomplete="off" class="layui-input" value="${user.password}">
+						<input type="password" id="js-password" name="password" lay-verify="required" autocomplete="off" class="layui-input" value="${result.password}">
 					</div>
 				</div>
 
@@ -49,7 +49,7 @@
 		                <span class="we-red">*</span>确认密码
 		            </label>
 					<div class="layui-input-inline">
-						<input type="password" id="js-repassword" name="repassword" lay-verify="required" autocomplete="off" class="layui-input" value="${user.password}">
+						<input type="password" id="js-repassword" name="repassword" lay-verify="required" autocomplete="off" class="layui-input" value="${result.password}">
 					</div>
 				</div>
 
@@ -58,7 +58,7 @@
 		                部门id
 		            </label>
 					<div class="layui-input-inline">
-						<input type="text" id="js-dept-id" name="deptId" lay-verify="" autocomplete="off" class="layui-input" value="${user.deptId}">
+						<input type="text" id="js-dept-id" name="deptId" lay-verify="" autocomplete="off" class="layui-input" value="${result.deptId}">
 					</div>
 				</div>
 
@@ -68,7 +68,7 @@
 		            </label>
 		            <!--校验规则动态添加，根据鼠标焦点进行-->
 					<div class="layui-input-inline">
-						<input type="text" id="js-email" name="email" lay-verify="" autocomplete="off" class="layui-input" value="${user.email}">
+						<input type="text" id="js-email" name="email" lay-verify="" autocomplete="off" class="layui-input" value="${result.email}">
 					</div>
 				</div>
 
@@ -77,7 +77,7 @@
 		                <span class="we-red">*</span>手机号
 		            </label>
 					<div class="layui-input-inline">
-						<input type="text" id="js-mobile" name="mobile" lay-verify="required|number" autocomplete="off" class="layui-input" value="${user.mobile}">
+						<input type="text" id="js-mobile" name="mobile" lay-verify="required|number" autocomplete="off" class="layui-input" value="${result.mobile}">
 					</div>
 				</div>
 
@@ -86,16 +86,16 @@
 		                固定电话
 		            </label>
 					<div class="layui-input-inline">
-						<input type="text" id="js-tel" name="tel" lay-verify="" autocomplete="off" class="layui-input" value="${user.tel}">
+						<input type="text" id="js-tel" name="tel" lay-verify="" autocomplete="off" class="layui-input" value="${result.tel}">
 					</div>
 				</div>
 
 				<div class="layui-form-item">
 				    <label for="js-sex" class="layui-form-label"><span class="we-red">*</span>性别</label>
 				    <div class="layui-input-block" id="js-sex">
-				      <input type="radio" name="sex" value="0" title="女" checked>
-				      <input type="radio" name="sex" value="1" title="男">
-				      <input type="radio" name="sex" value="2" title="其他">
+				      <input type="radio" name="sex" value="0" title="女" <#if result.sex == "0" || !(result??)>checked</#if>>
+				      <input type="radio" name="sex" value="1" title="男" <#if result.sex == "1">checked</#if>>
+				      <input type="radio" name="sex" value="2" title="其他" <#if result.sex == "2">checked</#if>>
 				    </div>
 				</div>
 
@@ -104,7 +104,7 @@
 		                出生年月日
 		            </label>
 					<div class="layui-input-inline">
-						<input type="text" id="js-birthday" name="birthday" lay-verify="" autocomplete="off" class="layui-input" value="${user.birthday}">
+						<input type="text" id="js-birthday" name="birthday" lay-verify="" autocomplete="off" class="layui-input" value="${result.birthday}">
 					</div>
 				</div>
 
@@ -113,7 +113,7 @@
 		                图片id
 		            </label>
 					<div class="layui-input-inline">
-						<input type="text" id="js-pic-id" name="picId" lay-verify="" autocomplete="off" class="layui-input" value="${user.picId}">
+						<input type="text" id="js-pic-id" name="picId" lay-verify="" autocomplete="off" class="layui-input" value="${result.picId}">
 					</div>
 				</div>
 
@@ -122,7 +122,7 @@
 		                身份证
 		            </label>
 					<div class="layui-input-inline">
-						<input type="text" id="js-id-card" name="idCard" lay-verify="" autocomplete="off" class="layui-input" value="${user.idCard}">
+						<input type="text" id="js-id-card" name="idCard" lay-verify="" autocomplete="off" class="layui-input" value="${result.idCard}">
 					</div>
 				</div>
 
@@ -131,7 +131,7 @@
 		                爱好
 		            </label>
 					<div class="layui-input-inline">
-						<input type="text" id="js-hobby" name="hobby" lay-verify="" autocomplete="off" class="layui-input" value="${user.hobby}">
+						<input type="text" id="js-hobby" name="hobby" lay-verify="" autocomplete="off" class="layui-input" value="${result.hobby}">
 					</div>
 				</div>
 
@@ -140,7 +140,7 @@
 		                省份
 		            </label>
 					<div class="layui-input-inline">
-						<input type="text" id="js-province" name="province" lay-verify="" autocomplete="off" class="layui-input" value="${user.province}">
+						<input type="text" id="js-province" name="province" lay-verify="" autocomplete="off" class="layui-input" value="${result.province}">
 					</div>
 				</div>
 
@@ -149,7 +149,7 @@
 		                城市
 		            </label>
 					<div class="layui-input-inline">
-						<input type="text" id="js-city" name="city" lay-verify="" autocomplete="off" class="layui-input" value="${user.city}">
+						<input type="text" id="js-city" name="city" lay-verify="" autocomplete="off" class="layui-input" value="${result.city}">
 					</div>
 				</div>
 
@@ -158,7 +158,7 @@
 		                区县
 		            </label>
 					<div class="layui-input-inline">
-						<input type="text" id="js-district" name="district" lay-verify="" autocomplete="off" class="layui-input" value="${user.district}">
+						<input type="text" id="js-district" name="district" lay-verify="" autocomplete="off" class="layui-input" value="${result.district}">
 					</div>
 				</div>
 
@@ -167,7 +167,7 @@
 		                街道
 		            </label>
 					<div class="layui-input-inline">
-						<input type="text" id="js-street" name="street" lay-verify="" autocomplete="off" class="layui-input" value="${user.street}">
+						<input type="text" id="js-street" name="street" lay-verify="" autocomplete="off" class="layui-input" value="${result.street}">
 					</div>
 				</div>
 
@@ -176,7 +176,7 @@
 		                门牌号
 		            </label>
 					<div class="layui-input-inline">
-						<input type="text" id="js-street-number" name="streetNumber" lay-verify="" autocomplete="off" class="layui-input" value="${user.streetNumber}">
+						<input type="text" id="js-street-number" name="streetNumber" lay-verify="" autocomplete="off" class="layui-input" value="${result.streetNumber}">
 					</div>
 				</div>
 
@@ -185,15 +185,15 @@
 		                描述
 		            </label>
 					<div class="layui-input-inline">
-						<input type="text" id="js-descr" name="descr" lay-verify="" autocomplete="off" class="layui-input" value="${user.descr}">
+						<input type="text" id="js-descr" name="descr" lay-verify="" autocomplete="off" class="layui-input" value="${result.descr}">
 					</div>
 				</div>
 
 				<div class="layui-form-item">
 				    <label for="js-status" class="layui-form-label"><span class="we-red">*</span>状态</label>
 				    <div class="layui-input-block" id="js-status">
-				      <input type="radio" name="status" value="0" title="正常" checked>
-				      <input type="radio" name="status" value="1" title="已删除">
+				      <input type="radio" name="status" value="0" title="正常" <#if result.status == "0" || !(result??)>checked</#if>>
+				      <input type="radio" name="status" value="1" title="已删除" <#if result.status == "1">checked</#if>>
 				    </div>
 				</div>
 

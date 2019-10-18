@@ -15,12 +15,12 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 public interface SysUserMapper extends BaseMapper<SysUser> {
 
 	/**
-	 * 获取用户角色菜单
+	 * 获取用户角色
 	 *
 	 * @param username
 	 * @return
 	 * @throws Exception
 	 */
-	SysUserDto getUserAndRoleAndMenuByUsername(String username) throws Exception;
+	SysUserDto getUserAndRoleByUsername(String username) throws Exception;
 
 }
