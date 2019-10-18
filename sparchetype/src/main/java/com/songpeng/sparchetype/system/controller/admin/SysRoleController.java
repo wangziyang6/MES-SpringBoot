@@ -1,11 +1,13 @@
 package com.songpeng.sparchetype.system.controller.admin;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.songpeng.sparchetype.common.BaseController;
 import com.songpeng.sparchetype.common.Result;
 import com.songpeng.sparchetype.system.entity.SysRole;
+import com.songpeng.sparchetype.system.request.SysRolePageReq;
 import com.songpeng.sparchetype.system.service.ISysRoleService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +40,10 @@ public class SysRoleController extends BaseController {
 
 	@PostMapping("/page")
 	@ResponseBody
-	public Result page(Page page) {
-		IPage result = sysRoleService.page(page);
+	public Result page(Page page, SysRolePageReq req) {
+		QueryWrapper qw = new QueryWrapper();
+		qw.orderByDesc(req.getOrderBy());
+		IPage result = sysRoleService.page(page, qw);
 		return Result.success(result);
 	}
 

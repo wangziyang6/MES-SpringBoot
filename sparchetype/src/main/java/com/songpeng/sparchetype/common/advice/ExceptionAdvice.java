@@ -4,6 +4,7 @@ import com.songpeng.sparchetype.common.Result;
 import com.songpeng.sparchetype.common.util.HttpServletUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authz.AuthorizationException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,6 +30,16 @@ public class ExceptionAdvice {
 		return new ModelAndView("error/403");
 	}
 
+	@ExceptionHandler(DuplicateKeyException.class)
+	@ResponseBody
+	public Object handleDuplicateKeyException(DuplicateKeyException e, HttpServletRequest request) {
+		log.error(e.getMessage(), e);
+		if (HttpServletUtils.isAjax(request)) {
+			return Result.failure("数据重复");
+		}
+		return new ModelAndView("error/403");
+	}
+
 	@ExceptionHandler({Exception.class})
 	@ResponseBody
 	public Object handleException(Exception e, HttpServletRequest request) {
@@ -38,4 +49,5 @@ public class ExceptionAdvice {
 		}
 		return new ModelAndView("error/500");
 	}
+
 }
