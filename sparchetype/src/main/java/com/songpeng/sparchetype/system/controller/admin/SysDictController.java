@@ -56,7 +56,7 @@ public class SysDictController extends BaseController {
 
 	@PostMapping("/add-or-upd")
 	@ResponseBody
-	public Result add(SysDict record) {
+	public Result addOrUpd(SysDict record) {
 		sysDictService.saveOrUpdate(record);
 		return Result.success(record.getId());
 	}

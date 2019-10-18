@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>系统角色列表</title>
+		<title>系统菜单列表</title>
 		<meta name="Description" content="基于layUI数据表格操作"/>
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -40,15 +40,15 @@
     <script type="text/html" id="toolbar-top">
       <div class="layui-btn-container">
         <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="getCheckData"><i class="layui-icon">&#xe640;</i>批量删除</button>
-        <button class="layui-btn layui-btn-sm" onclick="WeAdminShow('添加角色','${request.contextPath}/admin/sys/role/add-or-upd-ui',600,400)"><i class="layui-icon">&#xe61f;</i>添加</button>
+        <button class="layui-btn layui-btn-sm" onclick="WeAdminShow('添加菜单','${request.contextPath}/admin/sys/menu/add-or-upd-ui',600,400)"><i class="layui-icon">&#xe61f;</i>添加</button>
       </div>
     </script>
 
     <script type="text/html" id="operateTpl">
-        <a title="编辑" onclick="WeAdminEdit('编辑','${request.contextPath}/admin/sys/role/add-or-upd-ui', '{{ d.id }}', 600, 400)" href="javascript:;">
+        <a title="编辑" onclick="WeAdminEdit('编辑','${request.contextPath}/admin/sys/menu/add-or-upd-ui', '{{ d.id }}', 600, 400)" href="javascript:;">
             <i class="layui-icon">&#xe642;</i>
         </a>
-        <a title="查看" onclick="WeAdminShow('查看权限','./show.html',600,400)" href="javascript:;">
+        <a title="查看" onclick="WeAdminShow('查看菜单','./show.html',600,400)" href="javascript:;">
             <i class="layui-icon">&#xe63c;</i>
         </a>
         <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
@@ -81,7 +81,7 @@
                 method: 'POST',
                 event: true,
                 page: true,
-                url: '${request.contextPath}/admin/sys/role/page',
+                url: '${request.contextPath}/admin/sys/menu/page',
                 request: {
                   pageName: 'current' //页码的参数名称，默认：page
                   ,limitName: 'size' //每页数据量的参数名，默认：limit
@@ -100,11 +100,21 @@
                     }, {
                         field: 'name', title: '角色名称'
                     }, {
-                        field: 'code', title: '角色编码'
+                        field: 'url', title: '菜单URL'
+                    }, {
+                        field: 'parentId', title: 'parentId'
+                    }, {
+                        field: 'grade', title: '层级'
+                    }, {
+                        field: 'sortNum', title: '排序'
+                    }, {
+                        field: 'type', title: '类型'
+                    }, {
+                        field: 'permission', title: '授权'
+                    }, {
+                        field: 'icon', title: '菜单图标'
                     }, {
                         field: 'descr', title: '角色描述'
-                    }, {
-                        field: 'status', title: '状态'
                     }, {
                         fixed: 'right', field: 'operate',title: '操作', toolbar: '#operateTpl', unresize: true, width: 90
                     }]

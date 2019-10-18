@@ -40,28 +40,15 @@
     <script type="text/html" id="toolbar-top">
       <div class="layui-btn-container">
         <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="getCheckData"><i class="layui-icon">&#xe640;</i>批量删除</button>
-        <button class="layui-btn layui-btn-sm" lay-event="recommend"><i class="layui-icon">&#xe6c6;</i>推荐</button>
-        <button class="layui-btn layui-btn-sm" lay-event="top"><i class="layui-icon">&#xe619;</i>置顶</button>
-        <button class="layui-btn layui-btn-sm" lay-event="review"><i class="layui-icon">&#xe6b2;</i>审核</button>
         <button class="layui-btn layui-btn-sm" onclick="WeAdminShow('添加用户','${request.contextPath}/admin/sys/dict/add-or-upd-ui',600,400)"><i class="layui-icon">&#xe61f;</i>添加</button>
       </div>
-    </script>
-    <script type="text/html" id="recommendTpl">
-        <input type="checkbox" name="zzz" lay-skin="switch" lay-text="已推荐|未推荐" {{d.recommend}}>
-    </script>
-    <script type="text/html" id="topTpl">
-        <input type="checkbox" name="show" lay-skin="switch" lay-text="已置顶|未置顶" {{d.top}}>
-    </script>
-    <script type="text/html" id="reviewTpl">
-      <!-- 这里的 checked 的状态只是演示 -->
-      <input type="checkbox" name="lock" value="{{d.id}}" title="锁定" lay-filter="lockDemo" {{ d.id == 1 ? 'checked' : '' }}>
     </script>
 
     <script type="text/html" id="operateTpl">
         <a title="编辑" onclick="WeAdminEdit('编辑','${request.contextPath}/admin/sys/dict/add-or-upd-ui', '{{ d.id }}', 600, 400)" href="javascript:;">
             <i class="layui-icon">&#xe642;</i>
         </a>
-        <a title="查看" onclick="WeAdminShow('查看文章','./show.html',600,400)" href="javascript:;">
+        <a title="查看" onclick="WeAdminShow('查看字典','./show.html',600,400)" href="javascript:;">
             <i class="layui-icon">&#xe63c;</i>
         </a>
         <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">

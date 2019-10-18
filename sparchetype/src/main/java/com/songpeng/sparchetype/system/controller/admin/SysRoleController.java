@@ -54,7 +54,7 @@ public class SysRoleController extends BaseController {
 
 	@PostMapping("/add-or-upd")
 	@ResponseBody
-	public Result add(SysRole record) {
+	public Result addOrUpd(SysRole record) {
 		sysRoleService.saveOrUpdate(record);
 		return Result.success(record.getId());
 	}

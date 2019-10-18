@@ -95,7 +95,7 @@
 				"id": 17,
 				"name": "权限管理",
 				"icon": "",
-				"url": "/blog/article/listui"
+				"url": "/admin/sys/menu/list-ui"
 			}]
 		},
 		{

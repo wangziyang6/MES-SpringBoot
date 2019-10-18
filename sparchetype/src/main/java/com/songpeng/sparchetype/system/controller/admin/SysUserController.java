@@ -56,7 +56,7 @@ public class SysUserController extends BaseController {
 
 	@PostMapping("/add-or-upd")
 	@ResponseBody
-	public Result add(SysUser record) {
+	public Result addOrUpd(SysUser record) {
 		sysUserService.saveOrUpdate(record);
 		return Result.success(record.getId());
 	}

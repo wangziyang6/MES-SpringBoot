@@ -6,14 +6,15 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.songpeng.sparchetype.common.BaseController;
 import com.songpeng.sparchetype.common.Result;
 import com.songpeng.sparchetype.system.entity.SysMenu;
-import com.songpeng.sparchetype.system.entity.SysRole;
 import com.songpeng.sparchetype.system.service.ISysMenuService;
-import com.songpeng.sparchetype.system.service.ISysRoleService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * <p>
@@ -53,7 +54,7 @@ public class SysMenuController extends BaseController {
 
 	@PostMapping("/add-or-upd")
 	@ResponseBody
-	public Result add(SysMenu record) {
+	public Result addOrUpd(SysMenu record) {
 		sysMenuService.saveOrUpdate(record);
 		return Result.success(record.getId());
 	}

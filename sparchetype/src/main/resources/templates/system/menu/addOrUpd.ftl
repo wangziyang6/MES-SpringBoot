@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>添加用户</title>
+		<title>添加菜单</title>
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -19,7 +19,7 @@
 			<form class="layui-form">
 				<div class="layui-form-item">
 					<label for="js-name" class="layui-form-label">
-		                <span class="we-red">*</span>角色名称
+		                <span class="we-red">*</span>菜单名称
 		            </label>
 					<div class="layui-input-inline">
 						<input type="text" id="js-name" name="name" lay-verify="required" autocomplete="off" class="layui-input" value="${result.name}">
@@ -27,11 +27,65 @@
 				</div>
 
 				<div class="layui-form-item">
-					<label for="js-code" class="layui-form-label">
-		                <span class="we-red">*</span>角色编码
+					<label for="js-url" class="layui-form-label">
+		                <span class="we-red">*</span>菜单URL
 		            </label>
 					<div class="layui-input-inline">
-						<input type="text" id="js-code" name="code" lay-verify="required" autocomplete="off" class="layui-input" value="${result.code}">
+						<input type="text" id="js-url" name="url" lay-verify="required" autocomplete="off" class="layui-input" value="${result.url}">
+					</div>
+				</div>
+
+				<div class="layui-form-item">
+					<label for="js-parent-id" class="layui-form-label">
+		                父菜单ID
+		            </label>
+					<div class="layui-input-inline">
+						<input type="text" id="js-parent-id" name="parentId" lay-verify="" autocomplete="off" class="layui-input" value="${result.parentId}">
+					</div>
+				</div>
+
+				<div class="layui-form-item">
+					<label for="js-grade" class="layui-form-label">
+		                层级
+		            </label>
+					<div class="layui-input-inline">
+						<input type="text" id="js-grade" name="grade" lay-verify="" autocomplete="off" class="layui-input" value="${result.grade}">
+					</div>
+				</div>
+
+				<div class="layui-form-item">
+					<label for="js-sort-num" class="layui-form-label">
+		                排序
+		            </label>
+					<div class="layui-input-inline">
+						<input type="text" id="js-sort-num" name="sortNum" lay-verify="" autocomplete="off" class="layui-input" value="${result.sortNum}">
+					</div>
+				</div>
+
+				<div class="layui-form-item">
+					<label for="js-type" class="layui-form-label">
+		                类型
+		            </label>
+					<div class="layui-input-inline">
+						<input type="text" id="js-type" name="type" lay-verify="" autocomplete="off" class="layui-input" value="${result.type}">
+					</div>
+				</div>
+
+				<div class="layui-form-item">
+					<label for="js-permission" class="layui-form-label">
+		                授权
+		            </label>
+					<div class="layui-input-inline">
+						<input type="text" id="js-permission" name="permission" lay-verify="" autocomplete="off" class="layui-input" value="${result.permission}">
+					</div>
+				</div>
+
+				<div class="layui-form-item">
+					<label for="js-icon" class="layui-form-label">
+		                菜单图标
+		            </label>
+					<div class="layui-input-inline">
+						<input type="text" id="js-icon" name="icon" lay-verify="" autocomplete="off" class="layui-input" value="${result.icon}">
 					</div>
 				</div>
 
@@ -42,14 +96,6 @@
 					<div class="layui-input-inline">
 						<input type="text" id="js-descr" name="descr" lay-verify="" autocomplete="off" class="layui-input" value="${result.descr}">
 					</div>
-				</div>
-
-				<div class="layui-form-item">
-				    <label for="js-status" class="layui-form-label"><span class="we-red">*</span>状态</label>
-				    <div class="layui-input-block" id="js-status">
-				      <input type="radio" name="status" value="0" title="正常" <#if result.status == "0" || !(result??)>checked</#if>>
-				      <input type="radio" name="status" value="1" title="已删除" <#if result.status == "1">checked</#if>>
-				    </div>
 				</div>
 
 				<div class="layui-form-item">
@@ -77,7 +123,7 @@
                     type: "POST",
                     //请求的媒体类型
                     //contentType: "application/json;charset=UTF-8",
-                    url: "${request.contextPath}/admin/sys/role/add-or-upd",
+                    url: "${request.contextPath}/admin/sys/menu/add-or-upd",
                     //data: JSON.stringify(data),
                     data: data.field,
                     success: function(result) {

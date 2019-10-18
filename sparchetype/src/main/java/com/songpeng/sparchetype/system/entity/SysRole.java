@@ -1,5 +1,6 @@
 package com.songpeng.sparchetype.system.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.songpeng.sparchetype.common.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,6 +17,7 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
+@TableName("sp_sys_role")
 public class SysRole extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;
