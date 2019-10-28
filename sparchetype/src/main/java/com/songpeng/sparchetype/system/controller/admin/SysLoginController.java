@@ -37,4 +37,5 @@ public class SysLoginController {
 	public String welcomeUI(Model model) {
 		return "admin/welcome";
 	}
+
 }

@@ -27,27 +27,41 @@
             </div>
         </form>
     </div>
-
-    <script type="text/javascript">
-        	layui.extend({
-				admin: '${request.contextPath}/js/admin'
-			});
-            layui.use(['form','admin'], function(){
-              var form = layui.form
-              	,admin = layui.admin;
-              // layer.msg('玩命卖萌中', function(){
-              //   //关闭后的操作
-              //   });
-              //监听提交
-              form.on('submit(login)', function(data){
-                // alert(888)
-                layer.msg(JSON.stringify(data.field),function(){
-                    location.href='${request.contextPath}/admin'
-                });
-                return false;
-              });
-            });
-    </script>
-    <!-- 底部结束 -->
 </body>
+
+<script type="text/javascript">
+    layui.extend({
+        admin: '${request.contextPath}/js/admin'
+    });
+    layui.use(['form','admin'], function(){
+      var form = layui.form
+        ,admin = layui.admin;
+
+      //监听提交
+      form.on('submit(login)', function(data){
+        $.ajax({
+            type: "POST",
+            //请求的媒体类型
+            url: "${request.contextPath}/login",
+            data: data.field,
+            success: function(result) {
+                if (result.code === 0) {
+                    location.href='${request.contextPath}/admin'
+                } else {
+                    layer.alert(result.msg, {
+                      icon: 2
+                    })
+                }
+            },
+            error: function(e){
+                layer.alert(e, {
+                  icon: 2
+                })
+            }
+        });
+
+        return false;
+      });
+    });
+</script>
 </html>

@@ -2,4 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.songpeng.sparchetype.system.mapper.SysRoleMapper">
 
+
+    <select id="getRolesByUserId" parameterType="java.lang.String" resultType="com.songpeng.sparchetype.system.entity.SysRole">
+        SELECT t.*
+        FROM sp_sys_role t,
+        sp_sys_user_role sur
+        WHERE t.id = sur.role_id AND sur.user_id = #{userId}
+    </select>
 </mapper>

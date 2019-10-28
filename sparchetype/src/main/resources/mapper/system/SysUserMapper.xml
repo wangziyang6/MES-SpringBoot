@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.songpeng.sparchetype.system.mapper.SysUserMapper">
 
-    <resultMap id="userRoleAndMenuResultMap" type="com.songpeng.sparchetype.system.dto.SysUserDto">
-        <id column="id" property="id"/>
+    <resultMap id="userRoleResultMap" type="com.songpeng.sparchetype.system.dto.SysUserDto">
+        <id column="user_id" property="id"/>
         <result column="name" property="name"/>
         <result column="username" property="username"/>
         <result column="password" property="password"/>
@@ -24,21 +24,49 @@
         <result column="descr" property="descr"/>
         <result column="status" property="status"/>
         <collection property="sysRoleDtos" ofType="com.songpeng.sparchetype.system.dto.SysRoleDto">
-            <id column="id" property="id"/>
-            <result column="name" property="name"/>
-            <result column="code" property="code"/>
-            <result column="descr" property="descr"/>
-            <result column="status" property="status"/>
+            <id property="id" column="role_id"/>
+            <result property="name" column="role_name"/>
+            <result property="code" column="code"/>
+            <result property="descr" column="role_descr"/>
+            <result property="status" column="role_status"/>
         </collection>
     </resultMap>
 
-    <select id="getUserAndRoleByUsername" parameterType="java.lang.String" resultMap="userRoleAndMenuResultMap">
-        SELECT t.*,
-        sr.name, sr.code, sr.descr, sr.status
-        FROM sp_sys_user t, sp_sys_user_role sur, sp_sys_role sr
-        WHERE
-        t.username = #{username}
-        AND t.id = sur.user_id
-        AND sur.role_id = sr.id
+    <select id="getUserAndRoleByUsername" parameterType="java.lang.String" resultMap="userRoleResultMap">
+        SELECT t.id user_id,
+            t.name,
+            t.username,
+            t.password,
+            t.dept_id,
+            t.email,
+            t.mobile,
+            t.tel,
+            t.sex,
+            t.birthday,
+            t.pic_id,
+            t.id_card,
+            t.hobby,
+            t.province,
+            t.city,
+            t.district,
+            t.street,
+            t.street_number,
+            t.descr,
+            t.status,
+            t.created,
+            t.created_by,
+            t.last_upd,
+            t.last_upd_by,
+            ssr.id role_id,
+            ssr.name role_name,
+            ssr.code,
+            ssr.descr role_descr,
+            ssr.status role_status
+        FROM sp_sys_user t
+        LEFT JOIN sp_sys_user_role ssur
+        ON ssur.user_id = t.id
+        LEFT JOIN sp_sys_role ssr
+        ON ssr.id = ssur.role_id
+        WHERE t.username = #{username}
     </select>
 </mapper>

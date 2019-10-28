@@ -7,14 +7,11 @@ package com.songpeng.sparchetype.system.enums;
  * @date 2019/10/17 9:45
  */
 public enum ESysUser {
-	/**
-	 * 状态(00:删除;01:正常;02:禁用)
-	 */
-	STATUS_DEL("00", "删除"),
+	STATUS_NORMAL("0", "正常"),
 
-	STATUS_NORMAL("01", "正常"),
+	STATUS_DEL("1", "删除"),
 
-	STATUS_DISABLED("02", "禁用");
+	STATUS_DISABLED("2", "禁用");
 
 	/**
 	 * The Code

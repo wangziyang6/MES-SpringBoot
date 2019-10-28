@@ -11,6 +11,7 @@ import com.songpeng.sparchetype.system.request.SysUserPageReq;
 import com.songpeng.sparchetype.system.service.ISysUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,6 +44,7 @@ public class SysUserController extends BaseController {
 	@PostMapping("/page")
 	@ResponseBody
 	public Result page(Page page, SysUserPageReq req) {
+		Object principal = SecurityUtils.getSubject().getPrincipal();
 		QueryWrapper qw = new QueryWrapper();
 		qw.orderByDesc(req.getOrderBy());
 		IPage result = sysUserService.page(page, qw);
