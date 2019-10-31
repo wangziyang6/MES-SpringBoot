@@ -1,0 +1,153 @@
+{
+  "clearInfo": {
+    "clearUrl": "json/clear.json"
+  },
+  "homeInfo": {
+    "title": "首页",
+    "icon": "fa fa-home",
+    "href": "page/welcome-ui?mpi=m-p-i-0"
+  },
+  "logoInfo": {
+    "title": "后台管理",
+    "image": "image/logo.png",
+    "href": ""
+  },
+  "menuInfo": {
+    "currency": {
+      "title": "常规管理",
+      "icon": "fa fa-address-book",
+      "child": [
+        {
+          "title": "系统管理",
+          "href": "",
+          "icon": "fa fa-gears",
+          "target": "_self",
+          "child": [
+            {
+              "title": "用户管理",
+              "href": "/admin/sys/user/list-ui",
+              "icon": "fa fa-user",
+              "target": "_self"
+            },
+            {
+              "title": "角色管理",
+              "href": "/admin/sys/role/list-ui",
+              "icon": "fa fa-child",
+              "target": "_self"
+            },
+            {
+              "title": "菜单管理",
+              "href": "/admin/sys/menu/list-ui",
+              "icon": "fa fa-bars",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "异常页面",
+          "href": "",
+          "icon": "fa fa-home",
+          "target": "_self",
+          "child": [
+            {
+              "title": "404页面",
+              "href": "/404-ui",
+              "icon": "fa fa-hourglass-end",
+              "target": "_self"
+            }
+          ]
+        }
+      ]
+    },
+    "component": {
+      "title": "组件管理",
+      "icon": "fa fa-lemon-o",
+      "child": [
+        {
+          "title": "图标列表",
+          "href": "/admin/sys/tool/icon-ui",
+          "icon": "fa fa-dot-circle-o",
+          "target": "_self"
+        },
+        {
+          "title": "图标选择",
+          "href": "/admin/sys/tool/icon-picker-ui",
+          "icon": "fa fa-adn",
+          "target": "_self"
+        },
+        {
+          "title": "颜色选择",
+          "href": "/admin/sys/tool/color-select-ui",
+          "icon": "fa fa-dashboard",
+          "target": "_self"
+        },
+        {
+          "title": "分步表单",
+          "href": "page/form-step.html",
+          "icon": "fa fa-navicon",
+          "target": "_self"
+        },
+        {
+          "title": "富文本编辑器",
+          "href": "/admin/sys/tool/editor-ui",
+          "icon": "fa fa-edit",
+          "target": "_self"
+        },
+        {
+          "title": "登录-1",
+          "href": "page/login-1.html",
+          "icon": "fa fa-stumbleupon-circle",
+          "target": "_blank"
+        },
+        {
+          "title": "登录-2",
+          "href": "page/login-2.html",
+          "icon": "fa fa-viacoin",
+          "target": "_blank"
+        }
+      ]
+    },
+    "other": {
+      "title": "其它管理",
+      "icon": "fa fa-slideshare",
+      "child": [
+        {
+          "title": "多级菜单",
+          "href": "",
+          "icon": "fa fa-meetup",
+          "target": "",
+          "child": [
+            {
+              "title": "按钮1",
+              "href": "page/button.html",
+              "icon": "fa fa-calendar",
+              "target": "_self",
+              "child": [
+                {
+                  "title": "按钮2",
+                  "href": "page/button.html",
+                  "icon": "fa fa-snowflake-o",
+                  "target": "_self",
+                  "child": [
+                    {
+                      "title": "按钮3",
+                      "href": "page/button.html",
+                      "icon": "fa fa-snowflake-o",
+                      "target": "_self"
+                    },
+                    {
+                      "title": "表单4",
+                      "href": "page/form.html",
+                      "icon": "fa fa-calendar",
+                      "target": "_self"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

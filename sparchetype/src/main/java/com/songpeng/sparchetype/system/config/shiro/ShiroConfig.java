@@ -46,6 +46,14 @@ public class ShiroConfig {
 	@Value("${server.session-timeout}")
 	private int tomcatTimeout;
 
+	@Bean
+	public RetryLimitCredentialsMatcher getRetryLimitCredentialsMatcher() {
+		RetryLimitCredentialsMatcher rm = new RetryLimitCredentialsMatcher(ehCacheManager());
+		rm.setHashAlgorithmName("md5");
+		rm.setHashIterations(3);
+		return rm;
+	}
+
 	/**
 	 * TODO 加盐，不用额外字段，使用用户名+密码
 	 *
@@ -54,6 +62,7 @@ public class ShiroConfig {
 	@Bean
 	public ShiroRealm shiroRealm() {
 		ShiroRealm sr = new ShiroRealm();
+		sr.setCredentialsMatcher(getRetryLimitCredentialsMatcher());
 		return sr;
 	}
 
@@ -84,9 +93,9 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/", "anon");
 		filterChainDefinitionMap.put("/blog", "anon");
 		filterChainDefinitionMap.put("/blog/open/**", "anon");
-		filterChainDefinitionMap.put("/**", "authc");
+		//filterChainDefinitionMap.put("/**", "authc");
 		// TODO 测试期间暂时打开
-		//filterChainDefinitionMap.put("/**", "anon");
+		filterChainDefinitionMap.put("/**", "anon");
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return shiroFilterFactoryBean;
 	}
@@ -148,7 +157,6 @@ public class ShiroConfig {
 		return redisCacheManager;
 	}
 
-
 	/**
 	 * RedisSessionDAO shiro sessionDao层的实现 通过redis
 	 * 使用的是shiro-redis开源插件
@@ -186,12 +194,8 @@ public class ShiroConfig {
 	@Bean
 	public EhCacheManager ehCacheManager() {
 		EhCacheManager em = new EhCacheManager();
-		em.setCacheManager(cacheManager());
+		em.setCacheManagerConfigFile("classpath:ehcache.xml");
 		return em;
 	}
 
-	@Bean("cacheManager")
-	CacheManager cacheManager() {
-		return CacheManager.create();
-	}
 }

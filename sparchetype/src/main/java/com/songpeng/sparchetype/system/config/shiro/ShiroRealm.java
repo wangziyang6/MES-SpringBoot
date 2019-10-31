@@ -15,6 +15,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Arrays;
@@ -41,11 +42,12 @@ public class ShiroRealm extends AuthorizingRealm {
 		Set<String> perms = new HashSet<>();
 		if (CollectionUtils.isNotEmpty(user.getSysRoleDtos())) {
 			for (SysRoleDto sr : user.getSysRoleDtos()) {
-				if (CollectionUtils.isNotEmpty(sr.getSysMenuDtos())) {
-					for (SysMenuDto sm : sr.getSysMenuDtos()) {
-						if (StringUtils.isNotEmpty(sm.getPermission())) {
-							perms.addAll(Arrays.asList(sm.getPermission().trim().split(",")));
-						}
+				if (CollectionUtils.isEmpty(sr.getSysMenuDtos())) {
+					continue;
+				}
+				for (SysMenuDto sm : sr.getSysMenuDtos()) {
+					if (StringUtils.isNotEmpty(sm.getPermission())) {
+						perms.addAll(Arrays.asList(sm.getPermission().trim().split(",")));
 					}
 				}
 			}
@@ -77,6 +79,8 @@ public class ShiroRealm extends AuthorizingRealm {
 			log.error("账号已被锁定,请联系管理员");
 			throw new LockedAccountException("账号已被锁定,请联系管理员");
 		}
-		return new SimpleAuthenticationInfo(user, user.getPassword(), getName());
+		// TODO 根据用户名（唯一不可变）作为密码加盐，当然也可以自定义加盐方式，如增加数据库字段等
+		ByteSource byteSource = ByteSource.Util.bytes(username);
+		return new SimpleAuthenticationInfo(user, user.getPassword(), byteSource, getName());
 	}
 }

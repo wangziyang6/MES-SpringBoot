@@ -1,42 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <title>系统用户列表</title>
-    <meta name="Description" content="基于layUI数据表格操作"/>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <#include "${request.contextPath}/common/common.ftl">
 </head>
 <body>
-    <div class="weadmin-body">
-        <div class="layui-row">
-            <form class="layui-form layui-col-md12 we-search" lay-filter="search-form-filter">
-                <div class="layui-input-inline">
-                    <select name="cateid">
-                        <option>请选择分类</option>
-                        <option>文章</option>
-                        <option>会员</option>
-                        <option>权限</option>
-                    </select>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+        <form class="layui-form layui-form-pane" action="">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">用户姓名</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="username" autocomplete="off" class="layui-input">
+                    </div>
                 </div>
                 <div class="layui-inline">
-                    <input class="layui-input" placeholder="开始日" name="start" id="start">
+                    <label class="layui-form-label">用户性别</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="sex" autocomplete="off" class="layui-input">
+                    </div>
                 </div>
                 <div class="layui-inline">
-                    <input class="layui-input" placeholder="截止日" name="end" id="end">
+                    <label class="layui-form-label">用户城市</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="city" autocomplete="off" class="layui-input">
+                    </div>
                 </div>
                 <div class="layui-inline">
-                    <input type="text" name="keyword" placeholder="请输入关键字" autocomplete="off" class="layui-input">
+                    <label class="layui-form-label">用户职业</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="classify" autocomplete="off" class="layui-input">
+                    </div>
                 </div>
-                <button class="layui-btn" lay-submit lay-filter="search-form-btn-filter"><i class="layui-icon">&#xe615;</i></button>
-            </form>
-        </div>
-        <!--数据表格-->
+                <div class="layui-inline">
+                    <a class="layui-btn" lay-submit="" lay-filter="data-search-btn">搜索</a>
+                </div>
+            </div>
+        </form>
         <table class="layui-hide" id="record-table" lay-filter="table-filter"></table>
     </div>
-</body>
+</div>
 <script type="text/html" id="toolbar-top">
   <div class="layui-btn-container">
     <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="getCheckData"><i class="layui-icon">&#xe640;</i>批量删除</button>
@@ -59,31 +67,20 @@
         <i class="layui-icon">&#xe640;</i>
     </a>
 </script>
-<script type="text/javascript">
-    layui.extend({
-        admin: '${request.contextPath}/js/admin'
-    });
-
-    layui.use(['table', 'jquery','form', 'admin', 'laydate'], function() {
-        var table = layui.table,
-            $ = layui.jquery,
+<script>
+    layui.use(['form', 'table'], function () {
+        var $ = layui.jquery,
             form = layui.form,
-            admin = layui.admin,
-            laydate = layui.laydate;
-
-        laydate.render({
-            elem: '#start'
-        });
-        laydate.render({
-            elem: '#end'
-        });
+            table = layui.table;
 
         var tableIns = table.render({
             elem: '#record-table',
             cellMinWidth: 80,
+            height:'full-80',
             toolbar: '#toolbar-top',
             method: 'POST',
-            event: true,
+            limits: [10, 20, 50, 100],
+            limit: 10,
             page: true,
             url: '${request.contextPath}/admin/sys/user/page',
             request: {
@@ -102,7 +99,7 @@
                 [{
                     type: 'checkbox'
                 }, {
-                    field: 'name', title: '姓名'
+                    field: 'name', title: '姓名', width: 120
                 }, {
                     field: 'username', title: '用户名', width: 130
                 }, {
@@ -222,17 +219,18 @@
                 });
             });
         }
-    });
 
-    function delAll(argument) {
-        var data = tableCheck.getData();
-        layer.confirm('确认要删除吗？' + data, function(index) {
-            //捉到所有被选中的，发异步进行删除
-            layer.msg('删除成功', {
-                icon: 1
+        function delAll(argument) {
+            var data = tableCheck.getData();
+            layer.confirm('确认要删除吗？' + data, function(index) {
+                //捉到所有被选中的，发异步进行删除
+                layer.msg('删除成功', {
+                    icon: 1
+                });
+                $(".layui-form-checked").not('.header').parents('tr').remove();
             });
-            $(".layui-form-checked").not('.header').parents('tr').remove();
-        });
-    }
+        }
+    });
 </script>
+</body>
 </html>

@@ -3,127 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <title>后台管理系统</title>
-    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
     <#include "${request.contextPath}/common/common.ftl">
+    <link rel="stylesheet" href="${request.contextPath}/css/layuimini.css" media="all">
+    <style id="layuimini-bg-color">
+    </style>
 </head>
-<body>
-    <!-- 顶部开始 -->
-    <div class="container">
-        <div class="logo">
-            <a href="./index.html">后台管理系统</a>
+<body class="layui-layout-body layuimini-all">
+<div class="layui-layout layui-layout-admin">
+
+    <div class="layui-header header">
+        <div class="layui-logo">
         </div>
-        <div class="left_open">
-            <!-- <i title="展开左侧栏" class="iconfont">&#xe699;</i> -->
-            <i title="展开左侧栏" class="layui-icon layui-icon-shrink-right"></i>
-        </div>
-        <ul class="layui-nav left fast-add" lay-filter="">
-            <li class="layui-nav-item">
-                <a href="javascript:;">+新增</a>
-                <dl class="layui-nav-child">
-                    <!-- 二级菜单 -->
-                    <dd>
-                        <a onclick="WeAdminShow('资讯','https://www.baidu.com/')"><i class="layui-icon layui-icon-list"></i>资讯</a>
-                    </dd>
-                    <dd>
-                        <a onclick="WeAdminShow('图片','http://www.baidu.com')"><i class="layui-icon layui-icon-picture-fine"></i>图片</a>
-                    </dd>
-                    <dd>
-                        <a onclick="WeAdminShow('用户','https://www.jiuwei.com/')"><i class="layui-icon layui-icon-user"></i>用户</a>
-                    </dd>
-                </dl>
-            </li>
+        <a>
+            <div class="layuimini-tool"><i title="展开" class="fa fa-outdent" data-side-fold="1"></i></div>
+        </a>
+
+        <ul class="layui-nav layui-layout-left layui-header-menu layui-header-pc-menu mobile layui-hide-xs">
         </ul>
-        <ul class="layui-nav right" lay-filter="">
+        <ul class="layui-nav layui-layout-left layui-header-menu mobile layui-hide-sm">
             <li class="layui-nav-item">
-                <a href="javascript:;">Admin</a>
-                <dl class="layui-nav-child">
-                    <!-- 二级菜单 -->
-                    <dd>
-                        <a onclick="WeAdminShow('个人信息','http://www.baidu.com')">个人信息</a>
-                    </dd>
-                    <dd>
-                        <a onclick="WeAdminShow('切换帐号','${request.contextPath}/login-ui')">切换帐号</a>
-                    </dd>
-                    <dd>
-                        <a class="loginout" href="${request.contextPath}/login-ui">退出</a>
-                    </dd>
+                <a href="javascript:;"><i class="fa fa-list-ul"></i> 选择模块</a>
+                <dl class="layui-nav-child layui-header-mini-menu">
                 </dl>
-            </li>
-            <li class="layui-nav-item to-index">
-                <a href="https://www.iconfont.cn" target="_blank">前台首页</a>
             </li>
         </ul>
 
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;" data-refresh="刷新"><i class="fa fa-refresh"></i></a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;" data-clear="清理" class="layuimini-clear"><i class="fa fa-trash-o"></i></a>
+            </li>
+            <li class="layui-nav-item layuimini-setting">
+                <a href="javascript:;">admin</a>
+                <dl class="layui-nav-child">
+                    <dd>
+                        <a href="javascript:;" data-iframe-tab="page/user-setting.html" data-title="基本资料" data-icon="fa fa-gears">基本资料</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;" data-iframe-tab="page/user-password.html" data-title="修改密码" data-icon="fa fa-gears">修改密码</a>
+                    </dd>
+                    <dd>
+                        <a class="login-out" href="${request.contextPath}/login-ui">退出登录</a>
+                    </dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item layuimini-select-bgcolor mobile layui-hide-xs">
+                <a href="javascript:;" data-bgcolor="配色方案"><i class="fa fa-ellipsis-v"></i></a>
+            </li>
+        </ul>
     </div>
-    <!-- 顶部结束 -->
-    <!-- 中部开始 -->
-    <!-- 左侧菜单开始 -->
-    <div class="left-nav">
-        <div id="side-nav"></div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll layui-left-menu">
+        </div>
     </div>
-    <!-- <div class="x-slide_left"></div> -->
-    <!-- 左侧菜单结束 -->
-    <!-- 右侧主体开始 -->
-    <div class="page-content">
-        <div class="layui-tab tab" lay-filter="wenav_tab" id="WeTabTip" lay-allowclose="true">
-            <ul class="layui-tab-title" id="tabName">
-                <li>我的桌面</li>
+
+    <div class="layui-body">
+        <div class="layui-tab" lay-filter="layuiminiTab" id="top_tabs_box">
+            <ul class="layui-tab-title" id="top_tabs">
+                <li class="layui-this" id="layuiminiHomeTabId" lay-id=""></li>
             </ul>
-            <div class="layui-tab-content">
-                <div class="layui-tab-item layui-show">
-                    <iframe src='${request.contextPath}/admin/welcome' frameborder="0" scrolling="yes" class="weIframe"></iframe>
+            <ul class="layui-nav closeBox">
+                <li class="layui-nav-item">
+                    <a href="javascript:;"> <i class="fa fa-dot-circle-o"></i> 页面操作</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;" data-page-close="other"><i class="fa fa-window-close"></i> 关闭其他</a></dd>
+                        <dd><a href="javascript:;" data-page-close="all"><i class="fa fa-window-close-o"></i> 关闭全部</a></dd>
+                    </dl>
+                </li>
+            </ul>
+            <div class="layui-tab-content clildFrame">
+                <div id="layuiminiHomeTabIframe" class="layui-tab-item layui-show">
                 </div>
             </div>
         </div>
     </div>
-    <div class="page-content-bg"></div>
-    <!-- 右侧主体结束 -->
-    <!-- 中部结束 -->
-    <!-- 底部开始 -->
-    <div class="footer">
-        <div class="copyright">Copyright ©2019 SpArchetype v1.0 All Rights Reserved</div>
-    </div>
-    <!-- 底部结束 -->
-</body>
-<!--Tab菜单右键弹出菜单-->
-<ul class="rightMenu" id="rightMenu">
-    <li data-type="fresh">刷新</li>
-    <li data-type="current">关闭当前</li>
-    <li data-type="other">关闭其它</li>
-    <li data-type="all">关闭所有</li>
-</ul>
+</div>
 
-<script type="text/javascript">
-    layui.config({
-        base: '${request.contextPath}/js/'
-        ,version: '101100'
-    }).extend({ //设定模块别名
-        admin: 'admin'
-        ,menu: 'menu'
-    });
-    layui.use(['jquery', 'admin', 'menu'], function(){
-        var $ = layui.jquery,
-            admin = layui.admin,
-            menu = layui.menu;
-        $(function(){
-            // TODO 测试用，后台建立完成后更改为数据库查询
-            menu.getMenu('${request.contextPath}/json/menu.json');
-            var login = JSON.parse(localStorage.getItem("login"));
-            /*if(login){
-                if(login===0){
-                    window.location.href='./login.html';
-                    return false;
-                }else{
-                    return false;
-                }
-            }else{
-                window.location.href='./login.html';
-                return false;
-            }*/
-        });
+<script src="${request.contextPath}/js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script>
+    layui.use(['element', 'layer', 'layuimini'], function () {
+        var element = layui.element,
+            layer = layui.layer;
+
+        layuimini.init('${request.contextPath}/json/init.json');
     });
 </script>
+</body>
 </html>
