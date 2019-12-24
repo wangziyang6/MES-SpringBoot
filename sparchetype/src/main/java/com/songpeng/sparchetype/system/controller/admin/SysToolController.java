@@ -65,4 +65,15 @@ public class SysToolController extends BaseController {
 		return "system/tool/editor";
 	}
 
+	/**
+	 * 颜色选择
+	 *
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/form-step-ui")
+	public String formStepUI(Model model) {
+		return "system/tool/formStep";
+	}
+
 }

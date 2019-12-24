@@ -34,7 +34,6 @@
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 
-<script src="${request.contextPath}/js/lay-config.js?v=1.0.4" charset="utf-8"></script>
 <script>
     layui.use(['table', 'treetable'], function () {
         var $ = layui.jquery;

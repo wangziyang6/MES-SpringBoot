@@ -4,8 +4,7 @@ import com.songpeng.sparchetype.common.Result;
 import com.songpeng.sparchetype.system.config.shiro.SpUsernamePasswordToken;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
@@ -57,7 +56,25 @@ public class SysLoginController {
 		try {
 			subject.login(token);
 			return Result.success();
-		} catch (AuthenticationException e) {
+		} catch (LockedAccountException e) {
+			log.error("锁定的帐号", e);
+			return Result.failure("锁定的帐号");
+		} catch (DisabledAccountException e) {
+			log.error("禁用的帐号", e);
+			return Result.failure("禁用的帐号");
+		} catch (UnknownAccountException e) {
+			log.error("错误的帐号", e);
+			return Result.failure("错误的帐号");
+		} catch (ExcessiveAttemptsException e) {
+			log.error("登录失败次数过多", e);
+			return Result.failure("登录失败次数过多");
+		}catch (IncorrectCredentialsException e) {
+			log.error("错误的凭证", e);
+			return Result.failure("错误的凭证");
+		}catch (ExpiredCredentialsException e) {
+			log.error("过期的凭证", e);
+			return Result.failure("过期的凭证");
+		}catch (AuthenticationException e) {
 			log.error("用户或密码错误", e);
 			return Result.failure("用户或密码错误");
 		}

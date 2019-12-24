@@ -46,18 +46,18 @@
     </div>
 </div>
 <script type="text/html" id="toolbar-top">
-  <div class="layui-btn-container">
-    <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="getCheckData"><i class="layui-icon">&#xe640;</i>批量删除</button>
-    <@shiro.hasPermission name="user:add">
-        <button class="layui-btn layui-btn-sm" onclick="WeAdminShow('添加用户','${request.contextPath}/admin/sys/user/add-or-upd-ui',600,400)">
-            <i class="layui-icon">&#xe61f;</i>添加
-        </button>
-    </@shiro.hasPermission>
-  </div>
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="getCheckData"><i class="layui-icon">&#xe640;</i>批量删除</button>
+        <@shiro.hasPermission name="user:add">
+            <button class="layui-btn layui-btn-sm" onclick="WeAdminShow('添加用户','${request.contextPath}/admin/sys/user/add-or-upd-ui',600,400)">
+                <i class="layui-icon">&#xe61f;</i>添加
+            </button>
+        </@shiro.hasPermission>
+    </div>
 </script>
 
 <script type="text/html" id="operateTpl">
-    <a title="编辑" onclick="WeAdminEdit('编辑','${request.contextPath}/admin/sys/user/add-or-upd-ui', '{{ d.id }}', 600, 400)" href="javascript:;">
+    <a title="编辑" href="javascript:;" lay-event="edit">
         <i class="layui-icon">&#xe642;</i>
     </a>
     <a title="查看" onclick="WeAdminShow('查看用户','./show.html',600,400)" href="javascript:;">
@@ -68,15 +68,16 @@
     </a>
 </script>
 <script>
-    layui.use(['form', 'table'], function () {
-        var $ = layui.jquery,
+    layui.use(['form', 'table', 'spLayer'], function () {
+        var $ = layui.$,
             form = layui.form,
-            table = layui.table;
+            table = layui.table,
+            spLayer = layui.spLayer;
 
         var tableIns = table.render({
             elem: '#record-table',
             cellMinWidth: 80,
-            height:'full-80',
+            height: 'full-80',
             toolbar: '#toolbar-top',
             method: 'POST',
             limits: [10, 20, 50, 100],
@@ -84,10 +85,10 @@
             page: true,
             url: '${request.contextPath}/admin/sys/user/page',
             request: {
-              pageName: 'current' //页码的参数名称，默认：page
-              ,limitName: 'size' //每页数据量的参数名，默认：limit
+                pageName: 'current' //页码的参数名称，默认：page
+                , limitName: 'size' //每页数据量的参数名，默认：limit
             },
-            parseData: function(res){ //res 即为原始返回的数据
+            parseData: function (res) { //res 即为原始返回的数据
                 return {
                     "code": res.code, //解析接口状态
                     "msg": res.msg, //解析提示文本
@@ -137,10 +138,10 @@
                 }, {
                     field: 'status', title: '状态', width: 90
                 }, {
-                    fixed: 'right', field: 'operate',title: '操作', toolbar: '#operateTpl', unresize: true, width: 90
+                    fixed: 'right', field: 'operate', title: '操作', toolbar: '#operateTpl', unresize: true, width: 90
                 }]
             ],
-            done: function(res, curr, count){
+            done: function (res, curr, count) {
                 //如果是异步请求数据方式，res即为你接口返回的信息。
                 //如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
             }
@@ -150,11 +151,11 @@
          * 数据表格中form表单元素是动态插入,所以需要更新渲染下
          * http://www.layui.com/doc/modules/form.html#render
          */
-        $(function(){
+        $(function () {
             form.render();
         });
 
-        form.on('submit(search-form-btn-filter)', function(data){
+        form.on('submit(search-form-btn-filter)', function (data) {
             tableIns.reload({
                 // 设定异步数据接口的额外参数，任意设
                 where: data.field,
@@ -167,14 +168,14 @@
         });
 
         //头工具栏事件
-        table.on('toolbar(table-filter)', function(obj){
+        table.on('toolbar(table-filter)', function (obj) {
             var checkStatus = table.checkStatus(obj.config.id);
-            switch(obj.event){
+            switch (obj.event) {
                 case 'getCheckData':
                     var checkStatus = table.checkStatus('record-table'),
                         data = checkStatus.data;
-                    if(data.length > 0) {
-                        layer.confirm('确认要删除吗？' + JSON.stringify(data), function(index) {
+                    if (data.length > 0) {
+                        layer.confirm('确认要删除吗？' + JSON.stringify(data), function (index) {
                             layer.msg('删除成功', {
                                 icon: 1
                             });
@@ -188,9 +189,9 @@
                 case 'recommend':
                     var checkStatus = table.checkStatus('record-table'),
                         data = checkStatus.data;
-                    if(data.length > 0) {
+                    if (data.length > 0) {
                         layer.msg("您点击了推荐操作");
-                        for(var i = 0; i < data.length; i++) {
+                        for (var i = 0; i < data.length; i++) {
                             data[i].recommend = "checked";
                             form.render();
                         }
@@ -205,12 +206,33 @@
                 case 'review':
                     layer.msg("您点击了审核操作");
                     break;
-            };
+            }
+        });
+
+        //监听行工具事件
+        table.on('tool(table-filter)', function (obj) {
+            var data = obj.data;
+            console.log(obj);
+            if (obj.event === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+                console.log('edit...');
+                spLayer.open({
+                    type: 2,
+                    area: ['800px', '500px'],
+                    fixed: false,
+                    maxmin: true,
+                    content: '${request.contextPath}/admin/sys/user/add-or-upd-ui'
+                });
+            }
         });
 
         /*用户-删除*/
-        window.member_del = function(obj, id) {
-            layer.confirm('确认要删除吗？', function(index) {
+        window.member_del = function (obj, id) {
+            layer.confirm('确认要删除吗？', function (index) {
                 //发异步删除数据
                 $(obj).parents("tr").remove();
                 layer.msg('已删除!', {
@@ -218,11 +240,11 @@
                     time: 1000
                 });
             });
-        }
+        };
 
         function delAll(argument) {
             var data = tableCheck.getData();
-            layer.confirm('确认要删除吗？' + data, function(index) {
+            layer.confirm('确认要删除吗？' + data, function (index) {
                 //捉到所有被选中的，发异步进行删除
                 layer.msg('删除成功', {
                     icon: 1

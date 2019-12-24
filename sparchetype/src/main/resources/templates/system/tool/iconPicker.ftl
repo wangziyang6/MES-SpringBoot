@@ -59,7 +59,7 @@
 
     </div>
 </div>
-<script src="${request.contextPath}/js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script src="${request.contextPath}/static/js/layui-config.js?v=1.0.4" charset="utf-8"></script>
 <script>
     layui.use(['iconPickerFa', 'form', 'layer'], function () {
         var iconPickerFa = layui.iconPickerFa,

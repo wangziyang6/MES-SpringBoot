@@ -88,8 +88,6 @@
         </div>
     </div>
 </div>
-
-<script src="${request.contextPath}/js/lay-config.js?v=1.0.4" charset="utf-8"></script>
 <script>
     layui.use(['element', 'layer', 'layuimini'], function () {
         var element = layui.element,

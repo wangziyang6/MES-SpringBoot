@@ -5,7 +5,7 @@
   "homeInfo": {
     "title": "首页",
     "icon": "fa fa-home",
-    "href": "page/welcome-ui?mpi=m-p-i-0"
+    "href": "admin/welcome-ui"
   },
   "logoInfo": {
     "title": "后台管理",
@@ -83,7 +83,7 @@
         },
         {
           "title": "分步表单",
-          "href": "page/form-step.html",
+          "href": "/admin/sys/tool/form-step-ui",
           "icon": "fa fa-navicon",
           "target": "_self"
         },

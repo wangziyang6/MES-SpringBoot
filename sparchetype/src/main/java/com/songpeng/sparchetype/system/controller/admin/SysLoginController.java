@@ -33,9 +33,9 @@ public class SysLoginController {
 	 * @param model
 	 * @return
 	 */
-	@GetMapping("/welcome")
+	@GetMapping("/welcome-ui")
 	public String welcomeUI(Model model) {
-		return "admin/welcome";
+		return "welcome";
 	}
 
 }
