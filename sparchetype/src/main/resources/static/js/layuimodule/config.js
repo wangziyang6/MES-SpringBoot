@@ -29,5 +29,5 @@ layui.config({
     // wangEditor富文本扩展
     wangEditor: 'wangEditor/wangEditor',
     // 自定义layer扩展组件
-    spLayer: 'spLayer/spLayer'
+    splayer: 'splayer/splayer'
 });

@@ -7,17 +7,17 @@ layui.define(['layer'], function (exports) {
     var $ = layui.jquery;
     var layer = layui.layer;
 
-    var spLayer = {
+    var splayer = {
         // 渲染弹出框
         open: function (param) {
-            console.log(param);
             var config = {};
             $.extend(config, param, {
                 // 这里写默认配置，会覆盖自定义配置 param
+                content: param.content + '?' + spUtil.parseParam(param.spWhere)
             });
             layer.open(config);
         }
     };
 
-    exports('spLayer', spLayer);
+    exports('splayer', splayer);
 });

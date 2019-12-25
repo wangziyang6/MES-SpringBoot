@@ -33,37 +33,37 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Slf4j
 public class SysUserController extends BaseController {
 
-	@Autowired
-	private ISysUserService sysUserService;
+    @Autowired
+    private ISysUserService sysUserService;
 
-	@GetMapping("/list-ui")
-	public String listUI(Model model) {
-		return "system/user/list";
-	}
+    @GetMapping("/list-ui")
+    public String listUI(Model model) {
+        return "system/user/list";
+    }
 
-	@PostMapping("/page")
-	@ResponseBody
-	public Result page(Page page, SysUserPageReq req) {
-		Object principal = SecurityUtils.getSubject().getPrincipal();
-		QueryWrapper qw = new QueryWrapper();
-		qw.orderByDesc(req.getOrderBy());
-		IPage result = sysUserService.page(page, qw);
-		return Result.success(result);
-	}
+    @PostMapping("/page")
+    @ResponseBody
+    public Result page(Page page, SysUserPageReq req) {
+        Object principal = SecurityUtils.getSubject().getPrincipal();
+        QueryWrapper qw = new QueryWrapper();
+        qw.orderByDesc(req.getOrderBy());
+        IPage result = sysUserService.page(page, qw);
+        return Result.success(result);
+    }
 
-	@GetMapping("/add-or-upd-ui")
-	public String addOrUpdUI(Model model, SysUser record) {
-		if (StringUtils.isNotEmpty(record.getId())) {
-			SysUser result = sysUserService.getById(record.getId());
-			model.addAttribute("result", result);
-		}
-		return "system/user/addOrUpd";
-	}
+    @GetMapping("/add-or-upd-ui")
+    public String addOrUpdUI(SysUser record, Model model) {
+        if (StringUtils.isNotEmpty(record.getId())) {
+            SysUser result = sysUserService.getById(record.getId());
+            model.addAttribute("result", result);
+        }
+        return "system/user/addOrUpd";
+    }
 
-	@PostMapping("/add-or-upd")
-	@ResponseBody
-	public Result addOrUpd(SysUser record) {
-		sysUserService.saveOrUpdate(record);
-		return Result.success(record.getId());
-	}
+    @PostMapping("/add-or-upd")
+    @ResponseBody
+    public Result addOrUpd(SysUser record) {
+        sysUserService.saveOrUpdate(record);
+        return Result.success(record.getId());
+    }
 }

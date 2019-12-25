@@ -11,13 +11,12 @@
 
 <body>
 <div class="weadmin-body">
-    <form class="layui-form">
+    <form class="layui-form layuimini-form">
         <div class="layui-container">
             <div class="layui-row">
                 <div class="layui-col-xs6 layui-col-sm6 layui-col-md6">
                     <div class="layui-form-item">
-                        <label for="js-name" class="layui-form-label">
-                            <span class="we-red">*</span>姓名
+                        <label for="js-name" class="layui-form-label sp-required">姓名
                         </label>
                         <div class="layui-input-inline">
                             <input type="text" id="js-name" name="name" lay-verify="required" autocomplete="off" class="layui-input" value="${result.name}">
@@ -25,8 +24,7 @@
                     </div>
 
                     <div class="layui-form-item">
-                        <label for="js-username" class="layui-form-label">
-                            <span class="we-red">*</span>用户名
+                        <label for="js-username" class="layui-form-label sp-required">用户名
                         </label>
                         <div class="layui-input-inline">
                             <input type="text" id="js-username" name="username" lay-verify="required" autocomplete="off" class="layui-input" value="${result.username}">
@@ -34,8 +32,7 @@
                     </div>
 
                     <div class="layui-form-item">
-                        <label for="js-password" class="layui-form-label">
-                            <span class="we-red">*</span>密码
+                        <label for="js-password" class="layui-form-label sp-required">密码
                         </label>
                         <div class="layui-input-inline">
                             <input type="password" id="js-password" name="password" lay-verify="required" autocomplete="off" class="layui-input" value="${result.password}">
@@ -43,8 +40,7 @@
                     </div>
 
                     <div class="layui-form-item">
-                        <label for="js-repassword" class="layui-form-label">
-                            <span class="we-red">*</span>确认密码
+                        <label for="js-repassword" class="layui-form-label sp-required">确认密码
                         </label>
                         <div class="layui-input-inline">
                             <input type="password" id="js-repassword" name="repassword" lay-verify="required" autocomplete="off" class="layui-input" value="${result.password}">
@@ -52,7 +48,7 @@
                     </div>
 
                     <div class="layui-form-item">
-                        <label for="js-dept-id" class="layui-form-label">
+                        <label for="js-dept-id" class="layui-form-label sp-required">
                             部门id
                         </label>
                         <div class="layui-input-inline">
@@ -61,7 +57,7 @@
                     </div>
 
                     <div class="layui-form-item">
-                        <label for="js-email" class="layui-form-label">
+                        <label for="js-email" class="layui-form-label sp-required">
                             邮箱
                         </label>
                         <!--校验规则动态添加，根据鼠标焦点进行-->
@@ -71,8 +67,7 @@
                     </div>
 
                     <div class="layui-form-item">
-                        <label for="js-mobile" class="layui-form-label">
-                            <span class="we-red">*</span>手机号
+                        <label for="js-mobile" class="layui-form-label sp-required">手机号
                         </label>
                         <div class="layui-input-inline">
                             <input type="text" id="js-mobile" name="mobile" lay-verify="required|number" autocomplete="off" class="layui-input" value="${result.mobile}">
@@ -80,7 +75,7 @@
                     </div>
 
                     <div class="layui-form-item">
-                        <label for="js-tel" class="layui-form-label">
+                        <label for="js-tel" class="layui-form-label sp-required">
                             固定电话
                         </label>
                         <div class="layui-input-inline">
@@ -89,7 +84,7 @@
                     </div>
 
                     <div class="layui-form-item">
-                        <label for="js-sex" class="layui-form-label"><span class="we-red">*</span>性别</label>
+                        <label for="js-sex" class="layui-form-label sp-required">性别</label>
                         <div class="layui-input-block" id="js-sex">
                             <input type="radio" name="sex" value="0" title="女" <#if result.sex == "0" || !(result??)>checked</#if>>
                             <input type="radio" name="sex" value="1" title="男" <#if result.sex == "1">checked</#if>>
@@ -98,7 +93,7 @@
                     </div>
 
                     <div class="layui-form-item">
-                        <label for="js-birthday" class="layui-form-label">
+                        <label for="js-birthday" class="layui-form-label sp-required">
                             出生年月日
                         </label>
                         <div class="layui-input-inline">
@@ -108,7 +103,7 @@
                 </div>
                 <div class="layui-col-xs6 layui-col-sm6 layui-col-md6">
                     <div class="layui-form-item">
-                        <label for="js-pic-id" class="layui-form-label">
+                        <label for="js-pic-id" class="layui-form-label sp-required">
                             图片id
                         </label>
                         <div class="layui-input-inline">
@@ -117,7 +112,7 @@
                     </div>
 
                     <div class="layui-form-item">
-                        <label for="js-id-card" class="layui-form-label">
+                        <label for="js-id-card" class="layui-form-label sp-required">
                             身份证
                         </label>
                         <div class="layui-input-inline">
@@ -126,7 +121,7 @@
                     </div>
 
                     <div class="layui-form-item">
-                        <label for="js-hobby" class="layui-form-label">
+                        <label for="js-hobby" class="layui-form-label sp-required">
                             爱好
                         </label>
                         <div class="layui-input-inline">
@@ -135,7 +130,7 @@
                     </div>
 
                     <div class="layui-form-item">
-                        <label for="js-province" class="layui-form-label">
+                        <label for="js-province" class="layui-form-label sp-required">
                             省份
                         </label>
                         <div class="layui-input-inline">
@@ -144,64 +139,55 @@
                     </div>
 
                     <div class="layui-form-item">
-                        <label for="js-city" class="layui-form-label">
-                            城市
-                        </label>
+                        <label for="js-city" class="layui-form-label sp-required">城市</label>
                         <div class="layui-input-inline">
                             <input type="text" id="js-city" name="city" lay-verify="" autocomplete="off" class="layui-input" value="${result.city}">
                         </div>
                     </div>
                     <div class="layui-form-item">
-                        <label for="js-district" class="layui-form-label">
-                            区县
-                        </label>
+                        <label for="js-district" class="layui-form-label sp-required">区县</label>
                         <div class="layui-input-inline">
                             <input type="text" id="js-district" name="district" lay-verify="" autocomplete="off" class="layui-input" value="${result.district}">
                         </div>
                     </div>
 
                     <div class="layui-form-item">
-                        <label for="js-street" class="layui-form-label">
-                            街道
-                        </label>
+                        <label for="js-street" class="layui-form-label sp-required">街道</label>
                         <div class="layui-input-inline">
                             <input type="text" id="js-street" name="street" lay-verify="" autocomplete="off" class="layui-input" value="${result.street}">
                         </div>
                     </div>
 
                     <div class="layui-form-item">
-                        <label for="js-street-number" class="layui-form-label">
-                            门牌号
-                        </label>
+                        <label for="js-street-number" class="layui-form-label sp-required">门牌号</label>
                         <div class="layui-input-inline">
                             <input type="text" id="js-street-number" name="streetNumber" lay-verify="" autocomplete="off" class="layui-input" value="${result.streetNumber}">
                         </div>
                     </div>
 
                     <div class="layui-form-item">
-                        <label for="js-descr" class="layui-form-label">
-                            描述
-                        </label>
+                        <label for="js-descr" class="layui-form-label sp-required">描述</label>
                         <div class="layui-input-inline">
                             <input type="text" id="js-descr" name="descr" lay-verify="" autocomplete="off" class="layui-input" value="${result.descr}">
                         </div>
                     </div>
 
                     <div class="layui-form-item">
-                        <label for="js-status" class="layui-form-label"><span class="we-red">*</span>状态</label>
+                        <label for="js-status" class="layui-form-label sp-required">状态</label>
                         <div class="layui-input-block" id="js-status">
                             <input type="radio" name="status" value="0" title="正常" <#if result.status == "0" || !(result??)>checked</#if>>
                             <input type="radio" name="status" value="1" title="已删除" <#if result.status == "1">checked</#if>>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="layui-form-item">
-            <input type="hidden" name="id" id="js-id" value=""/>
-            <label for="js-add-btn" class="layui-form-label"></label>
-            <button id="js-add-btn" class="layui-btn" lay-filter="add" lay-submit="">确定</button>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <input id="js-id" name="id" value="${result.id}"/>
+                        <button id="js-submit" class="layui-btn layui-hide" lay-filter="js-submit-filter" lay-submit>确定</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </form>
 </div>
@@ -224,13 +210,13 @@
         });
 
         //监听提交
-        form.on('submit(add)', function (data) {
+        form.on('submit(js-submit-filter)', function (data) {
+            console.log(data);
+            return false;
             $.ajax({
                 type: "POST",
-                //请求的媒体类型
-                //contentType: "application/json;charset=UTF-8",
+                async: true,
                 url: "${request.contextPath}/admin/sys/user/add-or-upd",
-                //data: JSON.stringify(data),
                 data: data.field,
                 success: function (result) {
                     if (result.code === 0) {

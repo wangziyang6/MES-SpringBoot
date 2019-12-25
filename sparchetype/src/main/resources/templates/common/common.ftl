@@ -9,4 +9,5 @@
 <![endif]-->
 <script src="${request.contextPath}/lib/jquery/jquery-3.4.1.min.js" charset="utf-8"></script>
 <script src="${request.contextPath}/lib/layui/layui.js?v=v2.5.5" charset="utf-8"></script>
-<script src="${request.contextPath}/js/layui-module/layui-config.js?v=1.0.0" charset="utf-8"></script>
+<script src="${request.contextPath}/js/spUtil.js?v=1.0.0" charset="utf-8"></script>
+<script src="${request.contextPath}/js/layuimodule/config.js?v=1.0.0" charset="utf-8"></script>

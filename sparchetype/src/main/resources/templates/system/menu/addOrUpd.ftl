@@ -18,8 +18,7 @@
     <div class="weadmin-body">
         <form class="layui-form">
             <div class="layui-form-item">
-                <label for="js-name" class="layui-form-label">
-                    <span class="we-red">*</span>菜单名称
+                <label for="js-name" class="layui-form-label sp-required">菜单名称
                 </label>
                 <div class="layui-input-inline">
                     <input type="text" id="js-name" name="name" lay-verify="required" autocomplete="off" class="layui-input" value="${result.name}">
@@ -27,8 +26,7 @@
             </div>
 
             <div class="layui-form-item">
-                <label for="js-url" class="layui-form-label">
-                    <span class="we-red">*</span>菜单URL
+                <label for="js-url" class="layui-form-label sp-required">菜单URL
                 </label>
                 <div class="layui-input-inline">
                     <input type="text" id="js-url" name="url" lay-verify="required" autocomplete="off" class="layui-input" value="${result.url}">
@@ -36,7 +34,7 @@
             </div>
 
             <div class="layui-form-item">
-                <label for="js-parent-id" class="layui-form-label">
+                <label for="js-parent-id" class="layui-form-label sp-required">
                     父菜单ID
                 </label>
                 <div class="layui-input-inline">
@@ -45,7 +43,7 @@
             </div>
 
             <div class="layui-form-item">
-                <label for="js-grade" class="layui-form-label">
+                <label for="js-grade" class="layui-form-label sp-required">
                     层级
                 </label>
                 <div class="layui-input-inline">
@@ -54,7 +52,7 @@
             </div>
 
             <div class="layui-form-item">
-                <label for="js-sort-num" class="layui-form-label">
+                <label for="js-sort-num" class="layui-form-label sp-required">
                     排序
                 </label>
                 <div class="layui-input-inline">
@@ -63,7 +61,7 @@
             </div>
 
             <div class="layui-form-item">
-                <label for="js-type" class="layui-form-label">
+                <label for="js-type" class="layui-form-label sp-required">
                     类型
                 </label>
                 <div class="layui-input-inline">
@@ -72,7 +70,7 @@
             </div>
 
             <div class="layui-form-item">
-                <label for="js-permission" class="layui-form-label">
+                <label for="js-permission" class="layui-form-label sp-required">
                     授权
                 </label>
                 <div class="layui-input-inline">
@@ -81,7 +79,7 @@
             </div>
 
             <div class="layui-form-item">
-                <label for="js-icon" class="layui-form-label">
+                <label for="js-icon" class="layui-form-label sp-required">
                     菜单图标
                 </label>
                 <div class="layui-input-inline">
@@ -90,7 +88,7 @@
             </div>
 
             <div class="layui-form-item">
-                <label for="js-descr" class="layui-form-label">
+                <label for="js-descr" class="layui-form-label sp-required">
                     描述
                 </label>
                 <div class="layui-input-inline">
@@ -100,7 +98,7 @@
 
             <div class="layui-form-item">
                 <input type="hidden" name="id" id="js-id" value="" />
-                <label for="js-add-btn" class="layui-form-label"></label>
+                <label for="js-add-btn" class="layui-form-label sp-required"></label>
                 <button id="js-add-btn" class="layui-btn" lay-filter="add" lay-submit="">确定</button>
             </div>
         </form>

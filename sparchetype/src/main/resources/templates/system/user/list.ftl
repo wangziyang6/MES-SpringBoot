@@ -11,7 +11,8 @@
 <body>
 <div class="layuimini-container">
     <div class="layuimini-main">
-        <form class="layui-form layui-form-pane" action="">
+        <!--查询参数-->
+        <form id="js-q-form" class="layui-form layui-form-pane" action="">
             <div class="layui-form-item">
                 <div class="layui-inline">
                     <label class="layui-form-label">用户姓名</label>
@@ -45,6 +46,7 @@
         <table class="layui-hide" id="record-table" lay-filter="table-filter"></table>
     </div>
 </div>
+
 <script type="text/html" id="toolbar-top">
     <div class="layui-btn-container">
         <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="getCheckData"><i class="layui-icon">&#xe640;</i>批量删除</button>
@@ -56,28 +58,21 @@
     </div>
 </script>
 
-<script type="text/html" id="operateTpl">
-    <a title="编辑" href="javascript:;" lay-event="edit">
-        <i class="layui-icon">&#xe642;</i>
-    </a>
-    <a title="查看" onclick="WeAdminShow('查看用户','./show.html',600,400)" href="javascript:;">
-        <i class="layui-icon">&#xe63c;</i>
-    </a>
-    <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-        <i class="layui-icon">&#xe640;</i>
-    </a>
+<script type="text/html" id="toolbar-right">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 <script>
-    layui.use(['form', 'table', 'spLayer'], function () {
+    layui.use(['form', 'table', 'splayer'], function () {
         var $ = layui.$,
             form = layui.form,
             table = layui.table,
-            spLayer = layui.spLayer;
+            splayer = layui.splayer;
 
         var tableIns = table.render({
             elem: '#record-table',
             cellMinWidth: 80,
-            height: 'full-80',
+            height: 'full-' + ($('#js-q-form').height() + 40),
             toolbar: '#toolbar-top',
             method: 'POST',
             limits: [10, 20, 50, 100],
@@ -138,7 +133,7 @@
                 }, {
                     field: 'status', title: '状态', width: 90
                 }, {
-                    fixed: 'right', field: 'operate', title: '操作', toolbar: '#operateTpl', unresize: true, width: 90
+                    fixed: 'right', field: 'operate', title: '操作', toolbar: '#toolbar-right', unresize: true, width: 120
                 }]
             ],
             done: function (res, curr, count) {
@@ -212,20 +207,40 @@
         //监听行工具事件
         table.on('tool(table-filter)', function (obj) {
             var data = obj.data;
-            console.log(obj);
             if (obj.event === 'del') {
                 layer.confirm('真的删除行么', function (index) {
                     obj.del();
                     layer.close(index);
                 });
             } else if (obj.event === 'edit') {
-                console.log('edit...');
-                spLayer.open({
+                splayer.open({
+                    title: '编辑',
                     type: 2,
-                    area: ['800px', '500px'],
+                    area: ['100%', '100%'],
                     fixed: false,
                     maxmin: true,
-                    content: '${request.contextPath}/admin/sys/user/add-or-upd-ui'
+                    // 请求url参数
+                    spWhere: {id: data.id},
+                    content: '${request.contextPath}/admin/sys/user/add-or-upd-ui',
+                    btn: ['确定', '取消'],
+                    yes: function(index, layero){
+                        console.log(layero);
+                        //do something
+                        console.log($($(layero).find('#js-submit').get(0)));
+                        $($(layero).find('#js-submit').get(0)).trigger("click");
+
+                        layer.close(index); //如果设定了yes回调，需进行手工关闭
+                    },
+                    btn2: function(index, layero){
+                        //按钮【按钮二】的回调
+
+                        //return false 开启该代码可禁止点击该按钮关闭
+                    },
+                    cancel: function(index, layero){
+                        //右上角关闭回调
+
+                        //return false 开启该代码可禁止点击该按钮关闭
+                    }
                 });
             }
         });

@@ -18,8 +18,7 @@
     <div class="weadmin-body">
         <form class="layui-form">
             <div class="layui-form-item">
-                <label for="js-name" class="layui-form-label">
-                    <span class="we-red">*</span>角色名称
+                <label for="js-name" class="layui-form-label sp-required">角色名称
                 </label>
                 <div class="layui-input-inline">
                     <input type="text" id="js-name" name="name" lay-verify="required" autocomplete="off" class="layui-input" value="${result.name}">
@@ -27,8 +26,7 @@
             </div>
 
             <div class="layui-form-item">
-                <label for="js-code" class="layui-form-label">
-                    <span class="we-red">*</span>角色编码
+                <label for="js-code" class="layui-form-label sp-required">角色编码
                 </label>
                 <div class="layui-input-inline">
                     <input type="text" id="js-code" name="code" lay-verify="required" autocomplete="off" class="layui-input" value="${result.code}">
@@ -36,7 +34,7 @@
             </div>
 
             <div class="layui-form-item">
-                <label for="js-descr" class="layui-form-label">
+                <label for="js-descr" class="layui-form-label sp-required">
                     描述
                 </label>
                 <div class="layui-input-inline">
@@ -45,7 +43,7 @@
             </div>
 
             <div class="layui-form-item">
-                <label for="js-status" class="layui-form-label"><span class="we-red">*</span>状态</label>
+                <label for="js-status" class="layui-form-label sp-required">状态</label>
                 <div class="layui-input-block" id="js-status">
                   <input type="radio" name="status" value="0" title="正常" <#if result.status == "0" || !(result??)>checked</#if>>
                   <input type="radio" name="status" value="1" title="已删除" <#if result.status == "1">checked</#if>>
@@ -54,7 +52,7 @@
 
             <div class="layui-form-item">
                 <input type="hidden" name="id" id="js-id" value="" />
-                <label for="js-add-btn" class="layui-form-label"></label>
+                <label for="js-add-btn" class="layui-form-label sp-required"></label>
                 <button id="js-add-btn" class="layui-btn" lay-filter="add" lay-submit="">确定</button>
             </div>
         </form>
