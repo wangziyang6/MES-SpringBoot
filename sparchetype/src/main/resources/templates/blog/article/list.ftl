@@ -21,7 +21,7 @@
             <i class="layui-icon" style="line-height:30px">&#xe669;</i>
         </a>
     </div>
-    <div class="weadmin-body">
+    <div class="">
         <div class="layui-row">
             <form class="layui-form layui-col-md12 we-search" lay-filter="search-form-filter">
                 <div class="layui-input-inline">

@@ -9,7 +9,7 @@
 	    <#include "${request.contextPath}/common/common.ftl">
     </head>
     <body>
-        <div class="weadmin-body">
+        <div class="">
         	<div class="weadmin-trailer">
 			  403
 			</div>

@@ -1,5 +1,6 @@
 package com.songpeng.sparchetype.common;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -11,7 +12,7 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class BasePageReq {
+public class BasePageReq extends Page {
 
 	private String orderBy = "last_upd";
 

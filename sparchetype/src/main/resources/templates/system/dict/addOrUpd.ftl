@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <div class="weadmin-body">
+    <div class="">
         <form class="layui-form">
             <div class="layui-form-item">
                 <label for="js-name" class="layui-form-label sp-required">标签名

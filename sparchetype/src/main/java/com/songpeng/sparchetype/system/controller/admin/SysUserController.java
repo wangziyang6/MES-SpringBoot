@@ -3,7 +3,6 @@ package com.songpeng.sparchetype.system.controller.admin;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.songpeng.sparchetype.common.BaseController;
 import com.songpeng.sparchetype.common.Result;
 import com.songpeng.sparchetype.system.entity.SysUser;
@@ -43,11 +42,11 @@ public class SysUserController extends BaseController {
 
     @PostMapping("/page")
     @ResponseBody
-    public Result page(Page page, SysUserPageReq req) {
+    public Result page(SysUserPageReq req) {
         Object principal = SecurityUtils.getSubject().getPrincipal();
         QueryWrapper qw = new QueryWrapper();
         qw.orderByDesc(req.getOrderBy());
-        IPage result = sysUserService.page(page, qw);
+        IPage result = sysUserService.page(req, qw);
         return Result.success(result);
     }
 

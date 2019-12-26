@@ -10,7 +10,7 @@
 </head>
 
 <body>
-<div class="weadmin-body">
+<div class="">
     <form class="layui-form layuimini-form">
         <div class="layui-container">
             <div class="layui-row">
@@ -211,30 +211,9 @@
 
         //监听提交
         form.on('submit(js-submit-filter)', function (data) {
-            $.ajax({
-                type: "POST",
-                async: true,
+            spUtil.submitForm({
                 url: "${request.contextPath}/admin/sys/user/add-or-upd",
-                data: data.field,
-                success: function (result) {
-                    if (result.code === 0) {
-                        // 获得frame索引
-                        var index = parent.layer.getFrameIndex(window.name);
-                        //刷新父页面，注意一定要在关闭当前iframe层之前执行刷新
-                        parent.location.reload();
-                        //关闭当前frame
-                        parent.layer.close(index);
-                    } else {
-                        layer.alert(result.msg, {
-                            icon: 2
-                        })
-                    }
-                },
-                error: function (e) {
-                    layer.alert(e, {
-                        icon: 2
-                    })
-                }
+                data: data.field
             });
 
             return false;

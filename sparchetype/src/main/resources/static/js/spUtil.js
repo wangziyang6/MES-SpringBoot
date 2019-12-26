@@ -1,6 +1,39 @@
 // 工具类
 var spUtil = {};
 
+spUtil.submitForm = function(param) {
+    // 默认配置
+    var defaultConfig = {
+        type: "POST",
+        async: true,
+        success: function (result) {
+            if (result.code === 0) {
+                // 获得frame索引
+                var index = parent.layer.getFrameIndex(window.name);
+                //刷新父页面，注意一定要在关闭当前iframe层之前执行刷新
+                parent.location.reload();
+                //关闭当前frame
+                parent.layer.close(index);
+            } else {
+                layer.alert(result.msg, {
+                    icon: 2
+                })
+            }
+        },
+        error: function (e) {
+            layer.alert(e, {
+                icon: 2
+            });
+        }
+    };
+
+    var config = $.extend({}, defaultConfig, param, {
+        // 此处写覆盖默认和传参配置
+    });
+
+    $.ajax(config);
+};
+
 /**
  * 将对象转为url路径字符串参数（编码之后的字符串）
  * @param param
