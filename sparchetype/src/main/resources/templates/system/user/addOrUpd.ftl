@@ -181,10 +181,10 @@
                     </div>
                 </div>
 
-                <div class="layui-form-item">
+                <div class="layui-form-item layui-hide">
                     <div class="layui-input-block">
                         <input id="js-id" name="id" value="${result.id}"/>
-                        <button id="js-submit" class="layui-btn layui-hide" lay-filter="js-submit-filter" lay-submit>确定</button>
+                        <button id="js-submit" class="layui-btn" lay-filter="js-submit-filter" lay-submit>确定</button>
                     </div>
                 </div>
             </div>

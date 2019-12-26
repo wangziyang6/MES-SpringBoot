@@ -224,12 +224,10 @@
                     content: '${request.contextPath}/admin/sys/user/add-or-upd-ui',
                     btn: ['确定', '取消'],
                     yes: function(index, layero){
-                        console.log(layero);
-                        //do something
-                        console.log($($(layero).find('#js-submit').get(0)));
-                        $($(layero).find('#js-submit').get(0)).trigger("click");
-
-                        layer.close(index); //如果设定了yes回调，需进行手工关闭
+                        //点击确认触发 iframe 内容中的按钮提交
+                        var submit = layero.find('iframe').contents().find("#js-submit");
+                        submit.click();
+                        layer.close(index);
                     },
                     btn2: function(index, layero){
                         //按钮【按钮二】的回调
