@@ -29,5 +29,7 @@ layui.config({
     // wangEditor富文本扩展
     wangEditor: 'wangEditor/wangEditor',
     // 自定义layer扩展组件
-    splayer: 'splayer/splayer'
+    splayer: 'splayer/splayer',
+    // 自定义table扩展组件
+    sptable: 'sptable/sptable'
 });

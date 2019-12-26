@@ -184,7 +184,7 @@
                 <div class="layui-form-item layui-hide">
                     <div class="layui-input-block">
                         <input id="js-id" name="id" value="${result.id}"/>
-                        <button id="js-submit" class="layui-btn" lay-filter="js-submit-filter" lay-submit>确定</button>
+                        <button id="js-submit" class="layui-btn" lay-submit lay-filter="js-submit-filter">确定</button>
                     </div>
                 </div>
             </div>
@@ -211,8 +211,6 @@
 
         //监听提交
         form.on('submit(js-submit-filter)', function (data) {
-            console.log(data);
-            return false;
             $.ajax({
                 type: "POST",
                 async: true,
@@ -220,9 +218,6 @@
                 data: data.field,
                 success: function (result) {
                     if (result.code === 0) {
-                        //获取提交成功的时间
-                        var time = new Date();
-                        var timeNow = util.toDateString(time);
                         // 获得frame索引
                         var index = parent.layer.getFrameIndex(window.name);
                         //刷新父页面，注意一定要在关闭当前iframe层之前执行刷新

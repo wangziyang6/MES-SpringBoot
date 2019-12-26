@@ -12,7 +12,7 @@
 <div class="layuimini-container">
     <div class="layuimini-main">
         <!--查询参数-->
-        <form id="js-q-form" class="layui-form layui-form-pane" action="">
+        <form id="js-q-form" class="layui-form" action="">
             <div class="layui-form-item">
                 <div class="layui-inline">
                     <label class="layui-form-label">用户姓名</label>
@@ -39,14 +39,17 @@
                     </div>
                 </div>
                 <div class="layui-inline">
-                    <a class="layui-btn" lay-submit="" lay-filter="data-search-btn">搜索</a>
+                    <a class="layui-btn" lay-submit lay-filter="data-search-btn"><i class="layui-icon layui-icon-search layuiadmin-button-btn"></i></a>
                 </div>
             </div>
         </form>
+
+        <!--表格-->
         <table class="layui-hide" id="record-table" lay-filter="table-filter"></table>
     </div>
 </div>
 
+<!--表格头操作模板-->
 <script type="text/html" id="toolbar-top">
     <div class="layui-btn-container">
         <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="getCheckData"><i class="layui-icon">&#xe640;</i>批量删除</button>
@@ -58,39 +61,25 @@
     </div>
 </script>
 
+<!--行操作模板-->
 <script type="text/html" id="toolbar-right">
-    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
 </script>
+
+<!--js逻辑-->
 <script>
-    layui.use(['form', 'table', 'splayer'], function () {
+    layui.use(['form', 'table', 'splayer', 'sptable'], function () {
         var $ = layui.$,
             form = layui.form,
             table = layui.table,
-            splayer = layui.splayer;
+            splayer = layui.splayer,
+            sptable = layui.sptable;
 
-        var tableIns = table.render({
-            elem: '#record-table',
-            cellMinWidth: 80,
+        var tableIns = sptable.render({
             height: 'full-' + ($('#js-q-form').height() + 40),
-            toolbar: '#toolbar-top',
-            method: 'POST',
-            limits: [10, 20, 50, 100],
-            limit: 10,
             page: true,
             url: '${request.contextPath}/admin/sys/user/page',
-            request: {
-                pageName: 'current' //页码的参数名称，默认：page
-                , limitName: 'size' //每页数据量的参数名，默认：limit
-            },
-            parseData: function (res) { //res 即为原始返回的数据
-                return {
-                    "code": res.code, //解析接口状态
-                    "msg": res.msg, //解析提示文本
-                    "count": res.data ? res.data.total : 0, //解析数据长度
-                    "data": res.data ? res.data.records : [] //解析数据列表
-                };
-            },
             cols: [
                 [{
                     type: 'checkbox'
@@ -133,7 +122,7 @@
                 }, {
                     field: 'status', title: '状态', width: 90
                 }, {
-                    fixed: 'right', field: 'operate', title: '操作', toolbar: '#toolbar-right', unresize: true, width: 120
+                    fixed: 'right', field: 'operate', title: '操作', toolbar: '#toolbar-right', unresize: true, width: 150
                 }]
             ],
             done: function (res, curr, count) {
@@ -227,7 +216,6 @@
                         //点击确认触发 iframe 内容中的按钮提交
                         var submit = layero.find('iframe').contents().find("#js-submit");
                         submit.click();
-                        layer.close(index);
                     },
                     btn2: function(index, layero){
                         //按钮【按钮二】的回调
