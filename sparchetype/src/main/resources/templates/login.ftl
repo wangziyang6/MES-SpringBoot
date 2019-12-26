@@ -62,7 +62,8 @@
 <script src="${request.contextPath}/lib/jq-module/jquery.particleground.min.js" charset="utf-8"></script>
 <script>
     layui.use(['form'], function () {
-        var form = layui.form,
+        var $ = layui.$,
+            form = layui.form,
             layer = layui.layer;
 
         // 登录过期的时候，跳出ifram框架

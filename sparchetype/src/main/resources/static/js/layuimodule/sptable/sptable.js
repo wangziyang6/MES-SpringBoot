@@ -4,8 +4,8 @@
  * description: 扩展layui数据表格 框架扩展
  */
 layui.define(['table'], function (exports) {
-    var $ = layui.jquery;
-    var table = layui.table;
+    var $ = layui.jquery,
+        table = layui.table;
 
     var sptable = {
         // 渲染表格

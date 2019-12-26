@@ -652,8 +652,6 @@ layui.define(["element", "jquery"], function (exports) {
                 }
             }).resize();
         };
-
-
     };
 
     /**
@@ -902,7 +900,7 @@ layui.define(["element", "jquery"], function (exports) {
             area: ['340px', clientHeight + 'px'],
             offset: 'rb',
             content: html,
-            end:function () {
+            end: function () {
                 $('.layuimini-select-bgcolor').removeClass('layui-this');
             }
         });

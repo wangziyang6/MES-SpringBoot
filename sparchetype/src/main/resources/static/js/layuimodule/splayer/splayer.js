@@ -4,8 +4,8 @@
  * description: 扩展layui弹出框 框架扩展
  */
 layui.define(['layer'], function (exports) {
-    var $ = layui.jquery;
-    var layer = layui.layer;
+    var $ = layui.jquery,
+        layer = layui.layer;
 
     var splayer = {
         // 渲染弹出框

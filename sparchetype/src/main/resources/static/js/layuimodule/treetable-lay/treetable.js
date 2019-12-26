@@ -1,7 +1,7 @@
 layui.define(['layer', 'table'], function (exports) {
-    var $ = layui.jquery;
-    var layer = layui.layer;
-    var table = layui.table;
+    var $ = layui.jquery,
+        layer = layui.layer,
+        table = layui.table;
 
     var treetable = {
         // 渲染树形表格

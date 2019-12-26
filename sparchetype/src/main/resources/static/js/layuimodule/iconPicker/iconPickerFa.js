@@ -3,7 +3,6 @@
  * @author wujiawei0926@yeah.net chung@99php.cn
  * @version 1.1
  */
-
 layui.define(['laypage', 'form'], function (exports) {
     "use strict";
 
@@ -92,9 +91,7 @@ layui.define(['laypage', 'form'], function (exports) {
                 // 默认图标
                 if (ORIGINAL_ELEM_VALUE === '') {
                     ORIGINAL_ELEM_VALUE = 'fa-adjust';
-
                 }
-
 
                 oriIcon = '<i class="fa ' + ORIGINAL_ELEM_VALUE + '">';
 
