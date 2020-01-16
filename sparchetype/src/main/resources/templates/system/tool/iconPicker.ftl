@@ -63,8 +63,7 @@
     layui.use(['iconPickerFa', 'form', 'layer'], function () {
         var iconPickerFa = layui.iconPickerFa,
             form = layui.form,
-            layer = layui.layer,
-            $ = layui.$;
+            layer = layui.layer;
 
         iconPickerFa.render({
             // 选择器，推荐使用input

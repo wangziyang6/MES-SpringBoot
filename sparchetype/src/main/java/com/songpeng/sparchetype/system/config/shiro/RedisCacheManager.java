@@ -9,67 +9,71 @@ import org.slf4j.LoggerFactory;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
+/**
+ * @author SongPeng
+ */
 public class RedisCacheManager implements CacheManager {
 
-	private static final Logger logger = LoggerFactory
-			.getLogger(RedisCacheManager.class);
+    private static final Logger logger = LoggerFactory.getLogger(RedisCacheManager.class);
 
-	// fast lookup by name map
-	private final ConcurrentMap<String, Cache> caches = new ConcurrentHashMap<String, Cache>();
+    /**
+     * fast lookup by name map
+     */
+    private final ConcurrentMap<String, Cache> caches = new ConcurrentHashMap<>();
 
-	private RedisManager redisManager;
+    private RedisManager redisManager;
 
-	/**
-	 * The Redis key prefix for caches
-	 */
-	private String keyPrefix = "shiro_redis_cache:";
+    /**
+     * The Redis key prefix for caches
+     */
+    private String keyPrefix = "shiro_redis_cache:";
 
-	/**
-	 * Returns the Redis session keys
-	 * prefix.
-	 *
-	 * @return The prefix
-	 */
-	public String getKeyPrefix() {
-		return keyPrefix;
-	}
+    /**
+     * Returns the Redis session keys
+     * prefix.
+     *
+     * @return The prefix
+     */
+    public String getKeyPrefix() {
+        return keyPrefix;
+    }
 
-	/**
-	 * Sets the Redis sessions key
-	 * prefix.
-	 *
-	 * @param keyPrefix The prefix
-	 */
-	public void setKeyPrefix(String keyPrefix) {
-		this.keyPrefix = keyPrefix;
-	}
+    /**
+     * Sets the Redis sessions key
+     * prefix.
+     *
+     * @param keyPrefix The prefix
+     */
+    public void setKeyPrefix(String keyPrefix) {
+        this.keyPrefix = keyPrefix;
+    }
 
-	@Override
-	public <K, V> Cache<K, V> getCache(String name) throws CacheException {
-		logger.debug("获取名称为: " + name + " 的RedisCache实例");
+    @Override
+    public <K, V> Cache<K, V> getCache(String name) throws CacheException {
+        logger.debug("获取名称为: " + name + " 的RedisCache实例");
 
-		Cache c = caches.get(name);
+        Cache c = caches.get(name);
 
-		if (c == null) {
+        if (c == null) {
 
-			// initialize the Redis manager instance
-			redisManager.init();
+            // initialize the Redis manager instance
+            redisManager.init();
 
-			// create a new cache instance
-			c = new RedisCache<K, V>(redisManager, keyPrefix);
+            // create a new cache instance
+            c = new RedisCache<K, V>(redisManager, keyPrefix);
 
-			// add it to the cache collection
-			caches.put(name, c);
-		}
-		return c;
-	}
+            // add it to the cache collection
+            caches.put(name, c);
+        }
+        return c;
+    }
 
-	public RedisManager getRedisManager() {
-		return redisManager;
-	}
+    public RedisManager getRedisManager() {
+        return redisManager;
+    }
 
-	public void setRedisManager(RedisManager redisManager) {
-		this.redisManager = redisManager;
-	}
+    public void setRedisManager(RedisManager redisManager) {
+        this.redisManager = redisManager;
+    }
 
 }

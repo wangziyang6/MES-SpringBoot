@@ -56,8 +56,7 @@
 <!--js逻辑-->
 <script>
     layui.use(['form', 'table', 'splayer', 'sptable'], function () {
-        var $ = layui.$,
-            form = layui.form,
+        var form = layui.form,
             table = layui.table,
             splayer = layui.splayer,
             sptable = layui.sptable;

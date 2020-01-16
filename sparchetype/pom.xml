@@ -10,13 +10,15 @@
     </parent>
     <groupId>com.songpeng</groupId>
     <artifactId>sparchetype</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>sparchetype</name>
     <description>maven 骨架生成所需项目</description>
     <packaging>jar</packaging>
 
     <properties>
         <java.version>1.8</java.version>
+        <!-- docker 前缀名，通常用在上传镜像 -->
+        <docker.image.prefix>sparchetype</docker.image.prefix>
     </properties>
 
     <dependencies>
@@ -148,6 +150,13 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.6</version>
         </dependency>
+
+        <!--logStash-->
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>5.3</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -155,6 +164,29 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <!-- Docker 插件 -->
+            <plugin>
+                <!-- 三坐标 -->
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.1.1</version>
+                <!-- 配置信息 -->
+                <configuration>
+                    <!-- 镜像名称 -->
+                    <imageName>${docker.image.prefix}/${project.artifactId}:${project.version}</imageName>
+                    <!-- Dockerfile 文件的位置 -->
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <!-- 文件资源 -->
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
             </plugin>
         </plugins>
     </build>

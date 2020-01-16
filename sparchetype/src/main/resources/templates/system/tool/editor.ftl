@@ -61,8 +61,7 @@
 <script src="${request.contextPath}/static/js/layui-config.js?v=1.0.4" charset="utf-8"></script>
 <script type="text/javascript">
     layui.use(['layer','wangEditor'], function () {
-        var $ = layui.jquery,
-            layer = layui.layer,
+        var layer = layui.layer,
             wangEditor = layui.wangEditor;
 
         var editor = new wangEditor('#editor');

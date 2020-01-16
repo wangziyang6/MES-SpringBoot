@@ -193,9 +193,8 @@
 </div>
 </body>
 <script>
-    layui.use(['form', 'jquery', 'util', 'layer'], function () {
+    layui.use(['form', 'util', 'layer'], function () {
         var form = layui.form,
-            $ = layui.jquery,
             util = layui.util,
             layer = layui.layer;
 

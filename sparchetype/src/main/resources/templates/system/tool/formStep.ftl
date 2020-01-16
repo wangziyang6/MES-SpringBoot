@@ -145,8 +145,7 @@
 </div>
 <script>
     layui.use(['form', 'step'], function () {
-        var $ = layui.$,
-            form = layui.form,
+        var form = layui.form,
             step = layui.step;
 
         step.render({

@@ -60,11 +60,9 @@
         admin: '${request.contextPath}/js/admin'
     });
 
-    layui.use(['table', 'jquery','form', 'admin', 'laydate'], function() {
+    layui.use(['table', 'form', 'laydate'], function() {
         var table = layui.table,
-            $ = layui.jquery,
             form = layui.form,
-            admin = layui.admin,
             laydate = layui.laydate;
 
         laydate.render({

@@ -6,11 +6,6 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
-    <!--[if lt IE 9]>
-      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
-      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
     <#include "${request.contextPath}/common/common.ftl">
 </head>
 
@@ -73,14 +68,9 @@
     </div>
 </body>
 <script>
-    layui.extend({
-        admin: '${request.contextPath}/js/admin'
-    });
-    layui.use(['form', 'jquery', 'util', 'admin', 'layer'], function() {
+    layui.use(['form', 'util', 'layer'], function() {
         var form = layui.form,
-            $ = layui.jquery,
             util = layui.util,
-            admin = layui.admin,
             layer = layui.layer;
 
         //失去焦点时判断值为空不验证，一旦填写必须验证

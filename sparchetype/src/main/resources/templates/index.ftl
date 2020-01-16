@@ -90,9 +90,9 @@
 </div>
 <script>
     layui.use(['element', 'layer', 'layuimini'], function () {
-        var $ = layui.$,
-            element = layui.element,
-            layer = layui.layer;
+        var element = layui.element,
+            layer = layui.layer,
+            layuimini = layui.layuimini;
 
         layuimini.init('${request.contextPath}/json/init.json');
     });

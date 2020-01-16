@@ -36,9 +36,8 @@
 
 <script>
     layui.use(['table', 'treetable'], function () {
-        var $ = layui.jquery;
-        var table = layui.table;
-        var treetable = layui.treetable;
+        var table = layui.table,
+            treetable = layui.treetable;
 
         // 渲染表格
         layer.load(2);
