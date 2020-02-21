@@ -1,8 +1,10 @@
 package com.songpeng.sparchetype.common.config;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
+import com.songpeng.sparchetype.system.entity.SysUser;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -29,12 +31,14 @@ public class SpMetaObjectHandler implements MetaObjectHandler {
 	}
 
 	private void setInsertData(MetaObject metaObject) {
-		this.setInsertFieldValByName("createdBy", "SongPeng", metaObject);
+		SysUser sysUser = (SysUser) SecurityUtils.getSubject().getPrincipal();
+		this.setInsertFieldValByName("createdBy", sysUser.getUsername(), metaObject);
 		this.setInsertFieldValByName("created", LocalDateTime.now(), metaObject);
 	}
 
 	private void setUpdateData(MetaObject metaObject) {
-		this.setUpdateFieldValByName("lastUpdBy", "SongPeng", metaObject);
+		SysUser sysUser = (SysUser) SecurityUtils.getSubject().getPrincipal();
+		this.setUpdateFieldValByName("lastUpdBy", sysUser.getUsername(), metaObject);
 		this.setUpdateFieldValByName("lastUpd", LocalDateTime.now(), metaObject);
 	}
 }
