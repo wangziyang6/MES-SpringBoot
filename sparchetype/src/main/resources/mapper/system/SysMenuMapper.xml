@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.songpeng.sparchetype.system.mapper.SysMenuMapper">
-    <resultMap id="menuResultMap" type="com.songpeng.sparchetype.system.dto.SysMenuDto">
+    <resultMap id="menuResultMap" type="com.songpeng.sparchetype.system.dto.SysMenuDTO">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="url" property="url"/>

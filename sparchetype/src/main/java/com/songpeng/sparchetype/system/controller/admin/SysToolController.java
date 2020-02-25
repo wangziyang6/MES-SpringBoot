@@ -31,7 +31,7 @@ public class SysToolController extends BaseController {
      */
     @GetMapping("/icon-ui")
     public String iconUI(Model model) {
-        return "system/tool/icon";
+        return "admin/system/tool/icon";
     }
 
     /**
@@ -42,7 +42,7 @@ public class SysToolController extends BaseController {
      */
     @GetMapping("/icon-picker-ui")
     public String iconPickerUI(Model model) {
-        return "system/tool/iconPicker";
+        return "admin/system/tool/iconPicker";
     }
 
     /**
@@ -53,7 +53,7 @@ public class SysToolController extends BaseController {
      */
     @GetMapping("/color-select-ui")
     public String colorSelectUI(Model model) {
-        return "system/tool/colorSelect";
+        return "admin/system/tool/colorSelect";
     }
 
     /**
@@ -64,7 +64,7 @@ public class SysToolController extends BaseController {
      */
     @GetMapping("/editor-ui")
     public String editorUI(Model model) {
-        return "system/tool/editor";
+        return "admin/system/tool/editor";
     }
 
     /**
@@ -75,7 +75,7 @@ public class SysToolController extends BaseController {
      */
     @GetMapping("/form-step-ui")
     public String formStepUI(Model model) {
-        return "system/tool/formStep";
+        return "admin/system/tool/formStep";
     }
 
 }

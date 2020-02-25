@@ -35,7 +35,7 @@ public class SysRoleController extends BaseController {
 
 	@GetMapping("/list-ui")
 	public String listUI(Model model) {
-		return "system/role/list";
+		return "admin/system/role/list";
 	}
 
 	@PostMapping("/page")
@@ -53,7 +53,7 @@ public class SysRoleController extends BaseController {
 			SysRole result = sysRoleService.getById(record.getId());
 			model.addAttribute("result", result);
 		}
-		return "system/role/addOrUpd";
+		return "admin/system/role/addOrUpd";
 	}
 
 	@PostMapping("/add-or-upd")

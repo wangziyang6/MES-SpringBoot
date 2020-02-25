@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.songpeng.sparchetype.system.mapper.SysUserMapper">
 
-    <resultMap id="userRoleResultMap" type="com.songpeng.sparchetype.system.dto.SysUserDto">
+    <resultMap id="userRoleResultMap" type="com.songpeng.sparchetype.system.dto.SysUserDTO">
         <id column="user_id" property="id"/>
         <result column="name" property="name"/>
         <result column="username" property="username"/>
@@ -23,7 +23,7 @@
         <result column="street_number" property="streetNumber"/>
         <result column="descr" property="descr"/>
         <result column="status" property="status"/>
-        <collection property="sysRoleDtos" ofType="com.songpeng.sparchetype.system.dto.SysRoleDto">
+        <collection property="sysRoleDtos" ofType="com.songpeng.sparchetype.system.dto.SysRoleDTO">
             <id property="id" column="role_id"/>
             <result property="name" column="role_name"/>
             <result property="code" column="code"/>

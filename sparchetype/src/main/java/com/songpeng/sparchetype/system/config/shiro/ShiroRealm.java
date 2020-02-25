@@ -1,8 +1,8 @@
 package com.songpeng.sparchetype.system.config.shiro;
 
-import com.songpeng.sparchetype.system.dto.SysMenuDto;
-import com.songpeng.sparchetype.system.dto.SysRoleDto;
-import com.songpeng.sparchetype.system.dto.SysUserDto;
+import com.songpeng.sparchetype.system.dto.SysMenuDTO;
+import com.songpeng.sparchetype.system.dto.SysRoleDTO;
+import com.songpeng.sparchetype.system.dto.SysUserDTO;
 import com.songpeng.sparchetype.system.enums.ESysUser;
 import com.songpeng.sparchetype.system.service.ISysUserService;
 import org.apache.commons.collections.CollectionUtils;
@@ -38,14 +38,14 @@ public class ShiroRealm extends AuthorizingRealm {
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        SysUserDto user = (SysUserDto) principalCollection.getPrimaryPrincipal();
+        SysUserDTO user = (SysUserDTO) principalCollection.getPrimaryPrincipal();
         Set<String> perms = new HashSet<>();
         if (CollectionUtils.isNotEmpty(user.getSysRoleDtos())) {
-            for (SysRoleDto sr : user.getSysRoleDtos()) {
+            for (SysRoleDTO sr : user.getSysRoleDtos()) {
                 if (CollectionUtils.isEmpty(sr.getSysMenuDtos())) {
                     continue;
                 }
-                for (SysMenuDto sm : sr.getSysMenuDtos()) {
+                for (SysMenuDTO sm : sr.getSysMenuDtos()) {
                     if (StringUtils.isNotEmpty(sm.getPermission())) {
                         perms.addAll(Arrays.asList(sm.getPermission().trim().split(",")));
                     }
@@ -60,7 +60,7 @@ public class ShiroRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         String username = (String) authenticationToken.getPrincipal();
-        SysUserDto user = null;
+        SysUserDTO user = null;
         try {
             user = sysUserService.getUserAndRoleAndMenuByUsername(username);
         } catch (Exception e) {

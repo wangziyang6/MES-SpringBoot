@@ -46,12 +46,26 @@
         {
           "title": "异常页面",
           "href": "",
-          "icon": "fa fa-home",
+          "icon": "fa fa-exclamation-triangle",
           "target": "_self",
           "child": [
             {
               "title": "404页面",
               "href": "/404-ui",
+              "icon": "fa fa-hourglass-end",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "Swagger",
+          "href": "",
+          "icon": "fa fa-bug",
+          "target": "_self",
+          "child": [
+            {
+              "title": "API",
+              "href": "/swagger-ui.html",
               "icon": "fa fa-hourglass-end",
               "target": "_self"
             }

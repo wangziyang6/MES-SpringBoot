@@ -1,7 +1,7 @@
 package com.songpeng.sparchetype.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.songpeng.sparchetype.system.dto.SysMenuDto;
+import com.songpeng.sparchetype.system.dto.SysMenuDTO;
 import com.songpeng.sparchetype.system.entity.SysMenu;
 
 import java.util.List;
@@ -23,5 +23,5 @@ public interface SysMenuMapper extends BaseMapper<SysMenu> {
 	 * @return
 	 * @throws Exception
 	 */
-	List<SysMenuDto> getMenuByRoleId(String roleId) throws Exception;
+	List<SysMenuDTO> getMenuByRoleId(String roleId) throws Exception;
 }

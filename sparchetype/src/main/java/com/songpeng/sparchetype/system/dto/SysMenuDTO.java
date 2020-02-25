@@ -10,6 +10,6 @@ import com.songpeng.sparchetype.system.entity.SysMenu;
  * @author SongPeng
  * @since 2019-10-16
  */
-public class SysMenuDto extends SysMenu {
+public class SysMenuDTO extends SysMenu {
 
 }

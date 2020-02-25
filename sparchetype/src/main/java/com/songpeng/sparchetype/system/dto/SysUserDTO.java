@@ -8,18 +8,18 @@ import java.util.List;
  * @author SongPeng
  * @date 2019/9/30 9:49
  */
-public class SysUserDto extends SysUser {
+public class SysUserDTO extends SysUser {
 
     /**
      * 角色列表
      */
-    List<SysRoleDto> sysRoleDtos;
+    List<SysRoleDTO> sysRoleDtos;
 
-	public List<SysRoleDto> getSysRoleDtos() {
+	public List<SysRoleDTO> getSysRoleDtos() {
 		return sysRoleDtos;
 	}
 
-	public void setSysRoleDtos(List<SysRoleDto> sysRoleDtos) {
+	public void setSysRoleDtos(List<SysRoleDTO> sysRoleDtos) {
 		this.sysRoleDtos = sysRoleDtos;
 	}
 }

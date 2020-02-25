@@ -31,5 +31,7 @@ layui.config({
     // 自定义layer扩展组件
     splayer: 'splayer/splayer',
     // 自定义table扩展组件
-    sptable: 'sptable/sptable'
+    sptable: 'sptable/sptable',
+    // 大气风格的网络公司企业模版
+    company: 'company/company'
 });

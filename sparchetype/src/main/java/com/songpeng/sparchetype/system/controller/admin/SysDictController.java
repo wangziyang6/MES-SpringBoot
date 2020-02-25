@@ -7,6 +7,10 @@ import com.songpeng.sparchetype.common.BaseController;
 import com.songpeng.sparchetype.common.Result;
 import com.songpeng.sparchetype.system.entity.SysDict;
 import com.songpeng.sparchetype.system.service.ISysDictService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author SongPeng
  * @since 2019-08-26
  */
+@Api(tags = "系统字典表")
 @Controller("adminSysDictController")
 @RequestMapping("/admin/sys/dict")
 public class SysDictController extends BaseController {
@@ -35,9 +40,11 @@ public class SysDictController extends BaseController {
     @Autowired
     private ISysDictService sysDictService;
 
+    @ApiOperation("系统字典信息列表UI")
+    @ApiImplicitParams({@ApiImplicitParam(name ="model", value = "模型", defaultValue = "模型")})
     @GetMapping("/list-ui")
     public String listUI(Model model) {
-        return "system/dict/list";
+        return "admin/system/dict/list";
     }
 
     @PostMapping("/page")
@@ -53,7 +60,7 @@ public class SysDictController extends BaseController {
             SysDict dict = sysDictService.getById(record.getId());
             model.addAttribute("dict", dict);
         }
-        return "system/dict/addOrUpd";
+        return "admin/system/dict/addOrUpd";
     }
 
     @PostMapping("/add-or-upd")

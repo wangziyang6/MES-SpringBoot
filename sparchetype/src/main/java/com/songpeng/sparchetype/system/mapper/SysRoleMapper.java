@@ -1,7 +1,6 @@
 package com.songpeng.sparchetype.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.songpeng.sparchetype.system.dto.SysUserDto;
 import com.songpeng.sparchetype.system.entity.SysRole;
 
 import java.util.List;

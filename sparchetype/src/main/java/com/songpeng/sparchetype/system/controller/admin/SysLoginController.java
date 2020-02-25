@@ -26,7 +26,7 @@ public class SysLoginController {
     @GetMapping({"", "/index"})
     public String indexUI(Model model) {
         // TODO 菜单树
-        return "index";
+        return "admin/index";
     }
 
     /**
@@ -37,7 +37,7 @@ public class SysLoginController {
      */
     @GetMapping("/welcome-ui")
     public String welcomeUI(Model model) {
-        return "welcome";
+        return "admin/welcome";
     }
 
 }

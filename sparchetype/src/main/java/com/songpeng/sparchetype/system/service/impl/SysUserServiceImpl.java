@@ -1,23 +1,18 @@
 package com.songpeng.sparchetype.system.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.songpeng.sparchetype.system.dto.SysMenuDto;
-import com.songpeng.sparchetype.system.dto.SysRoleDto;
-import com.songpeng.sparchetype.system.dto.SysUserDto;
-import com.songpeng.sparchetype.system.entity.SysMenu;
+import com.songpeng.sparchetype.system.dto.SysMenuDTO;
+import com.songpeng.sparchetype.system.dto.SysRoleDTO;
+import com.songpeng.sparchetype.system.dto.SysUserDTO;
 import com.songpeng.sparchetype.system.entity.SysUser;
 import com.songpeng.sparchetype.system.mapper.SysMenuMapper;
 import com.songpeng.sparchetype.system.mapper.SysUserMapper;
 import com.songpeng.sparchetype.system.service.ISysUserService;
 import org.apache.commons.collections.CollectionUtils;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * <p>
@@ -44,11 +39,11 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 	 * @throws Exception
 	 */
 	@Override
-	public SysUserDto getUserAndRoleAndMenuByUsername(String username) throws Exception {
-		SysUserDto result = sysUserMapper.getUserAndRoleByUsername(username);
+	public SysUserDTO getUserAndRoleAndMenuByUsername(String username) throws Exception {
+		SysUserDTO result = sysUserMapper.getUserAndRoleByUsername(username);
 		if (CollectionUtils.isNotEmpty(result.getSysRoleDtos())) {
-			for (SysRoleDto rDto : result.getSysRoleDtos()) {
-				List<SysMenuDto> menus = sysMenuMapper.getMenuByRoleId(rDto.getId());
+			for (SysRoleDTO rDto : result.getSysRoleDtos()) {
+				List<SysMenuDTO> menus = sysMenuMapper.getMenuByRoleId(rDto.getId());
 				rDto.setSysMenuDtos(menus);
 			}
 		}

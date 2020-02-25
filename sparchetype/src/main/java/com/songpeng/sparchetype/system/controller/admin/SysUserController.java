@@ -9,7 +9,6 @@ import com.songpeng.sparchetype.system.entity.SysUser;
 import com.songpeng.sparchetype.system.request.SysUserPageReq;
 import com.songpeng.sparchetype.system.service.ISysUserService;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,13 +38,13 @@ public class SysUserController extends BaseController {
 
     @GetMapping("/list-ui")
     public String listUI(Model model) {
-        return "system/user/list";
+        return "admin/system/user/list";
     }
 
     @PostMapping("/page")
     @ResponseBody
     public Result page(SysUserPageReq req) {
-        Object principal = SecurityUtils.getSubject().getPrincipal();
+        getSysUser();
         QueryWrapper qw = new QueryWrapper();
         qw.orderByDesc(req.getOrderBy());
         IPage result = sysUserService.page(req, qw);
@@ -58,7 +57,7 @@ public class SysUserController extends BaseController {
             SysUser result = sysUserService.getById(record.getId());
             model.addAttribute("result", result);
         }
-        return "system/user/addOrUpd";
+        return "admin/system/user/addOrUpd";
     }
 
     @PostMapping("/add-or-upd")

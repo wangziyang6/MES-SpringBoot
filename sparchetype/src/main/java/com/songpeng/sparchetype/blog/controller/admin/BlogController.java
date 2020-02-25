@@ -20,6 +20,6 @@ public class BlogController {
     @GetMapping("/article/list-ui")
     public String listUI(Model model) {
         log.info("/article/list-ui");
-        return "blog/article/list";
+        return "admin/blog/article/list";
     }
 }

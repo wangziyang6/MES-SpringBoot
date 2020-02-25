@@ -12,18 +12,18 @@ import java.util.List;
  * @author SongPeng
  * @since 2019-10-16
  */
-public class SysRoleDto extends SysRole {
+public class SysRoleDTO extends SysRole {
 
     /**
      * 菜单列表
      */
-    List<SysMenuDto> sysMenuDtos;
+    List<SysMenuDTO> sysMenuDtos;
 
-    public List<SysMenuDto> getSysMenuDtos() {
+    public List<SysMenuDTO> getSysMenuDtos() {
         return sysMenuDtos;
     }
 
-    public void setSysMenuDtos(List<SysMenuDto> sysMenuDtos) {
+    public void setSysMenuDtos(List<SysMenuDTO> sysMenuDtos) {
         this.sysMenuDtos = sysMenuDtos;
     }
 }

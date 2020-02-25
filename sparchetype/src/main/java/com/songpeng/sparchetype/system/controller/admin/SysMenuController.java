@@ -33,7 +33,7 @@ public class SysMenuController extends BaseController {
 
 	@GetMapping("/list-ui")
 	public String listUI(Model model) {
-		return "system/menu/list";
+		return "admin/system/menu/list";
 	}
 
 	@PostMapping("/page")
@@ -49,7 +49,7 @@ public class SysMenuController extends BaseController {
 			SysMenu result = sysMenuService.getById(record.getId());
 			model.addAttribute("result", result);
 		}
-		return "system/menu/addOrUpd";
+		return "admin/system/menu/addOrUpd";
 	}
 
 	@PostMapping("/add-or-upd")

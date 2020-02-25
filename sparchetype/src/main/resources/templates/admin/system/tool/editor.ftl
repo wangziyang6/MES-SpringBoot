@@ -58,7 +58,7 @@
 </div>
 
 <!-- 注意， 只需要引用 JS，无需引用任何 CSS ！！！-->
-<script src="${request.contextPath}/static/js/layui-config.js?v=1.0.4" charset="utf-8"></script>
+<script src="${request.contextPath}/js/layui-config.js?v=1.0.4" charset="utf-8"></script>
 <script type="text/javascript">
     layui.use(['layer','wangEditor'], function () {
         var layer = layui.layer,

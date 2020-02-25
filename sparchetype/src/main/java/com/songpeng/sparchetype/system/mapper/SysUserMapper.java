@@ -1,7 +1,7 @@
 package com.songpeng.sparchetype.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.songpeng.sparchetype.system.dto.SysUserDto;
+import com.songpeng.sparchetype.system.dto.SysUserDTO;
 import com.songpeng.sparchetype.system.entity.SysUser;
 
 /**
@@ -14,5 +14,5 @@ import com.songpeng.sparchetype.system.entity.SysUser;
  */
 public interface SysUserMapper extends BaseMapper<SysUser> {
 
-	SysUserDto getUserAndRoleByUsername(String username) throws Exception;
+	SysUserDTO getUserAndRoleByUsername(String username) throws Exception;
 }

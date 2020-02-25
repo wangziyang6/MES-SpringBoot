@@ -14,6 +14,7 @@
 <body>
 <div>
     <h3>welcome.ftl</h3>
+    <a href="${request.contextPath}/client/company/index">公司首页</a>
 </div>
 <script>
 
