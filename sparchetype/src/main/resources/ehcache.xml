@@ -8,7 +8,8 @@
             timeToIdleSeconds="60"
             timeToLiveSeconds="0"
             diskPersistent="false"
-            diskExpiryThreadIntervalSeconds="120"/>
+            diskExpiryThreadIntervalSeconds="120"
+    />
 
     <!-- 登录记录缓存 锁定10分钟 -->
     <cache name="loginRetryCache"

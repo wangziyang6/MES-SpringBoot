@@ -8,9 +8,10 @@ import com.songpeng.sparchetype.common.Result;
 import com.songpeng.sparchetype.system.entity.SysUser;
 import com.songpeng.sparchetype.system.request.SysUserPageReq;
 import com.songpeng.sparchetype.system.service.ISysUserService;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,8 +30,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller("adminSysUserController")
 @RequestMapping("/admin/sys/user")
-@Slf4j
 public class SysUserController extends BaseController {
+
+    Logger log = LoggerFactory.getLogger(SysUserController.class);
 
     @Autowired
     private ISysUserService sysUserService;

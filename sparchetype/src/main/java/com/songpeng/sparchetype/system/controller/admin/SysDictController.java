@@ -7,8 +7,9 @@ import com.songpeng.sparchetype.common.BaseController;
 import com.songpeng.sparchetype.common.Result;
 import com.songpeng.sparchetype.system.entity.SysDict;
 import com.songpeng.sparchetype.system.service.ISysDictService;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,37 +28,38 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller("adminSysDictController")
 @RequestMapping("/admin/sys/dict")
-@Slf4j
 public class SysDictController extends BaseController {
 
-	@Autowired
-	private ISysDictService sysDictService;
+    Logger log = LoggerFactory.getLogger(SysDictController.class);
 
-	@GetMapping("/list-ui")
-	public String listUI(Model model) {
-		return "system/dict/list";
-	}
+    @Autowired
+    private ISysDictService sysDictService;
 
-	@PostMapping("/page")
-	@ResponseBody
-	public Result page(Page page) {
-		IPage result = sysDictService.page(page);
-		return Result.success(result);
-	}
+    @GetMapping("/list-ui")
+    public String listUI(Model model) {
+        return "system/dict/list";
+    }
 
-	@GetMapping("/add-or-upd-ui")
-	public String addOrUpdUI(Model model, SysDict record) {
-		if (StringUtils.isNotEmpty(record.getId())) {
-			SysDict dict = sysDictService.getById(record.getId());
-			model.addAttribute("dict", dict);
-		}
-		return "system/dict/addOrUpd";
-	}
+    @PostMapping("/page")
+    @ResponseBody
+    public Result page(Page page) {
+        IPage result = sysDictService.page(page);
+        return Result.success(result);
+    }
 
-	@PostMapping("/add-or-upd")
-	@ResponseBody
-	public Result addOrUpd(SysDict record) {
-		sysDictService.saveOrUpdate(record);
-		return Result.success(record.getId());
-	}
+    @GetMapping("/add-or-upd-ui")
+    public String addOrUpdUI(Model model, SysDict record) {
+        if (StringUtils.isNotEmpty(record.getId())) {
+            SysDict dict = sysDictService.getById(record.getId());
+            model.addAttribute("dict", dict);
+        }
+        return "system/dict/addOrUpd";
+    }
+
+    @PostMapping("/add-or-upd")
+    @ResponseBody
+    public Result addOrUpd(SysDict record) {
+        sysDictService.saveOrUpdate(record);
+        return Result.success(record.getId());
+    }
 }

@@ -2,7 +2,8 @@ package com.songpeng.sparchetype.system.controller.admin;
 
 
 import com.songpeng.sparchetype.common.BaseController;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,62 +19,63 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller("adminSysToolController")
 @RequestMapping("/admin/sys/tool")
-@Slf4j
 public class SysToolController extends BaseController {
 
-	/**
-	 * 图标列表
-	 *
-	 * @param model
-	 * @return
-	 */
-	@GetMapping("/icon-ui")
-	public String iconUI(Model model) {
-		return "system/tool/icon";
-	}
+    Logger log = LoggerFactory.getLogger(SysToolController.class);
 
-	/**
-	 * 图标选择
-	 *
-	 * @param model
-	 * @return
-	 */
-	@GetMapping("/icon-picker-ui")
-	public String iconPickerUI(Model model) {
-		return "system/tool/iconPicker";
-	}
+    /**
+     * 图标列表
+     *
+     * @param model
+     * @return
+     */
+    @GetMapping("/icon-ui")
+    public String iconUI(Model model) {
+        return "system/tool/icon";
+    }
 
-	/**
-	 * 颜色选择
-	 *
-	 * @param model
-	 * @return
-	 */
-	@GetMapping("/color-select-ui")
-	public String colorSelectUI(Model model) {
-		return "system/tool/colorSelect";
-	}
+    /**
+     * 图标选择
+     *
+     * @param model
+     * @return
+     */
+    @GetMapping("/icon-picker-ui")
+    public String iconPickerUI(Model model) {
+        return "system/tool/iconPicker";
+    }
 
-	/**
-	 * 颜色选择
-	 *
-	 * @param model
-	 * @return
-	 */
-	@GetMapping("/editor-ui")
-	public String editorUI(Model model) {
-		return "system/tool/editor";
-	}
+    /**
+     * 颜色选择
+     *
+     * @param model
+     * @return
+     */
+    @GetMapping("/color-select-ui")
+    public String colorSelectUI(Model model) {
+        return "system/tool/colorSelect";
+    }
 
-	/**
-	 * 颜色选择
-	 *
-	 * @param model
-	 * @return
-	 */
-	@GetMapping("/form-step-ui")
-	public String formStepUI(Model model) {
-		return "system/tool/formStep";
-	}
+    /**
+     * 颜色选择
+     *
+     * @param model
+     * @return
+     */
+    @GetMapping("/editor-ui")
+    public String editorUI(Model model) {
+        return "system/tool/editor";
+    }
+
+    /**
+     * 颜色选择
+     *
+     * @param model
+     * @return
+     */
+    @GetMapping("/form-step-ui")
+    public String formStepUI(Model model) {
+        return "system/tool/formStep";
+    }
 
 }

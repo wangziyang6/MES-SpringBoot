@@ -4,8 +4,6 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import lombok.Data;
-import lombok.experimental.Accessors;
 
 import java.time.LocalDateTime;
 
@@ -15,8 +13,6 @@ import java.time.LocalDateTime;
  * @author SongPeng
  * @date 2019/9/27 16:05
  */
-@Data
-@Accessors(chain = true)
 public class BaseEntity {
 
     /**
@@ -48,4 +44,44 @@ public class BaseEntity {
      */
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private String lastUpdBy;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public LocalDateTime getLastUpd() {
+        return lastUpd;
+    }
+
+    public void setLastUpd(LocalDateTime lastUpd) {
+        this.lastUpd = lastUpd;
+    }
+
+    public String getLastUpdBy() {
+        return lastUpdBy;
+    }
+
+    public void setLastUpdBy(String lastUpdBy) {
+        this.lastUpdBy = lastUpdBy;
+    }
 }

@@ -1,8 +1,6 @@
 package com.songpeng.sparchetype.system.request;
 
 import com.songpeng.sparchetype.common.BasePageReq;
-import lombok.Data;
-import lombok.experimental.Accessors;
 
 /**
  * <p>
@@ -12,9 +10,6 @@ import lombok.experimental.Accessors;
  * @author SongPeng
  * @since 2019-10-15
  */
-@Data
-@Accessors(chain = true)
 public class SysUserPageReq extends BasePageReq {
-
 
 }

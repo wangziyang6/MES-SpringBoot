@@ -1,12 +1,13 @@
 package com.songpeng.sparchetype.system.config.shiro;
 
-import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -14,8 +15,9 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 验证器，增加了登录次数校验功能
  * 限制尝试登陆次数,防止暴力破解
  */
-@Slf4j
 public class RetryLimitCredentialsMatcher extends HashedCredentialsMatcher {
+
+    Logger log = LoggerFactory.getLogger(RetryLimitCredentialsMatcher.class);
 
     private Cache<String, AtomicInteger> loginRetryCache;
 

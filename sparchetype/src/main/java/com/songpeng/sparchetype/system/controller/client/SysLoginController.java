@@ -2,11 +2,12 @@ package com.songpeng.sparchetype.system.controller.client;
 
 import com.songpeng.sparchetype.common.Result;
 import com.songpeng.sparchetype.system.config.shiro.SpUsernamePasswordToken;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,8 +23,9 @@ import javax.servlet.http.HttpServletRequest;
  * @date 2019/9/27 16:05
  */
 @Controller("clientSysLoginController")
-@Slf4j
 public class SysLoginController {
+
+	Logger log = LoggerFactory.getLogger(SysLoginController.class);
 
 	/**
 	 * 首页默认跳转到博客主页
