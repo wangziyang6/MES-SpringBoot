@@ -10,9 +10,9 @@
 </head>
 
 <body>
-<div class="">
-    <form class="layui-form layuimini-form">
-        <div class="layui-container">
+<div class="layuimini-container">
+    <div class="layuimini-main">
+        <form class="layui-form layuimini-form">
             <div class="layui-row">
                 <div class="layui-col-xs6 layui-col-sm6 layui-col-md6">
                     <div class="layui-form-item">
@@ -175,8 +175,8 @@
                     <div class="layui-form-item">
                         <label for="js-status" class="layui-form-label sp-required">状态</label>
                         <div class="layui-input-block" id="js-status">
-                            <input type="radio" name="status" value="0" title="正常" <#if result.status == "0" || !(result??)>checked</#if>>
-                            <input type="radio" name="status" value="1" title="已删除" <#if result.status == "1">checked</#if>>
+                            <input type="radio" name="status" value="1" title="正常" <#if result.status == "1" || !(result??)>checked</#if>>
+                            <input type="radio" name="status" value="0" title="已删除" <#if result.status == "0">checked</#if>>
                         </div>
                     </div>
                 </div>
@@ -188,15 +188,14 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
 </body>
 <script>
-    layui.use(['form', 'util', 'layer'], function () {
+    layui.use(['form', 'util'], function () {
         var form = layui.form,
-            util = layui.util,
-            layer = layui.layer;
+            util = layui.util;
 
         //失去焦点时判断值为空不验证，一旦填写必须验证
         $('input[name="email"]').blur(function () {

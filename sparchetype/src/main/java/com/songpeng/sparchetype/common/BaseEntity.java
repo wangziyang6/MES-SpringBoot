@@ -15,6 +15,8 @@ import java.time.LocalDateTime;
  */
 public class BaseEntity {
 
+    private static final long serialVersionUID = 1L;
+
     /**
      * 主键id
      */

@@ -106,7 +106,9 @@
                 }, {
                     field: 'descr', title: '描述', width: 90
                 }, {
-                    field: 'status', title: '状态', width: 90
+                    field: 'status', title: '状态', width: 90, templet: function (d) {
+                        return spConfig.statusDict[d.status];
+                    }
                 }, {
                     fixed: 'right', field: 'operate', title: '操作', toolbar: '#toolbar-right', unresize: true, width: 150
                 }]
@@ -160,9 +162,9 @@
 
             // 添加
             if (obj.event === 'add') {
-                splayer.open({
+                var index = splayer.open({
                     title: '添加',
-                    area: ['100%', '100%'],
+                    area: ['90%', '90%'],
                     content: '${request.contextPath}/admin/sys/user/add-or-upd-ui'
                 });
             }
@@ -178,7 +180,7 @@
             if (obj.event === 'edit') {
                 splayer.open({
                     title: '编辑',
-                    area: ['100%', '100%'],
+                    area: ['90%', '90%'],
                     // 请求url参数
                     spWhere: {id: data.id},
                     content: '${request.contextPath}/admin/sys/user/add-or-upd-ui'

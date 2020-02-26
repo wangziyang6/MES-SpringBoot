@@ -30,6 +30,10 @@ layui.define(['layer'], function (exports) {
                     //右上角关闭回调
 
                     //return false 开启该代码可禁止点击该按钮关闭
+                },
+                success: function(layero, index){
+                },
+                full: function(layero){
                 }
             };
 

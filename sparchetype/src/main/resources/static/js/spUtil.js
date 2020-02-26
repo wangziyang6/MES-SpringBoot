@@ -17,7 +17,7 @@ spUtil.submitForm = function(param) {
             } else {
                 layer.alert(result.msg, {
                     icon: 2
-                })
+                });
             }
         },
         error: function (e) {
@@ -101,36 +101,4 @@ spUtil.parseQueryString = function (url) {
         obj[key] = value;
     }
     return obj;
-};
-
-/**
- * 去除字符串内所有的空格
- * @param str
- */
-spUtil.trimAll = function (str) {
-    return str ? str.replace(/\s*/g, "") : str;
-};
-
-/**
- * 去除字符串内两头的空格
- * @param str
- */
-spUtil.trimBothEnds = function (str) {
-    return str ? str.replace(/^\s*|\s*$/g, "") : str;
-};
-
-/**
- * 去除字符串内左侧的空格
- * @param str
- */
-spUtil.trimLeft = function (str) {
-    return str ? str.replace(/^\s*/, "") : str;
-};
-
-/**
- * 去除字符串内右侧的空格
- * @param str
- */
-spUtil.trimRight = function (str) {
-    return str ? str.replace(/(\s*$)/g, "") : str;
 };
