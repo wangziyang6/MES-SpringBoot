@@ -54,18 +54,18 @@ public class SysDictController extends BaseController {
         return Result.success(result);
     }
 
-    @GetMapping("/add-or-upd-ui")
-    public String addOrUpdUI(Model model, SysDict record) {
+    @GetMapping("/add-or-update-ui")
+    public String addOrUpdateUI(Model model, SysDict record) {
         if (StringUtils.isNotEmpty(record.getId())) {
             SysDict dict = sysDictService.getById(record.getId());
             model.addAttribute("dict", dict);
         }
-        return "admin/system/dict/addOrUpd";
+        return "admin/system/dict/addOrUpdate";
     }
 
-    @PostMapping("/add-or-upd")
+    @PostMapping("/add-or-update")
     @ResponseBody
-    public Result addOrUpd(SysDict record) {
+    public Result addOrUpdate(SysDict record) {
         sysDictService.saveOrUpdate(record);
         return Result.success(record.getId());
     }

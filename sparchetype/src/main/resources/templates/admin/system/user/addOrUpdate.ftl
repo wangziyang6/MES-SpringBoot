@@ -173,10 +173,11 @@
                     </div>
 
                     <div class="layui-form-item">
-                        <label for="js-status" class="layui-form-label sp-required">状态</label>
-                        <div class="layui-input-block" id="js-status">
-                            <input type="radio" name="status" value="1" title="正常" <#if result.status == "1" || !(result??)>checked</#if>>
-                            <input type="radio" name="status" value="0" title="已删除" <#if result.status == "0">checked</#if>>
+                        <label for="js-is-deleted" class="layui-form-label sp-required">状态</label>
+                        <div class="layui-input-block" id="js-is-deleted">
+                            <input type="radio" name="deleted" value="0" title="正常" <#if result.deleted == "0" || !(result??)>checked</#if>>
+                            <input type="radio" name="deleted" value="1" title="已删除" <#if result.deleted == "1">checked</#if>>
+                            <input type="radio" name="deleted" value="2" title="已禁用" <#if result.deleted == "2">checked</#if>>
                         </div>
                     </div>
                 </div>
@@ -210,7 +211,7 @@
         //监听提交
         form.on('submit(js-submit-filter)', function (data) {
             spUtil.submitForm({
-                url: "${request.contextPath}/admin/sys/user/add-or-upd",
+                url: "${request.contextPath}/admin/sys/user/add-or-update",
                 data: data.field
             });
 

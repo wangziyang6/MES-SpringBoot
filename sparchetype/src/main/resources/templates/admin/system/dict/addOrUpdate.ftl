@@ -52,10 +52,10 @@
             </div>
 
             <div class="layui-form-item">
-                <label for="js-status" class="layui-form-label sp-required"><span class="sp-red">*</span>状态</label>
-                <div class="layui-input-block" id="js-status">
-                  <input type="radio" name="status" value="0" title="正常" checked>
-                  <input type="radio" name="status" value="1" title="已删除">
+                <label for="js-deleted" class="layui-form-label sp-required"><span class="sp-red">*</span>状态</label>
+                <div class="layui-input-block" id="js-deleted">
+                  <input type="radio" name="deleted" value="0" title="正常" checked>
+                  <input type="radio" name="deleted" value="1" title="已删除">
                 </div>
             </div>
 
@@ -89,7 +89,7 @@
                 type: "POST",
                 //请求的媒体类型
                 //contentType: "application/json;charset=UTF-8",
-                url: "${request.contextPath}/admin/sys/dict/add-or-upd",
+                url: "${request.contextPath}/admin/sys/dict/add-or-update",
                 //data: JSON.stringify(data),
                 data: data.field,
                 success: function(result) {

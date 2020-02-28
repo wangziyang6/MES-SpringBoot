@@ -3,7 +3,7 @@ package com.songpeng.sparchetype.system.config.shiro;
 import com.songpeng.sparchetype.system.dto.SysMenuDTO;
 import com.songpeng.sparchetype.system.dto.SysRoleDTO;
 import com.songpeng.sparchetype.system.dto.SysUserDTO;
-import com.songpeng.sparchetype.system.enums.ESysUser;
+import com.songpeng.sparchetype.system.enums.SysUserEnum;
 import com.songpeng.sparchetype.system.service.ISysUserService;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -75,7 +75,7 @@ public class ShiroRealm extends AuthorizingRealm {
         }
 
         // 账号锁定
-        if (!user.getStatus().equals(ESysUser.STATUS_NORMAL.getCode())) {
+        if (!user.getDeleted().equals(SysUserEnum.STATUS_NORMAL.getCode())) {
             log.error("账号已被锁定,请联系管理员");
             throw new LockedAccountException("账号已被锁定,请联系管理员");
         }

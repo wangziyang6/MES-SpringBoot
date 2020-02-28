@@ -15,7 +15,7 @@
     </resultMap>
 
     <!--根据角色id查询菜单列表-->
-    <select id="getMenuByRoleId" parameterType="java.lang.String" resultMap="menuResultMap">
+    <select id="selectMenuByRoleId" parameterType="java.lang.String" resultMap="menuResultMap">
         SELECT t.* FROM sp_sys_menu t
         LEFT JOIN sp_sys_role_menu ssrm
         ON ssrm.role_id = #{roleId}

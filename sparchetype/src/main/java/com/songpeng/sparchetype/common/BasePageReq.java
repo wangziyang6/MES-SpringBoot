@@ -10,7 +10,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
  */
 public class BasePageReq extends Page {
 
-    private String orderBy = "last_upd";
+    private String orderBy = "update_time";
 
     public String getOrderBy() {
         return orderBy;

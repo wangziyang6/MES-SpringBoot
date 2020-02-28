@@ -47,18 +47,18 @@ public class SysRoleController extends BaseController {
 		return Result.success(result);
 	}
 
-	@GetMapping("/add-or-upd-ui")
-	public String addOrUpdUI(Model model, SysRole record) {
+	@GetMapping("/add-or-update-ui")
+	public String addOrUpdateUI(Model model, SysRole record) {
 		if (StringUtils.isNotEmpty(record.getId())) {
 			SysRole result = sysRoleService.getById(record.getId());
 			model.addAttribute("result", result);
 		}
-		return "admin/system/role/addOrUpd";
+		return "admin/system/role/addOrUpdate";
 	}
 
-	@PostMapping("/add-or-upd")
+	@PostMapping("/add-or-update")
 	@ResponseBody
-	public Result addOrUpd(SysRole record) {
+	public Result addOrUpdate(SysRole record) {
 		sysRoleService.saveOrUpdate(record);
 		return Result.success(record.getId());
 	}

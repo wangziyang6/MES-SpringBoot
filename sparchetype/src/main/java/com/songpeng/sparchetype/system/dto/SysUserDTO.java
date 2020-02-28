@@ -10,6 +10,8 @@ import java.util.List;
  */
 public class SysUserDTO extends SysUser {
 
+	private static final long serialVersionUID = 1L;
+
     /**
      * 角色列表
      */

@@ -41,7 +41,7 @@
   <div class="layui-btn-container">
     <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="getCheckData"><i class="layui-icon">&#xe640;</i>批量删除</button>
     <@shiro.hasPermission name="nemu:add">
-        <button class="layui-btn layui-btn-sm" onclick="WeAdminShow('添加字典','${request.contextPath}/admin/sys/dict/add-or-upd-ui',600,400)">
+        <button class="layui-btn layui-btn-sm" onclick="WeAdminShow('添加字典','${request.contextPath}/admin/sys/dict/add-or-update-ui',600,400)">
             <i class="layui-icon">&#xe61f;</i>添加
         </button>
     </@shiro.hasPermission>
@@ -49,7 +49,7 @@
 </script>
 
 <script type="text/html" id="operateTpl">
-    <a title="编辑" onclick="WeAdminEdit('编辑','${request.contextPath}/admin/sys/dict/add-or-upd-ui', '{{ d.id }}', 600, 400)" href="javascript:;">
+    <a title="编辑" onclick="WeAdminEdit('编辑','${request.contextPath}/admin/sys/dict/add-or-update-ui', '{{ d.id }}', 600, 400)" href="javascript:;">
         <i class="layui-icon">&#xe642;</i>
     </a>
     <a title="查看" onclick="WeAdminShow('查看字典','./show.html',600,400)" href="javascript:;">
@@ -104,7 +104,7 @@
                 }, {
                     field: 'descr',title: '描述'
                 }, {
-                    field: 'status',title: '状态'
+                    field: 'deleted',title: '状态'
                 }, {
                     field: 'operate',title: '操作', toolbar: '#operateTpl', unresize: true
                 }]

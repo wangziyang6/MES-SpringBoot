@@ -14,5 +14,5 @@ import com.songpeng.sparchetype.system.entity.SysUser;
  */
 public interface SysUserMapper extends BaseMapper<SysUser> {
 
-	SysUserDTO getUserAndRoleByUsername(String username) throws Exception;
+	SysUserDTO selectUserAndRoleByUsername(String username) throws Exception;
 }

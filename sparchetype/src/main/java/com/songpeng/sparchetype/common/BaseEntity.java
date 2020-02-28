@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
  * @author SongPeng
  * @date 2019/9/27 16:05
  */
-public class BaseEntity {
+public class BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -27,25 +28,25 @@ public class BaseEntity {
      * 创建时间
      */
     @TableField(fill = FieldFill.INSERT)
-    private LocalDateTime created;
+    private LocalDateTime createTime;
 
     /**
      * 创建人
      */
     @TableField(fill = FieldFill.INSERT)
-    private String createdBy;
+    private String createUsername;
 
     /**
      * 最后更新时间
      */
     @TableField(fill = FieldFill.INSERT_UPDATE)
-    private LocalDateTime lastUpd;
+    private LocalDateTime updateTime;
 
     /**
      * 最后更新人
      */
     @TableField(fill = FieldFill.INSERT_UPDATE)
-    private String lastUpdBy;
+    private String updateUsername;
 
     public String getId() {
         return id;
@@ -55,35 +56,35 @@ public class BaseEntity {
         this.id = id;
     }
 
-    public LocalDateTime getCreated() {
-        return created;
+    public LocalDateTime getCreateTime() {
+        return createTime;
     }
 
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
+    public void setCreateTime(LocalDateTime createTime) {
+        this.createTime = createTime;
     }
 
-    public String getCreatedBy() {
-        return createdBy;
+    public String getCreateUsername() {
+        return createUsername;
     }
 
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
+    public void setCreateUsername(String createUsername) {
+        this.createUsername = createUsername;
     }
 
-    public LocalDateTime getLastUpd() {
-        return lastUpd;
+    public LocalDateTime getUpdateTime() {
+        return updateTime;
     }
 
-    public void setLastUpd(LocalDateTime lastUpd) {
-        this.lastUpd = lastUpd;
+    public void setUpdateTime(LocalDateTime updateTime) {
+        this.updateTime = updateTime;
     }
 
-    public String getLastUpdBy() {
-        return lastUpdBy;
+    public String getUpdateUsername() {
+        return updateUsername;
     }
 
-    public void setLastUpdBy(String lastUpdBy) {
-        this.lastUpdBy = lastUpdBy;
+    public void setUpdateUsername(String updateUsername) {
+        this.updateUsername = updateUsername;
     }
 }

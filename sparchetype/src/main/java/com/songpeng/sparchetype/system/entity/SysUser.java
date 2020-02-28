@@ -1,5 +1,6 @@
 package com.songpeng.sparchetype.system.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.songpeng.sparchetype.common.BaseEntity;
 
@@ -111,7 +112,8 @@ public class SysUser extends BaseEntity {
     /**
      * 状态(0:删除;1:正常;2:禁用)
      */
-    private String status;
+    @TableField(value = "is_deleted")
+    private String deleted;
 
 	public String getName() {
 		return name;
@@ -257,11 +259,11 @@ public class SysUser extends BaseEntity {
 		this.descr = descr;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getDeleted() {
+		return deleted;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setDeleted(String deleted) {
+		this.deleted = deleted;
 	}
 }

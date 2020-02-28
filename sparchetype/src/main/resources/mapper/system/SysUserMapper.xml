@@ -22,17 +22,17 @@
         <result column="street" property="street"/>
         <result column="street_number" property="streetNumber"/>
         <result column="descr" property="descr"/>
-        <result column="status" property="status"/>
+        <result column="is_deleted" property="deleted"/>
         <collection property="sysRoleDtos" ofType="com.songpeng.sparchetype.system.dto.SysRoleDTO">
-            <id property="id" column="role_id"/>
-            <result property="name" column="role_name"/>
-            <result property="code" column="code"/>
-            <result property="descr" column="role_descr"/>
-            <result property="status" column="role_status"/>
+            <id column="role_id" property="id"/>
+            <result column="role_name" property="name"/>
+            <result column="code" property="code"/>
+            <result column="role_descr" property="descr"/>
+            <result column="role_is_deleted" property="deleted"/>
         </collection>
     </resultMap>
 
-    <select id="getUserAndRoleByUsername" parameterType="java.lang.String" resultMap="userRoleResultMap">
+    <select id="selectUserAndRoleByUsername" parameterType="java.lang.String" resultMap="userRoleResultMap">
         SELECT t.id user_id,
             t.name,
             t.username,
@@ -52,16 +52,16 @@
             t.street,
             t.street_number,
             t.descr,
-            t.status,
-            t.created,
-            t.created_by,
-            t.last_upd,
-            t.last_upd_by,
+            t.is_deleted,
+            t.create_time,
+            t.create_username,
+            t.update_time,
+            t.update_username,
             ssr.id role_id,
             ssr.name role_name,
             ssr.code,
             ssr.descr role_descr,
-            ssr.status role_status
+            ssr.is_deleted role_is_deleted
         FROM sp_sys_user t
         LEFT JOIN sp_sys_user_role ssur
         ON ssur.user_id = t.id

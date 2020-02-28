@@ -106,8 +106,8 @@
                 }, {
                     field: 'descr', title: '描述', width: 90
                 }, {
-                    field: 'status', title: '状态', width: 90, templet: function (d) {
-                        return spConfig.statusDict[d.status];
+                    field: 'deleted', title: '状态', width: 90, templet: function (d) {
+                        return spConfig.isDeletedDict[d.deleted];
                     }
                 }, {
                     fixed: 'right', field: 'operate', title: '操作', toolbar: '#toolbar-right', unresize: true, width: 150
@@ -165,7 +165,7 @@
                 var index = splayer.open({
                     title: '添加',
                     area: ['90%', '90%'],
-                    content: '${request.contextPath}/admin/sys/user/add-or-upd-ui'
+                    content: '${request.contextPath}/admin/sys/user/add-or-update-ui'
                 });
             }
         });
@@ -183,7 +183,7 @@
                     area: ['90%', '90%'],
                     // 请求url参数
                     spWhere: {id: data.id},
-                    content: '${request.contextPath}/admin/sys/user/add-or-upd-ui'
+                    content: '${request.contextPath}/admin/sys/user/add-or-update-ui'
                 });
             }
 

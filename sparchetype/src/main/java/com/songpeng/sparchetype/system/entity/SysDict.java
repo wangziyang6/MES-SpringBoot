@@ -1,5 +1,6 @@
 package com.songpeng.sparchetype.system.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.songpeng.sparchetype.common.BaseEntity;
 
@@ -49,7 +50,8 @@ public class SysDict extends BaseEntity {
     /**
      * 状态：逻辑已删除值(默认为 1); 逻辑未删除值(默认为 0)
      */
-    private String status;
+    @TableField(value = "is_deleted")
+    private String deleted;
 
     public String getName() {
         return name;
@@ -99,11 +101,11 @@ public class SysDict extends BaseEntity {
         this.parentId = parentId;
     }
 
-    public String getStatus() {
-        return status;
+    public String getDeleted() {
+        return deleted;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setDeleted(String deleted) {
+        this.deleted = deleted;
     }
 }

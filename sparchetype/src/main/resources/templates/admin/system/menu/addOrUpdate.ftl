@@ -110,7 +110,7 @@
                 type: "POST",
                 //请求的媒体类型
                 //contentType: "application/json;charset=UTF-8",
-                url: "${request.contextPath}/admin/sys/menu/add-or-upd",
+                url: "${request.contextPath}/admin/sys/menu/add-or-update",
                 //data: JSON.stringify(data),
                 data: data.field,
                 success: function(result) {

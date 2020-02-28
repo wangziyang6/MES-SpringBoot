@@ -29,18 +29,18 @@ public class SpMetaObjectHandler implements MetaObjectHandler {
     @Override
     public void updateFill(MetaObject metaObject) {
         log.info("start update fill ...");
-        setUpdateData(metaObject);
+        this.setUpdateData(metaObject);
     }
 
     private void setInsertData(MetaObject metaObject) {
         SysUser sysUser = (SysUser) SecurityUtils.getSubject().getPrincipal();
-        this.setInsertFieldValByName("createdBy", sysUser.getUsername(), metaObject);
-        this.setInsertFieldValByName("created", LocalDateTime.now(), metaObject);
+        this.setInsertFieldValByName("createUsername", sysUser.getUsername(), metaObject);
+        this.setInsertFieldValByName("createTime", LocalDateTime.now(), metaObject);
     }
 
     private void setUpdateData(MetaObject metaObject) {
         SysUser sysUser = (SysUser) SecurityUtils.getSubject().getPrincipal();
-        this.setUpdateFieldValByName("lastUpdBy", sysUser.getUsername(), metaObject);
-        this.setUpdateFieldValByName("lastUpd", LocalDateTime.now(), metaObject);
+        this.setUpdateFieldValByName("updateUsername", sysUser.getUsername(), metaObject);
+        this.setUpdateFieldValByName("updateTime", LocalDateTime.now(), metaObject);
     }
 }

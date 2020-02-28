@@ -111,7 +111,7 @@ public class CodeGenerator {
         // 公共父类
         strategy.setSuperControllerClass("com.songpeng.sparchetype.common.BaseController");
         // 写于父类中的公共字段
-        strategy.setSuperEntityColumns("id", "created", "created_by", "last_upd", "last_upd_by");
+        strategy.setSuperEntityColumns("id", "create_time", "create_username", "update_time", "update_username");
         strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setTablePrefix(pc.getModuleName() + "_");

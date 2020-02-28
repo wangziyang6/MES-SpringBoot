@@ -51,18 +51,18 @@ public class SysUserController extends BaseController {
         return Result.success(result);
     }
 
-    @GetMapping("/add-or-upd-ui")
-    public String addOrUpdUI(SysUser record, Model model) {
+    @GetMapping("/add-or-update-ui")
+    public String addOrUpdateUI(SysUser record, Model model) {
         if (StringUtils.isNotEmpty(record.getId())) {
             SysUser result = sysUserService.getById(record.getId());
             model.addAttribute("result", result);
         }
-        return "admin/system/user/addOrUpd";
+        return "admin/system/user/addOrUpdate";
     }
 
-    @PostMapping("/add-or-upd")
+    @PostMapping("/add-or-update")
     @ResponseBody
-    public Result addOrUpd(SysUser record) {
+    public Result addOrUpdate(SysUser record) {
         sysUserService.saveOrUpdate(record);
         return Result.success(record.getId());
     }

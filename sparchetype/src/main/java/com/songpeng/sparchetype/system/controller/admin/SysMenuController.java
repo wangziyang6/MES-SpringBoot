@@ -43,18 +43,18 @@ public class SysMenuController extends BaseController {
 		return Result.success(result);
 	}
 
-	@GetMapping("/add-or-upd-ui")
-	public String addOrUpdUI(Model model, SysMenu record) {
+	@GetMapping("/add-or-update-ui")
+	public String addOrUpdateUI(Model model, SysMenu record) {
 		if (StringUtils.isNotEmpty(record.getId())) {
 			SysMenu result = sysMenuService.getById(record.getId());
 			model.addAttribute("result", result);
 		}
-		return "admin/system/menu/addOrUpd";
+		return "admin/system/menu/addOrUpdate";
 	}
 
-	@PostMapping("/add-or-upd")
+	@PostMapping("/add-or-update")
 	@ResponseBody
-	public Result addOrUpd(SysMenu record) {
+	public Result addOrUpdate(SysMenu record) {
 		sysMenuService.saveOrUpdate(record);
 		return Result.success(record.getId());
 	}
