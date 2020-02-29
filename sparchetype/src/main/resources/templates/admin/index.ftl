@@ -94,7 +94,7 @@
             layer = layui.layer,
             layuimini = layui.layuimini;
 
-        layuimini.init('${request.contextPath}/json/init.json');
+        layuimini.init('${request.contextPath}/admin/tree');
     });
 </script>
 </body>

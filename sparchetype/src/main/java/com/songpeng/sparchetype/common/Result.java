@@ -3,7 +3,7 @@ package com.songpeng.sparchetype.common;
 import java.util.HashMap;
 
 /**
- * 分页返回结果类
+ * 通用返回结果类
  *
  * @author SongPeng
  * @date 2019/10/14 13:27

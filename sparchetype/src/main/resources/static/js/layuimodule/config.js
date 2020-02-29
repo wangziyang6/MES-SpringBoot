@@ -17,7 +17,7 @@ layui.config({
     // 分步表单扩展
     step: 'step-lay/step',
     //table树形扩展
-    treetable: 'treetable-lay/treetable',
+    treeTable: 'treeTable/treeTable',
     // table选择扩展
     tableSelect: 'tableSelect/tableSelect',
     // fa图标选择扩展

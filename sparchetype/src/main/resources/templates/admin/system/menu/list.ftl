@@ -28,69 +28,50 @@
         </div>
     </div>
 </div>
-<!-- 操作列 -->
-<script type="text/html" id="auth-state">
+<!-- 表格操作列 -->
+<script type="text/html" id="demoTreeTableBar1">
     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 
+<!-- 表格状态列 -->
+<script type="text/html" id="demoTreeTableState1">
+    <input type="checkbox" lay-filter="ckState" value="{{d.id}}" lay-skin="switch"
+           lay-text="正常|锁定" {{d.state==0?'checked':''}}/>
+</script>
 <script>
-    layui.use(['table', 'treetable'], function () {
+    layui.use(['table', 'treeTable'], function () {
         var table = layui.table,
-            treetable = layui.treetable;
+            treeTable = layui.treeTable;
 
         // 渲染表格
-        layer.load(2);
-        treetable.render({
-            treeColIndex: 1,
-            treeSpid: -1,
-            treeIdName: 'authorityId',
-            treePidName: 'parentId',
+        var insTb = treeTable.render({
             elem: '#munu-table',
-            url: '${request.contextPath}/json/menus.json',
-            page: false,
-            cols: [[
+            tree: {
+                iconIndex: 1
+            },
+            cols: [
                 {type: 'numbers'},
-                {field: 'authorityName', minWidth: 200, title: '权限名称'},
-                {field: 'authority', title: '权限标识'},
-                {field: 'menuUrl', title: '菜单url'},
-                {field: 'orderNumber', width: 80, align: 'center', title: '排序号'},
-                {
-                    field: 'isMenu', width: 80, align: 'center', templet: function (d) {
-                        if (d.isMenu == 1) {
-                            return '<span class="layui-badge layui-bg-gray">按钮</span>';
-                        }
-                        if (d.parentId == -1) {
-                            return '<span class="layui-badge layui-bg-blue">目录</span>';
-                        } else {
-                            return '<span class="layui-badge-rim">菜单</span>';
-                        }
-                    }, title: '类型'
-                },
-                {templet: '#auth-state', width: 120, align: 'center', title: '操作'}
-            ]],
-            done: function () {
-                layer.closeAll('loading');
-            }
+                {field: 'id', title: 'ID'},
+                {field: 'name', title: 'name', width: 160, edit: 'text'},
+                {field: 'createTime', title: '创建时间', width: 180, edit: 'text'},
+                {templet: '#demoTreeTableState1', title: '状态', width: 100},
+                {align: 'center', toolbar: '#demoTreeTableBar1', title: '操作', width: 120}
+            ],
+            reqData: function (data, callback) {
+                $.get('${request.contextPath}/admin/sys/menu/tree', function (res) {
+                    console.log(res.data.data)
+                    callback(res.data.data);
+                });
+            },
+            style: 'margin-top:0;'
         });
 
-        $('#btn-expand').click(function () {
-            treetable.expandAll('#munu-table');
-        });
-
-        $('#btn-fold').click(function () {
-            treetable.foldAll('#munu-table');
-        });
-
-        //监听工具条
-        table.on('tool(munu-table)', function (obj) {
-            var data = obj.data;
-            var layEvent = obj.event;
-
-            if (layEvent === 'del') {
-                layer.msg('删除' + data.id);
-            } else if (layEvent === 'edit') {
-                layer.msg('修改' + data.id);
+        treeTable.on('edit(demoTreeTable1)', function (obj) {
+            console.log(obj);
+            if (true) {
+                layer.tips('格式不正确', $(this), {tips: [1, '#FF5722']});
+                return false;
             }
         });
     });

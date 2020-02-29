@@ -45,13 +45,13 @@ layui.define(["element", "jquery"], function (exports) {
             layuimini.initBgColor();
             layuimini.initDevice();
             $.getJSON(url, function (data, status) {
-                if (data == null) {
+                if (data.data == null) {
                     layuimini.msg_error('暂无菜单信息');
                 } else {
-                    layuimini.initHome(data.homeInfo);
-                    layuimini.initLogo(data.logoInfo);
-                    layuimini.initClear(data.clearInfo);
-                    layuimini.initMenu(data.menuInfo);
+                    layuimini.initHome(data.data.homeInfo);
+                    layuimini.initLogo(data.data.logoInfo);
+                    layuimini.initClear(data.data.clearInfo);
+                    layuimini.initMenu(data.data.menuInfo);
                     layuimini.initTab();
                 }
             }).fail(function () {

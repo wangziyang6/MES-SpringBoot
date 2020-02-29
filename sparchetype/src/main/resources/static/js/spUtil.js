@@ -1,6 +1,10 @@
 // 工具类
 var spUtil = {};
 
+/**
+ * 提交表单
+ * @param param
+ */
 spUtil.submitForm = function(param) {
     // 默认配置
     var defaultConfig = {
@@ -33,6 +37,10 @@ spUtil.submitForm = function(param) {
 
     $.ajax(config);
 };
+
+/**
+ * Ajax 请求
+ */
 
 /**
  * 将对象转为url路径字符串参数（编码之后的字符串）
