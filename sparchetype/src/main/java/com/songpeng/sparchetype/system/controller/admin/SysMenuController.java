@@ -9,6 +9,7 @@ import com.songpeng.sparchetype.common.BaseController;
 import com.songpeng.sparchetype.common.Result;
 import com.songpeng.sparchetype.system.entity.SysMenu;
 import com.songpeng.sparchetype.system.service.ISysMenuService;
+import com.songpeng.sparchetype.system.vo.TreeVO;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 /**
  * <p>
@@ -67,48 +70,8 @@ public class SysMenuController extends BaseController {
 	@ApiOperation("系统菜单树")
 	@GetMapping("/tree")
 	@ResponseBody
-	public Result tree() {
-		JSONObject jsonObject = JSONUtil.parseObj("{\n" +
-				"  \"code\": 200,\n" +
-				"  \"msg\": \"ok\",\n" +
-				"  \"data\": [\n" +
-				"    {\n" +
-				"      \"id\": \"1\",\n" +
-				"      \"name\": \"xxx\",\n" +
-				"      \"state\": 0,\n" +
-				"      \"createTime\": \"2019/11/18 10:44:00\",\n" +
-				"      \"haveChild\": true\n" +
-				"    },\n" +
-				"    {\n" +
-				"      \"id\": \"2\",\n" +
-				"      \"name\": \"xxx\",\n" +
-				"      \"state\": 0,\n" +
-				"      \"createTime\": \"2019/11/18 10:44:00\",\n" +
-				"      \"haveChild\": true\n" +
-				"    },\n" +
-				"    {\n" +
-				"      \"id\": \"3\",\n" +
-				"      \"name\": \"xxx\",\n" +
-				"      \"state\": 0,\n" +
-				"      \"createTime\": \"2019/11/18 10:44:00\",\n" +
-				"      \"haveChild\": true\n" +
-				"    },\n" +
-				"    {\n" +
-				"      \"id\": \"4\",\n" +
-				"      \"name\": \"xxx\",\n" +
-				"      \"state\": 0,\n" +
-				"      \"createTime\": \"2019/11/18 10:44:00\",\n" +
-				"      \"haveChild\": false\n" +
-				"    },\n" +
-				"    {\n" +
-				"      \"id\": \"5\",\n" +
-				"      \"name\": \"xxx\",\n" +
-				"      \"state\": 0,\n" +
-				"      \"createTime\": \"2019/11/18 10:44:00\",\n" +
-				"      \"haveChild\": false\n" +
-				"    }\n" +
-				"  ]\n" +
-				"}");
-		return Result.success(jsonObject);
+	public Result tree() throws Exception {
+		List<TreeVO<SysMenu>> sysMenus = sysMenuService.listMenuTree();
+		return Result.success(sysMenus);
 	}
 }

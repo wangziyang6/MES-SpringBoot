@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.songpeng.sparchetype.system.mapper.SysMenuMapper">
-    <resultMap id="menuResultMap" type="com.songpeng.sparchetype.system.dto.SysMenuDTO">
+    <resultMap id="resultMap" type="com.songpeng.sparchetype.system.entity.SysMenu">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="url" property="url"/>
@@ -12,10 +12,17 @@
         <result column="permission" property="permission"/>
         <result column="icon" property="icon"/>
         <result column="descr" property="descr"/>
+        <result column="create_username" property="createUsername"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_username" property="updateUsername"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <resultMap id="dtoResultMap" extends="resultMap" type="com.songpeng.sparchetype.system.dto.SysMenuDTO">
     </resultMap>
 
     <!--根据角色id查询菜单列表-->
-    <select id="selectMenuByRoleId" parameterType="java.lang.String" resultMap="menuResultMap">
+    <select id="selectMenuByRoleId" parameterType="java.lang.String" resultMap="dtoResultMap">
         SELECT t.* FROM sp_sys_menu t
         LEFT JOIN sp_sys_role_menu ssrm
         ON ssrm.role_id = #{roleId}

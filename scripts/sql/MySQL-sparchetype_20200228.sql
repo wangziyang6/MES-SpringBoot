@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50729
 File Encoding         : 65001
 
-Date: 2020-02-28 15:04:38
+Date: 2020-03-02 10:40:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,9 +29,9 @@ CREATE TABLE `sp_sys_dict` (
   `parent_id` varchar(64) DEFAULT '""' COMMENT '父级id',
   `is_deleted` char(2) NOT NULL COMMENT '逻辑删除：1 表示删除，0 表示未删除，2 表示禁用',
   `create_time` datetime NOT NULL COMMENT '创建时间',
-  `create_user_id` varchar(64) NOT NULL COMMENT '创建人',
+  `create_username` varchar(64) NOT NULL COMMENT '创建人',
   `update_time` datetime NOT NULL COMMENT '最后更新时间',
-  `update_user_id` varchar(64) NOT NULL COMMENT '最后更新人',
+  `update_username` varchar(64) NOT NULL COMMENT '最后更新人',
   PRIMARY KEY (`id`),
   KEY `idx_sp_sys_dict_name` (`name`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='系统字典表';
@@ -58,9 +58,9 @@ CREATE TABLE `sp_sys_menu` (
   `icon` varchar(255) DEFAULT '""' COMMENT '菜单图标',
   `descr` varchar(255) DEFAULT '""' COMMENT '描述',
   `created` datetime NOT NULL COMMENT '创建时间',
-  `created_user_id` varchar(64) NOT NULL COMMENT '创建人',
-  `last_upd` datetime NOT NULL COMMENT '最后更新时间',
-  `last_upd_user_id` varchar(64) NOT NULL COMMENT '最后更新人',
+  `created_username` varchar(64) NOT NULL COMMENT '创建人',
+  `update_time` datetime NOT NULL COMMENT '最后更新时间',
+  `update_username` varchar(64) NOT NULL COMMENT '最后更新人',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_sp_sys_menu_name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -81,9 +81,9 @@ CREATE TABLE `sp_sys_role` (
   `descr` varchar(255) DEFAULT '""' COMMENT '角色描述',
   `is_deleted` varchar(2) NOT NULL COMMENT '逻辑删除：1 表示删除，0 表示未删除，2 表示禁用',
   `create_time` datetime NOT NULL COMMENT '创建时间',
-  `create_user_id` varchar(64) NOT NULL COMMENT '创建人',
+  `create_username` varchar(64) NOT NULL COMMENT '创建人',
   `update_time` datetime NOT NULL COMMENT '最后更新时间',
-  `update_user_id` varchar(64) DEFAULT NULL COMMENT '最后更新人',
+  `update_username` varchar(64) DEFAULT NULL COMMENT '最后更新人',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_sp_sys_role_name` (`name`),
   UNIQUE KEY `idx_sp_sys_role_code` (`code`)
@@ -92,8 +92,8 @@ CREATE TABLE `sp_sys_role` (
 -- ----------------------------
 -- Records of sp_sys_role
 -- ----------------------------
-INSERT INTO `sp_sys_role` VALUES ('1185025876737396738', '超级管理员', 'admin', '超级管理员', '1', '2019-10-18 10:52:40', 'SongPeng', '2020-02-26 15:03:57', 'admin');
-INSERT INTO `sp_sys_role` VALUES ('1232532514523213826', '体验者', 'experience', '体验者', '1', '2020-02-26 13:07:05', 'admin', '2020-02-26 15:03:54', 'admin');
+INSERT INTO `sp_sys_role` VALUES ('1185025876737396738', '超级管理员', 'admin', '超级管理员', '1', '2019-10-18 10:52:40', 'SongPeng', '2020-02-29 16:38:36', 'admin');
+INSERT INTO `sp_sys_role` VALUES ('1232532514523213826', '体验者', 'experience', '体验者', '1', '2020-02-26 13:07:05', 'admin', '2020-02-29 16:38:41', 'admin');
 
 -- ----------------------------
 -- Table structure for sp_sys_role_menu
@@ -104,9 +104,9 @@ CREATE TABLE `sp_sys_role_menu` (
   `role_id` varchar(64) NOT NULL COMMENT '角色id',
   `menu_id` varchar(64) NOT NULL COMMENT '菜单id',
   `create_time` datetime NOT NULL COMMENT '创建时间',
-  `create_user_id` varchar(64) NOT NULL COMMENT '创建人',
+  `create_username` varchar(64) NOT NULL COMMENT '创建人',
   `update_time` datetime NOT NULL COMMENT '最后更新时间',
-  `update_user_id` varchar(64) NOT NULL COMMENT '最后更新人',
+  `update_username` varchar(64) NOT NULL COMMENT '最后更新人',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -141,9 +141,9 @@ CREATE TABLE `sp_sys_user` (
   `descr` varchar(255) DEFAULT '""' COMMENT '描述',
   `is_deleted` varchar(1) NOT NULL COMMENT '逻辑删除：1 表示删除，0 表示未删除，2 表示禁用',
   `create_time` datetime NOT NULL COMMENT '创建时间',
-  `create_user_id` varchar(64) NOT NULL COMMENT '创建人',
+  `create_username` varchar(64) NOT NULL COMMENT '创建人',
   `update_time` datetime NOT NULL COMMENT '最后更新时间',
-  `update_user_id` varchar(64) NOT NULL COMMENT '最后更新人',
+  `update_username` varchar(64) NOT NULL COMMENT '最后更新人',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_sp_sys_user_username` (`username`) COMMENT '用户名唯一索引',
   UNIQUE KEY `idx_sp_sys_user_mobile` (`mobile`) COMMENT '用户手机号唯一索引',
@@ -154,9 +154,9 @@ CREATE TABLE `sp_sys_user` (
 -- ----------------------------
 -- Records of sp_sys_user
 -- ----------------------------
-INSERT INTO `sp_sys_user` VALUES ('1184009088826392578', '宋鹏', 'iamsongpeng', '9d7281eeaebded0b091340cfa658a7e8', '', '', '13776337795', '', '1', null, '', '', '', '', '', '', '', '', '', '1', '2019-10-15 15:32:19', 'SongPeng', '2020-02-26 15:03:47', 'admin');
-INSERT INTO `sp_sys_user` VALUES ('1184010472443396098', '猴子', 'monkey', '9d7281eeaebded0b091340cfa658a7e8', '123', '', '137763377', '', '0', null, '', '', '', '', '', '', '', '', '', '1', '2019-10-15 15:37:52', 'SongPeng', '2020-02-26 15:03:32', 'admin');
-INSERT INTO `sp_sys_user` VALUES ('1184019107907227649', '超级管理员', 'admin', '9d7281eeaebded0b091340cfa658a7e8', '11', '', '13776337796', '44', '0', null, '55', '66', '77', '88', '99', '10', '11', '12', '13', '1', '2019-10-15 16:12:08', 'SongPeng', '2020-02-26 15:03:39', 'admin');
+INSERT INTO `sp_sys_user` VALUES ('1184009088826392578', '宋鹏', 'iamsongpeng', '9d7281eeaebded0b091340cfa658a7e8', '', '', '13776337795', '', '1', null, '', '', '', '', '', '', '', '', '', '0', '2019-10-15 15:32:19', 'SongPeng', '2020-02-28 16:44:59', 'admin');
+INSERT INTO `sp_sys_user` VALUES ('1184010472443396098', '猴子', 'monkey', '9d7281eeaebded0b091340cfa658a7e8', '123', '', '137763377', '', '0', null, '', '', '', '', '', '', '', '', '', '0', '2019-10-15 15:37:52', 'SongPeng', '2020-02-26 15:03:32', 'admin');
+INSERT INTO `sp_sys_user` VALUES ('1184019107907227649', '超级管理员', 'admin', '9d7281eeaebded0b091340cfa658a7e8', '11', '', '13776337796', '44', '0', null, '55', '66', '77', '88', '99', '10', '11', '12', '13', '0', '2019-10-15 16:12:08', 'SongPeng', '2020-02-26 15:03:39', 'admin');
 
 -- ----------------------------
 -- Table structure for sp_sys_user_role
@@ -167,9 +167,9 @@ CREATE TABLE `sp_sys_user_role` (
   `user_id` varchar(64) NOT NULL COMMENT '用户id',
   `role_id` varchar(64) NOT NULL COMMENT '角色id',
   `create_time` datetime NOT NULL COMMENT '创建时间',
-  `create_user_id` varchar(64) NOT NULL COMMENT '创建人',
+  `create_username` varchar(64) NOT NULL COMMENT '创建人',
   `update_time` datetime NOT NULL COMMENT '最后更新时间',
-  `update_user_id` varchar(64) NOT NULL COMMENT '最后更新人',
+  `update_username` varchar(64) NOT NULL COMMENT '最后更新人',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

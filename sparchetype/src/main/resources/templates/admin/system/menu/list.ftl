@@ -24,7 +24,7 @@
                 <button class="layui-btn" id="btn-expand">全部展开</button>
                 <button class="layui-btn" id="btn-fold">全部折叠</button>
             </div>
-            <table id="munu-table" class="layui-table" lay-filter="munu-table"></table>
+            <table id="demoTreeTable1" class="layui-table" lay-filter="demoTreeTable1"></table>
         </div>
     </div>
 </div>
@@ -32,6 +32,7 @@
 <script type="text/html" id="demoTreeTableBar1">
     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="add">添加</a>
 </script>
 
 <!-- 表格状态列 -->
@@ -44,24 +45,67 @@
         var table = layui.table,
             treeTable = layui.treeTable;
 
+        treeData = [];
+        // TODO 封装ajax
+        <#--$.ajax({-->
+        <#--    type: "GET",-->
+        <#--    url: "${request.contextPath}/admin/sys/menu/tree",-->
+        <#--    async: false,-->
+        <#--    success: function(result) {-->
+        <#--        console.log(result);-->
+        <#--        if (result.code === 0) {-->
+        <#--            treeData = result.data.data;-->
+        <#--        } else {-->
+        <#--            layer.alert(result.msg, {-->
+        <#--                icon: 2-->
+        <#--            })-->
+        <#--        }-->
+        <#--    },-->
+        <#--    error: function(e){-->
+        <#--        layer.alert(e, {-->
+        <#--            icon: 2-->
+        <#--        })-->
+        <#--    }-->
+        <#--});-->
+
         // 渲染表格
         var insTb = treeTable.render({
-            elem: '#munu-table',
+            elem: '#demoTreeTable1',
+            // data: treeData,
             tree: {
-                iconIndex: 1
+                iconIndex: 1,
+                idName: 'id',  // 自定义id字段的名称
+                pidName: 'parentId',  // 自定义标识是否还有子节点的字段名称
+                haveChildName: 'hasChildren',  // 自定义标识是否还有子节点的字段名称
+                isPidData: true  // 是否是pid形式数据
             },
             cols: [
                 {type: 'numbers'},
-                {field: 'id', title: 'ID'},
                 {field: 'name', title: 'name', width: 160, edit: 'text'},
                 {field: 'createTime', title: '创建时间', width: 180, edit: 'text'},
                 {templet: '#demoTreeTableState1', title: '状态', width: 100},
-                {align: 'center', toolbar: '#demoTreeTableBar1', title: '操作', width: 120}
+                {align: 'center', toolbar: '#demoTreeTableBar1', title: '操作', width: 150}
             ],
             reqData: function (data, callback) {
-                $.get('${request.contextPath}/admin/sys/menu/tree', function (res) {
-                    console.log(res.data.data)
-                    callback(res.data.data);
+                $.ajax({
+                    type: "GET",
+                    url: "${request.contextPath}/admin/sys/menu/tree",
+                    async: true,
+                    success: function(result) {
+                        console.log(result);
+                        if (result.code === 0) {
+                            callback(result.data);
+                        } else {
+                            layer.alert(result.msg, {
+                                icon: 2
+                            })
+                        }
+                    },
+                    error: function(e){
+                        layer.alert(e, {
+                            icon: 2
+                        })
+                    }
                 });
             },
             style: 'margin-top:0;'

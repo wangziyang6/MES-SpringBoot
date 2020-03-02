@@ -5,7 +5,7 @@ var spUtil = {};
  * 提交表单
  * @param param
  */
-spUtil.submitForm = function(param) {
+spUtil.submitForm = function(options) {
     // 默认配置
     var defaultConfig = {
         type: "POST",
@@ -31,7 +31,7 @@ spUtil.submitForm = function(param) {
         }
     };
 
-    var config = $.extend({}, defaultConfig, param, {
+    var config = $.extend({}, defaultConfig, options, {
         // 此处写覆盖默认和传参配置
     });
 
@@ -41,6 +41,86 @@ spUtil.submitForm = function(param) {
 /**
  * Ajax 请求
  */
+spUtil.ajax = function (options) {
+    var _this = this, loadingIndex;
+    var opt = $.extend({}, {
+        async: true,
+        dataType: 'json',
+        type: 'GET',
+        serializable: false,
+        selfProcessShow: false
+    }, options);
+
+    opt.beforeSend = function () {
+        if (options.showLoading) {
+            loadingIndex = layer.load();
+        }
+        options.beforeSend && options.beforeSend();
+    };
+
+    // 获取请求地址
+    opt.url = _this.generateUrl(options.url);
+    // 成功回调
+    opt.success = function (data) {
+        if (data.code === 0) {
+            options.success && options.success(data);
+        } else {
+            if (!options.errNoTip) {
+                tnComp.operationTip(data.msg, 'error');
+                layer.alert('操作失败，请重试！', {
+                    icon: 2
+                });
+            }
+        }
+    };
+    // 失败回调
+    opt.error = function (jqXHR, textStatus, errorThrown) {
+        if (_this.sessionCheck(jqXHR, textStatus, errorThrown, options.sessionNoTip)) {
+            return;
+        }
+
+        if (options.error) {
+            options.error();
+        } else {
+            layer.alert('操作失败，请重试！', {
+                icon: 2
+            });
+        }
+    };
+
+    // 请求完成回调
+    opt.complete = function () {
+        options.complete && options.complete();
+        options.showLoading ? layer.close(loadingIndex) : '';
+    };
+
+    // json参数序列化
+    if (opt.serializable) {
+        opt.contentType = 'application/json';
+        opt.data = JSON.stringify(opt.data);
+    }
+
+    var ajax = $.ajax(opt);
+    return ajax;
+};
+
+/**
+ * session失效处理
+ * @returns {boolean}
+ */
+spUtil.sessionCheck = function (jqXHR, textStatus, errorThrown, sessionNoTip) {
+    if (jqXHR.status === 401) {
+        if (!sessionNoTip) {
+            tnComp.operationTipCallback('登录状态已失效，请重新登录！', 'error', function () {
+                top.location = '/';
+            });
+        } else {
+            // session超时，不提示直接跳转
+            top.location = '/';
+        }
+        return true;
+    }
+};
 
 /**
  * 将对象转为url路径字符串参数（编码之后的字符串）
