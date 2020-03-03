@@ -30,7 +30,7 @@
         <ul class="layui-nav layui-layout-left layui-header-menu mobile layui-hide-sm">
             <li class="layui-nav-item">
                 <a href="javascript:;"><i class="fa fa-list-ul"></i> 选择模块</a>
-                <dl class="layui-nav-child layui-header-mini-menu">
+                <dl class="layui-nav-child layui-header-menu">
                 </dl>
             </li>
         </ul>
