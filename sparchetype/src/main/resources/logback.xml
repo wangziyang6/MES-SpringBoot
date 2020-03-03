@@ -20,7 +20,7 @@
         <appender-ref ref="stash" />
     </appender>
 
-    <root level="INFO">
+    <root>
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="stash"/>
     </root>

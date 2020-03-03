@@ -192,7 +192,6 @@
         </form>
     </div>
 </div>
-</body>
 <script>
     layui.use(['form', 'util'], function () {
         var form = layui.form,
@@ -219,4 +218,5 @@
         });
     });
 </script>
+</body>
 </html>

@@ -38,7 +38,7 @@
                     <div class="layui-form-item">
                         <label for="js-is-deleted" class="layui-form-label sp-required">状态
                         </label>
-                        <div class="layui-input-inline" id="js-is-deleted">
+                        <div class="layui-input-block" id="js-is-deleted" style="width: 310px;">
                             <input type="radio" name="deleted" value="0" title="正常" <#if result.deleted == "0" || !(result??)>checked</#if>>
                             <input type="radio" name="deleted" value="1" title="已删除" <#if result.deleted == "1">checked</#if>>
                             <input type="radio" name="deleted" value="2" title="已禁用" <#if result.deleted == "2">checked</#if>>
@@ -56,7 +56,6 @@
         </form>
     </div>
 </div>
-</body>
 <script>
     layui.use(['form', 'util'], function () {
         var form = layui.form,
@@ -73,4 +72,5 @@
         });
     });
 </script>
+</body>
 </html>

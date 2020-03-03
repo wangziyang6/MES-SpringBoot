@@ -27,6 +27,7 @@
         </div>
     </div>
 </div>
+</body>
 <!-- 表格操作列 -->
 <script type="text/html" id="demoTreeTableBar1">
     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
@@ -131,5 +132,4 @@
         });
     });
 </script>
-</body>
 </html>

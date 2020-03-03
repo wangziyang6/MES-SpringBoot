@@ -37,7 +37,6 @@
         <table class="layui-hide" id="record-table" lay-filter="js-table-filter"></table>
     </div>
 </div>
-</body>
 
 <!--表格头操作模板-->
 <script type="text/html" id="toolbar-top">
@@ -152,7 +151,7 @@
             if (obj.event === 'edit') {
                 splayer.open({
                     title: '编辑',
-                    area: ['90%', '90%'],
+                    area: ['800px', '400px'],
                     // 请求url参数
                     spWhere: {id: data.id},
                     content: '${request.contextPath}/admin/sys/role/add-or-update-ui'
@@ -167,7 +166,7 @@
                 });
             }
         });
-
     });
 </script>
+</body>
 </html>
