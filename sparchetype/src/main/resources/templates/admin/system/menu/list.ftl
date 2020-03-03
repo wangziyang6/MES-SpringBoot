@@ -23,20 +23,20 @@
             <div class="layui-btn-group">
                 <button class="layui-btn" id="js-expand-fold-all">全部展开/折叠</button>
             </div>
-            <table id="demoTreeTable1" class="layui-table" lay-filter="demoTreeTable1"></table>
+            <table id="js-record-table" class="layui-table" lay-filter="js-record-table-filter"></table>
         </div>
     </div>
 </div>
 </body>
 <!-- 表格操作列 -->
-<script type="text/html" id="demoTreeTableBar1">
+<script type="text/html" id="js-record-table-bar">
     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="add">添加</a>
 </script>
 
 <!-- 表格状态列 -->
-<script type="text/html" id="demoTreeTableState1">
+<script type="text/html" id="js-record-table-state">
     <input type="checkbox" lay-filter="ckState" value="{{d.id}}" lay-skin="switch"
            lay-text="正常|锁定" {{d.state==0?'checked':''}}/>
 </script>
@@ -51,7 +51,7 @@
 
         // 渲染表格
         var insTb = treeTable.render({
-            elem: '#demoTreeTable1',
+            elem: '#js-record-table',
             tree: {
                 iconIndex: 1,
                 idName: 'id',  // 自定义id字段的名称
@@ -70,8 +70,8 @@
                 },
                 {field: 'url', title: '地址', width: 180},
                 {field: 'permission', title: '权限标识', width: 180},
-                {templet: '#demoTreeTableState1', title: '状态', width: 100},
-                {align: 'center', toolbar: '#demoTreeTableBar1', title: '操作', width: 150}
+                {templet: '#js-record-table-state', title: '状态', width: 100},
+                {align: 'center', toolbar: '#js-record-table-bar', title: '操作', width: 150}
             ],
             reqData: function (data, callback) {
                 $.ajax({
@@ -100,7 +100,7 @@
         /**
          * 监听
          */
-        treeTable.on('tool(demoTreeTable1)', function (obj) {
+        treeTable.on('tool(js-record-table)', function (obj) {
             var event = obj.event;
             if (event == 'del') {
                 layer.msg('点击了删除', {icon: 1});

@@ -33,12 +33,12 @@
         </form>
 
         <!--表格-->
-        <table class="layui-hide" id="record-table" lay-filter="js-table-filter"></table>
+        <table class="layui-hide" id="js-record-table" lay-filter="js-record-table-filter"></table>
     </div>
 </div>
 
 <!--表格头操作模板-->
-<script type="text/html" id="toolbar-top">
+<script type="text/html" id="js-record-table-toolbar-top">
     <div class="layui-btn-container">
         <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="deleteBatch"><i class="layui-icon">&#xe640;</i>批量删除</button>
         <@shiro.hasPermission name="user:add">
@@ -48,7 +48,7 @@
 </script>
 
 <!--行操作模板-->
-<script type="text/html" id="toolbar-right">
+<script type="text/html" id="js-record-table-toolbar-right">
     <a class="layui-btn layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete"><i class="layui-icon layui-icon-delete"></i>删除</a>
 </script>
@@ -110,7 +110,7 @@
                         return spConfig.isDeletedDict[d.deleted];
                     }
                 }, {
-                    fixed: 'right', field: 'operate', title: '操作', toolbar: '#toolbar-right', unresize: true, width: 150
+                    fixed: 'right', field: 'operate', title: '操作', toolbar: '#js-record-table-toolbar-right', unresize: true, width: 150
                 }]
             ],
             done: function (res, curr, count) {
@@ -144,12 +144,12 @@
         /**
          * 头工具栏事件
          */
-        table.on('toolbar(js-table-filter)', function (obj) {
+        table.on('toolbar(js-record-table-filter)', function (obj) {
             var checkStatus = table.checkStatus(obj.config.id);
 
             // 批量删除
             if (obj.event === 'deleteBatch') {
-                var checkStatus = table.checkStatus('record-table'),
+                var checkStatus = table.checkStatus('js-record-table'),
                     data = checkStatus.data;
                 if (data.length > 0) {
                     layer.confirm('确认要删除吗？', function (index) {
@@ -173,7 +173,7 @@
         /**
          * 监听行工具事件
          */
-        table.on('tool(js-table-filter)', function (obj) {
+        table.on('tool(js-record-table-filter)', function (obj) {
             var data = obj.data;
 
             // 编辑

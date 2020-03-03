@@ -11,8 +11,8 @@ layui.define(['table'], function (exports) {
         // 渲染表格
         render: function (param) {
             var defaultConfig = {
-                elem: '#record-table',
-                toolbar: '#toolbar-top',
+                elem: '#js-record-table',
+                toolbar: '#js-record-table-toolbar-top',
                 method: 'POST',
                 limits: [10, 20, 50, 100],
                 limit: 10,
