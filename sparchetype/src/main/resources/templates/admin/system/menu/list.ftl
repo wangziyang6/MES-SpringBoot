@@ -17,8 +17,8 @@
     </style>
 </head>
 <body>
-<div class="layuimini-container">
-    <div class="layuimini-main">
+<div class="splayui-container">
+    <div class="splayui-main">
         <div>
             <div class="layui-btn-group">
                 <button class="layui-btn" id="js-expand-fold-all">全部展开/折叠</button>

@@ -9,8 +9,8 @@
     <#include "${request.contextPath}/common/common.ftl">
 </head>
 <body>
-<div class="layuimini-container">
-    <div class="layuimini-main">
+<div class="splayui-container">
+    <div class="splayui-main">
         <!--查询参数-->
         <form id="js-search-form" class="layui-form" lay-filter="js-q-form-filter">
             <div class="layui-form-item">

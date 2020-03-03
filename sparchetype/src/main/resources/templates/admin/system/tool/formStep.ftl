@@ -6,8 +6,8 @@
     <#include "${request.contextPath}/common/common.ftl">
 </head>
 <body>
-<div class="layuimini-container">
-    <div class="layuimini-main">
+<div class="splayui-container">
+    <div class="splayui-main">
         <div class="layui-fluid">
             <div class="layui-card">
                 <div class="layui-card-body" style="padding-top: 40px;">

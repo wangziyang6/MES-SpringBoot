@@ -9,8 +9,8 @@
     </style>
 </head>
 <body>
-<div class="layuimini-container">
-    <div class="layuimini-main">
+<div class="splayui-container">
+    <div class="splayui-main">
 
         <blockquote class="layui-elem-quote">
             fa图标选择器根据开源Layui-IconPicker插件修改而来。<br>

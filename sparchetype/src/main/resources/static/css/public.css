@@ -7,18 +7,18 @@ body {
     background: #f2f2f2;
 }
 
-.layuimini-container {
+.splayui-container {
     border: 1px solid #f2f2f2;
     border-radius: 5px;
     background-color: #ffffff;
 }
 
-.layuimini-main {
+.splayui-main {
     margin: 10px 10px 10px 10px;
 }
 
 /**必填红点 */
-.layuimini-form .layui-form-item > .sp-required:after {
+.splayui-form .layui-form-item > .sp-required:after {
     content: "*";
     color: red;
     position: absolute;
@@ -29,15 +29,15 @@ body {
     right: 5px;
 }
 
-.layuimini-form .layui-form-item > .layui-form-label {
+.splayui-form .layui-form-item > .layui-form-label {
     width: 120px !important;
 }
 
-.layuimini-form > .layui-form-item > .layui-input-block {
+.splayui-form > .layui-form-item > .layui-input-block {
     margin-left: 150px !important;
 }
 
-.layuimini-form .layui-form-item > .layui-input-block > tip {
+.splayui-form .layui-form-item > .layui-input-block > tip {
     display: inline-block;
     margin-top: 10px;
     line-height: 10px;

@@ -11,18 +11,18 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
     <#include "${request.contextPath}/common/common.ftl">
-    <link rel="stylesheet" href="${request.contextPath}/css/layuimini.css" media="all">
-    <style id="layuimini-bg-color">
+    <link rel="stylesheet" href="${request.contextPath}/css/splayui.css" media="all">
+    <style id="splayui-bg-color">
     </style>
 </head>
-<body class="layui-layout-body layuimini-all">
+<body class="layui-layout-body splayui-all">
 <div class="layui-layout layui-layout-admin">
 
     <div class="layui-header header">
         <div class="layui-logo">
         </div>
         <a>
-            <div class="layuimini-tool"><i title="展开" class="fa fa-outdent" data-side-fold="1"></i></div>
+            <div class="splayui-tool"><i title="展开" class="fa fa-outdent" data-side-fold="1"></i></div>
         </a>
 
         <ul class="layui-nav layui-layout-left layui-header-menu layui-header-pc-menu mobile layui-hide-xs">
@@ -40,9 +40,9 @@
                 <a href="javascript:;" data-refresh="刷新"><i class="fa fa-refresh"></i></a>
             </li>
             <li class="layui-nav-item">
-                <a href="javascript:;" data-clear="清理" class="layuimini-clear"><i class="fa fa-trash-o"></i></a>
+                <a href="javascript:;" data-clear="清理" class="splayui-clear"><i class="fa fa-trash-o"></i></a>
             </li>
-            <li class="layui-nav-item layuimini-setting">
+            <li class="layui-nav-item splayui-setting">
                 <a href="javascript:;">admin</a>
                 <dl class="layui-nav-child">
                     <dd>
@@ -56,7 +56,7 @@
                     </dd>
                 </dl>
             </li>
-            <li class="layui-nav-item layuimini-select-bgcolor mobile layui-hide-xs">
+            <li class="layui-nav-item splayui-select-bgcolor mobile layui-hide-xs">
                 <a href="javascript:;" data-bgcolor="配色方案"><i class="fa fa-ellipsis-v"></i></a>
             </li>
         </ul>
@@ -68,9 +68,9 @@
     </div>
 
     <div class="layui-body">
-        <div class="layui-tab" lay-filter="layuiminiTab" id="top_tabs_box">
+        <div class="layui-tab" lay-filter="splayuiTab" id="top_tabs_box">
             <ul class="layui-tab-title" id="top_tabs">
-                <li class="layui-this" id="layuiminiHomeTabId" lay-id=""></li>
+                <li class="layui-this" id="splayuiHomeTabId" lay-id=""></li>
             </ul>
             <ul class="layui-nav closeBox">
                 <li class="layui-nav-item">
@@ -82,19 +82,19 @@
                 </li>
             </ul>
             <div class="layui-tab-content clildFrame">
-                <div id="layuiminiHomeTabIframe" class="layui-tab-item layui-show">
+                <div id="splayuiHomeTabIframe" class="layui-tab-item layui-show">
                 </div>
             </div>
         </div>
     </div>
 </div>
 <script>
-    layui.use(['element', 'layer', 'layuimini'], function () {
+    layui.use(['element', 'layer', 'splayui'], function () {
         var element = layui.element,
             layer = layui.layer,
-            layuimini = layui.layuimini;
+            splayui = layui.splayui;
 
-        layuimini.init('${request.contextPath}/admin/list/index/menu/tree');
+        splayui.init('${request.contextPath}/admin/list/index/menu/tree');
     });
 </script>
 </body>

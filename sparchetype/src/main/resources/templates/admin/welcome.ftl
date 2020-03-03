@@ -12,8 +12,8 @@
     <#include "${request.contextPath}/common/common.ftl">
 </head>
 <body>
-<div class="layuimini-container">
-    <div class="layuimini-main">
+<div class="splayui-container">
+    <div class="splayui-main">
         <ul class="layui-timeline">
             <li class="layui-timeline-item">
                 <i class="layui-icon layui-timeline-axis">&#xe63f;</i>

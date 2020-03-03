@@ -10,9 +10,9 @@
 </head>
 
 <body>
-<div class="layuimini-container">
-    <div class="layuimini-main">
-        <form class="layui-form layuimini-form">
+<div class="splayui-container">
+    <div class="splayui-main">
+        <form class="layui-form splayui-form">
             <div class="layui-row">
                 <div class="layui-col-xs6 layui-col-sm6 layui-col-md6">
                     <div class="layui-form-item">

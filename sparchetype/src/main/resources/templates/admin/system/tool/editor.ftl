@@ -9,8 +9,8 @@
     <#include "${request.contextPath}/common/common.ftl">
 </head>
 <body>
-<div class="layuimini-container">
-    <div class="layuimini-main">
+<div class="splayui-container">
+    <div class="splayui-main">
 
         <blockquote class="layui-elem-quote">
             富文本编辑器使用开源项目：wangEditor<br>

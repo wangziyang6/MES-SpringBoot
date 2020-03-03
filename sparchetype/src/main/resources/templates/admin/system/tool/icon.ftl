@@ -24,8 +24,8 @@
     </style>
 </head>
 <body>
-<div class="layuimini-container">
-    <div class="layuimini-main">
+<div class="splayui-container">
+    <div class="splayui-main">
         <div class="section">
             <h4><span>全部图标</span></h4>
             <hr>

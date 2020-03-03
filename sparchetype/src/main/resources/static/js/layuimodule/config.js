@@ -12,8 +12,8 @@ layui.config({
     base: rootPath,
     version: true
 }).extend({
-    // layuimini扩展
-    layuimini: "layuimini/layuimini",
+    // layui扩展
+    splayui: "splayui/splayui",
     // 分步表单扩展
     step: 'step-lay/step',
     //table树形扩展
