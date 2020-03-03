@@ -2,7 +2,6 @@ package com.songpeng.sparchetype.system.vo;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @param <T>
@@ -24,6 +23,16 @@ public class TreeVO<T> {
     private boolean checked = false;
 
     /**
+     * 类型
+     */
+    private String type;
+
+    /**
+     * icon
+     */
+    private String icon;
+
+    /**
      * 节点属性
      */
     private String url;
@@ -31,17 +40,32 @@ public class TreeVO<T> {
     /**
      * 父ID
      */
-    private String parentId;
+    private String pid;
+
+    /**
+     * 权限标识
+     */
+    private String permission;
+
+    /**
+     * target
+     */
+    private String target;
+
+    /**
+     * 编码
+     */
+    private String code;
 
     /**
      * 是否有父节点
      */
-    private boolean hasParent = false;
+    private boolean haveParent = false;
 
     /**
      * 是否有子节点
      */
-    private boolean hasChildren = false;
+    private boolean haveChild = false;
 
     /**
      * 节点的子节点
@@ -72,6 +96,22 @@ public class TreeVO<T> {
         this.checked = checked;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
     public String getUrl() {
         return url;
     }
@@ -80,28 +120,28 @@ public class TreeVO<T> {
         this.url = url;
     }
 
-    public String getParentId() {
-        return parentId;
+    public String getPid() {
+        return pid;
     }
 
-    public void setParentId(String parentId) {
-        this.parentId = parentId;
+    public void setPid(String pid) {
+        this.pid = pid;
     }
 
-    public boolean isHasParent() {
-        return hasParent;
+    public boolean isHaveParent() {
+        return haveParent;
     }
 
-    public void setHasParent(boolean hasParent) {
-        this.hasParent = hasParent;
+    public void setHaveParent(boolean haveParent) {
+        this.haveParent = haveParent;
     }
 
-    public boolean isHasChildren() {
-        return hasChildren;
+    public boolean isHaveChild() {
+        return haveChild;
     }
 
-    public void setHasChildren(boolean hasChildren) {
-        this.hasChildren = hasChildren;
+    public void setHaveChild(boolean haveChild) {
+        this.haveChild = haveChild;
     }
 
     public List<TreeVO<T>> getChildren() {
@@ -110,5 +150,29 @@ public class TreeVO<T> {
 
     public void setChildren(List<TreeVO<T>> children) {
         this.children = children;
+    }
+
+    public String getPermission() {
+        return permission;
+    }
+
+    public void setPermission(String permission) {
+        this.permission = permission;
+    }
+
+    public String getTarget() {
+        return target;
+    }
+
+    public void setTarget(String target) {
+        this.target = target;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

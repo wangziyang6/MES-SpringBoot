@@ -76,10 +76,10 @@ layui.define(["element", "jquery"], function (exports) {
          * @param data
          */
         this.initHome = function (data) {
-            sessionStorage.setItem('layuiminiHomeHref', data.href);
-            $('#layuiminiHomeTabId').html('<i class="' + data.icon + '"></i> <span>' + data.title + '</span>');
-            $('#layuiminiHomeTabId').attr('lay-id', data.href);
-            $('#layuiminiHomeTabIframe').html('<iframe width="100%" height="100%" frameborder="0"  src="' + data.href + '"></iframe>');
+            sessionStorage.setItem('layuiminiHomeHref', data.url);
+            $('#layuiminiHomeTabId').html('<i class="' + data.icon + '"></i> <span>' + data.name + '</span>');
+            $('#layuiminiHomeTabId').attr('lay-id', data.url);
+            $('#layuiminiHomeTabIframe').html('<iframe width="100%" height="100%" frameborder="0"  src="' + data.url + '"></iframe>');
         };
 
         /**
@@ -87,9 +87,9 @@ layui.define(["element", "jquery"], function (exports) {
          * @param data
          */
         this.initLogo = function (data) {
-            var html = '<a href="' + data.href + '">\n' +
+            var html = '<a href="' + data.url + '">\n' +
                 '<img src="' + data.image + '" alt="logo">\n' +
-                '<h1>' + data.title + '</h1>\n' +
+                '<h1>' + data.name + '</h1>\n' +
                 '</a>';
             $('.layui-layout-admin .layui-logo').html(html);
         };
@@ -135,23 +135,23 @@ layui.define(["element", "jquery"], function (exports) {
             window.menuParameId = 1;
 
             $.each(data, function (key, val) {
-                headerMenuHtml += '<li class="layui-nav-item ' + headerMenuCheckDefault + '" id="' + key + 'HeaderId" data-menu="' + key + '"> <a href="javascript:;"><i class="' + val.icon + '"></i> ' + val.title + '</a> </li>\n';
-                headerMobileMenuHtml += '<dd><a href="javascript:;" id="' + key + 'HeaderId" data-menu="' + key + '"><i class="' + val.icon + '"></i> ' + val.title + '</a></dd>\n';
+                headerMenuHtml += '<li class="layui-nav-item ' + headerMenuCheckDefault + '" id="' + key + 'HeaderId" data-menu="' + key + '"> <a href="javascript:;"><i class="' + val.icon + '"></i> ' + val.name + '</a> </li>\n';
+                headerMobileMenuHtml += '<dd><a href="javascript:;" id="' + key + 'HeaderId" data-menu="' + key + '"><i class="' + val.icon + '"></i> ' + val.name + '</a></dd>\n';
                 leftMenuHtml += '<ul class="layui-nav layui-nav-tree layui-left-nav-tree ' + leftMenuCheckDefault + '" id="' + key + '">\n';
                 var menuList = val.child;
                 $.each(menuList, function (index, menu) {
                     leftMenuHtml += '<li class="layui-nav-item">\n';
                     if (menu.child != undefined && menu.child != []) {
-                        leftMenuHtml += '<a href="javascript:;" class="layui-menu-tips" ><i class="' + menu.icon + '"></i><span class="layui-left-nav"> ' + menu.title + '</span> </a>';
+                        leftMenuHtml += '<a href="javascript:;" class="layui-menu-tips" ><i class="' + menu.icon + '"></i><span class="layui-left-nav"> ' + menu.name + '</span> </a>';
                         var buildChildHtml = function (html, child, menuParameId) {
                             html += '<dl class="layui-nav-child">\n';
                             $.each(child, function (childIndex, childMenu) {
                                 html += '<dd>\n';
                                 if (childMenu.child != undefined && childMenu.child != []) {
-                                    html += '<a href="javascript:;" class="layui-menu-tips" ><i class="' + childMenu.icon + '"></i><span class="layui-left-nav"> ' + childMenu.title + '</span></a>';
+                                    html += '<a href="javascript:;" class="layui-menu-tips" ><i class="' + childMenu.icon + '"></i><span class="layui-left-nav"> ' + childMenu.name + '</span></a>';
                                     html = buildChildHtml(html, childMenu.child, menuParameId);
                                 } else {
-                                    html += '<a href="javascript:;" class="layui-menu-tips" data-type="tabAdd"  data-tab-mpi="m-p-i-' + menuParameId + '" data-tab="' + childMenu.href + '" target="' + childMenu.target + '"><i class="' + childMenu.icon + '"></i><span class="layui-left-nav"> ' + childMenu.title + '</span></a>\n';
+                                    html += '<a href="javascript:;" class="layui-menu-tips" data-type="tabAdd"  data-tab-mpi="m-p-i-' + menuParameId + '" data-tab="' + childMenu.url + '" target="' + childMenu.target + '"><i class="' + childMenu.icon + '"></i><span class="layui-left-nav"> ' + childMenu.name + '</span></a>\n';
                                     menuParameId++;
                                     window.menuParameId = menuParameId;
                                 }
@@ -162,7 +162,7 @@ layui.define(["element", "jquery"], function (exports) {
                         };
                         leftMenuHtml = buildChildHtml(leftMenuHtml, menu.child, menuParameId);
                     } else {
-                        leftMenuHtml += '<a href="javascript:;" class="layui-menu-tips"  data-type="tabAdd" data-tab-mpi="m-p-i-' + menuParameId + '" data-tab="' + menu.href + '" target="' + menu.target + '"><i class="' + menu.icon + '"></i><span class="layui-left-nav"> ' + menu.title + '</span></a>\n';
+                        leftMenuHtml += '<a href="javascript:;" class="layui-menu-tips"  data-type="tabAdd" data-tab-mpi="m-p-i-' + menuParameId + '" data-tab="' + menu.url + '" target="' + menu.target + '"><i class="' + menu.icon + '"></i><span class="layui-left-nav"> ' + menu.name + '</span></a>\n';
                         menuParameId++;
                     }
                     leftMenuHtml += '</li>\n';

@@ -19,7 +19,7 @@ public class TreeUtil {
 
         for (TreeVO<T> children : nodes) {
 
-            String pid = children.getParentId();
+            String pid = children.getPid();
             if (pid == null || "0".equals(pid)) {
                 topNodes.add(children);
 
@@ -30,12 +30,11 @@ public class TreeUtil {
                 String id = parent.getId();
                 if (id != null && id.equals(pid)) {
                     parent.getChildren().add(children);
-                    children.setHasParent(true);
-                    parent.setHasChildren(true);
+                    children.setHaveParent(true);
+                    parent.setHaveChild(true);
                     continue;
                 }
             }
-
         }
 
         TreeVO<T> root = new TreeVO<T>();
@@ -43,9 +42,9 @@ public class TreeUtil {
             root = topNodes.get(0);
         } else {
             root.setId("-1");
-            root.setParentId("");
-            root.setHasParent(false);
-            root.setHasChildren(true);
+            root.setPid("");
+            root.setHaveParent(false);
+            root.setHaveChild(true);
             root.setChecked(true);
             root.setChildren(topNodes);
             root.setName("顶级节点");
@@ -62,10 +61,9 @@ public class TreeUtil {
 
         for (TreeVO<T> children : nodes) {
 
-            String pid = children.getParentId();
+            String pid = children.getPid();
             if (pid == null || idParam.equals(pid)) {
                 topNodes.add(children);
-
                 continue;
             }
 
@@ -73,13 +71,11 @@ public class TreeUtil {
                 String id = parent.getId();
                 if (id != null && id.equals(pid)) {
                     parent.getChildren().add(children);
-                    children.setHasParent(true);
-                    parent.setHasChildren(true);
-
+                    children.setHaveParent(true);
+                    parent.setHaveChild(true);
                     continue;
                 }
             }
-
         }
         return topNodes;
     }

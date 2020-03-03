@@ -16,7 +16,12 @@ public class SysMenu extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
-    /**
+	/**
+	 * 编码
+	 */
+	private String code;
+
+	/**
      * 菜单名称
      */
     private String name;
@@ -131,5 +136,13 @@ public class SysMenu extends BaseEntity {
 
 	public void setDescr(String descr) {
 		this.descr = descr;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 }

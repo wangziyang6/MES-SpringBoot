@@ -47,26 +47,6 @@
 
         treeData = [];
         // TODO 封装ajax
-        <#--$.ajax({-->
-        <#--    type: "GET",-->
-        <#--    url: "${request.contextPath}/admin/sys/menu/tree",-->
-        <#--    async: false,-->
-        <#--    success: function(result) {-->
-        <#--        console.log(result);-->
-        <#--        if (result.code === 0) {-->
-        <#--            treeData = result.data.data;-->
-        <#--        } else {-->
-        <#--            layer.alert(result.msg, {-->
-        <#--                icon: 2-->
-        <#--            })-->
-        <#--        }-->
-        <#--    },-->
-        <#--    error: function(e){-->
-        <#--        layer.alert(e, {-->
-        <#--            icon: 2-->
-        <#--        })-->
-        <#--    }-->
-        <#--});-->
 
         // 渲染表格
         var insTb = treeTable.render({
@@ -75,14 +55,21 @@
             tree: {
                 iconIndex: 1,
                 idName: 'id',  // 自定义id字段的名称
-                pidName: 'parentId',  // 自定义标识是否还有子节点的字段名称
-                haveChildName: 'hasChildren',  // 自定义标识是否还有子节点的字段名称
                 isPidData: true  // 是否是pid形式数据
             },
             cols: [
                 {type: 'numbers'},
-                {field: 'name', title: 'name', width: 160, edit: 'text'},
-                {field: 'createTime', title: '创建时间', width: 180, edit: 'text'},
+                {field: 'name', title: '名称', width: 160},
+                {field: 'type', title: '类型', width: 160, templet: function (d) {
+                        return d.icon ? {'0': '目录','1': '菜单','2': '按钮'}[d.type] : '';
+                    }},
+                {
+                    field: 'icon', title: '图标', width: 160, templet: function (d) {
+                        return d.icon ? '<i class="' + d.icon + ' fa-lg"></i>' : '';
+                    }
+                },
+                {field: 'url', title: '地址', width: 180},
+                {field: 'url', title: '权限标识', width: 180},
                 {templet: '#demoTreeTableState1', title: '状态', width: 100},
                 {align: 'center', toolbar: '#demoTreeTableBar1', title: '操作', width: 150}
             ],
@@ -91,7 +78,7 @@
                     type: "GET",
                     url: "${request.contextPath}/admin/sys/menu/tree",
                     async: true,
-                    success: function(result) {
+                    success: function (result) {
                         console.log(result);
                         if (result.code === 0) {
                             callback(result.data);
@@ -101,7 +88,7 @@
                             })
                         }
                     },
-                    error: function(e){
+                    error: function (e) {
                         layer.alert(e, {
                             icon: 2
                         })

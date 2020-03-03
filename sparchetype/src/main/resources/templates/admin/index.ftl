@@ -94,7 +94,7 @@
             layer = layui.layer,
             layuimini = layui.layuimini;
 
-        layuimini.init('${request.contextPath}/admin/tree');
+        layuimini.init('${request.contextPath}/admin/list/index/menu/tree');
     });
 </script>
 </body>

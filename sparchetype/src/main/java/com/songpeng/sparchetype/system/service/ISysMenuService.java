@@ -5,6 +5,7 @@ import com.songpeng.sparchetype.system.entity.SysMenu;
 import com.songpeng.sparchetype.system.vo.TreeVO;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -15,6 +16,14 @@ import java.util.List;
  * @since 2019-10-16
  */
 public interface ISysMenuService extends IService<SysMenu> {
+
+    /**
+     * 系统首页初始化菜单树数据
+     *
+     * @return 系统首页初始化菜单树数据
+     * @throws Exception 异常
+     */
+    Map<String, Object> listIndexMenuTree() throws Exception;
 
     /**
      * 获取系统菜单树
