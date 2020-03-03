@@ -21,8 +21,7 @@
     <div class="layuimini-main">
         <div>
             <div class="layui-btn-group">
-                <button class="layui-btn" id="btn-expand">全部展开</button>
-                <button class="layui-btn" id="btn-fold">全部折叠</button>
+                <button class="layui-btn" id="js-expand-fold-all">全部展开/折叠</button>
             </div>
             <table id="demoTreeTable1" class="layui-table" lay-filter="demoTreeTable1"></table>
         </div>
@@ -41,9 +40,10 @@
            lay-text="正常|锁定" {{d.state==0?'checked':''}}/>
 </script>
 <script>
-    layui.use(['table', 'treeTable'], function () {
+    layui.use(['table', 'treeTable', 'splayer'], function () {
         var table = layui.table,
-            treeTable = layui.treeTable;
+            treeTable = layui.treeTable,
+            splayer = layui.splayer;
 
         treeData = [];
         // TODO 封装ajax
@@ -51,7 +51,6 @@
         // 渲染表格
         var insTb = treeTable.render({
             elem: '#demoTreeTable1',
-            // data: treeData,
             tree: {
                 iconIndex: 1,
                 idName: 'id',  // 自定义id字段的名称
@@ -69,7 +68,7 @@
                     }
                 },
                 {field: 'url', title: '地址', width: 180},
-                {field: 'url', title: '权限标识', width: 180},
+                {field: 'permission', title: '权限标识', width: 180},
                 {templet: '#demoTreeTableState1', title: '状态', width: 100},
                 {align: 'center', toolbar: '#demoTreeTableBar1', title: '操作', width: 150}
             ],
@@ -79,7 +78,6 @@
                     url: "${request.contextPath}/admin/sys/menu/tree",
                     async: true,
                     success: function (result) {
-                        console.log(result);
                         if (result.code === 0) {
                             callback(result.data);
                         } else {
@@ -98,11 +96,37 @@
             style: 'margin-top:0;'
         });
 
-        treeTable.on('edit(demoTreeTable1)', function (obj) {
-            console.log(obj);
-            if (true) {
-                layer.tips('格式不正确', $(this), {tips: [1, '#FF5722']});
-                return false;
+        /**
+         * 监听
+         */
+        treeTable.on('tool(demoTreeTable1)', function (obj) {
+            var event = obj.event;
+            if (event == 'del') {
+                layer.msg('点击了删除', {icon: 1});
+            } else if (event == 'edit') {
+                layer.msg('点击了修改', {icon: 1});
+                splayer.open({
+                    title: '编辑',
+                    area: ['800px', '500px'],
+                    // 请求url参数
+                    spWhere: {id: obj.data.id},
+                    content: '${request.contextPath}/admin/sys/menu/add-or-update-ui'
+                });
+            }
+        });
+
+        // 全部展开、折叠标记
+        var expandFoldFlag = true;
+        /**
+         * 全部展开、折叠
+         */
+        $('#js-expand-fold-all').click(function () {
+            if (expandFoldFlag) {
+                insTb.expandAll();
+                expandFoldFlag = false;
+            } else {
+                insTb.foldAll();
+                expandFoldFlag = true;
             }
         });
     });

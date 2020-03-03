@@ -45,7 +45,7 @@ layui.define(["element", "jquery"], function (exports) {
             layuimini.initBgColor();
             layuimini.initDevice();
             $.getJSON(url, function (data, status) {
-                if (data.data == null) {
+                if (!data.data) {
                     layuimini.msg_error('暂无菜单信息');
                 } else {
                     layuimini.initHome(data.data.homeInfo);
@@ -133,23 +133,22 @@ layui.define(["element", "jquery"], function (exports) {
                 headerMenuCheckDefault = 'layui-this',
                 leftMenuCheckDefault = 'layui-this';
             window.menuParameId = 1;
-
             $.each(data, function (key, val) {
                 headerMenuHtml += '<li class="layui-nav-item ' + headerMenuCheckDefault + '" id="' + key + 'HeaderId" data-menu="' + key + '"> <a href="javascript:;"><i class="' + val.icon + '"></i> ' + val.name + '</a> </li>\n';
                 headerMobileMenuHtml += '<dd><a href="javascript:;" id="' + key + 'HeaderId" data-menu="' + key + '"><i class="' + val.icon + '"></i> ' + val.name + '</a></dd>\n';
                 leftMenuHtml += '<ul class="layui-nav layui-nav-tree layui-left-nav-tree ' + leftMenuCheckDefault + '" id="' + key + '">\n';
-                var menuList = val.child;
+                var menuList = val.children;
                 $.each(menuList, function (index, menu) {
                     leftMenuHtml += '<li class="layui-nav-item">\n';
-                    if (menu.child != undefined && menu.child != []) {
+                    if (menu.children && menu.children.length > 0) {
                         leftMenuHtml += '<a href="javascript:;" class="layui-menu-tips" ><i class="' + menu.icon + '"></i><span class="layui-left-nav"> ' + menu.name + '</span> </a>';
-                        var buildChildHtml = function (html, child, menuParameId) {
+                        var buildChildHtml = function (html, children, menuParameId) {
                             html += '<dl class="layui-nav-child">\n';
-                            $.each(child, function (childIndex, childMenu) {
+                            $.each(children, function (childIndex, childMenu) {
                                 html += '<dd>\n';
-                                if (childMenu.child != undefined && childMenu.child != []) {
+                                if (childMenu.children && childMenu.children.length > 0) {
                                     html += '<a href="javascript:;" class="layui-menu-tips" ><i class="' + childMenu.icon + '"></i><span class="layui-left-nav"> ' + childMenu.name + '</span></a>';
-                                    html = buildChildHtml(html, childMenu.child, menuParameId);
+                                    html = buildChildHtml(html, childMenu.children, menuParameId);
                                 } else {
                                     html += '<a href="javascript:;" class="layui-menu-tips" data-type="tabAdd"  data-tab-mpi="m-p-i-' + menuParameId + '" data-tab="' + childMenu.url + '" target="' + childMenu.target + '"><i class="' + childMenu.icon + '"></i><span class="layui-left-nav"> ' + childMenu.name + '</span></a>\n';
                                     menuParameId++;
@@ -160,7 +159,7 @@ layui.define(["element", "jquery"], function (exports) {
                             html += '</dl>\n';
                             return html;
                         };
-                        leftMenuHtml = buildChildHtml(leftMenuHtml, menu.child, menuParameId);
+                        leftMenuHtml = buildChildHtml(leftMenuHtml, menu.children, menuParameId);
                     } else {
                         leftMenuHtml += '<a href="javascript:;" class="layui-menu-tips"  data-type="tabAdd" data-tab-mpi="m-p-i-' + menuParameId + '" data-tab="' + menu.url + '" target="' + menu.target + '"><i class="' + menu.icon + '"></i><span class="layui-left-nav"> ' + menu.name + '</span></a>\n';
                         menuParameId++;
@@ -474,7 +473,7 @@ layui.define(["element", "jquery"], function (exports) {
          */
         this.delTab = function (tabId) {
             var layuiminiTabInfo = JSON.parse(sessionStorage.getItem("layuiminiTabInfo"));
-            if (layuiminiTabInfo != null) {
+            if (layuiminiTabInfo) {
                 delete layuiminiTabInfo[tabId];
                 sessionStorage.setItem("layuiminiTabInfo", JSON.stringify(layuiminiTabInfo))
             }
