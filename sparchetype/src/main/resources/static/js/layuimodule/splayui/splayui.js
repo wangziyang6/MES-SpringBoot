@@ -67,7 +67,7 @@ layui.define(["element", "jquery"], function (exports) {
             if (splayui.checkMobile()) {
                 $('.splayui-tool i').attr('data-side-fold', 0);
                 $('.splayui-tool i').attr('class', 'fa fa-indent');
-                $('.layui-layout-body').attr('class', 'layui-layout-body splayui-mini');
+                $('.layui-layout-body').attr('class', 'layui-layout-body splayui-admin');
             }
         };
 
@@ -141,16 +141,16 @@ layui.define(["element", "jquery"], function (exports) {
                 $.each(menuList, function (index, menu) {
                     leftMenuHtml += '<li class="layui-nav-item">\n';
                     if (menu.children && menu.children.length > 0) {
-                        leftMenuHtml += '<a href="javascript:;" class="layui-menu-tips" ><i class="' + menu.icon + '"></i><span class="layui-left-nav"> ' + menu.name + '</span> </a>';
+                        leftMenuHtml += '<a href="javascript:;" class="layui-menu-tips" ><i style="width: 14px;" class="' + menu.icon + '"></i><span class="layui-left-nav"> ' + menu.name + '</span> </a>';
                         var buildChildHtml = function (html, children, menuParameId) {
                             html += '<dl class="layui-nav-child">\n';
                             $.each(children, function (childIndex, childMenu) {
                                 html += '<dd>\n';
                                 if (childMenu.children && childMenu.children.length > 0) {
-                                    html += '<a href="javascript:;" class="layui-menu-tips" ><i class="' + childMenu.icon + '"></i><span class="layui-left-nav"> ' + childMenu.name + '</span></a>';
+                                    html += '<a href="javascript:;" class="layui-menu-tips" ><i style="width: 14px;" class="' + childMenu.icon + '"></i><span class="layui-left-nav"> ' + childMenu.name + '</span></a>';
                                     html = buildChildHtml(html, childMenu.children, menuParameId);
                                 } else {
-                                    html += '<a href="javascript:;" class="layui-menu-tips" data-type="tabAdd"  data-tab-mpi="m-p-i-' + menuParameId + '" data-tab="' + childMenu.url + '" target="' + childMenu.target + '"><i class="' + childMenu.icon + '"></i><span class="layui-left-nav"> ' + childMenu.name + '</span></a>\n';
+                                    html += '<a href="javascript:;" class="layui-menu-tips" data-type="tabAdd"  data-tab-mpi="m-p-i-' + menuParameId + '" data-tab="' + childMenu.url + '" target="' + childMenu.target + '"><i style="width: 14px;" class="' + childMenu.icon + '"></i><span class="layui-left-nav"> ' + childMenu.name + '</span></a>\n';
                                     menuParameId++;
                                     window.menuParameId = menuParameId;
                                 }
@@ -161,7 +161,7 @@ layui.define(["element", "jquery"], function (exports) {
                         };
                         leftMenuHtml = buildChildHtml(leftMenuHtml, menu.children, menuParameId);
                     } else {
-                        leftMenuHtml += '<a href="javascript:;" class="layui-menu-tips"  data-type="tabAdd" data-tab-mpi="m-p-i-' + menuParameId + '" data-tab="' + menu.url + '" target="' + menu.target + '"><i class="' + menu.icon + '"></i><span class="layui-left-nav"> ' + menu.name + '</span></a>\n';
+                        leftMenuHtml += '<a href="javascript:;" class="layui-menu-tips"  data-type="tabAdd" data-tab-mpi="m-p-i-' + menuParameId + '" data-tab="' + menu.url + '" target="' + menu.target + '"><i style="width: 14px;" class="' + menu.icon + '"></i><span class="layui-left-nav"> ' + menu.name + '</span></a>\n';
                         menuParameId++;
                     }
                     leftMenuHtml += '</li>\n';
@@ -840,7 +840,7 @@ layui.define(["element", "jquery"], function (exports) {
         if (isShow == 1) { // 缩放
             $(this).attr('data-side-fold', 0);
             $('.splayui-tool i').attr('class', 'fa fa-indent');
-            $('.layui-layout-body').attr('class', 'layui-layout-body splayui-mini');
+            $('.layui-layout-body').attr('class', 'layui-layout-body splayui-admin');
         } else { // 正常
             $(this).attr('data-side-fold', 1);
             $('.splayui-tool i').attr('class', 'fa fa-outdent');

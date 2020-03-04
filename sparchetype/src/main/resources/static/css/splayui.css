@@ -59,7 +59,7 @@
 }
 
 /**头部样式（缩放） */
-.splayui .layui-layout-left.layui-header-menu.layui-hide-xs {
+.splayui-admin .layui-layout-left.layui-header-menu.layui-hide-xs {
   left: 155px !important;
 }
 
@@ -89,10 +89,10 @@
 }
 
 /**logo演示（缩放） */
-.splayui .layui-layout-admin .layui-logo {
+.splayui-admin .layui-layout-admin .layui-logo {
   width: 60px !important;
 }
-.splayui .layui-layout-admin .layui-logo h1 {
+.splayui-admin .layui-layout-admin .layui-logo h1 {
   display: none;
 }
 
@@ -108,10 +108,12 @@
   color: #ffffff !important;
   transition: all 0.2s;
 }
+
 /**缩放工具（缩放） */
-.splayui .splayui-tool {
+.splayui-admin .splayui-tool {
   left: 95px !important;
 }
+
 .splayui-tool i {
   display: block;
   color: #fff;
@@ -276,20 +278,20 @@
   padding: 5px 0;
 }
 /**左侧菜单栏（缩放） */
-.splayui .layui-side.layui-bg-black,
-.splayui .layui-left-menu,
-.splayui .layui-left-menu > ul,
-.splayui .layui-left-menu > ul li i {
+.splayui-admin .layui-side.layui-bg-black,
+.splayui-admin .layui-left-menu,
+.splayui-admin .layui-left-menu > ul,
+.splayui-admin .layui-left-menu > ul li i {
   width: 60px !important;
 }
-.splayui .layui-left-menu > ul li span:first-child {
+.splayui-admin .layui-left-menu > ul li span:first-child {
   display: none;
 }
-.splayui .layui-left-menu > ul li span:last-child {
+.splayui-admin .layui-left-menu > ul li span:last-child {
   float: right;
   right: 7px;
 }
-.splayui .layui-left-menu .layui-nav .layui-nav-item a {
+.splayui-admin .layui-left-menu .layui-nav .layui-nav-item a {
   height: 40px;
   line-height: 40px;
   padding-right: 0px !important;
@@ -303,7 +305,7 @@
   transition: all 0.2s;
 }
 /**内容主体（缩放） */
-.splayui .layui-layout-admin .layui-body {
+.splayui-admin .layui-layout-admin .layui-body {
   left: 60px !important;
 }
 
@@ -415,7 +417,7 @@
   .layui-layout-admin .layui-body .layui-tab-item.layui-show {
     border-top: 1px solid #e2e2e2;
   }
-  .splayui .splayui-tool {
+  .splayui-admin .splayui-tool {
     left: 15px !important;
   }
   .splayui-tool i:hover {
@@ -430,7 +432,7 @@
     float: right;
     right: 0px;
   }
-  .splayui .layui-layout-left.layui-header-menu {
+  .splayui-admin .layui-layout-left.layui-header-menu {
     left: 50px !important;
     transition: all 0.2s;
   }
@@ -448,7 +450,7 @@
     a {
     padding: 0 15px;
   }
-  .splayui .layui-layout-admin .layui-body {
+  .splayui-admin .layui-layout-admin .layui-body {
     left: 0px !important;
   }
   .layui-layout-admin .layui-body .clildFrame.layui-tab-content {
@@ -462,9 +464,9 @@
     -webkit-overflow-scrolling: touch !important;
   }
   .splayui-all .layui-nav.layui-layout-right,
-  .splayui .layui-layout-admin .layui-logo,
-  .splayui .layui-side.layui-bg-black,
-  .splayui .layui-left-menu,
+  .splayui-admin .layui-layout-admin .layui-logo,
+  .splayui-admin .layui-side.layui-bg-black,
+  .splayui-admin .layui-left-menu,
   .layui-layout-admin .layui-body #top_tabs,
   .layui-layout-admin .layui-body .layui-nav.closeBox {
     transition: all 0.2s;
