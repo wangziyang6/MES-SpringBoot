@@ -35,7 +35,7 @@ public class SysLoginController {
 	 */
 	@GetMapping({"/", ""})
 	public String welcomeUI(Model model) {
-		return "redirect:/blog";
+		return "redirect:/admin/index";
 	}
 
 	/**

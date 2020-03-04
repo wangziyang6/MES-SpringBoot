@@ -79,7 +79,7 @@ layui.define(["element", "jquery"], function (exports) {
             sessionStorage.setItem('splayuiHomeHref', data.url);
             $('#splayuiHomeTabId').html('<i class="' + data.icon + '"></i> <span>' + data.name + '</span>');
             $('#splayuiHomeTabId').attr('lay-id', data.url);
-            $('#splayuiHomeTabIframe').html('<iframe width="100%" height="100%" frameborder="0"  src="' + data.url + '"></iframe>');
+            $('#splayuiHomeTabIframe').html('<iframe width="100%" height="100%" frameborder="0"  src="/' + data.url + '"></iframe>');
         };
 
         /**

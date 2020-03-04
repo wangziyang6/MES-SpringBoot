@@ -13,6 +13,7 @@ spring:
     templateLoaderPath: classpath:/templates/
     cache: false
     expose-spring-macro-helpers: false
+
     request-context-attribute: request
     settings:
       classic_compatible: true
