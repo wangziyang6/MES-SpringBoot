@@ -10,10 +10,31 @@ Target Server Type    : MYSQL
 Target Server Version : 50729
 File Encoding         : 65001
 
-Date: 2020-03-02 10:40:19
+Date: 2020-03-04 12:43:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for sp_sys_department
+-- ----------------------------
+DROP TABLE IF EXISTS `sp_sys_department`;
+CREATE TABLE `sp_sys_department` (
+  `id` varchar(64) NOT NULL COMMENT '主键id',
+  `parent_id` varchar(64) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `sort_num` int(11) NOT NULL,
+  `is_deleted` varchar(1) NOT NULL COMMENT '逻辑删除：1 表示删除，0 表示未删除，2 表示禁用',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `create_username` varchar(64) NOT NULL COMMENT '创建人',
+  `update_time` datetime NOT NULL COMMENT '最后更新时间',
+  `update_username` varchar(64) NOT NULL COMMENT '最后更新人',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of sp_sys_department
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for sp_sys_dict
@@ -48,6 +69,7 @@ INSERT INTO `sp_sys_dict` VALUES ('1183975587515330561', '篮球', 'basketball',
 DROP TABLE IF EXISTS `sp_sys_menu`;
 CREATE TABLE `sp_sys_menu` (
   `id` varchar(64) NOT NULL COMMENT '主键id',
+  `code` varchar(64) NOT NULL,
   `name` varchar(64) NOT NULL COMMENT '菜单名称',
   `url` varchar(255) NOT NULL COMMENT '菜单URL',
   `parent_id` varchar(64) NOT NULL COMMENT '父菜单ID，一级菜单设为0',
@@ -57,18 +79,26 @@ CREATE TABLE `sp_sys_menu` (
   `permission` varchar(255) DEFAULT '""' COMMENT '授权(多个用逗号分隔，如：sys:menu:list,sys:menu:create)',
   `icon` varchar(255) DEFAULT '""' COMMENT '菜单图标',
   `descr` varchar(255) DEFAULT '""' COMMENT '描述',
-  `created` datetime NOT NULL COMMENT '创建时间',
-  `created_username` varchar(64) NOT NULL COMMENT '创建人',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `create_username` varchar(64) NOT NULL COMMENT '创建人',
   `update_time` datetime NOT NULL COMMENT '最后更新时间',
   `update_username` varchar(64) NOT NULL COMMENT '最后更新人',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `idx_sp_sys_menu_name` (`name`)
+  UNIQUE KEY `idx_sp_sys_menu_name` (`name`),
+  UNIQUE KEY `idx_sp_sys_menu_code` (`code`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of sp_sys_menu
 -- ----------------------------
-INSERT INTO `sp_sys_menu` VALUES ('1185032371986358273', '系统管理', '#', '0', '1', '1', '0', 'user:add', '', '', '2019-10-18 11:18:29', 'SongPeng', '2019-10-18 11:18:29', 'SongPeng');
+INSERT INTO `sp_sys_menu` VALUES ('1', 'currency', '常规管理', '#', '0', '1', '1', '0', 'user:add', 'fa fa-address-book', '', '2019-10-18 11:18:29', 'SongPeng', '2019-10-18 11:18:29', 'SongPeng');
+INSERT INTO `sp_sys_menu` VALUES ('101', 'menu', '菜单管理', '/admin/sys/menu/list-ui', '11', '2', '1', '0', 'user:add', 'fa fa-bars', '', '2019-10-18 11:18:29', 'SongPeng', '2019-10-18 11:18:29', 'SongPeng');
+INSERT INTO `sp_sys_menu` VALUES ('102', 'user', '用户管理', '/admin/sys/user/list-ui', '11', '2', '2', '0', 'user:add', 'fa fa-user', '', '2019-10-18 11:18:29', 'SongPeng', '2019-10-18 11:18:29', 'SongPeng');
+INSERT INTO `sp_sys_menu` VALUES ('103', 'role', '角色管理', '/admin/sys/role/list-ui', '11', '2', '3', '0', 'user:add', 'fa fa-child', '', '2019-10-18 11:18:29', 'SongPeng', '2019-10-18 11:18:29', 'SongPeng');
+INSERT INTO `sp_sys_menu` VALUES ('104', 'department', '部门管理', '/admin/sys/department/list-ui', '11', '2', '4', '0', 'user:add', 'fa fa-sitemap', '', '2019-10-18 11:18:29', 'SongPeng', '2019-10-18 11:18:29', 'SongPeng');
+INSERT INTO `sp_sys_menu` VALUES ('11', 'system', '系统管理', '#', '1', '1', '1', '0', 'user:add', 'fa fa-gears', '', '2019-10-18 11:18:29', 'SongPeng', '2019-10-18 11:18:29', 'SongPeng');
+INSERT INTO `sp_sys_menu` VALUES ('2', 'component', '组件管理', '#', '0', '1', '1', '0', 'user:add', 'fa fa-lemon-o', '', '2019-10-18 11:18:29', 'SongPeng', '2019-10-18 11:18:29', 'SongPeng');
+INSERT INTO `sp_sys_menu` VALUES ('3', 'other', '其他管理', '#', '0', '1', '1', '0', 'user:add', 'fa fa-slideshare', '', '2019-10-18 11:18:29', 'SongPeng', '2019-10-18 11:18:29', 'SongPeng');
 
 -- ----------------------------
 -- Table structure for sp_sys_role
@@ -92,8 +122,8 @@ CREATE TABLE `sp_sys_role` (
 -- ----------------------------
 -- Records of sp_sys_role
 -- ----------------------------
-INSERT INTO `sp_sys_role` VALUES ('1185025876737396738', '超级管理员', 'admin', '超级管理员', '1', '2019-10-18 10:52:40', 'SongPeng', '2020-02-29 16:38:36', 'admin');
-INSERT INTO `sp_sys_role` VALUES ('1232532514523213826', '体验者', 'experience', '体验者', '1', '2020-02-26 13:07:05', 'admin', '2020-02-29 16:38:41', 'admin');
+INSERT INTO `sp_sys_role` VALUES ('1185025876737396738', '超级管理员', 'admin', '超级管理员', '0', '2019-10-18 10:52:40', 'SongPeng', '2020-02-29 16:38:36', 'admin');
+INSERT INTO `sp_sys_role` VALUES ('1232532514523213826', '体验者', 'experience', '体验者', '0', '2020-02-26 13:07:05', 'admin', '2020-02-29 16:38:41', 'admin');
 
 -- ----------------------------
 -- Table structure for sp_sys_role_menu
@@ -113,7 +143,13 @@ CREATE TABLE `sp_sys_role_menu` (
 -- ----------------------------
 -- Records of sp_sys_role_menu
 -- ----------------------------
-INSERT INTO `sp_sys_role_menu` VALUES ('1', '1185025876737396738', '1185032371986358273', '2019-10-28 14:51:44', '1184019107907227649', '2019-10-28 14:51:56', '1184019107907227649');
+INSERT INTO `sp_sys_role_menu` VALUES ('1', '1185025876737396738', '1', '2019-10-28 14:51:44', 'admin', '2019-10-28 14:51:56', 'admin');
+INSERT INTO `sp_sys_role_menu` VALUES ('2', '1185025876737396738', '2', '2019-10-28 14:51:44', 'admin', '2019-10-28 14:51:56', 'admin');
+INSERT INTO `sp_sys_role_menu` VALUES ('3', '1185025876737396738', '3', '2019-10-28 14:51:44', 'admin', '2019-10-28 14:51:56', 'admin');
+INSERT INTO `sp_sys_role_menu` VALUES ('4', '1185025876737396738', '101', '2019-10-28 14:51:44', 'admin', '2019-10-28 14:51:56', 'admin');
+INSERT INTO `sp_sys_role_menu` VALUES ('5', '1185025876737396738', '102', '2019-10-28 14:51:44', 'admin', '2019-10-28 14:51:56', 'admin');
+INSERT INTO `sp_sys_role_menu` VALUES ('6', '1185025876737396738', '103', '2019-10-28 14:51:44', 'admin', '2019-10-28 14:51:56', 'admin');
+INSERT INTO `sp_sys_role_menu` VALUES ('7', '1185025876737396738', '104', '2019-10-28 14:51:44', 'admin', '2019-10-28 14:51:56', 'admin');
 
 -- ----------------------------
 -- Table structure for sp_sys_user
