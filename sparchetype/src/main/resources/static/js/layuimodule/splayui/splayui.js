@@ -25,7 +25,7 @@ layui.define(["element", "jquery"], function (exports) {
             var config = {
                 urlHashLocation: true,   // URL地址hash定位
                 urlSuffixDefault: true, // URL后缀
-                BgColorDefault: 0,       // 默认皮肤（0开始）
+                BgColorDefault: 1,       // 默认皮肤（0开始）
                 checkUrlDefault: true   // 是否判断URL有效
             };
 
@@ -389,7 +389,7 @@ layui.define(["element", "jquery"], function (exports) {
             var html = '';
             var bgcolorId = sessionStorage.getItem('splayuiBgcolorId');
             if (bgcolorId == null || bgcolorId == undefined || bgcolorId == '') {
-                bgcolorId = 0;
+                bgcolorId = 1;
             }
             var bgColorConfig = splayui.bgColorConfig();
             $.each(bgColorConfig, function (key, val) {
