@@ -10,17 +10,13 @@
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon"/>
     <#include "${request.contextPath}/common/common.ftl">
     <script src="${request.contextPath}/lib/jq-module/jquery.particleground.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="${request.contextPath}/css/start.css" media="all">
     <style>
         html, body {
             width: 100%;
             height: 100%;
             overflow: hidden
         }
-
-        body {
-            background: #009688;
-        }
-
         body:after {
             content: '';
             background-repeat: no-repeat;
@@ -112,6 +108,7 @@
     </style>
 </head>
 <body>
+<div class="stars"></div>
 <div class="layui-container">
     <div class="admin-login-background">
         <div class="layui-form login-form">
@@ -138,7 +135,7 @@
                     <input type="checkbox" name="rememberMe" value="true" lay-skin="primary" title="记住密码">
                 </div>
                 <div class="layui-form-item">
-                    <button class="layui-btn layui-btn-fluid" lay-submit="" lay-filter="login">登 入</button>
+                    <button class="layui-btn layui-btn-fluid layui-btn-normal" lay-submit="" lay-filter="login">登 入</button>
                 </div>
             </form>
         </div>
@@ -152,14 +149,6 @@
         // 登录过期的时候，跳出ifram框架
         if (top.location != self.location) top.location = self.location;
         console.log('------------^_^');
-        // 粒子线条背景
-        $(document).ready(function () {
-            $('.layui-container').particleground({
-                dotColor: '#5cbdaa',
-                lineColor: '#5cbdaa'
-            });
-        });
-
         // 进行登录操作
         form.on('submit(login)', function (data) {
             $.ajax({
@@ -186,6 +175,28 @@
             return false;
         });
     });
+</script>
+
+<script>
+    $(document).ready(function(){
+        var stars=800;  /*星星的密集程度，数字越大越多*/
+        var $stars=$(".stars");
+        var r=800;   /*星星的看起来的距离,值越大越远,可自行调制到自己满意的样子*/
+        for(var i=0;i<stars;i++){
+            var $star=$("<div/>").addClass("star");
+            $stars.append($star);
+        }
+        $(".star").each(function(){
+            var cur=$(this);
+            var s=0.2+(Math.random()*1);
+            var curR=r+(Math.random()*300);
+            cur.css({
+                transformOrigin:"0 0 "+curR+"px",
+                transform:" translate3d(0,0,-"+curR+"px) rotateY("+(Math.random()*360)+"deg) rotateX("+(Math.random()*-50)+"deg) scale("+s+","+s+")"
+
+            })
+        })
+    })
 </script>
 </body>
 </html>
