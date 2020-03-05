@@ -102,15 +102,27 @@
          */
         treeTable.on('tool(js-record-table)', function (obj) {
             var event = obj.event;
+
             if (event == 'del') {
                 layer.msg('点击了删除', {icon: 1});
-            } else if (event == 'edit') {
-                layer.msg('点击了修改', {icon: 1});
+            }
+
+            if (event == 'edit') {
                 splayer.open({
                     title: '编辑',
                     area: ['800px', '500px'],
                     // 请求url参数
                     spWhere: {id: obj.data.id},
+                    content: '${request.contextPath}/admin/sys/menu/add-or-update-ui'
+                });
+            }
+
+            if (event == 'add') {
+                splayer.open({
+                    title: '新增',
+                    area: ['800px', '500px'],
+                    // 请求url参数
+                    spWhere: {},
                     content: '${request.contextPath}/admin/sys/menu/add-or-update-ui'
                 });
             }

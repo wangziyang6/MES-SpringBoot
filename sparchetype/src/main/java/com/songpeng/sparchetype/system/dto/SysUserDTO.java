@@ -10,18 +10,31 @@ import java.util.List;
  */
 public class SysUserDTO extends SysUser {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * 角色ID列表
+     */
+    private String[] sysRoleIds;
 
     /**
      * 角色列表
      */
-    List<SysRoleDTO> sysRoleDtos;
+    private List<SysRoleDTO> sysRoleDTOs;
 
-	public List<SysRoleDTO> getSysRoleDtos() {
-		return sysRoleDtos;
-	}
+    public List<SysRoleDTO> getSysRoleDTOs() {
+        return sysRoleDTOs;
+    }
 
-	public void setSysRoleDtos(List<SysRoleDTO> sysRoleDtos) {
-		this.sysRoleDtos = sysRoleDtos;
-	}
+    public void setSysRoleDTOs(List<SysRoleDTO> sysRoleDTOs) {
+        this.sysRoleDTOs = sysRoleDTOs;
+    }
+
+    public String[] getSysRoleIds() {
+        return sysRoleIds;
+    }
+
+    public void setSysRoleIds(String[] sysRoleIds) {
+        this.sysRoleIds = sysRoleIds;
+    }
 }

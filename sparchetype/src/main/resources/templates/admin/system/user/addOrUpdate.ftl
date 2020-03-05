@@ -182,6 +182,17 @@
                     </div>
                 </div>
 
+                <div class="layui-col-xs12 layui-col-sm12 layui-col-md12">
+                    <div class="layui-form-item" pane="">
+                        <label class="layui-form-label">分配权限</label>
+                        <div class="layui-input-block">
+                            <#list sysRoles as sysRole>
+                                <input type="checkbox" name="sysRoleIds[]" title="${sysRole.name}" value="${sysRole.id}" <#if sysRole.checked >checked</#if>>
+                            </#list>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="layui-form-item layui-hide">
                     <div class="layui-input-block">
                         <input id="js-id" name="id" value="${result.id}"/>
@@ -209,6 +220,9 @@
 
         //监听提交
         form.on('submit(js-submit-filter)', function (data) {
+            console.log(data.field)
+            //return false;
+
             spUtil.submitForm({
                 url: "${request.contextPath}/admin/sys/user/add-or-update",
                 data: data.field

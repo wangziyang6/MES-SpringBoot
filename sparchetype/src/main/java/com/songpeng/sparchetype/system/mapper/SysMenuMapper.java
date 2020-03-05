@@ -23,5 +23,5 @@ public interface SysMenuMapper extends BaseMapper<SysMenu> {
 	 * @return
 	 * @throws Exception
 	 */
-	List<SysMenuDTO> selectMenuByRoleId(String roleId) throws Exception;
+	List<SysMenuDTO> listByRoleId(String roleId) throws Exception;
 }

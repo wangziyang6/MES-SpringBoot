@@ -76,6 +76,7 @@ layui.define(["element", "jquery"], function (exports) {
          * @param data
          */
         this.initHome = function (data) {
+            console.log(data)
             sessionStorage.setItem('splayuiHomeHref', data.url);
             $('#splayuiHomeTabId').html('<i class="' + data.icon + '"></i> <span>' + data.name + '</span>');
             $('#splayuiHomeTabId').attr('lay-id', data.url);

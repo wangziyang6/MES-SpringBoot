@@ -5,8 +5,11 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.songpeng.sparchetype.common.BaseController;
 import com.songpeng.sparchetype.common.Result;
+import com.songpeng.sparchetype.system.dto.SysRoleDTO;
+import com.songpeng.sparchetype.system.dto.SysUserDTO;
 import com.songpeng.sparchetype.system.entity.SysUser;
 import com.songpeng.sparchetype.system.request.SysUserPageReq;
+import com.songpeng.sparchetype.system.service.ISysRoleService;
 import com.songpeng.sparchetype.system.service.ISysUserService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -18,6 +21,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 /**
  * <p>
@@ -36,6 +41,9 @@ public class SysUserController extends BaseController {
     @Autowired
     private ISysUserService sysUserService;
 
+    @Autowired
+    private ISysRoleService sysRoleService;
+
     @GetMapping("/list-ui")
     public String listUI(Model model) {
         return "admin/system/user/list";
@@ -43,27 +51,32 @@ public class SysUserController extends BaseController {
 
     @PostMapping("/page")
     @ResponseBody
-    public Result page(SysUserPageReq req) {
-        getSysUser();
+    public Result page(SysUserPageReq req) throws Exception {
         QueryWrapper qw = new QueryWrapper();
         qw.orderByDesc(req.getOrderBy());
-        IPage result = sysUserService.page(req, qw);
-        return Result.success(result);
+        IPage page = sysUserService.page(req, qw);
+        return Result.success(page);
     }
 
     @GetMapping("/add-or-update-ui")
-    public String addOrUpdateUI(SysUser record, Model model) {
+    public String addOrUpdateUI(SysUser record, Model model) throws Exception {
         if (StringUtils.isNotEmpty(record.getId())) {
             SysUser result = sysUserService.getById(record.getId());
             model.addAttribute("result", result);
         }
+        List<SysRoleDTO> sysRoles = sysRoleService.listByUserId(record.getId());
+        model.addAttribute("sysRoles", sysRoles);
         return "admin/system/user/addOrUpdate";
     }
 
     @PostMapping("/add-or-update")
     @ResponseBody
-    public Result addOrUpdate(SysUser record) {
-        sysUserService.saveOrUpdate(record);
+    public Result addOrUpdate(SysUserDTO record) throws Exception {
+        if (StringUtils.isEmpty(record.getId())) {
+            sysUserService.save(record);
+        } else {
+            sysUserService.update(record);
+        }
         return Result.success(record.getId());
     }
 }
