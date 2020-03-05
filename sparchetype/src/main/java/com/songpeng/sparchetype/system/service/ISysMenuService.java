@@ -1,6 +1,7 @@
 package com.songpeng.sparchetype.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.songpeng.sparchetype.system.dto.SysMenuDTO;
 import com.songpeng.sparchetype.system.entity.SysMenu;
 import com.songpeng.sparchetype.system.vo.TreeVO;
 
@@ -16,6 +17,16 @@ import java.util.Map;
  * @since 2019-10-16
  */
 public interface ISysMenuService extends IService<SysMenu> {
+
+
+    /**
+     * 根据角色id查询菜单列表
+     *
+     * @param roleId
+     * @return
+     * @throws Exception
+     */
+    List<SysMenuDTO> listByRoleId(String roleId) throws Exception;
 
     /**
      * 系统首页初始化菜单树数据

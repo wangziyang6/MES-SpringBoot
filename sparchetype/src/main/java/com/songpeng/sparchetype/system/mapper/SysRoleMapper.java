@@ -18,9 +18,9 @@ public interface SysRoleMapper extends BaseMapper<SysRole> {
 	/**
 	 * 根据用户 id 获取角色列表
 	 *
-	 * @param username
+	 * @param userId
 	 * @return
 	 * @throws Exception
 	 */
-	List<SysRole> getRolesByUserId(String userId) throws Exception;
+	List<SysRole> listByUserId(String userId) throws Exception;
 }

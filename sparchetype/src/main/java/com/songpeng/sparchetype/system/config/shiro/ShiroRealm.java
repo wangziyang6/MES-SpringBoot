@@ -40,8 +40,8 @@ public class ShiroRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         SysUserDTO user = (SysUserDTO) principalCollection.getPrimaryPrincipal();
         Set<String> perms = new HashSet<>();
-        if (CollectionUtils.isNotEmpty(user.getSysRoleDtos())) {
-            for (SysRoleDTO sr : user.getSysRoleDtos()) {
+        if (CollectionUtils.isNotEmpty(user.getSysRoleDTOs())) {
+            for (SysRoleDTO sr : user.getSysRoleDTOs()) {
                 if (CollectionUtils.isEmpty(sr.getSysMenuDtos())) {
                     continue;
                 }
@@ -75,7 +75,7 @@ public class ShiroRealm extends AuthorizingRealm {
         }
 
         // 账号锁定
-        if (!user.getDeleted().equals(SysUserEnum.STATUS_NORMAL.getCode())) {
+        if (!user.getDeleted().equals(SysUserEnum.DELETED_NORMAL.getCode())) {
             log.error("账号已被锁定,请联系管理员");
             throw new LockedAccountException("账号已被锁定,请联系管理员");
         }

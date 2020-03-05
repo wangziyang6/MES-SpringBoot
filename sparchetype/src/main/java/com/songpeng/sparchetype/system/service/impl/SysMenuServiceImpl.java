@@ -2,6 +2,7 @@ package com.songpeng.sparchetype.system.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.songpeng.sparchetype.common.util.TreeUtil;
+import com.songpeng.sparchetype.system.dto.SysMenuDTO;
 import com.songpeng.sparchetype.system.entity.SysMenu;
 import com.songpeng.sparchetype.system.mapper.SysMenuMapper;
 import com.songpeng.sparchetype.system.service.ISysMenuService;
@@ -24,6 +25,18 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
 
 	@Autowired
 	private SysMenuMapper sysMenuMapper;
+
+	/**
+	 * 根据角色id查询菜单列表
+	 *
+	 * @param roleId
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public List<SysMenuDTO> listByRoleId(String roleId) throws Exception {
+		return sysMenuMapper.listByRoleId(roleId);
+	}
 
 	/**
 	 * 系统首页初始化菜单树数据

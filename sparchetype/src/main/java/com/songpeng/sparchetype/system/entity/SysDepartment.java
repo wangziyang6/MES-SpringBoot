@@ -1,5 +1,6 @@
 package com.songpeng.sparchetype.system.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.songpeng.sparchetype.common.BaseEntity;
 
 /**
@@ -10,6 +11,7 @@ import com.songpeng.sparchetype.common.BaseEntity;
  * @author SongPeng
  * @since 2020-03-03
  */
+@TableName("sp_sys_department")
 public class SysDepartment extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
@@ -25,5 +27,35 @@ public class SysDepartment extends BaseEntity {
      */
     private String isDeleted;
 
+    public String getParentId() {
+        return parentId;
+    }
 
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getSortNum() {
+        return sortNum;
+    }
+
+    public void setSortNum(Integer sortNum) {
+        this.sortNum = sortNum;
+    }
+
+    public String getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(String isDeleted) {
+        this.isDeleted = isDeleted;
+    }
 }

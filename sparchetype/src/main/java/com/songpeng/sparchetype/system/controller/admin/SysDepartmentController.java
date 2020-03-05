@@ -1,21 +1,71 @@
 package com.songpeng.sparchetype.system.controller.admin;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.stereotype.Controller;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.songpeng.sparchetype.common.BaseController;
+import com.songpeng.sparchetype.common.Result;
+import com.songpeng.sparchetype.system.entity.SysDepartment;
+import com.songpeng.sparchetype.system.entity.SysDict;
+import com.songpeng.sparchetype.system.service.ISysDepartmentService;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * <p>
- *  前端控制器
+ * 系统部门前端控制器
  * </p>
  *
  * @author SongPeng
  * @since 2020-03-03
  */
 @Controller
-@RequestMapping("/dept/sp-sys-department")
+@RequestMapping("/admin/sys/department")
 public class SysDepartmentController extends BaseController {
 
+    Logger log = LoggerFactory.getLogger(SysDepartmentController.class);
+
+    @Autowired
+    private ISysDepartmentService sysDepartmentService;
+
+    @ApiOperation("系统部门信息列表UI")
+    @ApiImplicitParams({@ApiImplicitParam(name = "model", value = "模型", defaultValue = "模型")})
+    @GetMapping("/list-ui")
+    public String listUI(Model model) {
+        return "admin/system/department/list";
+    }
+
+    @PostMapping("/page")
+    @ResponseBody
+    public Result page(Page page) {
+        IPage result = sysDepartmentService.page(page);
+        return Result.success(result);
+    }
+
+    @GetMapping("/add-or-update-ui")
+    public String addOrUpdateUI(Model model, SysDict record) {
+        if (StringUtils.isNotEmpty(record.getId())) {
+            SysDepartment sysDepartment = sysDepartmentService.getById(record.getId());
+            model.addAttribute("department", sysDepartment);
+        }
+        return "admin/system/department/addOrUpdate";
+    }
+
+    @PostMapping("/add-or-update")
+    @ResponseBody
+    public Result addOrUpdate(SysDepartment record) {
+        sysDepartmentService.saveOrUpdate(record);
+        return Result.success(record.getId());
+    }
 }

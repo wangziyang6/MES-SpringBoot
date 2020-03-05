@@ -22,7 +22,7 @@
     </resultMap>
 
     <!--根据角色id查询菜单列表-->
-    <select id="selectMenuByRoleId" parameterType="java.lang.String" resultMap="dtoResultMap">
+    <select id="listByRoleId" parameterType="java.lang.String" resultMap="dtoResultMap">
         SELECT t.* FROM sp_sys_menu t
         LEFT JOIN sp_sys_role_menu ssrm
         ON ssrm.role_id = #{roleId}

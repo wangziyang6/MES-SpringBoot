@@ -6,7 +6,7 @@ package com.songpeng.sparchetype.system.enums;
  * @author SongPeng
  * @date 2019/10/17 9:45
  */
-public enum SysUserEnum {
+public enum SysRoleEnum {
 
     DELETED_NORMAL("0", "正常"),
 
@@ -31,7 +31,7 @@ public enum SysUserEnum {
         return desc;
     }
 
-    SysUserEnum(String code, String desc) {
+    SysRoleEnum(String code, String desc) {
         this.code = code;
         this.desc = desc;
     }

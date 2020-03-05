@@ -30,7 +30,7 @@
     </resultMap>
 
     <resultMap id="userRoleResultMap" extends="resultMap" type="com.songpeng.sparchetype.system.dto.SysUserDTO">
-        <collection property="sysRoleDtos" ofType="com.songpeng.sparchetype.system.dto.SysRoleDTO">
+        <collection property="sysRoleDTOs" ofType="com.songpeng.sparchetype.system.dto.SysRoleDTO">
             <id column="role_id" property="id"/>
             <result column="role_name" property="name"/>
             <result column="code" property="code"/>
