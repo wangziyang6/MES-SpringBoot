@@ -121,17 +121,19 @@
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-icon layui-icon-username" for="username"></label>
-                    <input type="text" name="username" lay-verify="required|account" placeholder="用户名或者邮箱" autocomplete="off" class="layui-input" value="admin">
+                    <input type="text" name="username" lay-verify="required|account" placeholder="用户名或者邮箱" autocomplete="off" class="layui-input" value="" lay-reqText="用户名或者邮箱为空">
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-icon layui-icon-password" for="password"></label>
-                    <input type="password" name="password" lay-verify="required|password" placeholder="密码" autocomplete="off" class="layui-input" value="123456">
+                    <input type="password" name="password" lay-verify="required|password" placeholder="密码" autocomplete="off" class="layui-input" value="" lay-reqText="密码为空">
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-icon layui-icon-vercode" for="captcha"></label>
-                    <input type="text" name="captcha" lay-verify="required|captcha" placeholder="图形验证码" autocomplete="off" class="layui-input verification captcha" value="xszg">
+                    <input type="text" name="captcha" lay-verify="required|captcha" placeholder="图形验证码" autocomplete="off" class="layui-input verification captcha" value="" lay-reqText="验证码为空">
                     <div class="captcha-img">
-                        <img id="captchaPic" src="${request.contextPath}/image/captcha.jpg">
+                        <a href="javascript:void(0);" rel="external nofollow" title="点击更换验证码">
+                            <img id="captchaPic" style="" src="" alt="更换验证码" height="36" width="100%">
+                        </a>
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -151,7 +153,6 @@
 
         // 登录过期的时候，跳出ifram框架
         if (top.location != self.location) top.location = self.location;
-        console.log('------------^_^');
         // 粒子线条背景
         $(document).ready(function () {
             $('.layui-container').particleground({
@@ -171,12 +172,14 @@
                     if (result.code === 0) {
                         location.href = '${request.contextPath}/admin'
                     } else {
+                        $("#captchaPic").click();
                         layer.alert(result.msg, {
                             icon: 2
-                        })
+                        });
                     }
                 },
                 error: function (e) {
+                    $("#captchaPic").click();
                     layer.alert(e, {
                         icon: 2
                     })
@@ -185,6 +188,15 @@
 
             return false;
         });
+
+        /**
+         * 获取图形验证码
+         */
+        $('#captchaPic').click(function () {
+            this.src = "${request.contextPath}/verification/code?" + Math.random();
+        });
+
+        $("#captchaPic").click();
     });
 </script>
 </body>

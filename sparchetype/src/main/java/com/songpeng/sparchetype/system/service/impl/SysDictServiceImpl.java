@@ -18,6 +18,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> implements ISysDictService {
 
-	@Autowired
-	private SysDictMapper sysDictMapper;
+    @Autowired
+    private SysDictMapper sysDictMapper;
 }
