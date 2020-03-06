@@ -3,7 +3,6 @@ package com.songpeng.sparchetype.system.controller.admin;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.songpeng.sparchetype.common.BaseController;
 import com.songpeng.sparchetype.common.Result;
 import com.songpeng.sparchetype.system.entity.SysRole;
@@ -30,36 +29,36 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/admin/sys/role")
 public class SysRoleController extends BaseController {
 
-	@Autowired
-	private ISysRoleService sysRoleService;
+    @Autowired
+    private ISysRoleService sysRoleService;
 
-	@GetMapping("/list-ui")
-	public String listUI(Model model) {
-		return "admin/system/role/list";
-	}
+    @GetMapping("/list-ui")
+    public String listUI(Model model) {
+        return "admin/system/role/list";
+    }
 
-	@PostMapping("/page")
-	@ResponseBody
-	public Result page(Page page, SysRolePageReq req) {
-		QueryWrapper qw = new QueryWrapper();
-		qw.orderByDesc(req.getOrderBy());
-		IPage result = sysRoleService.page(page, qw);
-		return Result.success(result);
-	}
+    @PostMapping("/page")
+    @ResponseBody
+    public Result page(SysRolePageReq req) {
+        QueryWrapper qw = new QueryWrapper();
+        qw.orderByDesc(req.getOrderBy());
+        IPage result = sysRoleService.page(req, qw);
+        return Result.success(result);
+    }
 
-	@GetMapping("/add-or-update-ui")
-	public String addOrUpdateUI(Model model, SysRole record) {
-		if (StringUtils.isNotEmpty(record.getId())) {
-			SysRole result = sysRoleService.getById(record.getId());
-			model.addAttribute("result", result);
-		}
-		return "admin/system/role/addOrUpdate";
-	}
+    @GetMapping("/add-or-update-ui")
+    public String addOrUpdateUI(Model model, SysRole record) {
+        if (StringUtils.isNotEmpty(record.getId())) {
+            SysRole result = sysRoleService.getById(record.getId());
+            model.addAttribute("result", result);
+        }
+        return "admin/system/role/addOrUpdate";
+    }
 
-	@PostMapping("/add-or-update")
-	@ResponseBody
-	public Result addOrUpdate(SysRole record) {
-		sysRoleService.saveOrUpdate(record);
-		return Result.success(record.getId());
-	}
+    @PostMapping("/add-or-update")
+    @ResponseBody
+    public Result addOrUpdate(SysRole record) {
+        sysRoleService.saveOrUpdate(record);
+        return Result.success(record.getId());
+    }
 }

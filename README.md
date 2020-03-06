@@ -37,7 +37,13 @@
         * http://www.fontawesome.com.cn/faicons/
 * 后端
     * Hutool 是一个小而全的Java工具类库，通过静态方法封装，降低相关API的学习成本，提高工作效率，使Java拥有函数式语言般的优雅，让Java语言也可以“甜甜的”。
-
+    * 枚举
+        * 公共枚举类：com.songpeng.sparchetype.common.enums.CommonEnum
+        * 不同模块下的枚举：如 com.songpeng.sparchetype.system.enums
+    * 请求参数
+        * 每张表的分页查询参数，严格按照一张表对应一个请求参数对象进行开发，如系统用户分页查询参数：com.songpeng.sparchetype.system.request.SysUserPageReq
+        *     
+    
 #### 安装教程
 
 1. xxxx

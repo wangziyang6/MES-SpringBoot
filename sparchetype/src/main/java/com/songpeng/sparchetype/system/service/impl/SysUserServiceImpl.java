@@ -1,21 +1,15 @@
 package com.songpeng.sparchetype.system.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.songpeng.sparchetype.system.dto.SysMenuDTO;
 import com.songpeng.sparchetype.system.dto.SysRoleDTO;
 import com.songpeng.sparchetype.system.dto.SysUserDTO;
 import com.songpeng.sparchetype.system.entity.SysUser;
-import com.songpeng.sparchetype.system.entity.SysUserRole;
 import com.songpeng.sparchetype.system.mapper.SysUserMapper;
-import com.songpeng.sparchetype.system.request.SysUserPageReq;
 import com.songpeng.sparchetype.system.service.ISysMenuService;
-import com.songpeng.sparchetype.system.service.ISysUserRoleService;
+import com.songpeng.sparchetype.system.service.ISysRoleService;
 import com.songpeng.sparchetype.system.service.ISysUserService;
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,7 +34,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     private ISysMenuService sysMenuService;
 
     @Autowired
-    private ISysUserRoleService sysUserRoleService;
+    private ISysRoleService sysRoleService;
 
     /**
      * 保存
@@ -52,18 +46,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     @Override
     public void save(SysUserDTO record) throws Exception {
         sysUserMapper.insert(record);
-//        rebuild
-        if (ArrayUtils.isNotEmpty(record.getSysRoleIds())) {
-            for (String roleId : record.getSysRoleIds()) {
-                if (StringUtils.isEmpty(roleId)) {
-                    continue;
-                }
-                SysUserRole sysUserRole = new SysUserRole();
-                sysUserRole.setUserId(record.getId());
-                sysUserRole.setRoleId(roleId);
-                sysUserRoleService.save(sysUserRole);
-            }
-        }
+        sysRoleService.rebuild(record);
     }
 
     /**
@@ -76,20 +59,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     @Override
     public void update(SysUserDTO record) throws Exception {
         sysUserMapper.updateById(record);
-        QueryWrapper<SysUserRole> deleteWrapper = new QueryWrapper<>();
-        deleteWrapper.eq("user_id", record.getId());
-        sysUserRoleService.remove(deleteWrapper);
-        if (ArrayUtils.isNotEmpty(record.getSysRoleIds())) {
-            for (String roleId : record.getSysRoleIds()) {
-                if (StringUtils.isEmpty(roleId)) {
-                    continue;
-                }
-                SysUserRole sysUserRole = new SysUserRole();
-                sysUserRole.setUserId(record.getId());
-                sysUserRole.setRoleId(roleId);
-                sysUserRoleService.save(sysUserRole);
-            }
-        }
+        sysRoleService.rebuild(record);
     }
 
     /**

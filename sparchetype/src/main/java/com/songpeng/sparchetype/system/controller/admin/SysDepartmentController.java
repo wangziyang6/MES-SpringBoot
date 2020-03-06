@@ -2,11 +2,11 @@ package com.songpeng.sparchetype.system.controller.admin;
 
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.songpeng.sparchetype.common.BaseController;
 import com.songpeng.sparchetype.common.Result;
 import com.songpeng.sparchetype.system.entity.SysDepartment;
 import com.songpeng.sparchetype.system.entity.SysDict;
+import com.songpeng.sparchetype.system.request.SysDepartmentPageReq;
 import com.songpeng.sparchetype.system.service.ISysDepartmentService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -46,10 +46,12 @@ public class SysDepartmentController extends BaseController {
         return "admin/system/department/list";
     }
 
+    @ApiOperation("系统部门信息分页列表")
+    @ApiImplicitParams({@ApiImplicitParam(name = "page", value = "模型", defaultValue = "模型")})
     @PostMapping("/page")
     @ResponseBody
-    public Result page(Page page) {
-        IPage result = sysDepartmentService.page(page);
+    public Result page(SysDepartmentPageReq req) {
+        IPage result = sysDepartmentService.page(req);
         return Result.success(result);
     }
 
