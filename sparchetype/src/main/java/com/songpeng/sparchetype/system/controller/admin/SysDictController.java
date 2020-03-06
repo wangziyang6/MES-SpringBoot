@@ -2,10 +2,10 @@ package com.songpeng.sparchetype.system.controller.admin;
 
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.songpeng.sparchetype.common.BaseController;
 import com.songpeng.sparchetype.common.Result;
 import com.songpeng.sparchetype.system.entity.SysDict;
+import com.songpeng.sparchetype.system.request.SysDictPageReq;
 import com.songpeng.sparchetype.system.service.ISysDictService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -41,7 +41,7 @@ public class SysDictController extends BaseController {
     private ISysDictService sysDictService;
 
     @ApiOperation("系统字典信息列表UI")
-    @ApiImplicitParams({@ApiImplicitParam(name ="model", value = "模型", defaultValue = "模型")})
+    @ApiImplicitParams({@ApiImplicitParam(name = "model", value = "模型", defaultValue = "模型")})
     @GetMapping("/list-ui")
     public String listUI(Model model) {
         return "admin/system/dict/list";
@@ -49,8 +49,8 @@ public class SysDictController extends BaseController {
 
     @PostMapping("/page")
     @ResponseBody
-    public Result page(Page page) {
-        IPage result = sysDictService.page(page);
+    public Result page(SysDictPageReq req) {
+        IPage result = sysDictService.page(req);
         return Result.success(result);
     }
 

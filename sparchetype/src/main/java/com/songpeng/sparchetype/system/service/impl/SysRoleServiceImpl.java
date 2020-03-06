@@ -2,11 +2,17 @@ package com.songpeng.sparchetype.system.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.songpeng.sparchetype.common.enums.CommonEnum;
 import com.songpeng.sparchetype.system.dto.SysRoleDTO;
+import com.songpeng.sparchetype.system.dto.SysUserDTO;
 import com.songpeng.sparchetype.system.entity.SysRole;
+import com.songpeng.sparchetype.system.entity.SysUserRole;
 import com.songpeng.sparchetype.system.enums.SysRoleEnum;
 import com.songpeng.sparchetype.system.mapper.SysRoleMapper;
 import com.songpeng.sparchetype.system.service.ISysRoleService;
+import com.songpeng.sparchetype.system.service.ISysUserRoleService;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +34,9 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     @Autowired
     private SysRoleMapper sysRoleMapper;
 
+    @Autowired
+    private ISysUserRoleService sysUserRoleService;
+
     /**
      * 根据用户ID获取角色列表信息
      *
@@ -42,7 +51,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
         List<SysRole> sysRoles = sysRoleMapper.listByUserId(userId);
 
         QueryWrapper<SysRole> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("delete", SysRoleEnum.DELETED_NORMAL.getCode());
+        queryWrapper.eq(CommonEnum.FIELD_NAME_IS_DELETED.getCode(), SysRoleEnum.DELETED_NORMAL.getCode());
         List<SysRole> sysRolesAll = sysRoleMapper.selectList(null);
 
         for (SysRole role : sysRolesAll) {
@@ -56,5 +65,31 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
             result.add(roleDTO);
         }
         return result;
+    }
+
+    /**
+     * 重新建立用户角色关系
+     *
+     * @param sysUserDTO 系统用户DTO
+     * @throws Exception 异常
+     */
+    @Override
+    public void rebuild(SysUserDTO sysUserDTO) throws Exception {
+        if (StringUtils.isNotEmpty(sysUserDTO.getId())) {
+            QueryWrapper<SysUserRole> deleteWrapper = new QueryWrapper<>();
+            deleteWrapper.eq("user_id", sysUserDTO.getId());
+            sysUserRoleService.remove(deleteWrapper);
+        }
+        if (ArrayUtils.isNotEmpty(sysUserDTO.getSysRoleIds())) {
+            for (String roleId : sysUserDTO.getSysRoleIds()) {
+                if (StringUtils.isEmpty(roleId)) {
+                    continue;
+                }
+                SysUserRole sysUserRole = new SysUserRole();
+                sysUserRole.setUserId(sysUserDTO.getId());
+                sysUserRole.setRoleId(roleId);
+                sysUserRoleService.save(sysUserRole);
+            }
+        }
     }
 }

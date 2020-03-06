@@ -2,10 +2,10 @@ package com.songpeng.sparchetype.system.controller.admin;
 
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.songpeng.sparchetype.common.BaseController;
 import com.songpeng.sparchetype.common.Result;
 import com.songpeng.sparchetype.system.entity.SysMenu;
+import com.songpeng.sparchetype.system.request.SysMenuPageReq;
 import com.songpeng.sparchetype.system.service.ISysMenuService;
 import com.songpeng.sparchetype.system.vo.TreeVO;
 import io.swagger.annotations.ApiOperation;
@@ -42,8 +42,8 @@ public class SysMenuController extends BaseController {
 
     @PostMapping("/page")
     @ResponseBody
-    public Result page(Page page) {
-        IPage result = sysMenuService.page(page);
+    public Result page(SysMenuPageReq req) {
+        IPage result = sysMenuService.page(req);
         return Result.success(result);
     }
 

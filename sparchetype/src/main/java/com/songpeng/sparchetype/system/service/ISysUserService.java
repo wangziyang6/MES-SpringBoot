@@ -1,10 +1,8 @@
 package com.songpeng.sparchetype.system.service;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.songpeng.sparchetype.system.dto.SysUserDTO;
 import com.songpeng.sparchetype.system.entity.SysUser;
-import com.songpeng.sparchetype.system.request.SysUserPageReq;
 
 /**
  * <p>
