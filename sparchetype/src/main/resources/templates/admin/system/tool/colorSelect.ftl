@@ -29,8 +29,6 @@
         $('.paigusu').paigusu({
             color: '#1926dc',//初始色  支持两种配置方案
         }, function (event, obj) {
-            console.log(event);
-            console.log(obj);
             $(event).css('color', '#' + obj.hex)
         });
     });
@@ -43,8 +41,6 @@
         $('.test-select-color').paigusu({
             color: '#1aa094',//初始色  支持两种配置方案
         }, function (event, obj) {
-            console.log(event);
-            console.log(obj);
             $(event).css('background-color', '#' + obj.hex);
             $('input[name="test_color"]').val('#' + obj.hex);
         });

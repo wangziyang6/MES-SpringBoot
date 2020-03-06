@@ -15,9 +15,8 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedHashMap;
+import javax.servlet.Filter;
+import java.util.*;
 
 /**
  * Shiro 安全管理器配置
@@ -97,6 +96,12 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/blog", "anon");
         filterChainDefinitionMap.put("/blog/open/**", "anon");
         filterChainDefinitionMap.put("/**", "authc");
+
+        Map<String, Filter> filters = new HashMap<>(2);
+        Filter loginFilter = new SpLoginFormFilter();
+        //此处使用自定义的拦截器,autho默认使用FormAuthenticationFilter拦截器
+        filters.put("authc", loginFilter);
+        shiroFilterFactoryBean.setFilters(filters);
         // TODO 测试期间暂时打开
         //filterChainDefinitionMap.put("/**", "anon");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
@@ -142,7 +147,8 @@ public class ShiroConfig {
         RedisManager redisManager = new RedisManager();
         redisManager.setHost(host);
         redisManager.setPort(port);
-        redisManager.setExpire(1800);// 配置缓存过期时间
+        // 配置缓存过期时间
+        redisManager.setExpire(1800);
         //redisManager.setTimeout(1800);
         redisManager.setPassword(password);
         return redisManager;

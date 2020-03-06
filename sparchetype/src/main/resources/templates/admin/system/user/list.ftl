@@ -63,8 +63,6 @@
 
         // 表格及数据初始化
         var tableIns = sptable.render({
-            height: 'full-' + ($('#js-search-form').height() + 40),
-            page: true,
             url: '${request.contextPath}/admin/sys/user/page',
             cols: [
                 [{

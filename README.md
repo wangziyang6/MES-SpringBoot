@@ -1,7 +1,4 @@
-# 上一套框架用的SSM 配置过于麻烦。
-# 现在重新起了一套SpringBoot框架
-
-## 每套框架我都给他起了一个名字（这次的叫做黑科MES，代表黑马、黑科技）
+# sp-archetype
 
 ## 界面展示
 ![](https://s2.ax1x.com/2020/03/06/3b89zD.gif)
@@ -47,9 +44,8 @@ springBoot+mybatis-plus+redis+shiro+hutool+layuimini+jenkins
         * https://gitee.com/whvse/treetable-lay
 
     * 图标库使用
-        * http://www.fontawesome.com.cn/faicons/
-    * 阿里矢量图标
-        * https://www.iconfont.cn/  
+        * http://www.fontawesome.com.cn/faicons
+    * 发送 ajax 示例：[详情](./docs/ajax.md)
 * 后端
     * Hutool 是一个小而全的Java工具类库，通过静态方法封装，降低相关API的学习成本，提高工作效率，使Java拥有函数式语言般的优雅，让Java语言也可以“甜甜的”。
     * 枚举
@@ -58,12 +54,7 @@ springBoot+mybatis-plus+redis+shiro+hutool+layuimini+jenkins
     * 请求参数
         * 每张表的分页查询参数，严格按照一张表对应一个请求参数对象进行开发，如系统用户分页查询参数：com.songpeng.sparchetype.system.request.SysUserPageReq
         *     
-    
-#### 安装教程
 
-1. xxxx
-2. xxxx
-3. xxxx
 
 
 

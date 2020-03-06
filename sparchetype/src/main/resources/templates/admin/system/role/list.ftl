@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>系统角色列表</title>
-    <meta name="Description" content="基于layUI数据表格操作"/>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <#include "${request.contextPath}/common/common.ftl">
 </head>
 <body>
@@ -64,8 +63,6 @@
 
         // 表格及数据初始化
         var tableIns = sptable.render({
-            height: 'full-' + ($('#js-search-form').height() + 40),
-            page: true,
             url: '${request.contextPath}/admin/sys/role/page',
             cols: [
                 [{

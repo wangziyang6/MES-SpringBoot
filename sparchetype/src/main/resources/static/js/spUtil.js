@@ -25,7 +25,7 @@ spUtil.submitForm = function(options) {
             }
         },
         error: function (e) {
-            layer.alert(e, {
+            layer.alert('系统错误，请联系管理员', {
                 icon: 2
             });
         }
@@ -66,8 +66,7 @@ spUtil.ajax = function (options) {
             options.success && options.success(data);
         } else {
             if (!options.errNoTip) {
-                tnComp.operationTip(data.msg, 'error');
-                layer.alert('操作失败，请重试！', {
+                layer.alert(data.msg, {
                     icon: 2
                 });
             }
@@ -75,6 +74,7 @@ spUtil.ajax = function (options) {
     };
     // 失败回调
     opt.error = function (jqXHR, textStatus, errorThrown) {
+        console.log(jqXHR);
         if (_this.sessionCheck(jqXHR, textStatus, errorThrown, options.sessionNoTip)) {
             return;
         }
@@ -111,15 +111,29 @@ spUtil.ajax = function (options) {
 spUtil.sessionCheck = function (jqXHR, textStatus, errorThrown, sessionNoTip) {
     if (jqXHR.status === 401) {
         if (!sessionNoTip) {
-            tnComp.operationTipCallback('登录状态已失效，请重新登录！', 'error', function () {
-                top.location = '/';
+            layer.alert('登录状态已失效，请重新登录！', {
+                icon: 2
+            }, function (index) {
+                top.location = '/login-ui';
             });
         } else {
             // session超时，不提示直接跳转
-            top.location = '/';
+            top.location = '/login-ui';
         }
         return true;
     }
+};
+
+/**
+ * 生成url
+ * @param url url
+ * @returns {string}
+ */
+spUtil.generateUrl = function (url, param) {
+    // 增加时间戳，解决IE浏览器ajax请求缓存问题
+    var p = $.extend({}, {_t: new Date().getTime()}, param || {});
+    var operator = /\?/gi.test(url) ? '&' : '?';
+    return url + operator + $.param(p);
 };
 
 /**
