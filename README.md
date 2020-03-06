@@ -69,3 +69,5 @@ springBoot+mybatis-plus+redis+shiro+hutool+layuimini+jenkins
 
 # 总结
 Q群87652870 欢迎想一起开发的小伙伴。。本人前端太弱，都是自己乱摸索。还请有一个前端选手能一起弄
+
+[![MES-智能制造/MES-Sprongboot](https://gitee.com/wangziyangyang/MES-Sprongboot/widgets/widget_card.svg?colors=393222,ebdfc1,fffae5,d8ca9f,393222,a28b40)](https://gitee.com/wangziyangyang/MES-Sprongboot)
