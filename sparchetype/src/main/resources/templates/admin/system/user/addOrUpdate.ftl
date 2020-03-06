@@ -220,7 +220,6 @@
 
         //监听提交
         form.on('submit(js-submit-filter)', function (data) {
-            console.log(data.field)
             //return false;
 
             spUtil.submitForm({

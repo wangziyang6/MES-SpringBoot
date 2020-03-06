@@ -1,4 +1,4 @@
-# sp-archetype
+### sp-archetype
 
 #### 介绍
 
@@ -34,7 +34,8 @@
     * Layui 树形表格插件
         * https://gitee.com/whvse/treetable-lay
     * 图标库使用
-        * http://www.fontawesome.com.cn/faicons/
+        * http://www.fontawesome.com.cn/faicons
+    * 发送 ajax 示例：[详情](./docs/ajax.md)
 * 后端
     * Hutool 是一个小而全的Java工具类库，通过静态方法封装，降低相关API的学习成本，提高工作效率，使Java拥有函数式语言般的优雅，让Java语言也可以“甜甜的”。
     * 枚举

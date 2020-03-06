@@ -3,18 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>系统菜单列表</title>
-    <meta name="Description" content="基于layUI数据表格操作"/>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <#include "${request.contextPath}/common/common.ftl">
-    <style>
-        .layui-btn:not(.layui-btn-lg ):not(.layui-btn-sm):not(.layui-btn-xs) {
-            height: 34px;
-            line-height: 34px;
-            padding: 0 8px;
-        }
-    </style>
 </head>
 <body>
 <div class="splayui-container">
@@ -22,12 +14,12 @@
         <div>
             <div class="layui-btn-group">
                 <button class="layui-btn" id="js-expand-fold-all">全部展开/折叠</button>
+                <button class="layui-btn" id="testtt">testtt</button>
             </div>
             <table id="js-record-table" class="layui-table" lay-filter="js-record-table-filter"></table>
         </div>
     </div>
 </div>
-</body>
 <!-- 表格操作列 -->
 <script type="text/html" id="js-record-table-bar">
     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
@@ -46,9 +38,6 @@
             treeTable = layui.treeTable,
             splayer = layui.splayer;
 
-        treeData = [];
-        // TODO 封装ajax
-
         // 渲染表格
         var insTb = treeTable.render({
             elem: '#js-record-table',
@@ -60,9 +49,11 @@
             cols: [
                 {type: 'numbers'},
                 {field: 'name', title: '名称', width: 160},
-                {field: 'type', title: '类型', width: 160, templet: function (d) {
-                        return d.icon ? {'0': '目录','1': '菜单','2': '按钮'}[d.type] : '';
-                    }},
+                {
+                    field: 'type', title: '类型', width: 160, templet: function (d) {
+                        return d.icon ? {'0': '目录', '1': '菜单', '2': '按钮'}[d.type] : '';
+                    }
+                },
                 {
                     field: 'icon', title: '图标', width: 160, templet: function (d) {
                         return d.icon ? '<i class="' + d.icon + ' fa-lg"></i>' : '';
@@ -144,4 +135,5 @@
         });
     });
 </script>
+</body>
 </html>

@@ -1,7 +1,7 @@
 package com.songpeng.sparchetype.common.advice;
 
 import com.songpeng.sparchetype.common.Result;
-import com.songpeng.sparchetype.common.util.HttpServletUtils;
+import com.songpeng.sparchetype.common.util.HttpUtil;
 import org.apache.shiro.authz.AuthorizationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +26,7 @@ public class ExceptionAdvice {
     @ResponseBody
     public Object handleAuthorizationException(AuthorizationException e, HttpServletRequest request) {
         log.error(e.getMessage(), e);
-        if (HttpServletUtils.isAjax(request)) {
+        if (HttpUtil.isAjax(request)) {
             return Result.failure("未授权");
         }
         return new ModelAndView("error/403");
@@ -36,7 +36,7 @@ public class ExceptionAdvice {
     @ResponseBody
     public Object handleDuplicateKeyException(DuplicateKeyException e, HttpServletRequest request) {
         log.error(e.getMessage(), e);
-        if (HttpServletUtils.isAjax(request)) {
+        if (HttpUtil.isAjax(request)) {
             return Result.failure("数据重复");
         }
         return new ModelAndView("error/403");
@@ -46,7 +46,7 @@ public class ExceptionAdvice {
     @ResponseBody
     public Object handleException(Exception e, HttpServletRequest request) {
         log.error(e.getMessage(), e);
-        if (HttpServletUtils.isAjax(request)) {
+        if (HttpUtil.isAjax(request)) {
             return Result.failure("服务器错误，请联系管理员");
         }
         return new ModelAndView("error/500");
