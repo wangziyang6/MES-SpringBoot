@@ -37,7 +37,6 @@
             },
             // 如果服务器端返回的不是 {errno:0, data: [...]} 这种格式，可使用该配置
             customInsert: function (insertImg, result, editor) {
-                console.log(result);
                 if (result.code == 1) {
                     var url = result.data.url;
                     url.forEach(function (e) {
@@ -76,7 +75,6 @@
             },
             // 如果服务器端返回的不是 {errno:0, data: [...]} 这种格式，可使用该配置
             customInsert: function (insertImg, result, editor) {
-                console.log(result);
                 if (result.code == 1) {
                     var url = result.data.url;
                     url.forEach(function (e) {

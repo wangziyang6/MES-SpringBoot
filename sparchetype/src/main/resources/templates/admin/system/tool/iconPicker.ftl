@@ -48,11 +48,9 @@
             limit: 12,
             // 点击回调
             click: function (data) {
-                console.log(data);
             },
             // 渲染成功后的回调
             success: function (d) {
-                console.log(d);
             }
         });
         </pre>
@@ -78,11 +76,9 @@
             limit: 12,
             // 点击回调
             click: function (data) {
-                console.log(data);
             },
             // 渲染成功后的回调
             success: function (d) {
-                console.log(d);
             }
         });
 
@@ -99,15 +95,12 @@
             limit: 12,
             // 点击回调
             click: function (data) {
-                console.log(data);
             },
             // 渲染成功后的回调
             success: function (d) {
-                console.log(d);
             }
         });
     });
-
 </script>
 </body>
 </html>

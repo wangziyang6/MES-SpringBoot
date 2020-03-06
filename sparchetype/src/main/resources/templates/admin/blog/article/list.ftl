@@ -48,7 +48,6 @@
         <!--数据表格-->
         <table class="layui-hide" id="articleList" lay-filter="table-filter"></table>
     </div>
-</body>
 <script type="text/html" id="toolbar-top">
   <div class="layui-btn-container">
     <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="getCheckData"><i class="layui-icon">&#xe640;</i>批量删除</button>
@@ -233,4 +232,5 @@
         });
     }
 </script>
+</body>
 </html>

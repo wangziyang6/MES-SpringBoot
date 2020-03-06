@@ -16,6 +16,8 @@ layui.define(['table'], function (exports) {
                 method: 'POST',
                 limits: [10, 20, 50, 100],
                 limit: 10,
+                page: true,
+                height: 'full-' + ($('#js-search-form').height() + 40),
                 request: {
                     pageName: 'current'
                     , limitName: 'size'

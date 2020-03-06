@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <#include "${request.contextPath}/common/common.ftl">
 </head>
-
 <body>
 <div class="splayui-container">
     <div class="splayui-main">

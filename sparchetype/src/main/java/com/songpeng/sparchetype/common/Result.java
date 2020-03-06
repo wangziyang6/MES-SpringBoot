@@ -11,11 +11,11 @@ import java.util.HashMap;
 public class Result<T> extends HashMap<String, Object> {
 
     public static <T> Result<T> success() {
-        return restResult(null, 0, null);
+        return restResult(null, 0, "操作成功");
     }
 
     public static <T> Result<T> success(T data) {
-        return restResult(data, 0, null);
+        return restResult(data, 0, "操作成功");
     }
 
     public static <T> Result<T> success(T data, String msg) {
@@ -23,7 +23,7 @@ public class Result<T> extends HashMap<String, Object> {
     }
 
     public static <T> Result<T> failure() {
-        return restResult(null, 1, null);
+        return restResult(null, 1, "操作失败");
     }
 
     public static <T> Result<T> failure(String msg) {
@@ -31,7 +31,7 @@ public class Result<T> extends HashMap<String, Object> {
     }
 
     public static <T> Result<T> failure(T data) {
-        return restResult(data, 1, null);
+        return restResult(data, 1, "操作失败");
     }
 
     public static <T> Result<T> failure(T data, String msg) {
