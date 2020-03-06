@@ -4,8 +4,8 @@
 ## 每套框架我都给他起了一个名字（这次的叫做黑科MES，代表黑马、黑科技）
 
 ## 界面展示
-<video src="https://files.catbox.moe/ff8pf2.mp4" controls="controls" width="500" height="300">您的浏览器不支持播放该视频！
-</video>
+![](https://s2.ax1x.com/2020/03/06/3b89zD.gif)
+
 
 ### 登录界面 含粒子特效
 ![1](https://s2.ax1x.com/2020/03/06/3bQLqI.png)
