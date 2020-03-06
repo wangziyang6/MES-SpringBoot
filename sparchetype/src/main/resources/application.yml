@@ -10,9 +10,9 @@ spring:
 
 swagger:
   controller: com.songpeng.sparchetype
-  description: 后台管理系统
+  description: MES接口管理
   enable: true
-  license: 宋鹏
+  license: wangziyang
   licenseUrl: https://www.cnblogs.com
   title: Api 测试
   version: 1.0.0
