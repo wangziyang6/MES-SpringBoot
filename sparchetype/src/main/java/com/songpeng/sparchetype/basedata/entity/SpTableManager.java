@@ -37,10 +37,7 @@ public class SpTableManager extends BaseEntity {
      * 授权(多个用逗号分隔，如：sys:menu:list,sys:menu:create)
      */
     private String permission;
-    /**
-     * 表显示的字段
-     */
-    private List<SpTableManagerItem> spTableManagerItems;
+
     /**
      * 获取 表名称
      *
@@ -112,4 +109,6 @@ public class SpTableManager extends BaseEntity {
     public void setPermission(String permission) {
         this.permission = permission;
     }
+
+
 }

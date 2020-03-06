@@ -44,3 +44,22 @@ body {
     font-size: 10px;
     color: #a29c9c;
 }
+
+.box-between {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin-top: 5px;
+    margin-bottom: 3px;
+}
+
+.box-between .box-between-item {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}

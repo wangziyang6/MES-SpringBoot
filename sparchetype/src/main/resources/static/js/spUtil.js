@@ -204,3 +204,13 @@ spUtil.parseQueryString = function (url) {
     }
     return obj;
 };
+
+/**
+ * 生成一个用不重复的ID
+ * 引入时间戳的36微进制，加入随机数长度控制
+ */
+spUtil.genNonDuplicateID = function (randomLength) {
+    var idStr = Date.now().toString(36);
+    idStr += Math.random().toString(36).substr(3, randomLength);
+    return idStr;
+};
