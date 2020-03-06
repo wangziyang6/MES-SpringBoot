@@ -4,17 +4,15 @@ package com.songpeng.sparchetype.basedata.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.songpeng.sparchetype.basedata.request.SpTableManagerReq;
 import com.songpeng.sparchetype.basedata.service.ISpTableManagerService;
-import com.songpeng.sparchetype.blog.controller.admin.BlogController;
+import com.songpeng.sparchetype.common.BaseController;
 import com.songpeng.sparchetype.common.Result;
-import com.songpeng.sparchetype.system.request.SysMenuPageReq;
+import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.stereotype.Controller;
-import com.songpeng.sparchetype.common.BaseController;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -25,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author WangZiYang
  * @since 2020-03-06
  */
+@Api("主数据管理")
 @Controller
 @RequestMapping("/basedata/")
 public class SpTableManagerController extends BaseController {
