@@ -14,7 +14,7 @@
 ![1](https://s2.ax1x.com/2020/03/06/3bQbMd.png)
 
 ### swaggerAPI管理界面
-
+![](https://s2.ax1x.com/2020/03/06/3qC4Yt.png)
 ## 技术架构
 ### springBoot+mybatis-plus+redis+shiro+hutool+layui+jenkins+swagger+freemarker
 实现功能：
