@@ -48,7 +48,7 @@
                     <div class="box-between">
                         <div class="box-between-item">
                             <label class="layui-form-label" style="width: 120px;">
-                                打码规则项(共 <span id="js-item-count">0</span> 项)
+                                表字段(共 <span id="js-item-count">0</span> 项)
                             </label>
                             <div class="layui-input-inline" style="width: 100px;">
                                 <p id="js-process-package-name" style="line-height: 40px;"></p>
@@ -90,7 +90,8 @@
 <script id="js-rule-detail-tpl" type="text/html">
     <div id="js-rule-item-{{d.inputId}}" class="layui-form-item">
         <div class="layui-input-inline" style="width: 20px; margin-right: 15px; margin-left: 75px;">
-            <input type="checkbox" name="delFlag" value="{{d.inputId}}" lay-skin="primary" title="" style="margin-top: 0px;">
+            <input type="checkbox" name="delFlag" value="{{d.inputId}}" lay-skin="primary" title=""
+                   style="margin-top: 0px;">
         </div>
         <div class="layui-input-inline" style="width: 150px;">
             <select id="js-rule-item-type-{{d.inputId}}" data-input-id="{{d.inputId}}" lay-verify="required">
@@ -107,7 +108,7 @@
 
 <!-- 打码规则项input模板 -->
 <script id="js-rule-detail-item-tpl" type="text/html">
-    <label class="layui-form-label layui-form-label-per" style="">名称</label>
+    <label class="layui-form-label layui-form-label-per" style="">是否必填</label>
     <div class="layui-input-inline" style="width: 80px;margin-right: 2px;">
         <select id="js-rule-item-type-{{d.inputId}}" data-input-id="{{d.inputId}}" lay-verify="required">
             <option value="">请选择</option>
@@ -146,7 +147,12 @@
             return false;
         });
 
-        ruleDetailTplData = {ruleItems: [{name: 'wang', value: 1},{name: 'zi', value: 2}]};
+        ruleDetailTplData = {
+            ruleItems: [{name: 'id', value: "id"}, {
+                name: 'username',
+                value: "username"
+            }, {name: 'password', value: "password"}]
+        };
 
         /**
          * 添加规则项事件
