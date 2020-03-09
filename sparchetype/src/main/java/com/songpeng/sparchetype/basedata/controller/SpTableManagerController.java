@@ -4,6 +4,7 @@ package com.songpeng.sparchetype.basedata.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.songpeng.sparchetype.basedata.dto.SpTableManagerDto;
 import com.songpeng.sparchetype.basedata.entity.SpTableManager;
+import com.songpeng.sparchetype.basedata.entity.SpTableManagerItem;
 import com.songpeng.sparchetype.basedata.request.SpTableManagerReq;
 import com.songpeng.sparchetype.basedata.service.ISpTableManagerService;
 import com.songpeng.sparchetype.common.BaseController;
@@ -23,6 +24,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 /**
  * <p>
@@ -90,6 +93,21 @@ public class SpTableManagerController extends BaseController {
     }
 
     /**
+     * 根据表名称查询该表的全部字段
+     *
+     * @param req 请求参数
+     * @return Result 执行结果
+     */
+    @ApiOperation("主根据表名称查询该表的全部字段")
+    @ApiImplicitParams({@ApiImplicitParam(name = "req", value = "表名称", defaultValue = "请求参数")})
+    @PostMapping("/by/tableName")
+    @ResponseBody
+    public Result queryTableFieldByName(SpTableManager req) throws Exception {
+        List<SpTableManagerItem> result = iSpTableManagerService.queryTableFieldByName(req);
+        return Result.success(result);
+    }
+
+    /**
      * 主数据表头修改
      *
      * @param record 平台表对象
@@ -105,4 +123,7 @@ public class SpTableManagerController extends BaseController {
         iSpTableManagerService.saveOrUpdate(spTableManager);
         return Result.success(record.getId());
     }
+
+
 }
+

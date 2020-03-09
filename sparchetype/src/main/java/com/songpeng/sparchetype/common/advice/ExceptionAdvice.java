@@ -47,7 +47,7 @@ public class ExceptionAdvice {
     public Object handleException(Exception e, HttpServletRequest request) {
         log.error(e.getMessage(), e);
         if (HttpUtil.isAjax(request)) {
-            return Result.failure("服务器错误，请联系管理员");
+            return Result.failure(e.getMessage());
         }
         return new ModelAndView("error/500");
     }

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>添加部门</title>
+    <title>添加字段</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -86,20 +86,25 @@
     <div id="js-rule-detail-tpl-view-temp"></div>
 </div>
 
-<!-- 打码规则项模板 -->
+<!-- 字段模板 -->
 <script id="js-rule-detail-tpl" type="text/html">
     <div id="js-rule-item-{{d.inputId}}" class="layui-form-item">
         <div class="layui-input-inline" style="width: 20px; margin-right: 15px; margin-left: 75px;">
             <input type="checkbox" name="delFlag" value="{{d.inputId}}" lay-skin="primary" title=""
                    style="margin-top: 0px;">
         </div>
+        <label class="layui-form-label layui-form-label-per" style="width: 58px !important;">字段名称</label>
         <div class="layui-input-inline" style="width: 150px;">
             <select id="js-rule-item-type-{{d.inputId}}" data-input-id="{{d.inputId}}" lay-verify="required">
                 <option value="">请选择</option>
                 {{# layui.each(d.ruleItems, function(index, item){ }}
-                <option value="{{item.value}}">{{item.name}}</option>
+                <option value="{{item.field}}">{{item.field}}</option>
                 {{# }); }}
             </select>
+        </div>
+        <label class="layui-form-label layui-form-label-per" style="width: 58px !important">显示名称</label>
+        <div class="layui-input-inline" style="width: 100px;margin-right: 2px;">
+            <input id="js-field-desc-{{d.id}}" name="field-desc-{{d.id}}" type="text" class="layui-input" lay-verify="required">
         </div>
         <div id="js-rule-detail-item-tpl-view-{{d.inputId}}">
         </div>
@@ -108,12 +113,12 @@
 
 <!-- 打码规则项input模板 -->
 <script id="js-rule-detail-item-tpl" type="text/html">
-    <label class="layui-form-label layui-form-label-per" style="">是否必填</label>
+    <label class="layui-form-label layui-form-label-per" style="width: 60px;">是否必填</label>
     <div class="layui-input-inline" style="width: 80px;margin-right: 2px;">
-        <select id="js-rule-item-type-{{d.inputId}}" data-input-id="{{d.inputId}}" lay-verify="required">
+        <select id="js-name-{{d.id}}" name="name-{{d.id}}" lay-verify="required">
             <option value="">请选择</option>
-            <option value="0">是</option>
-            <option value="1">否</option>
+            <option value="Y">是</option>
+            <option value="N">否</option>
         </select>
     </div>
 </script>
@@ -122,7 +127,7 @@
         var form = layui.form,
             util = layui.util,
             laytpl = layui.laytpl,
-            ruleDetailTplData,
+            ruleDetailTplData = {},
             ruleItemIdArr = [];
 
         //失去焦点时判断值为空不验证，一旦填写必须验证
@@ -137,7 +142,15 @@
 
         //监听提交
         form.on('submit(js-submit-filter)', function (data) {
-            console.log(data)
+            var requestParmaArr = [];
+            $.each(ruleItemIdArr, function (index, item) {
+                requestParmaArr.push({
+                    field: $('#js-name-' + item).val(),
+                    isdd: $('#js-rule-item-type-' + item).val(),
+                    fieldDesc: $('#js-field-desc-' + item).val()
+                });
+            });
+            data.field.spTableManagerItems = requestParmaArr;
             return false;
             spUtil.submitForm({
                 url: "${request.contextPath}/basedata/manager/add-or-update",
@@ -147,18 +160,57 @@
             return false;
         });
 
-        ruleDetailTplData = {
-            ruleItems: [{name: 'id', value: "id"}, {
-                name: 'username',
-                value: "username"
-            }, {name: 'password', value: "password"}]
-        };
-
         /**
          * 添加规则项事件
          */
         $('#js-rule-item-add').click(function () {
+            if (!$('#js-name').val()) {
+                layer.alert('表名称不能为空', {
+                    icon: 2
+                })
+                return;
+            }
+            ruleDetailTplData.ruleItems = ruleDetailTplData.ruleItems ? ruleDetailTplData.ruleItems : addBindData();
+            if (!ruleDetailTplData.ruleItems) {
+                return;
+            }
             addRuleDetail();
+            updItemCount();
+        });
+
+        function addBindData() {
+            var ajaxResult;
+            spUtil.ajax({
+                url: '${request.contextPath}/basedata/manager/by/tableName',
+                async: false,
+                type: 'POST',
+                // 是否显示 loading
+                showLoading: true,
+                // 是否序列化参数
+                serializable: false,
+                // 参数
+                data: {
+                    tableName: $('#js-name').val()
+                },
+                success: function (data) {
+                    ajaxResult = data.data;
+                }
+            });
+            return ajaxResult;
+        }
+
+        /**
+         * 删除规则项事件
+         */
+        $('#js-rule-item-del').click(function () {
+            //获取表单区域所有值
+            $("input:checkbox[name='delFlag']:checked").each(function (i) {
+                var ruleItemIdArrIndex = ruleItemIdArr.indexOf($(this).val());
+                if (ruleItemIdArrIndex > -1) {
+                    ruleItemIdArr.splice(ruleItemIdArrIndex, 1);
+                }
+                $('#js-rule-item-' + $(this).val()).remove();
+            });
             updItemCount();
         });
 
@@ -173,7 +225,6 @@
             });
 
             var inputId = spUtil.genNonDuplicateID();
-            console.log(inputId)
             ruleDetailTplData.inputId = inputId;
             ruleItemIdArr.push(inputId);
             var getTpl = document.getElementById('js-rule-detail-tpl').innerHTML,
@@ -199,7 +250,7 @@
             // 动态创建打码规则项input
             var getTpl = document.getElementById('js-rule-detail-item-tpl').innerHTML,
                 tplView = document.getElementById('js-rule-detail-item-tpl-view-' + inputId);
-            laytpl(getTpl).render({inputId: inputId}, function (html) {
+            laytpl(getTpl).render({id: inputId}, function (html) {
                 tplView.innerHTML = html;
             });
         }

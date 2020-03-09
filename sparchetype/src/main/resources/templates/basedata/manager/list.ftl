@@ -141,7 +141,7 @@
             if (obj.event === 'add') {
                 var index = splayer.open({
                     title: '添加',
-                    area: ['90%', '90%'],
+                    area: ['60%', '90%'],
                     content: '${request.contextPath}/basedata/manager/add-or-update-ui'
                 });
             }
