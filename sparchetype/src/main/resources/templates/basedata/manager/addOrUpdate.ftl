@@ -94,8 +94,9 @@
                    style="margin-top: 0px;">
         </div>
         <label class="layui-form-label layui-form-label-per" style="width: 58px !important;">字段名称</label>
-        <div class="layui-input-inline" style="width: 150px;">
-            <select id="js-rule-item-type-{{d.inputId}}" data-input-id="{{d.inputId}}" lay-verify="required">
+        <div class="layui-input-inline" style="width: 150px; " >
+            <select id="js-rule-item-type-{{d.inputId}}" data-input-id="{{d.inputId}}" lay-verify="required"
+                    lay-filter="js-rule-item-type-filter">
                 <option value="">请选择</option>
                 {{# layui.each(d.ruleItems, function(index, item){ }}
                 <option value="{{item.field}}">{{item.field}}</option>
@@ -104,7 +105,8 @@
         </div>
         <label class="layui-form-label layui-form-label-per" style="width: 58px !important">显示名称</label>
         <div class="layui-input-inline" style="width: 100px;margin-right: 2px;">
-            <input id="js-field-desc-{{d.id}}" name="field-desc-{{d.id}}" type="text" class="layui-input" lay-verify="required">
+            <input id="js-field-desc-{{d.id}}" name="field-desc-{{d.id}}" type="text" class="layui-input"
+                   lay-verify="required">
         </div>
         <div id="js-rule-detail-item-tpl-view-{{d.inputId}}">
         </div>
@@ -127,6 +129,7 @@
         var form = layui.form,
             util = layui.util,
             laytpl = layui.laytpl,
+            ruleDetailTplDataCopy = {},
             ruleDetailTplData = {},
             ruleItemIdArr = [];
 
@@ -145,12 +148,13 @@
             var requestParmaArr = [];
             $.each(ruleItemIdArr, function (index, item) {
                 requestParmaArr.push({
-                    field: $('#js-name-' + item).val(),
+                    field: $('#js-name-'+ item).val(),
                     isdd: $('#js-rule-item-type-' + item).val(),
                     fieldDesc: $('#js-field-desc-' + item).val()
                 });
             });
             data.field.spTableManagerItems = requestParmaArr;
+            console.log(requestParmaArr);
             return false;
             spUtil.submitForm({
                 url: "${request.contextPath}/basedata/manager/add-or-update",
@@ -160,6 +164,32 @@
             return false;
         });
 
+        /**
+         * 监听 过滤列表数据select
+         */
+        form.on('select(js-rule-item-type-filter)', function (data) {
+            var requestArr = [];
+            $.each(ruleItemIdArr, function (index, item) {
+                requestArr.push($('#js-rule-item-type-'+ item).val());
+            });
+            //初始化数据
+            ruleDetailTplData.ruleItems = [];
+
+            $.each(ruleDetailTplDataCopy.ruleItems, function (index, item) {
+              console.log( requestArr.indexOf(item.field)) ;
+                if (requestArr.indexOf(item.field)<0) {
+                    ruleDetailTplData.ruleItems.push(item);
+                }
+            });
+            form.render();
+        });
+
+
+        function fieldDistinct()
+        {
+
+            console.log('1')
+        }
         /**
          * 添加规则项事件
          */
@@ -171,6 +201,7 @@
                 return;
             }
             ruleDetailTplData.ruleItems = ruleDetailTplData.ruleItems ? ruleDetailTplData.ruleItems : addBindData();
+
             if (!ruleDetailTplData.ruleItems) {
                 return;
             }
@@ -178,6 +209,9 @@
             updItemCount();
         });
 
+        /**
+         *初始化表数据
+         */
         function addBindData() {
             var ajaxResult;
             spUtil.ajax({
@@ -194,6 +228,7 @@
                 },
                 success: function (data) {
                     ajaxResult = data.data;
+                    ruleDetailTplDataCopy.ruleItems = data.data;
                 }
             });
             return ajaxResult;
@@ -262,6 +297,7 @@
             $('#js-item-count').html(ruleItemIdArr.length);
         }
     });
+
 </script>
 </body>
 </html>
