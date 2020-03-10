@@ -1,11 +1,13 @@
 package com.songpeng.sparchetype.basedata.controller;
 
 
+import cn.hutool.core.collection.CollectionUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.songpeng.sparchetype.basedata.dto.SpTableManagerDto;
 import com.songpeng.sparchetype.basedata.entity.SpTableManager;
 import com.songpeng.sparchetype.basedata.entity.SpTableManagerItem;
 import com.songpeng.sparchetype.basedata.request.SpTableManagerReq;
+import com.songpeng.sparchetype.basedata.service.ISpTableManagerItemService;
 import com.songpeng.sparchetype.basedata.service.ISpTableManagerService;
 import com.songpeng.sparchetype.common.BaseController;
 import com.songpeng.sparchetype.common.Result;
@@ -20,10 +22,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -44,6 +43,11 @@ public class SpTableManagerController extends BaseController {
      */
     @Autowired
     public ISpTableManagerService iSpTableManagerService;
+    /**
+     * 字段明细表
+     */
+    @Autowired
+    public ISpTableManagerItemService iSpTableManagerItemService;
     Logger log = LoggerFactory.getLogger(SpTableManagerController.class);
 
     /**
@@ -116,10 +120,16 @@ public class SpTableManagerController extends BaseController {
     @ApiOperation("主数据表头修改")
     @PostMapping("/add-or-update")
     @ResponseBody
-    public Result addOrUpdate(SpTableManagerDto record) {
+    public Result addOrUpdate(@RequestBody SpTableManagerDto record) {
         //分解DTO 转化实体类
         SpTableManager spTableManager = new SpTableManager();
         BeanUtils.copyProperties(record, spTableManager);
+        List<SpTableManagerItem> spTableManagerItems = record.getSpTableManagerItems();
+        if (CollectionUtil.isEmpty(spTableManagerItems)) {
+            Result.failure("显示的，详细的字段不可以为空");
+        } else {
+            iSpTableManagerItemService.saveOrUpdateBatch(spTableManagerItems);
+        }
         iSpTableManagerService.saveOrUpdate(spTableManager);
         return Result.success(record.getId());
     }

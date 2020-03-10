@@ -5,7 +5,7 @@ import com.songpeng.sparchetype.common.BaseEntity;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author WangZiYang
@@ -35,7 +35,10 @@ public class SpTableManagerItem extends BaseEntity {
      * 排序
      */
     private Integer sortNum;
-
+    /**
+     * 是否必填
+     */
+    private String mustFill;
 
     /**
      * 获取 表名称id
@@ -107,5 +110,23 @@ public class SpTableManagerItem extends BaseEntity {
      */
     public void setSortNum(Integer sortNum) {
         this.sortNum = sortNum;
+    }
+
+    /**
+     * 获取 是否必填
+     *
+     * @return mustFill 是否必填
+     */
+    public String getMustFill() {
+        return this.mustFill;
+    }
+
+    /**
+     * 设置 是否必填
+     *
+     * @param mustFill 是否必填
+     */
+    public void setMustFill(String mustFill) {
+        this.mustFill = mustFill;
     }
 }

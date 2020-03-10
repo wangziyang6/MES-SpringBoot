@@ -15,6 +15,14 @@
         <form class="layui-form splayui-form">
             <div class="layui-row">
                 <div class="layui-col-xs6 layui-col-sm6 layui-col-md6">
+
+                    <div class="layui-form-item">
+                        <div class="layui-input-inline layui-hide">
+                            <input type="text" id="js-table-id"  lay-verify="required" autocomplete="off"
+                                   class="layui-input" value="${result.id}">
+                        </div>
+                    </div>
+
                     <div class="layui-form-item">
                         <label for="js-name" class="layui-form-label sp-required">表名称
                         </label>
@@ -94,7 +102,7 @@
                    style="margin-top: 0px;">
         </div>
         <label class="layui-form-label layui-form-label-per" style="width: 58px !important;">字段名称</label>
-        <div class="layui-input-inline" style="width: 150px; " >
+        <div class="layui-input-inline" style="width: 150px; ">
             <select id="js-rule-item-type-{{d.inputId}}" data-input-id="{{d.inputId}}" lay-verify="required"
                     lay-filter="js-rule-item-type-filter">
                 <option value="">请选择</option>
@@ -105,7 +113,7 @@
         </div>
         <label class="layui-form-label layui-form-label-per" style="width: 58px !important">显示名称</label>
         <div class="layui-input-inline" style="width: 100px;margin-right: 2px;">
-            <input id="js-field-desc-{{d.id}}" name="field-desc-{{d.id}}" type="text" class="layui-input"
+            <input id="js-field-desc-{{d.inputId}}" type="text" class="layui-input"
                    lay-verify="required">
         </div>
         <div id="js-rule-detail-item-tpl-view-{{d.inputId}}">
@@ -117,7 +125,7 @@
 <script id="js-rule-detail-item-tpl" type="text/html">
     <label class="layui-form-label layui-form-label-per" style="width: 60px;">是否必填</label>
     <div class="layui-input-inline" style="width: 80px;margin-right: 2px;">
-        <select id="js-name-{{d.id}}" name="name-{{d.id}}" lay-verify="required">
+        <select id="js-must-fill-{{d.id}}"  lay-verify="required">
             <option value="">请选择</option>
             <option value="Y">是</option>
             <option value="N">否</option>
@@ -146,51 +154,27 @@
         //监听提交
         form.on('submit(js-submit-filter)', function (data) {
             var requestParmaArr = [];
+            var sort = 1;
             $.each(ruleItemIdArr, function (index, item) {
                 requestParmaArr.push({
-                    field: $('#js-name-'+ item).val(),
-                    isdd: $('#js-rule-item-type-' + item).val(),
-                    fieldDesc: $('#js-field-desc-' + item).val()
+                    mustFill: $('#js-must-fill-' + item).val(),
+                    field: $('#js-rule-item-type-' + item).val(),
+                    fieldDesc: $('#js-field-desc-' + item).val(),
+                    sortNum: sort++,
+                    tableNameId: $('#js-table-id').val()
                 });
             });
-            data.field.spTableManagerItems = requestParmaArr;
             console.log(requestParmaArr);
-            return false;
+            data.field.spTableManagerItems = requestParmaArr;
             spUtil.submitForm({
+                contentType: 'application/json',
                 url: "${request.contextPath}/basedata/manager/add-or-update",
-                data: data.field
+                data: JSON.stringify(data.field)
             });
-
             return false;
         });
 
-        /**
-         * 监听 过滤列表数据select
-         */
-       function distinctSelect() {
-            var requestArr = [];
-            $.each(ruleItemIdArr, function (index, item) {
-                requestArr.push($('#js-rule-item-type-'+ item).val());
-            });
-            //初始化数据
 
-            ruleDetailTplData.ruleItems = ruleDetailTplDataCopy.ruleItems;
-            $.each(ruleDetailTplDataCopy.ruleItems, function (index, item) {
-                if (requestArr.indexOf(item.field)>-1) {
-                    console.log('1');
-                    ruleDetailTplData.ruleItems.splice(index,1);
-                }
-            });
-            console.log( ruleDetailTplData.ruleItems );
-
-        };
-
-
-        function fieldDistinct()
-        {
-
-            console.log('1')
-        }
         /**
          * 添加规则项事件
          */
@@ -282,8 +266,25 @@
             return inputId;
         }
 
+        /**
+         * 监听 过滤列表数据select
+         */
+        function distinctSelect() {
+            var requestArr = [];
+            $.each(ruleItemIdArr, function (index, item) {
+                requestArr.push($('#js-rule-item-type-' + item).val());
+            });
+            //初始化数据
+
+            ruleDetailTplData.ruleItems = ruleDetailTplDataCopy.ruleItems;
+            $.each(ruleDetailTplDataCopy.ruleItems, function (index, item) {
+                if (requestArr.indexOf(item.field) > -1) {
+                    ruleDetailTplData.ruleItems.splice(index, 1);
+                }
+            });
+        };
+
         function createItemDetail(inputId) {
-            // 动态创建打码规则项input
             var getTpl = document.getElementById('js-rule-detail-item-tpl').innerHTML,
                 tplView = document.getElementById('js-rule-detail-item-tpl-view-' + inputId);
             laytpl(getTpl).render({id: inputId}, function (html) {
