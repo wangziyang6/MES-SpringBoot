@@ -128,9 +128,17 @@ public class SpTableManagerController extends BaseController {
         if (CollectionUtil.isEmpty(spTableManagerItems)) {
             Result.failure("显示的，详细的字段不可以为空");
         } else {
+            iSpTableManagerService.saveOrUpdate(spTableManager);
+            //先删除已有的数据，然后插入
+            if (StringUtils.isNotEmpty(record.getId())) {
+                iSpTableManagerItemService.deleteItemBytableNameId(record.getId());
+            } else {
+                for (SpTableManagerItem spTableManagerItem : spTableManagerItems) {
+                    spTableManagerItem.setTableNameId(spTableManager.getId());
+                }
+            }
             iSpTableManagerItemService.saveOrUpdateBatch(spTableManagerItems);
         }
-        iSpTableManagerService.saveOrUpdate(spTableManager);
         return Result.success(record.getId());
     }
 

@@ -1,7 +1,6 @@
 package com.songpeng.sparchetype.basedata.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.songpeng.sparchetype.basedata.dto.SpTableManagerDto;
 import com.songpeng.sparchetype.basedata.entity.SpTableManager;
 import com.songpeng.sparchetype.basedata.entity.SpTableManagerItem;
 

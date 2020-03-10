@@ -18,7 +18,7 @@
 
                     <div class="layui-form-item">
                         <div class="layui-input-inline layui-hide">
-                            <input type="text" id="js-table-id"  lay-verify="required" autocomplete="off"
+                            <input type="text" id="js-table-id"  autocomplete="off"
                                    class="layui-input" value="${result.id}">
                         </div>
                     </div>
@@ -125,7 +125,7 @@
 <script id="js-rule-detail-item-tpl" type="text/html">
     <label class="layui-form-label layui-form-label-per" style="width: 60px;">是否必填</label>
     <div class="layui-input-inline" style="width: 80px;margin-right: 2px;">
-        <select id="js-must-fill-{{d.id}}"  lay-verify="required">
+        <select id="js-must-fill-{{d.id}}" lay-verify="required">
             <option value="">请选择</option>
             <option value="Y">是</option>
             <option value="N">否</option>
@@ -140,7 +140,11 @@
             ruleDetailTplDataCopy = {},
             ruleDetailTplData = {},
             ruleItemIdArr = [];
-
+        //数据回显操作 存在主表ID时候，重新绘制
+        if ($('#js-table-id').val()) {
+            ruleDetailTplData.ruleItems = ruleDetailTplData.ruleItems ? ruleDetailTplData.ruleItems : addBindData();
+            ruleDetailRow();
+        }
         //失去焦点时判断值为空不验证，一旦填写必须验证
         $('input[name="email"]').blur(function () {
             //这里是失去焦点时的事件
@@ -164,7 +168,6 @@
                     tableNameId: $('#js-table-id').val()
                 });
             });
-            console.log(requestParmaArr);
             data.field.spTableManagerItems = requestParmaArr;
             spUtil.submitForm({
                 contentType: 'application/json',
@@ -189,13 +192,13 @@
             if (!ruleDetailTplData.ruleItems) {
                 return;
             }
-            distinctSelect();
+          //  distinctSelect();
             addRuleDetail();
             updItemCount();
         });
 
         /**
-         *初始化表数据
+         *初始化表信息数据
          */
         function addBindData() {
             var ajaxResult;
@@ -297,6 +300,44 @@
          */
         function updItemCount() {
             $('#js-item-count').html(ruleItemIdArr.length);
+        }
+
+        function ruleDetailRow() {
+            // layer.load() 在使用异步请求时起效，如：ajax异步请求、定时器，
+            // 但是用ES6的promise不生效，所以此处采用定时器实现
+            window.setTimeout(function () {
+                var ruleDetailRows;
+                spUtil.ajax({
+                    url: '${request.contextPath}/basedata/manager/item/by/tableNameId',
+                    async: false,
+                    type: 'POST',
+                    // 是否显示 loading
+                    showLoading: true,
+                    // 是否序列化参数
+                    serializable: false,
+                    // 参数
+                    data: {
+                        tableNameId: $('#js-table-id').val()
+                    },
+                    success: function (data) {
+                        ruleDetailRows = data.data;
+                    }
+                });
+                //打码规则项渲染赋值
+                console.log(ruleDetailRows);
+                $.each(ruleDetailRows, function (index, item) {
+                    var inputId = addRuleDetail();
+                    //必填项
+                    $('#js-must-fill-' + inputId).val(item.mustFill);
+                    //字段名称
+                    console.log(item.field);
+                    $('#js-rule-item-type-' + inputId).val(item.field);
+                    //字段详细名称
+                    $('#js-field-desc-' + inputId).val(item.fieldDesc);
+                });
+                form.render();
+                updItemCount();
+            }, 100);
         }
     });
 

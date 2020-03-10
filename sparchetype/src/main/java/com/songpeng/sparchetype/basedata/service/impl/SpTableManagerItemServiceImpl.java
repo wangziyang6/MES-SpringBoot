@@ -1,14 +1,17 @@
 package com.songpeng.sparchetype.basedata.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.songpeng.sparchetype.basedata.entity.SpTableManagerItem;
 import com.songpeng.sparchetype.basedata.mapper.SpTableManagerItemMapper;
 import com.songpeng.sparchetype.basedata.service.ISpTableManagerItemService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author WangZiYang
@@ -16,5 +19,31 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SpTableManagerItemServiceImpl extends ServiceImpl<SpTableManagerItemMapper, SpTableManagerItem> implements ISpTableManagerItemService {
+    /**
+     * 表明细mapper
+     */
+    @Autowired
+    public SpTableManagerItemMapper spTableManagerItemMapper;
 
+    /**
+     * 根据主表ID 查询该表的明细
+     *
+     * @param tableNameId 关联主表ID
+     * @return 表字段明细
+     */
+    @Override
+    public List<SpTableManagerItem> queryItemBytableNameId(String tableNameId) {
+        return spTableManagerItemMapper.queryItemBytableNameId(tableNameId);
+    }
+
+
+    /**
+     * 根据主表ID 删除明细
+     *
+     * @param tableNameId 关联主表ID
+     */
+    @Override
+    public void deleteItemBytableNameId(String tableNameId) {
+        spTableManagerItemMapper.deleteItemBytableNameId(tableNameId);
+    }
 }
