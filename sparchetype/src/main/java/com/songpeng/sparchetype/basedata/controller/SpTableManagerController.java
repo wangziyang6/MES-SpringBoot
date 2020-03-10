@@ -27,9 +27,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * <p>
- * 前端控制器
- * </p>
+ *
+ * 主数据表头控制器
+ *
  *
  * @author WangZiYang
  * @since 2020-03-06
@@ -112,9 +112,9 @@ public class SpTableManagerController extends BaseController {
     }
 
     /**
-     * 主数据表头修改
+     * 主数据表头修改+表字段明细修改
      *
-     * @param record 平台表对象
+     * @param record 平台表对象，表明细集合
      * @return 执行结果
      */
     @ApiOperation("主数据表头修改")
@@ -142,6 +142,20 @@ public class SpTableManagerController extends BaseController {
         return Result.success(record.getId());
     }
 
-
+    /**
+     * 级联删除主表头+明细
+     *
+     * @param req 请求参数
+     * @return Result 执行结果
+     */
+    @ApiOperation("级联删除主表头+明细")
+    @ApiImplicitParams({@ApiImplicitParam(name = "req", value = "表信息", defaultValue = "表信息")})
+    @PostMapping("delete/by/tableNameId")
+    @ResponseBody
+    public Result deleteByTableNameId(SpTableManager req) throws Exception {
+        iSpTableManagerService.removeById(req.getId());
+        iSpTableManagerItemService.deleteItemBytableNameId(req.getId());
+        return Result.success();
+    }
 }
 

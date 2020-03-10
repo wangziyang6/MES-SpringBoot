@@ -7,9 +7,9 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * <p>
- * Mapper 接口
- * </p>
+ *
+ * 主数据表明细Mapper 接口
+ *
  *
  * @author WangZiYang
  * @since 2020-03-06

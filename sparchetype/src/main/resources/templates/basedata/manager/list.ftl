@@ -70,18 +70,18 @@
                 }, {
                     field: 'tableDesc', title: '业务描述', width: 130
                 }, {
-                        field: 'createUsername', title: '创建用户', width: 130
+                    field: 'createUsername', title: '创建用户', width: 130
                 }, {
-                        field: 'createTime', title: '创建时间', width: 160
+                    field: 'createTime', title: '创建时间', width: 160
                 }, {
-                        field: 'updateUsername', title: '更改用户', width: 130
+                    field: 'updateUsername', title: '更改用户', width: 130
                 }, {
-                        field: 'updateTime', title: '更改时间', width: 160
+                    field: 'updateTime', title: '更改时间', width: 160
                 }, {
-                        field: 'isDeleted', title: '状态', width: 90, templet: function (records) {
-                            return spConfig.isDeletedDict[records.isDeleted];
-                        }
-                    }, {
+                    field: 'isDeleted', title: '状态', width: 90, templet: function (records) {
+                        return spConfig.isDeletedDict[records.isDeleted];
+                    }
+                }, {
                     fixed: 'right',
                     field: 'operate',
                     title: '操作',
@@ -163,12 +163,28 @@
                     content: '${request.contextPath}/basedata/manager/add-or-update-ui'
                 });
             }
-
             // 删除
             if (obj.event === 'delete') {
                 layer.confirm('确认要删除吗？', function (index) {
-                    obj.del();
-                    layer.close(index);
+                    spUtil.ajax({
+                        url: '${request.contextPath}/basedata/manager/delete/by/tableNameId',
+                        async: false,
+                        type: 'POST',
+                        // 是否显示 loading
+                        showLoading: true,
+                        // 是否序列化参数
+                        serializable: false,
+                        // 参数
+                        data: {
+                            id : data.id
+                        },
+                        success: function (data) {
+                            tableIns.reload();
+                            layer.close(index);
+                        },
+                        error: function () {
+                        }
+                    });
                 });
             }
         });

@@ -18,9 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 /**
- * <p>
- * 前端控制器
- * </p>
+ * 基础主数据，表明细控制器
  *
  * @author WangZiYang
  * @since 2020-03-06

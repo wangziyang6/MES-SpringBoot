@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * <p>
- * 服务实现类
+ * 主数据表明细服务实现类
  * </p>
  *
  * @author WangZiYang

@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * <p>
- * 服务类
+ * 主数据表明细服务类
  * </p>
  *
  * @author WangZiYang

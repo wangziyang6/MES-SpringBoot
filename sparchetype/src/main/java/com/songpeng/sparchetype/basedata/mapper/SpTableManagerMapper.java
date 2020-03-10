@@ -7,9 +7,7 @@ import com.songpeng.sparchetype.basedata.entity.SpTableManagerItem;
 import java.util.List;
 
 /**
- * <p>
- * Mapper 接口
- * </p>
+ * 主数据表头Mapper 接口
  *
  * @author WangZiYang
  * @since 2020-03-06
