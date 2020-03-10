@@ -3,12 +3,11 @@
 ## 界面展示
 ![](https://s2.ax1x.com/2020/03/06/3b89zD.gif)
 
-
 ### 登录界面 含粒子特效
 ![1](https://s2.ax1x.com/2020/03/06/3bQLqI.png)
 
 ### 主菜单界面
-![1](https://s2.ax1x.com/2020/03/06/3bQqsA.png)
+![1](https://s2.ax1x.com/2020/03/10/8CydC4.png)
 
 ### 功能界面
 ![1](https://s2.ax1x.com/2020/03/06/3bQbMd.png)
@@ -18,7 +17,6 @@
 ## 技术架构
 ### springBoot+mybatis-plus+redis+shiro+hutool+layui+jenkins+swagger+freemarker
 实现功能：
-
 1. 用户管理：用户是系统操作者，该功能主要完成系统用户配置。
 2. 主数据管理：动态配置表以及所需要显示的字段，只需要简单维护既可以完成增删改成操作。
 3. 赋码管理：动态配置码规则项。例如6位年月日 3位，流水号，随机号。根据用户配置自动创建SN。
@@ -53,8 +51,6 @@
         * 不同模块下的枚举：如 com.songpeng.sparchetype.system.enums
     * 请求参数
         * 每张表的分页查询参数，严格按照一张表对应一个请求参数对象进行开发，如系统用户分页查询参数：com.songpeng.sparchetype.system.request.SysUserPageReq
-            
-
 # 总结
 Q群87652870 欢迎想一起开发的小伙伴。。本人前端太弱，都是自己乱摸索。还请有一个前端选手能一起弄
 

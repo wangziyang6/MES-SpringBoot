@@ -128,7 +128,7 @@
                     <label class="layui-icon layui-icon-vercode" for="captcha"></label>
                     <input type="text" name="captcha" lay-verify="required|captcha" placeholder="图形验证码" autocomplete="off" class="layui-input verification captcha" >
                     <div class="captcha-img">
-                        <img id="captchaPic" src="${request.contextPath}/image/captcha.jpg">
+                        <img id="captchaPic" >
                     </div>
                 </div>
                 <div class="layui-form-item">

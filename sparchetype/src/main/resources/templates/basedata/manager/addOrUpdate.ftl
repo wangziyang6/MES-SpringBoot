@@ -167,22 +167,23 @@
         /**
          * 监听 过滤列表数据select
          */
-        form.on('select(js-rule-item-type-filter)', function (data) {
+       function distinctSelect() {
             var requestArr = [];
             $.each(ruleItemIdArr, function (index, item) {
                 requestArr.push($('#js-rule-item-type-'+ item).val());
             });
             //初始化数据
-            ruleDetailTplData.ruleItems = [];
 
+            ruleDetailTplData.ruleItems = ruleDetailTplDataCopy.ruleItems;
             $.each(ruleDetailTplDataCopy.ruleItems, function (index, item) {
-              console.log( requestArr.indexOf(item.field)) ;
-                if (requestArr.indexOf(item.field)<0) {
-                    ruleDetailTplData.ruleItems.push(item);
+                if (requestArr.indexOf(item.field)>-1) {
+                    console.log('1');
+                    ruleDetailTplData.ruleItems.splice(index,1);
                 }
             });
-            form.render();
-        });
+            console.log( ruleDetailTplData.ruleItems );
+
+        };
 
 
         function fieldDistinct()
@@ -201,10 +202,10 @@
                 return;
             }
             ruleDetailTplData.ruleItems = ruleDetailTplData.ruleItems ? ruleDetailTplData.ruleItems : addBindData();
-
             if (!ruleDetailTplData.ruleItems) {
                 return;
             }
+            distinctSelect();
             addRuleDetail();
             updItemCount();
         });
