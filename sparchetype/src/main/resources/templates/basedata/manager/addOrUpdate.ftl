@@ -324,13 +324,11 @@
                     }
                 });
                 //打码规则项渲染赋值
-                console.log(ruleDetailRows);
                 $.each(ruleDetailRows, function (index, item) {
                     var inputId = addRuleDetail();
                     //必填项
                     $('#js-must-fill-' + inputId).val(item.mustFill);
                     //字段名称
-                    console.log(item.field);
                     $('#js-rule-item-type-' + inputId).val(item.field);
                     //字段详细名称
                     $('#js-field-desc-' + inputId).val(item.fieldDesc);

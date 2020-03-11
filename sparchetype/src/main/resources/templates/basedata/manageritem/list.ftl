@@ -11,7 +11,7 @@
 <body>
 <div class="splayui-container">
     <div class="layui-row">
-        <div class="layui-col-md3 layui-bg-gray" >
+        <div class="layui-col-md3 layui-bg-gray">
             <table id="js-table-name" lay-filter="js-table-name-filter"></table>
         </div>
         <div class="layui-col-md9">
@@ -22,7 +22,8 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">表名称</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="tableName" autocomplete="off" class="layui-input">
+                                <input id="js-search-test" type="text" name="tableName" autocomplete="off"
+                                       readonly="true" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
@@ -65,44 +66,11 @@
             table = layui.table,
             splayer = layui.splayer,
             sptable = layui.sptable;
+        colsArr = [];
+        ruleDetailRows = {};
 
-        // 表格及数据初始化
-        var tableIns = sptable.render({
-            url: '${request.contextPath}/basedata/manager/page',
-            cols: [
-                [{
-                    type: 'checkbox'
-                }, {
-                    field: 'tableName', title: '表名称', width: 120
-                }, {
-                    field: 'tableDesc', title: '业务描述', width: 130
-                }, {
-                    field: 'createUsername', title: '创建用户', width: 130
-                }, {
-                    field: 'createTime', title: '创建时间', width: 160
-                }, {
-                    field: 'updateUsername', title: '更改用户', width: 130
-                }, {
-                    field: 'updateTime', title: '更改时间', width: 160
-                }, {
-                    field: 'isDeleted', title: '状态', width: 90, templet: function (records) {
-                        return spConfig.isDeletedDict[records.isDeleted];
-                    }
-                }, {
-                    fixed: 'right',
-                    field: 'operate',
-                    title: '操作',
-                    toolbar: '#js-record-table-toolbar-right',
-                    unresize: true,
-                    width: 150
-                }]
-            ],
-            done: function (res, curr, count) {
-            }
-        });
-
-        // 表格及数据初始化
-        var tableIns = sptable.render({
+        // 左侧表格及数据初始化
+        var tableName = sptable.render({
             toolbar: '',
             elem: '#js-table-name',//指定原始表格元素选择器（推荐id选择器）
             height: 'full-24',
@@ -118,6 +86,58 @@
             }
         });
 
+        //监听行单击事件 初始化表明细
+        table.on('row(js-table-name-filter)', function (obj) {
+            $('#js-search-test').val(obj.data.tableDesc);
+            //初始化数据
+            colsArr = [];
+            //动态拼接需要表格明细需要显示的列头
+            buildcol(obj.data.id);
+            // 表格数据明细初始化
+            var tableIns = sptable.render({
+                url: '${request.contextPath}/common/query/page',
+                cols: [colsArr],
+                where: { tableNameId: obj.data.id,tableName :obj.data.tableName},
+                done: function (res, curr, count) {
+                }
+            });
+        });
+
+        //动态拼接需要表格需要显示的列头
+        function buildcol(id) {
+            // 1. ajax 获取表头数据
+            spUtil.ajax({
+                url: '${request.contextPath}/basedata/manager/item/by/tableNameId',
+                async: false,
+                type: 'POST',
+                // 是否显示 loading
+                showLoading: true,
+                // 是否序列化参数
+                serializable: false,
+                // 参数
+                data: {
+                    tableNameId: id
+                },
+                success: function (data) {
+                    ruleDetailRows = data.data;
+                }
+            });
+            // 2. 构造layui表头结构
+            $.each(ruleDetailRows, function (index, item) {
+                colsArr.push({
+                    field: item.field, title: item.fieldDesc
+                })
+            });
+            colsArr.push({
+                fixed: 'right',
+                field: 'operate',
+                title: '操作',
+                toolbar: '#js-record-table-toolbar-right',
+                unresize: true,
+                width: 150
+            });
+        }
+
         /*
          * 数据表格中form表单元素是动态插入,所以需要更新渲染下
          * http://www.layui.com/doc/modules/form.html#render
@@ -125,7 +145,6 @@
         $(function () {
             form.render();
         });
-
         /**
          * 搜索按钮事件
          */
@@ -212,7 +231,8 @@
                 });
             }
         });
-    });
+    })
+    ;
 </script>
 </body>
 </html>

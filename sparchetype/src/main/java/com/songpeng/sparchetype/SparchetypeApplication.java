@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.songpeng.sparchetype.*.mapper*")
+@MapperScan("com.songpeng.sparchetype.**.mapper*")
 public class SparchetypeApplication {
 
     public static void main(String[] args) {
