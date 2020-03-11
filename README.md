@@ -10,7 +10,10 @@
 ![1](https://s2.ax1x.com/2020/03/10/8CydC4.png)
 
 ### 功能界面
+
 ![1](https://s2.ax1x.com/2020/03/06/3bQbMd.png)
+主数据展示
+![1](https://s2.ax1x.com/2020/03/11/8AMcA1.png)
 
 ### swaggerAPI管理界面
 ![](https://s2.ax1x.com/2020/03/06/3qC4Yt.png)
