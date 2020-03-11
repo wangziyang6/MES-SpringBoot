@@ -10,10 +10,8 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,6 +31,19 @@ public class SpTableManagerItemController extends BaseController {
      */
     @Autowired
     private ISpTableManagerItemService iSpTableManagerItemService;
+
+    /**
+     * 主数据维护界面
+     *
+     * @param model 模型
+     * @return 主数据维护界面
+     */
+    @ApiOperation("主数据管理平台UI")
+    @ApiImplicitParams({@ApiImplicitParam(name = "model", value = "模型", defaultValue = "模型")})
+    @GetMapping("/list-ui")
+    public String listUI(Model model) {
+        return "basedata/manageritem/list";
+    }
 
     /**
      * 根据表名称查询该表的全部字段数据库明细
