@@ -11,7 +11,7 @@
 <body>
 <div class="splayui-container">
     <div class="layui-row">
-        <div class="layui-col-md3">
+        <div class="layui-col-md3 layui-bg-gray" >
             <table id="js-table-name" lay-filter="js-table-name-filter"></table>
         </div>
         <div class="layui-col-md9">
@@ -54,7 +54,8 @@
 <!--行操作模板-->
 <script type="text/html" id="js-record-table-toolbar-right">
     <a class="layui-btn layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete"><i class="layui-icon layui-icon-delete"></i>删除</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete"><i
+                class="layui-icon layui-icon-delete"></i>删除</a>
 </script>
 
 <!--js逻辑-->
@@ -102,9 +103,9 @@
 
         // 表格及数据初始化
         var tableIns = sptable.render({
-            toolbar:'',
+            toolbar: '',
             elem: '#js-table-name',//指定原始表格元素选择器（推荐id选择器）
-            height: 'full-26',
+            height: 'full-24',
             url: '${request.contextPath}/basedata/manager/page',
             cols: [
                 [{
