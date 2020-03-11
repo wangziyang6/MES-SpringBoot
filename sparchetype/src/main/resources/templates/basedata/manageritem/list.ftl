@@ -68,9 +68,11 @@
             sptable = layui.sptable;
         colsArr = [];
         ruleDetailRows = {};
+        var tableName;
+        var tableNameId;
 
         // 左侧表格及数据初始化
-        var tableName = sptable.render({
+        var tableNamec = sptable.render({
             toolbar: '',
             elem: '#js-table-name',//指定原始表格元素选择器（推荐id选择器）
             height: 'full-24',
@@ -86,18 +88,20 @@
             }
         });
 
-        //监听行单击事件 初始化表明细
+        //左侧表格监听行单击事件 初始化右侧表明细
         table.on('row(js-table-name-filter)', function (obj) {
-            $('#js-search-test').val(obj.data.tableDesc);
+            $('#js-search-test').val(obj.data.tableName);
+            tableName=obj.data.tableName;
+            tableNameId=obj.data.id;
             //初始化数据
             colsArr = [];
             //动态拼接需要表格明细需要显示的列头
             buildcol(obj.data.id);
             // 表格数据明细初始化
             var tableIns = sptable.render({
-                url: '${request.contextPath}/common/query/page',
+                url: '${request.contextPath}/basedata/common/page',
                 cols: [colsArr],
-                where: { tableNameId: obj.data.id,tableName :obj.data.tableName},
+                where: {tableNameId: obj.data.id, tableName: obj.data.tableName},
                 done: function (res, curr, count) {
                 }
             });
@@ -185,7 +189,7 @@
                 var index = splayer.open({
                     title: '添加',
                     area: ['60%', '90%'],
-                    content: '${request.contextPath}/basedata/manager/add-or-update-ui'
+                    content: '${request.contextPath}/basedata/common/add-or-update-ui'
                 });
             }
         });
@@ -195,22 +199,21 @@
          */
         table.on('tool(js-record-table-filter)', function (obj) {
             var data = obj.data;
-
             // 编辑
             if (obj.event === 'edit') {
                 splayer.open({
                     title: '编辑',
                     area: ['60%', '90%'],
                     // 请求url参数
-                    spWhere: {id: data.id},
-                    content: '${request.contextPath}/basedata/manager/add-or-update-ui'
+                    spWhere: {id: data.id, tableName: tableName ,tableNameId :tableNameId},
+                    content: '${request.contextPath}/basedata/common/add-or-update-ui'
                 });
             }
             // 删除
             if (obj.event === 'delete') {
                 layer.confirm('确认要删除吗？', function (index) {
                     spUtil.ajax({
-                        url: '${request.contextPath}/basedata/manager/delete/by/tableNameId',
+                        url: '${request.contextPath}/basedata/common/delete/by/tableNameId',
                         async: false,
                         type: 'POST',
                         // 是否显示 loading

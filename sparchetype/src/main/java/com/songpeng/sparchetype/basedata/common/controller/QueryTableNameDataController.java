@@ -1,6 +1,7 @@
 package com.songpeng.sparchetype.basedata.common.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.songpeng.sparchetype.basedata.common.dto.CommonDto;
 import com.songpeng.sparchetype.basedata.common.request.QueryTableNameDataReq;
 import com.songpeng.sparchetype.basedata.common.service.QueryTableNameDataService;
 import com.songpeng.sparchetype.common.Result;
@@ -10,6 +11,8 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,7 +27,7 @@ import java.util.Map;
  * @since 2020/03/11
  */
 @Controller
-@RequestMapping("/common/query")
+@RequestMapping("basedata/common")
 public class QueryTableNameDataController {
     /**
      * 通用基础数据service
@@ -38,8 +41,8 @@ public class QueryTableNameDataController {
      * @param req 请求参数
      * @return Result 执行结果
      */
-    @ApiOperation("主数据表头分页查询")
-    @ApiImplicitParams({@ApiImplicitParam(name = "req", value = "请求参数", defaultValue = "请求参数")})
+    @ApiOperation("根据参数查询的表名称，拼接SQL语句分页查询")
+    @ApiImplicitParams({@ApiImplicitParam(name = "req", value = "tableName,tableNameId", defaultValue = "请求参数")})
     @PostMapping("/page")
     @ResponseBody
     public Result page(QueryTableNameDataReq req) throws Exception {
@@ -49,4 +52,22 @@ public class QueryTableNameDataController {
         IPage<Map<String, String>> page = queryTableNameDataService.queryTableNameDataList(req);
         return Result.success(page);
     }
+
+    /**
+     * 主数据维护修改界面
+     *
+     * @param model     模型
+     * @param commonDto 通用查询对象
+     * @return 更改界面
+     */
+    @ApiOperation("主数据维护修改界面")
+    @GetMapping("/add-or-update-ui")
+    public String addOrUpdateUI(Model model, CommonDto commonDto) {
+        if (StringUtils.isNotEmpty(commonDto.getId())) {
+            List<Map<String, String>> maps = queryTableNameDataService.queryTableNameById(commonDto);
+            model.addAttribute("result", maps);
+        }
+        return "basedata/manageritem/addOrUpdate";
+    }
+
 }

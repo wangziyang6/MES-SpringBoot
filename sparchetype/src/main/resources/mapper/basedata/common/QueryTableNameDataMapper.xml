@@ -4,6 +4,14 @@
 
     <!--基础数据通用查询-->
     <select id="queryTableNameDataList" resultType="java.util.Map">
-        SELECT ${col} FROM ${tableName}
+        SELECT id,${col} FROM ${tableName}
+    </select>
+
+    <!--基础数据通用查询-->
+    <select id="queryTableNameById" resultType="java.util.Map">
+        SELECT id,${col} FROM ${tableName}
+        <where>
+            id=#{id}
+        </where>
     </select>
 </mapper>
