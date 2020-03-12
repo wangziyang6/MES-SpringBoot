@@ -27,7 +27,8 @@
                     </div>
                 </div>
                 <div class="layui-inline">
-                    <a class="layui-btn" lay-submit lay-filter="js-search-filter"><i class="layui-icon layui-icon-search layuiadmin-button-btn"></i></a>
+                    <a class="layui-btn" lay-submit lay-filter="js-search-filter"><i
+                                class="layui-icon layui-icon-search layuiadmin-button-btn"></i></a>
                 </div>
             </div>
         </form>
@@ -40,7 +41,9 @@
 <!--表格头操作模板-->
 <script type="text/html" id="js-record-table-toolbar-top">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="deleteBatch"><i class="layui-icon">&#xe640;</i>批量删除</button>
+        <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="deleteBatch"><i
+                    class="layui-icon">&#xe640;</i>批量删除
+        </button>
         <@shiro.hasPermission name="user:add">
             <button class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon">&#xe61f;</i>添加</button>
         </@shiro.hasPermission>
@@ -55,14 +58,14 @@
 
 <!--js逻辑-->
 <script>
-    layui.use(['form', 'table', 'splayer', 'sptable'], function () {
+    layui.use(['form', 'table', 'spLayer', 'spTable'], function () {
         var form = layui.form,
             table = layui.table,
-            splayer = layui.splayer,
-            sptable = layui.sptable;
+            spLayer = layui.spLayer,
+            spTable = layui.spTable;
 
         // 表格及数据初始化
-        var tableIns = sptable.render({
+        var tableIns = spTable.render({
             url: '${request.contextPath}/admin/sys/role/page',
             cols: [
                 [{
@@ -78,7 +81,12 @@
                         return spConfig.isDeletedDict[d.deleted];
                     }
                 }, {
-                    fixed: 'right', field: 'operate', title: '操作', toolbar: '#js-record-table-toolbar-right', unresize: true, width: 150
+                    fixed: 'right',
+                    field: 'operate',
+                    title: '操作',
+                    toolbar: '#js-record-table-toolbar-right',
+                    unresize: true,
+                    width: 150
                 }]
             ],
             done: function (res, curr, count) {
@@ -130,7 +138,7 @@
 
             // 添加
             if (obj.event === 'add') {
-                var index = splayer.open({
+                var index = spLayer.open({
                     title: '添加',
                     area: ['90%', '90%'],
                     content: '${request.contextPath}/admin/sys/role/add-or-update-ui'
@@ -146,7 +154,7 @@
 
             // 编辑
             if (obj.event === 'edit') {
-                splayer.open({
+                spLayer.open({
                     title: '编辑',
                     area: ['800px', '400px'],
                     // 请求url参数

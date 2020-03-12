@@ -23,6 +23,7 @@ layui.define(['layer'], function (exports) {
                     if (param.spCallback && (param.spCallback instanceof Function)) {
                         var callbackData = layero.find('iframe')[0].contentWindow.callbackData();
                         param.spCallback(callbackData);
+                        layer.close(index);
                     }
                 },
                 btn2: function (index, layero) {

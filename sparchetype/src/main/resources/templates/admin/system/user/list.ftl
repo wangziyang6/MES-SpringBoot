@@ -27,10 +27,21 @@
                     </div>
                 </div>
                 <div class="layui-inline">
-                    <a class="layui-btn" lay-submit lay-filter="js-search-filter"><i class="layui-icon layui-icon-search"></i></a>
+                    <a class="layui-btn" lay-submit lay-filter="js-search-filter"><i
+                                class="layui-icon layui-icon-search"></i></a>
                 </div>
             </div>
         </form>
+
+
+        <div class="layui-inline">
+            <div class="layui-input-inline">
+                <input id="js-test-input" placeholder="搜索 layui 第三方组件" autocomplete="off" value="" class="layui-input">
+            </div>
+            <div class="layui-input-inline">
+                <button id="js-test-btn" class="layui-btn"><i class="layui-icon"></i></button>
+            </div>
+        </div>
 
         <!--表格-->
         <table class="layui-hide" id="js-record-table" lay-filter="js-record-table-filter"></table>
@@ -40,10 +51,11 @@
 <!--表格头操作模板-->
 <script type="text/html" id="js-record-table-toolbar-top">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="deleteBatch"><i class="layui-icon">&#xe640;</i>批量删除</button>
+        <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="deleteBatch"><i
+                    class="layui-icon">&#xe640;</i>批量删除
+        </button>
         <@shiro.hasPermission name="user:add">
             <button class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon">&#xe61f;</i>添加</button>
-            <button class="layui-btn layui-btn-sm" lay-event="spSearchPanel"><i class="layui-icon">&#xe61f;</i>测试搜索弹框</button>
         </@shiro.hasPermission>
     </div>
 </script>
@@ -56,9 +68,10 @@
 
 <!--js逻辑-->
 <script>
-    layui.use(['form', 'table', 'spLayer', 'spTable'], function () {
+    layui.use(['form', 'table', 'layer', 'spLayer', 'spTable'], function () {
         var form = layui.form,
             table = layui.table,
+            layer = layui.layer,
             spLayer = layui.spLayer,
             spTable = layui.spTable;
 
@@ -109,7 +122,12 @@
                         return spConfig.isDeletedDict[d.deleted];
                     }
                 }, {
-                    fixed: 'right', field: 'operate', title: '操作', toolbar: '#js-record-table-toolbar-right', unresize: true, width: 150
+                    fixed: 'right',
+                    field: 'operate',
+                    title: '操作',
+                    toolbar: '#js-record-table-toolbar-right',
+                    unresize: true,
+                    width: 150
                 }]
             ],
             done: function (res, curr, count) {
@@ -167,25 +185,7 @@
                     content: '${request.contextPath}/admin/sys/user/add-or-update-ui'
                 });
             }
-
-            // 测试搜索弹框
-            if (obj.event === 'spSearchPanel') {
-                var index = spLayer.open({
-                    type: 2,
-                    area: ['680px', '500px'],
-                    content: '${request.contextPath}/admin/common/ui/spSearchPanel4SysUser',
-                    // 如果是搜索弹窗，需要添加回调函数来获取选中数据
-                    spCallback: spSearchPanel4SysUserCallback
-                });
-            }
         });
-
-        /**
-         * 回调函数
-         */
-        function spSearchPanel4SysUserCallback(result) {
-            console.log(result);
-        }
 
         /**
          * 监听行工具事件
@@ -211,6 +211,24 @@
                     layer.close(index);
                 });
             }
+        });
+
+
+
+        // 测试搜索弹框
+        $('#js-test-btn').click(function () {
+            var index = spLayer.open({
+                type: 2,
+                area: ['680px', '500px'],
+                content: '${request.contextPath}/admin/common/ui/spSearchPanel4Factory',
+                // 如果是搜索弹窗，需要添加回调函数来获取选中数据
+                spCallback: function (result) {
+                    console.log(result);
+                    if (result.data && result.data.length > 0) {
+                        $('#js-test-input').val(result.data[0].name);
+                    }
+                }
+            });
         });
     });
 </script>

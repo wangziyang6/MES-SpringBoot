@@ -33,10 +33,10 @@
            lay-text="正常|锁定" {{d.state==0?'checked':''}}/>
 </script>
 <script>
-    layui.use(['table', 'treeTable', 'splayer'], function () {
+    layui.use(['table', 'treeTable', 'spLayer'], function () {
         var table = layui.table,
             treeTable = layui.treeTable,
-            splayer = layui.splayer;
+            spLayer = layui.spLayer;
 
         // 渲染表格
         var insTb = treeTable.render({
@@ -99,7 +99,7 @@
             }
 
             if (event == 'edit') {
-                splayer.open({
+                spLayer.open({
                     title: '编辑',
                     area: ['800px', '500px'],
                     // 请求url参数
@@ -109,7 +109,7 @@
             }
 
             if (event == 'add') {
-                splayer.open({
+                spLayer.open({
                     title: '新增',
                     area: ['800px', '500px'],
                     // 请求url参数

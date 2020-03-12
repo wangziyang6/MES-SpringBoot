@@ -61,18 +61,18 @@
 
 <!--js逻辑-->
 <script>
-    layui.use(['form', 'table', 'splayer', 'sptable'], function () {
+    layui.use(['form', 'table', 'spLayer', 'spTable'], function () {
         var form = layui.form,
             table = layui.table,
-            splayer = layui.splayer,
-            sptable = layui.sptable;
+            spLayer = layui.spLayer,
+            spTable = layui.spTable;
         colsArr = [];
         ruleDetailRows = {};
         var tableName;
         var tableNameId;
 
         // 左侧表格及数据初始化
-        var tableNamec = sptable.render({
+        var tableNamec = spTable.render({
             toolbar: '',
             elem: '#js-table-name',//指定原始表格元素选择器（推荐id选择器）
             height: 'full-24',
@@ -98,7 +98,7 @@
             //动态拼接需要表格明细需要显示的列头
             buildcol(obj.data.id);
             // 表格数据明细初始化
-            var tableIns = sptable.render({
+            var tableIns = spTable.render({
                 url: '${request.contextPath}/basedata/common/page',
                 cols: [colsArr],
                 where: {tableNameId: obj.data.id, tableName: obj.data.tableName},
@@ -186,7 +186,7 @@
 
             // 添加
             if (obj.event === 'add') {
-                var index = splayer.open({
+                var index = spLayer.open({
                     title: '添加',
                     area: ['60%', '90%'],
                     spWhere: {tableNameId :tableNameId,tableName: tableName },
@@ -202,7 +202,7 @@
             var data = obj.data;
             // 编辑
             if (obj.event === 'edit') {
-                splayer.open({
+                spLayer.open({
                     title: '编辑',
                     area: ['60%', '90%'],
                     // 请求url参数

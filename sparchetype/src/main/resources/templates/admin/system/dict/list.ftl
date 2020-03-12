@@ -53,14 +53,14 @@
 </script>
 <script type="text/javascript">
 
-    layui.use(['form', 'table', 'splayer', 'sptable'], function () {
+    layui.use(['form', 'table', 'spLayer', 'spTable'], function () {
         var form = layui.form,
             table = layui.table,
-            splayer = layui.splayer,
-            sptable = layui.sptable;
+            spLayer = layui.spLayer,
+            spTable = layui.spTable;
 
         // 表格及数据初始化
-        var tableIns = sptable.render({
+        var tableIns = spTable.render({
             url: '${request.contextPath}/admin/sys/dict/page',
             cols: [
                 [{
@@ -128,7 +128,7 @@
 
             // 添加
             if (obj.event === 'add') {
-                var index = splayer.open({
+                var index = spLayer.open({
                     title: '添加',
                     area: ['90%', '90%'],
                     content: '${request.contextPath}/admin/sys/dict/add-or-update-ui'
@@ -144,7 +144,7 @@
 
             // 编辑
             if (obj.event === 'edit') {
-                splayer.open({
+                spLayer.open({
                     title: '编辑',
                     area: ['90%', '90%'],
                     // 请求url参数

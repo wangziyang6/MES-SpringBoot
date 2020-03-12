@@ -52,14 +52,14 @@
 
 <!--js逻辑-->
 <script>
-    layui.use(['form', 'table', 'splayer', 'sptable'], function () {
+    layui.use(['form', 'table', 'spLayer', 'spTable'], function () {
         var form = layui.form,
             table = layui.table,
-            splayer = layui.splayer,
-            sptable = layui.sptable;
+            spLayer = layui.spLayer,
+            spTable = layui.spTable;
 
         // 表格及数据初始化
-        var tableIns = sptable.render({
+        var tableIns = spTable.render({
             url: '${request.contextPath}/basedata/manager/page',
             cols: [
                 [{
@@ -139,7 +139,7 @@
 
             // 添加
             if (obj.event === 'add') {
-                var index = splayer.open({
+                var index = spLayer.open({
                     title: '添加',
                     area: ['60%', '90%'],
                     content: '${request.contextPath}/basedata/manager/add-or-update-ui'
@@ -155,7 +155,7 @@
 
             // 编辑
             if (obj.event === 'edit') {
-                splayer.open({
+                spLayer.open({
                     title: '编辑',
                     area: ['60%', '90%'],
                     // 请求url参数
