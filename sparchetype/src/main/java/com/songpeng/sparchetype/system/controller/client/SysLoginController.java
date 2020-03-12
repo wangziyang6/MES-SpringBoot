@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 @Controller("clientSysLoginController")
 public class SysLoginController {
 
-    Logger log = LoggerFactory.getLogger(SysLoginController.class);
+    Logger logger = LoggerFactory.getLogger(SysLoginController.class);
 
     /**
      * 首页默认跳转到博客主页
@@ -55,7 +55,7 @@ public class SysLoginController {
             // 输出验证码图片方法
             randomValidateCode.getRandcode(request, response);
         } catch (Exception e) {
-            log.error("获取验证码失败", e);
+            logger.error("获取验证码失败", e);
         }
     }
 
@@ -90,25 +90,25 @@ public class SysLoginController {
             subject.login(token);
             return Result.success();
         } catch (LockedAccountException e) {
-            log.error("锁定的帐号", e);
+            logger.error("锁定的帐号", e);
             return Result.failure("锁定的帐号");
         } catch (DisabledAccountException e) {
-            log.error("禁用的帐号", e);
+            logger.error("禁用的帐号", e);
             return Result.failure("禁用的帐号");
         } catch (UnknownAccountException e) {
-            log.error("错误的帐号", e);
+            logger.error("错误的帐号", e);
             return Result.failure("错误的帐号");
         } catch (ExcessiveAttemptsException e) {
-            log.error("登录失败次数过多", e);
+            logger.error("登录失败次数过多", e);
             return Result.failure("登录失败次数过多");
         } catch (IncorrectCredentialsException e) {
-            log.error("错误的凭证", e);
+            logger.error("错误的凭证", e);
             return Result.failure("错误的凭证");
         } catch (ExpiredCredentialsException e) {
-            log.error("过期的凭证", e);
+            logger.error("过期的凭证", e);
             return Result.failure("过期的凭证");
         } catch (AuthenticationException e) {
-            log.error("用户或密码错误", e);
+            logger.error("用户或密码错误", e);
             return Result.failure("用户或密码错误");
         }
     }

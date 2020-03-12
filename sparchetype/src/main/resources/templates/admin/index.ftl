@@ -89,12 +89,12 @@
     </div>
 </div>
 <script>
-    layui.use(['element', 'layer', 'splayui'], function () {
+    layui.use(['element', 'layer', 'spLayui'], function () {
         var element = layui.element,
             layer = layui.layer,
-            splayui = layui.splayui;
+            spLayui = layui.spLayui;
 
-        splayui.init('${request.contextPath}/admin/list/index/menu/tree');
+        spLayui.init('${request.contextPath}/admin/list/index/menu/tree');
     });
 </script>
 </body>

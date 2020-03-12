@@ -1,13 +1,11 @@
 /**
- * date: 2019/12/24
- * author: SongPeng
- * description: 扩展layui数据表格 框架扩展
+ * 组件：扩展layui数据表格
  */
 layui.define(['table'], function (exports) {
     var $ = layui.jquery,
         table = layui.table;
 
-    var sptable = {
+    var spTable = {
         // 渲染表格
         render: function (param) {
             var defaultConfig = {
@@ -39,5 +37,5 @@ layui.define(['table'], function (exports) {
         }
     };
 
-    exports('sptable', sptable);
+    exports('spTable', spTable);
 });

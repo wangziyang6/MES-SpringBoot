@@ -20,12 +20,12 @@ import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class ExceptionAdvice {
 
-    Logger log = LoggerFactory.getLogger(ExceptionAdvice.class);
+    Logger logger = LoggerFactory.getLogger(ExceptionAdvice.class);
 
     @ExceptionHandler(AuthorizationException.class)
     @ResponseBody
     public Object handleAuthorizationException(AuthorizationException e, HttpServletRequest request) {
-        log.error(e.getMessage(), e);
+        logger.error(e.getMessage(), e);
         if (HttpUtil.isAjax(request)) {
             return Result.failure("未授权");
         }
@@ -35,7 +35,7 @@ public class ExceptionAdvice {
     @ExceptionHandler(DuplicateKeyException.class)
     @ResponseBody
     public Object handleDuplicateKeyException(DuplicateKeyException e, HttpServletRequest request) {
-        log.error(e.getMessage(), e);
+        logger.error(e.getMessage(), e);
         if (HttpUtil.isAjax(request)) {
             return Result.failure("数据重复");
         }
@@ -45,7 +45,7 @@ public class ExceptionAdvice {
     @ExceptionHandler({Exception.class})
     @ResponseBody
     public Object handleException(Exception e, HttpServletRequest request) {
-        log.error(e.getMessage(), e);
+        logger.error(e.getMessage(), e);
         if (HttpUtil.isAjax(request)) {
             return Result.failure("服务器错误，请联系管理员");
         }

@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="layui-inline">
-                    <a class="layui-btn" lay-submit lay-filter="js-search-filter"><i class="layui-icon layui-icon-search layuiadmin-button-btn"></i></a>
+                    <a class="layui-btn" lay-submit lay-filter="js-search-filter"><i class="layui-icon layui-icon-search"></i></a>
                 </div>
             </div>
         </form>
@@ -43,6 +43,7 @@
         <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="deleteBatch"><i class="layui-icon">&#xe640;</i>批量删除</button>
         <@shiro.hasPermission name="user:add">
             <button class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon">&#xe61f;</i>添加</button>
+            <button class="layui-btn layui-btn-sm" lay-event="spSearchPanel"><i class="layui-icon">&#xe61f;</i>测试搜索弹框</button>
         </@shiro.hasPermission>
     </div>
 </script>
@@ -55,14 +56,14 @@
 
 <!--js逻辑-->
 <script>
-    layui.use(['form', 'table', 'splayer', 'sptable'], function () {
+    layui.use(['form', 'table', 'spLayer', 'spTable'], function () {
         var form = layui.form,
             table = layui.table,
-            splayer = layui.splayer,
-            sptable = layui.sptable;
+            spLayer = layui.spLayer,
+            spTable = layui.spTable;
 
         // 表格及数据初始化
-        var tableIns = sptable.render({
+        var tableIns = spTable.render({
             url: '${request.contextPath}/admin/sys/user/page',
             cols: [
                 [{
@@ -160,13 +161,31 @@
 
             // 添加
             if (obj.event === 'add') {
-                var index = splayer.open({
+                var index = spLayer.open({
                     title: '添加',
                     area: ['90%', '90%'],
                     content: '${request.contextPath}/admin/sys/user/add-or-update-ui'
                 });
             }
+
+            // 测试搜索弹框
+            if (obj.event === 'spSearchPanel') {
+                var index = spLayer.open({
+                    type: 2,
+                    area: ['680px', '500px'],
+                    content: '${request.contextPath}/admin/common/ui/spSearchPanel4SysUser',
+                    // 如果是搜索弹窗，需要添加回调函数来获取选中数据
+                    spCallback: spSearchPanel4SysUserCallback
+                });
+            }
         });
+
+        /**
+         * 回调函数
+         */
+        function spSearchPanel4SysUserCallback(result) {
+            console.log(result);
+        }
 
         /**
          * 监听行工具事件
@@ -176,7 +195,7 @@
 
             // 编辑
             if (obj.event === 'edit') {
-                splayer.open({
+                spLayer.open({
                     title: '编辑',
                     area: ['90%', '90%'],
                     // 请求url参数

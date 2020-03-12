@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/admin/sys/department")
 public class SysDepartmentController extends BaseController {
 
-    Logger log = LoggerFactory.getLogger(SysDepartmentController.class);
+    Logger logger = LoggerFactory.getLogger(SysDepartmentController.class);
 
     @Autowired
     private ISysDepartmentService sysDepartmentService;

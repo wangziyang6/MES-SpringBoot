@@ -17,18 +17,18 @@ import java.time.LocalDateTime;
 @Component
 public class SpMetaObjectHandler implements MetaObjectHandler {
 
-    Logger log = LoggerFactory.getLogger(SpMetaObjectHandler.class);
+    Logger logger = LoggerFactory.getLogger(SpMetaObjectHandler.class);
 
     @Override
     public void insertFill(MetaObject metaObject) {
-        log.info("start insert fill ...");
+        logger.info("start insert fill ...");
         this.setInsertData(metaObject);
         this.setUpdateData(metaObject);
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        log.info("start update fill ...");
+        logger.info("start update fill ...");
         this.setUpdateData(metaObject);
     }
 
