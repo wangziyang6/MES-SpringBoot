@@ -220,7 +220,7 @@
             var index = spLayer.open({
                 type: 2,
                 area: ['680px', '500px'],
-                content: '${request.contextPath}/admin/common/ui/spSearchPanel4Factory',
+                content: '${request.contextPath}/admin/common/ui/spSearchPanel4SysUser',
                 // 如果是搜索弹窗，需要添加回调函数来获取选中数据
                 spCallback: function (result) {
                     console.log(result);
