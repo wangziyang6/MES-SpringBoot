@@ -18,6 +18,10 @@ public class CommonDto extends BaseEntity {
      * 列头
      */
     private String col;
+    /**
+     * 值
+     */
+    private String values;
 
     /**
      * 获取 表名称
@@ -71,5 +75,24 @@ public class CommonDto extends BaseEntity {
      */
     public void setCol(String col) {
         this.col = col;
+    }
+
+
+    /**
+     * 获取 值
+     *
+     * @return values 值
+     */
+    public String getValues() {
+        return this.values;
+    }
+
+    /**
+     * 设置 值
+     *
+     * @param values 值
+     */
+    public void setValues(String values) {
+        this.values = values;
     }
 }

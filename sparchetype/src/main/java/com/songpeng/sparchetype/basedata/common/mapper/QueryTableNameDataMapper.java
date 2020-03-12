@@ -31,4 +31,18 @@ public interface QueryTableNameDataMapper extends BaseMapper<SpTableManagerItem>
      * @return 单行数据集合
      */
     List<Map<String, String>> queryTableNameById(CommonDto commonDto);
+
+    /**
+     * 基础数据通用保存
+     *
+     * @param commonDto 通用数据传输
+     */
+    void commonSave(CommonDto commonDto);
+
+    /**
+     * 基础数据通用修改
+     *
+     * @param commonDto 通用数据传输
+     */
+    void commonUpdate(CommonDto commonDto);
 }

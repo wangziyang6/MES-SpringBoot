@@ -15,6 +15,9 @@
         <form class="layui-form splayui-form">
             <div class="layui-row">
                 <div class="layui-col-xs6 layui-col-sm6 layui-col-md6">
+                    <div class="layui-input-inline layui-hide">
+                        <input id="id" name="id" type="text" class="layui-input" >
+                    </div>
                     <div id="js-rule-detail-tpl-view" style="">
                     </div>
                 </div>
@@ -24,7 +27,6 @@
                     <button id="js-submit" class="layui-btn" lay-submit lay-filter="js-submit-filter">确定</button>
                 </div>
             </div>
-
         </form>
     </div>
 </div>
@@ -35,7 +37,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label  sp-required">{{item.fieldDesc}}</label>
         <div class="layui-input-inline">
-            <input id="{{item.field}}" name="{{item.field}}" type="text" class="layui-input " lay-verify="required">
+            <input id="{{item.field}}" name="{{item.field}}"  type="text" class="layui-input " lay-verify="required">
         </div>
     </div>
     {{# } else { }}
@@ -57,19 +59,8 @@
         ruleDetailTplDataCopy = [];
         //渲染数据
         ruleDetailRow();
-        //监听提交
-        form.on('submit(js-submit-filter)', function (data) {
-            data.field.spTableManagerItems = requestParmaArr;
-            spUtil.submitForm({
-                contentType: 'application/json',
-                url: "${request.contextPath}/basedata/manager/add-or-update",
-                data: JSON.stringify(data.field)
-            });
-            return false;
-        });
 
         function ruleDetailRow() {
-            console.log('start...')
             // layer.load() 在使用异步请求时起效，如：ajax异步请求、定时器，
             // 但是用ES6的promise不生效，所以此处采用定时器实现
             window.setTimeout(function () {
@@ -112,6 +103,18 @@
                 form.render();
             }, 100);
         }
+
+        //监听提交
+        form.on('submit(js-submit-filter)', function (data) {
+            data.field.jsTableName='${table.tableName}'
+            data.field.jsTableNameId='${table.tableNameId}'
+            spUtil.submitForm({
+                url: "${request.contextPath}/basedata/common/add-or-update",
+                data: data.field
+            });
+            return false;
+        });
+
     });
 </script>
 </body>

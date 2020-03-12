@@ -14,4 +14,13 @@
             id=#{id}
         </where>
     </select>
+
+    <insert id="commonSave" >
+        insert  into ${tableName} (${col}) VALUES (${values})
+    </insert>
+
+    <update id="commonUpdate">
+
+
+    </update>
 </mapper>
