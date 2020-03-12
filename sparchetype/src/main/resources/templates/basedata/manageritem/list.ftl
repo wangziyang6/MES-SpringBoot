@@ -189,6 +189,7 @@
                 var index = splayer.open({
                     title: '添加',
                     area: ['60%', '90%'],
+                    spWhere: {tableNameId :tableNameId},
                     content: '${request.contextPath}/basedata/common/add-or-update-ui'
                 });
             }

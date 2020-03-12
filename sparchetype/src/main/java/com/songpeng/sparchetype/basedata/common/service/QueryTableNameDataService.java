@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public interface QueryTableNameDataService {
     /**
-     * 基础数据通用查询服务
+     * 基础数据通用分页查询服务
      *
      * @param req 列组合
      * @return 数据集合

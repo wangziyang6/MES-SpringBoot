@@ -33,7 +33,7 @@ public class QueryTableNameDataServiceImpl implements QueryTableNameDataService 
     public ISpTableManagerItemService iSpTableManagerItemService;
 
     /**
-     * 基础数据通用查询服务
+     * 基础数据通用分页查询服务
      *
      * @param page 分页对象
      * @return 数据集合

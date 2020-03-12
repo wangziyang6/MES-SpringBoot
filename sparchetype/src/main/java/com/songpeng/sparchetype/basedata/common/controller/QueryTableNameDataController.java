@@ -67,6 +67,7 @@ public class QueryTableNameDataController {
             List<Map<String, String>> maps = queryTableNameDataService.queryTableNameById(commonDto);
             model.addAttribute("result", maps);
         }
+        model.addAttribute("table", commonDto);
         return "basedata/manageritem/addOrUpdate";
     }
 
