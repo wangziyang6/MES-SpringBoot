@@ -31,7 +31,7 @@ import java.util.Set;
  */
 public class ShiroRealm extends AuthorizingRealm {
 
-	Logger log = LoggerFactory.getLogger(ShiroRealm.class);
+	Logger logger = LoggerFactory.getLogger(ShiroRealm.class);
 
     @Autowired
     private ISysUserService sysUserService;
@@ -64,19 +64,19 @@ public class ShiroRealm extends AuthorizingRealm {
         try {
             user = sysUserService.getUserAndRoleAndMenuByUsername(username);
         } catch (Exception e) {
-            log.error("账号数据查询异常,请联系管理员", e);
+            logger.error("账号数据查询异常,请联系管理员", e);
             throw new UnknownAccountException("账号数据查询异常,请联系管理员");
         }
 
         // 账号不存在
         if (null == user) {
-            log.error("账号不存在");
+            logger.error("账号不存在");
             throw new UnknownAccountException("账号不存在");
         }
 
         // 账号锁定
         if (!user.getDeleted().equals(SysUserEnum.DELETED_NORMAL.getCode())) {
-            log.error("账号已被锁定,请联系管理员");
+            logger.error("账号已被锁定,请联系管理员");
             throw new LockedAccountException("账号已被锁定,请联系管理员");
         }
         // TODO 根据用户名（唯一不可变）作为密码加盐，当然也可以自定义加盐方式，如增加数据库字段等

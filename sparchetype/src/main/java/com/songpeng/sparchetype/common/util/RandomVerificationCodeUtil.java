@@ -19,7 +19,7 @@ import java.util.Random;
  */
 public class RandomVerificationCodeUtil {
 
-    private static final Logger log = LoggerFactory.getLogger(RandomVerificationCodeUtil.class);
+    private static final Logger logger = LoggerFactory.getLogger(RandomVerificationCodeUtil.class);
 
     /**
      * 放到session中的key
@@ -104,7 +104,7 @@ public class RandomVerificationCodeUtil {
         for (int i = 1; i <= stringNum; i++) {
             randomString = drowString(g, randomString, i);
         }
-        log.info(randomString);
+        logger.info(randomString);
         // 将生成的随机字符串保存到session中
         session.removeAttribute(RANDOM_CODE_KEY);
         session.setAttribute(RANDOM_CODE_KEY, randomString);
@@ -113,7 +113,7 @@ public class RandomVerificationCodeUtil {
             // 将内存中的图片通过流动形式输出到客户端
             ImageIO.write(image, "JPEG", response.getOutputStream());
         } catch (Exception e) {
-            log.error("将内存中的图片通过流形式输出到客户端失败", e);
+            logger.error("将内存中的图片通过流形式输出到客户端失败", e);
         }
     }
 

@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class RetryLimitCredentialsMatcher extends HashedCredentialsMatcher {
 
-    Logger log = LoggerFactory.getLogger(RetryLimitCredentialsMatcher.class);
+    Logger logger = LoggerFactory.getLogger(RetryLimitCredentialsMatcher.class);
 
     private Cache<String, AtomicInteger> loginRetryCache;
 
@@ -48,9 +48,9 @@ public class RetryLimitCredentialsMatcher extends HashedCredentialsMatcher {
         String username = (String) token.getPrincipal();
         //retry count + 1
         AtomicInteger retryCount = loginRetryCache.get(username) == null ? new AtomicInteger(0) : loginRetryCache.get(username);
-        log.info("retryCount:{}, username:{}", retryCount, username);
+        logger.info("retryCount:{}, username:{}", retryCount, username);
         if (retryCount.incrementAndGet() > this.maxRetryCount) {
-            log.warn("username: {} tried to login more than {} times in perid", username, this.maxRetryCount);
+            logger.warn("username: {} tried to login more than {} times in perid", username, this.maxRetryCount);
             throw new ExcessiveAttemptsException("username: " + username + "tried to login more than " + this.maxRetryCount + " times in perid");
         }
         boolean matches = super.doCredentialsMatch(token, info);
@@ -59,7 +59,7 @@ public class RetryLimitCredentialsMatcher extends HashedCredentialsMatcher {
             loginRetryCache.remove(username);
         } else {
             loginRetryCache.put(username, retryCount);
-            log.info(String.valueOf(retryCount.get()));
+            logger.info(String.valueOf(retryCount.get()));
         }
         return matches;
     }

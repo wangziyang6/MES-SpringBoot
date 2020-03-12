@@ -93,5 +93,5 @@ layui.define(['jquery', 'element', 'carousel', 'laypage'], function (exports) {
         });
     });
 
-    exports('company', {});
+    exports('spCompany', {});
 });

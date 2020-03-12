@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin/sys/tool")
 public class SysToolController extends BaseController {
 
-    Logger log = LoggerFactory.getLogger(SysToolController.class);
+    Logger logger = LoggerFactory.getLogger(SysToolController.class);
 
     /**
      * 图标列表

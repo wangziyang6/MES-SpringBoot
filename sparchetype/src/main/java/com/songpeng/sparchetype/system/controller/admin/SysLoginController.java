@@ -1,5 +1,6 @@
 package com.songpeng.sparchetype.system.controller.admin;
 
+import com.songpeng.sparchetype.common.BaseController;
 import com.songpeng.sparchetype.common.Result;
 import com.songpeng.sparchetype.system.service.ISysMenuService;
 import io.swagger.annotations.ApiOperation;
@@ -22,9 +23,9 @@ import java.util.Map;
  */
 @RequestMapping("/admin")
 @Controller("adminSysLoginController")
-public class SysLoginController {
+public class SysLoginController extends BaseController {
 
-    Logger log = LoggerFactory.getLogger(SysLoginController.class);
+    Logger logger = LoggerFactory.getLogger(SysLoginController.class);
 
     /**
      * 系统菜单 Service

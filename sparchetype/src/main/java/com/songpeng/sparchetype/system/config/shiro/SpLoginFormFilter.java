@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class SpLoginFormFilter extends FormAuthenticationFilter {
 
-    private static final Logger log = LoggerFactory.getLogger(SpLoginFormFilter.class);
+    private static final Logger logger = LoggerFactory.getLogger(SpLoginFormFilter.class);
 
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
@@ -24,20 +24,20 @@ public class SpLoginFormFilter extends FormAuthenticationFilter {
         HttpServletResponse httpServletResponse = (HttpServletResponse) response;
         if (isLoginRequest(request, response)) {
             if (isLoginSubmission(request, response)) {
-                if (log.isTraceEnabled()) {
-                    log.trace("Login submission detected.  Attempting to execute login.");
+                if (logger.isTraceEnabled()) {
+                    logger.trace("Login submission detected.  Attempting to execute login.");
                 }
                 return executeLogin(request, response);
             } else {
-                if (log.isTraceEnabled()) {
-                    log.trace("Login page view.");
+                if (logger.isTraceEnabled()) {
+                    logger.trace("Login page view.");
                 }
                 //allow them to see the login page
                 return true;
             }
         } else {
-            if (log.isTraceEnabled()) {
-                log.trace("Attempting to access a path which requires authentication.  Forwarding to the " +
+            if (logger.isTraceEnabled()) {
+                logger.trace("Attempting to access a path which requires authentication.  Forwarding to the " +
                         "Authentication url [" + getLoginUrl() + "]");
             }
             //如果是Ajax请求，不跳转登录
