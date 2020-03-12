@@ -69,8 +69,7 @@ public class TableNameDataServiceImpl implements TableNameDataService {
      */
     @Override
     public String buildCol(String tableNameId) throws Exception {
-        if(StringUtils.isEmpty(tableNameId))
-        {
+        if (StringUtils.isEmpty(tableNameId)) {
             throw new Exception("表关联ID不能为空");
         }
         List<SpTableManagerItem> spTableManagerItems = iSpTableManagerItemService.queryItemBytableNameId(tableNameId);
@@ -91,7 +90,6 @@ public class TableNameDataServiceImpl implements TableNameDataService {
     @Override
     public void commonSave(HttpServletRequest request, SysUser user) throws Exception {
         CommonDto commonDto = new CommonDto();
-
         //拼接插入的SQL语句
         String jsTableName = request.getParameter("jsTableName");
         String jsTableNameId = request.getParameter("jsTableNameId");

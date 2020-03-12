@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -32,7 +31,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("basedata/common")
-public class TableNameDataController  extends BaseController {
+public class TableNameDataController extends BaseController {
     /**
      * 通用基础数据service
      */
@@ -87,13 +86,11 @@ public class TableNameDataController  extends BaseController {
     @ResponseBody
     public Result addOrUpdate(HttpServletRequest request) throws Exception {
         String id = request.getParameter("id");
-        SysUser user =getSysUser();
+        SysUser user = getSysUser();
         if (StringUtils.isNotEmpty(id)) {
-            //TODO 修改当前数据
-            tableNameDataService.commonUpdate(request,user);
+            tableNameDataService.commonUpdate(request, user);
         } else {
-            //TODO 新增当前表数据
-            tableNameDataService.commonSave(request,user);
+            tableNameDataService.commonSave(request, user);
         }
         return Result.success();
     }
