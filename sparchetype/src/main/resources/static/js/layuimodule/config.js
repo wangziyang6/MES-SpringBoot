@@ -1,7 +1,5 @@
 /**
- * date:2019/08/16
- * author:Mr.Chung
- * description:此处放layui自定义扩展
+ * 宋鹏：layui 自定义组件配置
  */
 window.rootPath = (function (src) {
     src = document.scripts[document.scripts.length - 1].src;
@@ -13,7 +11,15 @@ layui.config({
     version: true
 }).extend({
     // layui扩展
-    splayui: "splayui/splayui",
+    spLayui: "sp/spLayui",
+    // 自定义layer扩展组件
+    spLayer: 'sp/spLayer',
+    // 自定义table扩展组件
+    spTable: 'sp/spTable',
+    // 自定义table扩展组件
+    spSearchPanel: 'sp/spSearchPanel',
+    // 大气风格的网络公司企业模版
+    spCompany: 'sp/spCompany',
     // 分步表单扩展
     step: 'step-lay/step',
     //table树形扩展
@@ -22,16 +28,6 @@ layui.config({
     tableSelect: 'tableSelect/tableSelect',
     // fa图标选择扩展
     iconPickerFa: 'iconPicker/iconPickerFa',
-    // echarts图表扩展
-    echarts: 'echarts/echarts',
-    // echarts图表主题扩展
-    echartsTheme: 'echarts/echartsTheme',
     // wangEditor富文本扩展
-    wangEditor: 'wangEditor/wangEditor',
-    // 自定义layer扩展组件
-    splayer: 'splayer/splayer',
-    // 自定义table扩展组件
-    sptable: 'sptable/sptable',
-    // 大气风格的网络公司企业模版
-    company: 'company/company'
+    wangEditor: 'wangEditor/wangEditor'
 });

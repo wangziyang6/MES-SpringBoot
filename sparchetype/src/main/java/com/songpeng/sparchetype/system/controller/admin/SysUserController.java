@@ -35,7 +35,7 @@ import java.util.List;
 @RequestMapping("/admin/sys/user")
 public class SysUserController extends BaseController {
 
-    Logger log = LoggerFactory.getLogger(SysUserController.class);
+    Logger logger = LoggerFactory.getLogger(SysUserController.class);
 
     @Autowired
     private ISysUserService sysUserService;
@@ -52,6 +52,12 @@ public class SysUserController extends BaseController {
     @ResponseBody
     public Result page(SysUserPageReq req) throws Exception {
         QueryWrapper qw = new QueryWrapper();
+        if (StringUtils.isNotEmpty(req.getNameLike())) {
+            qw.likeRight("name", req.getNameLike());
+        }
+        if (StringUtils.isNotEmpty(req.getUsernameLike())) {
+            qw.likeRight("username", req.getUsernameLike());
+        }
         qw.orderByDesc(req.getOrderBy());
         IPage page = sysUserService.page(req, qw);
         return Result.success(page);

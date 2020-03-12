@@ -12,4 +12,29 @@ import com.songpeng.sparchetype.common.BasePageReq;
  */
 public class SysUserPageReq extends BasePageReq {
 
+    /**
+     * 姓名
+     */
+    private String nameLike;
+
+    /**
+     * 用户名
+     */
+    private String usernameLike;
+
+    public String getNameLike() {
+        return nameLike;
+    }
+
+    public void setNameLike(String nameLike) {
+        this.nameLike = nameLike;
+    }
+
+    public String getUsernameLike() {
+        return usernameLike;
+    }
+
+    public void setUsernameLike(String usernameLike) {
+        this.usernameLike = usernameLike;
+    }
 }

@@ -35,7 +35,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/admin/sys/dict")
 public class SysDictController extends BaseController {
 
-    Logger log = LoggerFactory.getLogger(SysDictController.class);
+    Logger logger = LoggerFactory.getLogger(SysDictController.class);
 
     @Autowired
     private ISysDictService sysDictService;

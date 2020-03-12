@@ -46,7 +46,8 @@
         * https://gitee.com/whvse/treetable-lay
     * 图标库使用
         * http://www.fontawesome.com.cn/faicons
-    * 发送 ajax 示例：[详情](./docs/ajax.md)
+    * 发送 Ajax 示例：[详情](./docs/ajax.md)
+    * FreeMarker 文档：[详情](./docs/FreeMarker.md)
 * 后端
     * Hutool 是一个小而全的Java工具类库，通过静态方法封装，降低相关API的学习成本，提高工作效率，使Java拥有函数式语言般的优雅，让Java语言也可以“甜甜的”。
     * 枚举

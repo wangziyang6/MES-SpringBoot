@@ -1,13 +1,11 @@
 /**
- * date: 2019/12/24
- * author: SongPeng
- * description: 扩展layui弹出框 框架扩展
+ * 组件：扩展layui弹出框
  */
 layui.define(['layer'], function (exports) {
     var $ = layui.jquery,
         layer = layui.layer;
 
-    var splayer = {
+    var spLayer = {
         // 渲染弹出框
         open: function (param) {
             // 默认配置
@@ -20,6 +18,12 @@ layui.define(['layer'], function (exports) {
                     //点击确认触发 iframe 内容中的按钮提交
                     var submit = layero.find('iframe').contents().find("#js-submit");
                     submit.click();
+
+                    // 如果是搜索弹窗面板，之下如下逻辑，以便调用页面可以通过回调函数获取数据
+                    if (param.spCallback && (param.spCallback instanceof Function)) {
+                        var callbackData = layero.find('iframe')[0].contentWindow.callbackData();
+                        param.spCallback(callbackData);
+                    }
                 },
                 btn2: function (index, layero) {
                     //按钮【按钮二】的回调
@@ -41,9 +45,10 @@ layui.define(['layer'], function (exports) {
                 content: param.content + '?' + spUtil.parseParam(param.spWhere)
             });
 
-            layer.open(config);
-        }
+            return layer.open(config);
+        },
+        checkStatus: {}
     };
 
-    exports('splayer', splayer);
+    exports('spLayer', spLayer);
 });

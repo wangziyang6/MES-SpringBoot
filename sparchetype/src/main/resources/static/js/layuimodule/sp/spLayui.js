@@ -1,7 +1,5 @@
 /**
- * date:2019/06/10
- * author:Mr.Chung
- * description:splayui 框架扩展
+ * 组件：后台管理页面
  */
 layui.define(["element", "jquery"], function (exports) {
     var element = layui.element,
@@ -13,7 +11,7 @@ layui.define(["element", "jquery"], function (exports) {
         return layer.alert("请先将项目部署至web容器（Apache/Tomcat/Nginx/IIS/等），否则部分数据将无法显示");
     }
 
-    splayui = new function () {
+    spLayui = new function () {
 
         /**
          *  系统配置
@@ -42,20 +40,20 @@ layui.define(["element", "jquery"], function (exports) {
          */
         this.init = function (url) {
             var loading = layer.load(0, {shade: false, time: 2 * 1000});
-            splayui.initBgColor();
-            splayui.initDevice();
+            spLayui.initBgColor();
+            spLayui.initDevice();
             $.getJSON(url, function (data, status) {
                 if (!data.data) {
-                    splayui.msg_error('暂无菜单信息');
+                    spLayui.msg_error('暂无菜单信息');
                 } else {
-                    splayui.initHome(data.data.homeInfo);
-                    splayui.initLogo(data.data.logoInfo);
-                    splayui.initClear(data.data.clearInfo);
-                    splayui.initMenu(data.data.menuInfo);
-                    splayui.initTab();
+                    spLayui.initHome(data.data.homeInfo);
+                    spLayui.initLogo(data.data.logoInfo);
+                    spLayui.initClear(data.data.clearInfo);
+                    spLayui.initMenu(data.data.menuInfo);
+                    spLayui.initTab();
                 }
             }).fail(function () {
-                splayui.msg_error('菜单接口有误');
+                spLayui.msg_error('菜单接口有误');
             });
             layer.close(loading);
         };
@@ -64,7 +62,7 @@ layui.define(["element", "jquery"], function (exports) {
          * 初始化设备端
          */
         this.initDevice = function () {
-            if (splayui.checkMobile()) {
+            if (spLayui.checkMobile()) {
                 $('.splayui-tool i').attr('data-side-fold', 0);
                 $('.splayui-tool i').attr('class', 'fa fa-indent');
                 $('.layui-layout-body').attr('class', 'layui-layout-body splayui-admin');
@@ -108,9 +106,9 @@ layui.define(["element", "jquery"], function (exports) {
         this.initBgColor = function () {
             var bgcolorId = sessionStorage.getItem('splayuiBgcolorId');
             if (bgcolorId == null || bgcolorId == undefined || bgcolorId == '') {
-                bgcolorId = splayui.config('BgColorDefault');
+                bgcolorId = spLayui.config('BgColorDefault');
             }
-            var bgcolorData = splayui.bgColorConfig(bgcolorId);
+            var bgcolorData = spLayui.bgColorConfig(bgcolorId);
             var styleHtml = '.layui-layout-admin .layui-header{background-color:' + bgcolorData.headerRight + '!important;}\n' +
                 '.layui-header>ul>.layui-nav-item.layui-this,.splayui-tool i:hover{background-color:' + bgcolorData.headerRightThis + '!important;}\n' +
                 '.layui-layout-admin .layui-logo {background-color:' + bgcolorData.headerLogo + '!important;}\n' +
@@ -186,13 +184,13 @@ layui.define(["element", "jquery"], function (exports) {
                 var href = urlArr.pop();
 
                 // 判断链接是否有效
-                var checkUrl = splayui.checkUrl(href);
+                var checkUrl = spLayui.checkUrl(href);
                 if (checkUrl != true) {
-                    return splayui.msg_error(checkUrl);
+                    return spLayui.msg_error(checkUrl);
                 }
 
                 // 判断tab是否存在
-                var checkTab = splayui.checkTab(href);
+                var checkTab = spLayui.checkTab(href);
                 if (!checkTab) {
                     var title = href,
                         tabId = href;
@@ -200,7 +198,7 @@ layui.define(["element", "jquery"], function (exports) {
                         var checkHref = $(this).attr("data-tab");
 
                         // 判断是否带参数了
-                        if (splayui.config('urlSuffixDefault')) {
+                        if (spLayui.config('urlSuffixDefault')) {
                             if (href.indexOf("mpi=") > -1) {
                                 var menuParameId = $(this).attr('data-tab-mpi');
                                 if (checkHref.indexOf("?") > -1) {
@@ -259,13 +257,13 @@ layui.define(["element", "jquery"], function (exports) {
                     }
 
                     if (splayuiHomeTab != href && splayuiHomeHref != href) {
-                        splayui.addTab(tabId, href, title, true);
-                        splayui.changeTab(tabId);
+                        spLayui.addTab(tabId, href, title, true);
+                        spLayui.changeTab(tabId);
                     }
                 }
             }
-            if (splayui.config('urlHashLocation')) {
-                splayui.hashTab();
+            if (spLayui.config('urlHashLocation')) {
+                spLayui.hashTab();
             }
         };
 
@@ -391,7 +389,7 @@ layui.define(["element", "jquery"], function (exports) {
             if (bgcolorId == null || bgcolorId == undefined || bgcolorId == '') {
                 bgcolorId = 1;
             }
-            var bgColorConfig = splayui.bgColorConfig();
+            var bgColorConfig = spLayui.bgColorConfig();
             $.each(bgColorConfig, function (key, val) {
                 if (key == bgcolorId) {
                     html += '<li class="layui-this" data-select-bgcolor="' + key + '">\n';
@@ -522,7 +520,7 @@ layui.define(["element", "jquery"], function (exports) {
          * @returns {boolean}
          */
         this.checkUrl = function (url) {
-            if (!splayui.config('checkUrlDefault')) {
+            if (!spLayui.config('checkUrlDefault')) {
                 return true;
             }
             var msg = true;
@@ -661,9 +659,9 @@ layui.define(["element", "jquery"], function (exports) {
         $parent = $(this).parent();
         tabId = $parent.attr('lay-id');
         if (tabId != undefined || tabId != null) {
-            splayui.delTab(tabId);
+            spLayui.delTab(tabId);
         }
-        splayui.tabRoll();
+        spLayui.tabRoll();
         layer.close(loading);
     });
 
@@ -684,7 +682,7 @@ layui.define(["element", "jquery"], function (exports) {
         title = title.replace('style="display: none;"', '');
 
         // 拼接参数
-        if (splayui.config('urlSuffixDefault')) {
+        if (spLayui.config('urlSuffixDefault')) {
             var menuParameId = $(this).attr('data-tab-mpi');
             if (href.indexOf("?") > -1) {
                 href = href + '&mpi=' + menuParameId;
@@ -696,22 +694,22 @@ layui.define(["element", "jquery"], function (exports) {
         }
 
         // 判断链接是否有效
-        var checkUrl = splayui.checkUrl(href);
+        var checkUrl = spLayui.checkUrl(href);
         if (checkUrl != true) {
-            return splayui.msg_error(checkUrl);
+            return spLayui.msg_error(checkUrl);
         }
 
         if (tabId == null || tabId == undefined) {
             tabId = new Date().getTime();
         }
         // 判断该窗口是否已经打开过
-        var checkTab = splayui.checkTab(tabId);
+        var checkTab = spLayui.checkTab(tabId);
         if (!checkTab) {
-            splayui.addTab(tabId, href, title, true);
+            spLayui.addTab(tabId, href, title, true);
         }
         element.tabChange('splayuiTab', tabId);
-        splayui.initDevice();
-        splayui.tabRoll();
+        spLayui.initDevice();
+        spLayui.tabRoll();
         layer.close(loading);
     });
 
@@ -735,7 +733,7 @@ layui.define(["element", "jquery"], function (exports) {
             tabId = new Date().getTime();
         }
         // 判断该窗口是否已经打开过
-        var checkTab = splayui.checkTab(tabId, true);
+        var checkTab = spLayui.checkTab(tabId, true);
         if (!checkTab) {
             var splayuiTabInfo = JSON.parse(sessionStorage.getItem("splayuiTabInfo"));
             if (splayuiTabInfo == null) {
@@ -750,7 +748,7 @@ layui.define(["element", "jquery"], function (exports) {
             });
         }
         parent.layui.element.tabChange('splayuiTab', tabId);
-        splayui.tabRoll();
+        spLayui.tabRoll();
         parent.layer.close(loading);
     });
 
@@ -785,17 +783,17 @@ layui.define(["element", "jquery"], function (exports) {
             $.getJSON(clearUrl, function (data, status) {
                 layer.close(loading);
                 if (data.code != 1) {
-                    return splayui.msg_error(data.msg);
+                    return spLayui.msg_error(data.msg);
                 } else {
-                    return splayui.msg_success(data.msg);
+                    return spLayui.msg_success(data.msg);
                 }
             }).fail(function () {
                 layer.close(loading);
-                return splayui.msg_error('清理缓存接口有误');
+                return spLayui.msg_error('清理缓存接口有误');
             });
         } else {
             layer.close(loading);
-            return splayui.msg_success('清除缓存成功');
+            return spLayui.msg_success('清除缓存成功');
         }
     });
 
@@ -804,7 +802,7 @@ layui.define(["element", "jquery"], function (exports) {
      */
     $('body').on('click', '[data-refresh]', function () {
         $(".layui-tab-item.layui-show").find("iframe")[0].contentWindow.location.reload();
-        splayui.msg_success('刷新成功');
+        spLayui.msg_success('刷新成功');
     });
 
     /**
@@ -819,15 +817,15 @@ layui.define(["element", "jquery"], function (exports) {
             if (id != 'splayuiHomeTabId') {
                 var tabClass = $(this).attr('class');
                 if (closeType == 'all') {
-                    splayui.delTab(tabId);
+                    spLayui.delTab(tabId);
                 } else {
                     if (tabClass != 'layui-this') {
-                        splayui.delTab(tabId);
+                        spLayui.delTab(tabId);
                     }
                 }
             }
         });
-        splayui.tabRoll();
+        spLayui.tabRoll();
         layer.close(loading);
     });
 
@@ -846,7 +844,7 @@ layui.define(["element", "jquery"], function (exports) {
             $('.splayui-tool i').attr('class', 'fa fa-outdent');
             $('.layui-layout-body').attr('class', 'layui-layout-body splayui-all');
         }
-        splayui.tabRoll();
+        spLayui.tabRoll();
         element.init();
         layer.close(loading);
     });
@@ -879,7 +877,7 @@ layui.define(["element", "jquery"], function (exports) {
     $('body').on('click', '[data-bgcolor]', function () {
         var loading = layer.load(0, {shade: false, time: 2 * 1000});
         var clientHeight = (document.documentElement.clientHeight) - 95;
-        var bgColorHtml = splayui.buildBgColorHtml();
+        var bgColorHtml = spLayui.buildBgColorHtml();
         var html = '<div class="splayui-color">\n' +
             '<div class="color-title">\n' +
             '<span>配色方案</span>\n' +
@@ -914,8 +912,8 @@ layui.define(["element", "jquery"], function (exports) {
         $('.splayui-color .color-content ul .layui-this').attr('class', '');
         $(this).attr('class', 'layui-this');
         sessionStorage.setItem('splayuiBgcolorId', bgcolorId);
-        splayui.initBgColor();
+        spLayui.initBgColor();
     });
 
-    exports("splayui", splayui);
-});
+    exports("spLayui", spLayui);
+})
