@@ -15,12 +15,21 @@
         </where>
     </select>
 
-    <insert id="commonSave" >
+    <insert id="commonSave">
         insert  into ${tableName} (${col}) VALUES (${values})
     </insert>
 
     <update id="commonUpdate">
-
-
+        UPDATE ${tableName}
+        SET ${col}
+        <where>
+            id = #{id}
+        </where>
     </update>
+    <delete id="commonDelete">
+        delete from ${tableName}
+        <where>
+            id = #{id}
+        </where>
+    </delete>
 </mapper>

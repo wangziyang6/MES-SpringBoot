@@ -45,4 +45,11 @@ public interface QueryTableNameDataMapper extends BaseMapper<SpTableManagerItem>
      * @param commonDto 通用数据传输
      */
     void commonUpdate(CommonDto commonDto);
+
+    /**
+     * 通用删除服务
+     *
+     * @param commonDto 通用数据传输
+     */
+    void commonDelete( CommonDto commonDto);
 }

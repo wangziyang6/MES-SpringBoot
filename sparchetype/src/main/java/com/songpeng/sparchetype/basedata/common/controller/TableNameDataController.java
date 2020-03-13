@@ -76,12 +76,12 @@ public class TableNameDataController extends BaseController {
 
 
     /**
-     * 主数据通用修改和新增
+     * 通用主数据通用修改和新增
      *
      * @param request 请求对象
      * @return 执行结果
      */
-    @ApiOperation("主数据表头修改")
+    @ApiOperation("主数据通用修改和新增")
     @PostMapping("/add-or-update")
     @ResponseBody
     public Result addOrUpdate(HttpServletRequest request) throws Exception {
@@ -92,6 +92,22 @@ public class TableNameDataController extends BaseController {
         } else {
             tableNameDataService.commonSave(request, user);
         }
+        return Result.success();
+    }
+
+
+    /**
+     * 通用删除接口
+     *
+     * @param commonDto 请求参数
+     * @return Result 执行结果
+     */
+    @ApiOperation("通用删除接口")
+    @ApiImplicitParams({@ApiImplicitParam(name = "commonDto", value = "通用数据传输", defaultValue = "表信息")})
+    @PostMapping("delete")
+    @ResponseBody
+    public Result deleteCommon(CommonDto commonDto) throws Exception {
+        tableNameDataService.commonDelete(commonDto);
         return Result.success();
     }
 }

@@ -39,16 +39,28 @@ public interface TableNameDataService {
     String buildCol(String tableNameId) throws Exception;
 
     /**
-     * 基础数据通用保存
+     * 基础数据通用存
      *
-     * @param request 通用数据传输
+     * @param request 请求数据
+     * @param user    用户对象
+     * @throws Exception 异常
      */
     void commonSave(HttpServletRequest request, SysUser user) throws Exception;
 
     /**
      * 基础数据通用修改
      *
-     * @param request 通用数据传输
+     * @param request 请求数据
+     * @param user    用户对象
+     * @throws Exception 异常
      */
-    void commonUpdate(HttpServletRequest request, SysUser user);
+    void commonUpdate(HttpServletRequest request, SysUser user) throws Exception;
+
+    /**
+     * 基础数据通用删除
+     *
+     * @param request 请求数据
+     * @throws Exception 异常
+     */
+    void commonDelete(CommonDto commonDto) throws Exception;
 }

@@ -83,9 +83,22 @@ public class TableNameDataServiceImpl implements TableNameDataService {
     }
 
     /**
-     * 基础数据通用保存
+     * 基础数据通用删除
      *
-     * @param request 通用数据传输
+     * @param commonDto 通用数据传输
+     * @throws Exception 异常
+     */
+    @Override
+    public void commonDelete(CommonDto commonDto) throws Exception {
+        queryTableNameDataMapper.commonDelete(commonDto);
+    }
+
+    /**
+     * 基础数据通用新增
+     *
+     * @param request 请求数据
+     * @param user    用户对象
+     * @throws Exception 异常
      */
     @Override
     public void commonSave(HttpServletRequest request, SysUser user) throws Exception {
@@ -122,14 +135,33 @@ public class TableNameDataServiceImpl implements TableNameDataService {
     /**
      * 基础数据通用修改
      *
-     * @param request 通用数据传输
+     * @param request 请求数据
+     * @param user    用户对象
+     * @throws Exception 异常
      */
     @Override
-    public void commonUpdate(HttpServletRequest request, SysUser user) {
+    public void commonUpdate(HttpServletRequest request, SysUser user) throws Exception {
         //拿到列
-        String col = "";
-        //拿到对应的值
+        CommonDto commonDto = new CommonDto();
+        String jsTableName = request.getParameter("jsTableName");
+        String id = request.getParameter("id");
+        String jsTableNameId = request.getParameter("jsTableNameId");
         //拼接修改的SQL语句
+        //拿到对应的修改列和值
+        StringBuilder valueBuilder = new StringBuilder();
+        List<SpTableManagerItem> spTableManagerItems = iSpTableManagerItemService.queryItemBytableNameId(jsTableNameId);
+        for (SpTableManagerItem spTableManagerItem : spTableManagerItems) {
+            String values = spTableManagerItem.getField() + "=" + "'" + request.getParameter(spTableManagerItem.getField()) + "',";
+            valueBuilder.append(values);
+        }
+        String updateUsername = "update_username=" + "'" + user.getUsername() + "',";
+        String updateTime = "update_time=" + "SYSDATE()";
+        valueBuilder.append(updateUsername).append(updateTime);
+        commonDto.setTableName(jsTableName);
+        commonDto.setCol(valueBuilder.toString());
+        commonDto.setId(id);
         //执行mapper
+        queryTableNameDataMapper.commonUpdate(commonDto);
+
     }
 }

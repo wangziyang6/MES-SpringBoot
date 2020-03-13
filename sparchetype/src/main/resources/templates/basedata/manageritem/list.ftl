@@ -214,7 +214,7 @@
             if (obj.event === 'delete') {
                 layer.confirm('确认要删除吗？', function (index) {
                     spUtil.ajax({
-                        url: '${request.contextPath}/basedata/common/delete/by/tableNameId',
+                        url: '${request.contextPath}/basedata/common/delete',
                         async: false,
                         type: 'POST',
                         // 是否显示 loading
