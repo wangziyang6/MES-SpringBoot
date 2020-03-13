@@ -70,7 +70,7 @@
         ruleDetailRows = {};
         var tableName;
         var tableNameId;
-
+        var tableIns;
         // 左侧表格及数据初始化
         var tableNamec = spTable.render({
             toolbar: '',
@@ -98,7 +98,7 @@
             //动态拼接需要表格明细需要显示的列头
             buildcol(obj.data.id);
             // 表格数据明细初始化
-            var tableIns = spTable.render({
+            tableIns  = spTable.render({
                 url: '${request.contextPath}/basedata/common/page',
                 cols: [colsArr],
                 where: {tableNameId: obj.data.id, tableName: obj.data.tableName},
@@ -223,7 +223,8 @@
                         serializable: false,
                         // 参数
                         data: {
-                            id: data.id
+                            id: data.id,
+                            tableName: tableName
                         },
                         success: function (data) {
                             tableIns.reload();
