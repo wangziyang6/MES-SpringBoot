@@ -3,6 +3,7 @@ package com.wangziyang.mes.basedata.common.dto;
 import com.wangziyang.mes.common.BaseEntity;
 
 /**
+ * @author wangziyang
  * 基础数据通用查询复杂对象
  */
 public class CommonDto extends BaseEntity {

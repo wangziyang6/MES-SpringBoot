@@ -59,7 +59,7 @@ public interface TableNameDataService {
     /**
      * 基础数据通用删除
      *
-     * @param request 请求数据
+     * @param commonDto 通用对象
      * @throws Exception 异常
      */
     void commonDelete(CommonDto commonDto) throws Exception;
