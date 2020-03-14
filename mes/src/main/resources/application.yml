@@ -1,0 +1,18 @@
+server:
+  session-timeout: 1800
+spring:
+  profiles:
+    active: dev
+  cache:
+    type: ehcache
+    ehcache:
+      config: classpath:config/ehcache.xml
+
+swagger:
+  controller: com.wangziyang.mes
+  description: MES接口管理
+  enable: true
+  license: wangziyang
+  licenseUrl: https://gitee.com/wangziyangyang/MES-Sprongboot
+  title: 王子杨的API 管理
+  version: 1.0.0

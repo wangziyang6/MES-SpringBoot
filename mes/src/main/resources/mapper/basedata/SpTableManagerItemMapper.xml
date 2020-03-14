@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangziyang.mes.basedata.mapper.SpTableManagerItemMapper">
+    <resultMap id="BaseResultMap" type="com.wangziyang.mes.basedata.entity.SpTableManagerItem">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="FIELD" property="field" jdbcType="VARCHAR"/>
+        <result column="field_desc" property="fieldDesc" jdbcType="VARCHAR"/>
+        <result column="must_fill" property="mustFill" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询编码规则明细分页信息-->
+    <select id="queryItemBytableNameId" parameterType="string"
+            resultMap="BaseResultMap">
+        SELECT
+        t.id,
+        t.FIELD,
+        t.field_desc,
+        t.must_fill
+        FROM
+        sp_table_manager_item t
+        <where>
+            t.table_name_id = #{tableNameId}
+        </where>
+        ORDER BY sort_num
+    </select>
+
+    <delete id="deleteItemBytableNameId" parameterType="string">
+	      DELETE  FROM sp_table_manager_item WHERE  table_name_id = #{tableNameId}
+    </delete>
+
+</mapper>

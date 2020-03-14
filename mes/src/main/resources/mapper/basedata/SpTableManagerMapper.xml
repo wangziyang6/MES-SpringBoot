@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangziyang.mes.basedata.mapper.SpTableManagerMapper">
+    <resultMap id="BaseResultMap" type="com.wangziyang.mes.basedata.entity.SpTableManagerItem">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="COLUMN_NAME" property="field" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询编码规则明细分页信息-->
+    <select id="queryTableFieldByName" parameterType="com.wangziyang.mes.basedata.entity.SpTableManager"
+            resultMap="BaseResultMap">
+        SELECT
+        column_name
+        FROM
+        INFORMATION_SCHEMA.COLUMNS
+        <where>
+            table_name = #{tableName}
+            AND COLUMN_name NOT IN ( 'create_time', 'create_username', 'update_time', 'update_username', 'id' )
+        </where>
+        ORDER BY   ordinal_position
+    </select>
+
+</mapper>

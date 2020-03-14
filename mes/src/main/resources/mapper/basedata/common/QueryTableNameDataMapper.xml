@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangziyang.mes.basedata.common.mapper.QueryTableNameDataMapper">
+
+    <!--基础数据通用查询-->
+    <select id="queryTableNameDataList" resultType="java.util.Map">
+        SELECT id,${col} FROM ${tableName}
+    </select>
+
+    <!--基础数据通用查询-->
+    <select id="queryTableNameById" resultType="java.util.Map">
+        SELECT id,${col} FROM ${tableName}
+        <where>
+            id=#{id}
+        </where>
+    </select>
+
+    <insert id="commonSave">
+        insert  into ${tableName} (${col}) VALUES (${values})
+    </insert>
+
+    <update id="commonUpdate">
+        UPDATE ${tableName}
+        SET ${col}
+        <where>
+            id = #{id}
+        </where>
+    </update>
+    <delete id="commonDelete">
+        delete from ${tableName}
+        <where>
+            id = #{id}
+        </where>
+    </delete>
+</mapper>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangziyang.mes.system.mapper.SysUserMapper">
+
+    <resultMap id="resultMap" type="com.wangziyang.mes.system.entity.SysUser">
+        <id column="user_id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="dept_id" property="deptId"/>
+        <result column="email" property="email"/>
+        <result column="mobile" property="mobile"/>
+        <result column="tel" property="tel"/>
+        <result column="sex" property="sex"/>
+        <result column="birthday" property="birthday"/>
+        <result column="pic_id" property="picId"/>
+        <result column="id_card" property="idCard"/>
+        <result column="hobby" property="hobby"/>
+        <result column="province" property="province"/>
+        <result column="city" property="city"/>
+        <result column="district" property="district"/>
+        <result column="street" property="street"/>
+        <result column="street_number" property="streetNumber"/>
+        <result column="descr" property="descr"/>
+        <result column="is_deleted" property="deleted"/>
+        <result column="create_username" property="createUsername"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_username" property="updateUsername"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <resultMap id="userRoleResultMap" extends="resultMap" type="com.wangziyang.mes.system.dto.SysUserDTO">
+        <collection property="sysRoleDTOs" ofType="com.wangziyang.mes.system.dto.SysRoleDTO">
+            <id column="role_id" property="id"/>
+            <result column="role_name" property="name"/>
+            <result column="code" property="code"/>
+            <result column="role_descr" property="descr"/>
+            <result column="role_is_deleted" property="deleted"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectUserAndRoleByUsername" parameterType="java.lang.String" resultMap="userRoleResultMap">
+        SELECT t.id user_id,
+            t.name,
+            t.username,
+            t.password,
+            t.dept_id,
+            t.email,
+            t.mobile,
+            t.tel,
+            t.sex,
+            t.birthday,
+            t.pic_id,
+            t.id_card,
+            t.hobby,
+            t.province,
+            t.city,
+            t.district,
+            t.street,
+            t.street_number,
+            t.descr,
+            t.is_deleted,
+            t.create_time,
+            t.create_username,
+            t.update_time,
+            t.update_username,
+            ssr.id role_id,
+            ssr.name role_name,
+            ssr.code,
+            ssr.descr role_descr,
+            ssr.is_deleted role_is_deleted
+        FROM sp_sys_user t
+        LEFT JOIN sp_sys_user_role ssur
+        ON ssur.user_id = t.id
+        LEFT JOIN sp_sys_role ssr
+        ON ssr.id = ssur.role_id
+        WHERE t.username = #{username}
+    </select>
+</mapper>

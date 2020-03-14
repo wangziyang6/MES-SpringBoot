@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangziyang.mes.system.mapper.SysRoleMapper">
+
+    <resultMap id="resultMap" type="com.wangziyang.mes.system.entity.SysRole">
+        <id column="id" jdbcType="VARCHAR" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="code" jdbcType="VARCHAR" property="code" />
+        <result column="descr" jdbcType="VARCHAR" property="descr" />
+        <result column="is_deleted" jdbcType="VARCHAR" property="deleted" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="create_username" jdbcType="VARCHAR" property="createUsername" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+        <result column="update_username" jdbcType="VARCHAR" property="updateUsername" />
+    </resultMap>
+
+    <!--根据用户ID获取用户权限列表-->
+    <select id="listByUserId" parameterType="java.lang.String" resultMap="resultMap">
+        SELECT t.*
+        FROM sp_sys_role t,
+        sp_sys_user_role sur
+        WHERE t.id = sur.role_id
+        AND sur.user_id = #{userId}
+    </select>
+</mapper>
