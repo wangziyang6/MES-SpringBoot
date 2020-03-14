@@ -103,7 +103,6 @@
             data.field.jsTableName='${table.tableName}'
             data.field.jsTableNameId='${table.tableNameId}'
             spUtil.submitForm({
-                reload: false,
                 url: "${request.contextPath}/basedata/common/add-or-update",
                 data: data.field
             });

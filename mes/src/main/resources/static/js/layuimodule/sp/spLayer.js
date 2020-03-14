@@ -18,10 +18,13 @@ layui.define(['layer'], function (exports) {
                     //点击确认触发 iframe 内容中的按钮提交
                     var submit = layero.find('iframe').contents().find("#js-submit");
                     submit.click();
-
                     // 如果是搜索弹窗面板，之下如下逻辑，以便调用页面可以通过回调函数获取数据
                     if (param.spCallback && (param.spCallback instanceof Function)) {
                         param.spCallback(layero.find('iframe')[0].contentWindow.spChildFrameResult);
+                    }
+                    if (param.reload !== false) {
+                        // 刷新父页面，注意一定要在关闭当前iframe层之前执行刷新
+                        window.location.reload();
                     }
                 },
                 btn2: function (index, layero) {

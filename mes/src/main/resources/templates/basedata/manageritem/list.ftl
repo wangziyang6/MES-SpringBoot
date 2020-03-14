@@ -99,7 +99,7 @@
             //动态拼接需要表格明细需要显示的列头
             buildcol(tableNameId);
             // 右侧表格数据明细初始化
-            rightInit(tableNameId,tableName )
+            rightInit(tableNameId, tableName)
 
         });
 
@@ -199,12 +199,13 @@
                 var index = spLayer.open({
                     title: '添加',
                     area: ['60%', '90%'],
+                    reload: false,
                     spWhere: {tableNameId: tableNameId, tableName: tableName},
                     content: '${request.contextPath}/basedata/common/add-or-update-ui',
                     spCallback: function (result) {
                         if (result.code === 0) {
                             // 手动刷新表格
-                            rightInit(tableNameId,tableName);
+                            rightInit(tableNameId, tableName);
                         }
                     }
                 });
@@ -221,13 +222,14 @@
                 spLayer.open({
                     title: '编辑',
                     area: ['60%', '90%'],
+                    reload: false,
                     // 请求url参数
                     spWhere: {id: data.id, tableName: tableName, tableNameId: tableNameId},
                     content: '${request.contextPath}/basedata/common/add-or-update-ui',
                     spCallback: function (result) {
                         if (result.code === 0) {
                             // 手动刷新表格
-                            rightInit(tableNameId,tableName);
+                            rightInit(tableNameId, tableName);
                         }
                     }
                 });
