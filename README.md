@@ -62,4 +62,7 @@
 ## QQ Group87652870
 [![QQ](https://img.shields.io/badge/QQ-87652870-green.svg?logo=tencent%20qq&logoColor=red)](https://jq.qq.com/?_wv=1027&k=55NGCxl)
 
+## 特别鸣谢
+<a href="https://gitee.com/iamsongpeng" target="_blank">**宋鹏同学**</a> 感谢提供前端技术支持！
+
 [![MES-智能制造/MES-Sprongboot](https://gitee.com/wangziyangyang/MES-Sprongboot/widgets/widget_card.svg?colors=393222,ebdfc1,fffae5,d8ca9f,393222,a28b40)](https://gitee.com/wangziyangyang/MES-Sprongboot)
