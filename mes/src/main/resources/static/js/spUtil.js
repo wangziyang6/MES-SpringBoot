@@ -15,11 +15,7 @@ spUtil.submitForm = function (options) {
             window.spChildFrameResult = result;
             if (result.code === 0) {
                 // 获得frame索引
-                var index = parent.layer.getFrameIndex(window.name);
-                if (options.close !== false) {
-                    // 关闭当前frame
-                    parent.layer.close(index);
-                }
+                // var index = parent.layer.getFrameIndex(window.name);
             } else {
                 layer.alert(result.msg, {
                     icon: 2

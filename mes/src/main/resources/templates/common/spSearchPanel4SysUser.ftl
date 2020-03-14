@@ -5,7 +5,8 @@
     <title>搜索面板</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <#include "${request.contextPath}/common/common.ftl">
 </head>
 
@@ -28,7 +29,8 @@
                     </div>
                 </div>
                 <div class="layui-inline">
-                    <a class="layui-btn" lay-submit lay-filter="js-search-filter"><i class="layui-icon layui-icon-search"></i></a>
+                    <a class="layui-btn" lay-submit lay-filter="js-search-filter"><i
+                                class="layui-icon layui-icon-search"></i></a>
                 </div>
             </div>
         </form>
@@ -89,7 +91,12 @@
 
         // 监听提交
         form.on('submit(js-submit-filter)', function (data) {
-            window.spChildFrameResult = {msg: '操作成功', code: 0, data: table.checkStatus('js-record-table')};
+            window.spChildFrameResult = {
+                msg: '操作成功',
+                code: 0,
+                data: table.checkStatus('js-record-table').data,
+                isAll: table.checkStatus('js-record-table').isAll
+            };
             return false;
         });
     });

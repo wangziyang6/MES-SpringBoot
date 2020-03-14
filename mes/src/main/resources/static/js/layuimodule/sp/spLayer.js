@@ -22,6 +22,9 @@ layui.define(['layer'], function (exports) {
                     if (param.spCallback && (param.spCallback instanceof Function)) {
                         param.spCallback(layero.find('iframe')[0].contentWindow.spChildFrameResult);
                     }
+                    if (param.close !== false) {
+                        layer.close(index);
+                    }
                     if (param.reload !== false) {
                         // 刷新父页面，注意一定要在关闭当前iframe层之前执行刷新
                         window.location.reload();

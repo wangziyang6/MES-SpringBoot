@@ -220,12 +220,13 @@
             var index = spLayer.open({
                 type: 2,
                 area: ['680px', '500px'],
+                reload: false,
                 content: '${request.contextPath}/admin/common/ui/spSearchPanel4SysUser',
                 // 如果是搜索弹窗，需要添加回调函数来获取选中数据
                 spCallback: function (result) {
-                    console.log(result);
-                    if (result.code === 0 && result.data.data.length > 0) {
-                        $('#js-test-input').val(result.data.data[0].name);
+                    console.log(result)
+                    if (result.code === 0 && result.data.length > 0) {
+                        $('#js-test-input').val(result.data[0].name);
                     }
                 }
             });
