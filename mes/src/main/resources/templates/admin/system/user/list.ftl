@@ -224,8 +224,8 @@
                 // 如果是搜索弹窗，需要添加回调函数来获取选中数据
                 spCallback: function (result) {
                     console.log(result);
-                    if (result.data && result.data.length > 0) {
-                        $('#js-test-input').val(result.data[0].name);
+                    if (result.code === 0 && result.data.data.length > 0) {
+                        $('#js-test-input').val(result.data.data[0].name);
                     }
                 }
             });

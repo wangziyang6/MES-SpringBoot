@@ -48,7 +48,6 @@
     </div>
 </div>
 <script>
-    var tableChecked;
     layui.use(['form', 'util', 'table', 'spTable'], function () {
         var form = layui.form,
             util = layui.util,
@@ -90,14 +89,11 @@
 
         // 监听提交
         form.on('submit(js-submit-filter)', function (data) {
-            tableChecked = table.checkStatus('js-record-table');
+            window.spChildFrameResult = {msg: '操作成功', code: 0, data: table.checkStatus('js-record-table')};
             return false;
         });
     });
 
-    function callbackData() {
-        return tableChecked;
-    }
 </script>
 </body>
 </html>

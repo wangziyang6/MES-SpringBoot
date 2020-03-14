@@ -5,19 +5,25 @@ var spUtil = {};
  * 提交表单
  * @param param
  */
-spUtil.submitForm = function(options) {
+spUtil.submitForm = function (options) {
     // 默认配置
     var defaultConfig = {
         type: "POST",
-        async: true,
+        async: false,
         success: function (result) {
+            // 将打开窗口中的请求结果赋值到父页面window
+            window.spChildFrameResult = result;
             if (result.code === 0) {
                 // 获得frame索引
                 var index = parent.layer.getFrameIndex(window.name);
-                //刷新父页面，注意一定要在关闭当前iframe层之前执行刷新
-                parent.location.reload();
-                //关闭当前frame
-                parent.layer.close(index);
+                if (options.reload !== false) {
+                    // 刷新父页面，注意一定要在关闭当前iframe层之前执行刷新
+                    parent.location.reload();
+                }
+                if (options.close !== false) {
+                    // 关闭当前frame
+                    parent.layer.close(index);
+                }
             } else {
                 layer.alert(result.msg, {
                     icon: 2
@@ -203,14 +209,4 @@ spUtil.parseQueryString = function (url) {
         obj[key] = value;
     }
     return obj;
-};
-
-/**
- * 生成一个用不重复的ID
- * 引入时间戳的36微进制，加入随机数长度控制
- */
-spUtil.genNonDuplicateID = function (randomLength) {
-    var idStr = Date.now().toString(36);
-    idStr += Math.random().toString(36).substr(3, randomLength);
-    return idStr;
 };

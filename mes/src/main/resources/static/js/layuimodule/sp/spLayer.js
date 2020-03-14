@@ -21,9 +21,7 @@ layui.define(['layer'], function (exports) {
 
                     // 如果是搜索弹窗面板，之下如下逻辑，以便调用页面可以通过回调函数获取数据
                     if (param.spCallback && (param.spCallback instanceof Function)) {
-                        var callbackData = layero.find('iframe')[0].contentWindow.callbackData();
-                        param.spCallback(callbackData);
-                        layer.close(index);
+                        param.spCallback(layero.find('iframe')[0].contentWindow.spChildFrameResult);
                     }
                 },
                 btn2: function (index, layero) {

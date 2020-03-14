@@ -85,27 +85,37 @@
                 }]
             ],
             done: function (res, curr, count) {
+                rightInit(tableName, tableNameId)
             }
         });
 
         //左侧表格监听行单击事件 初始化右侧表明细
         table.on('row(js-table-name-filter)', function (obj) {
             $('#js-search-test').val(obj.data.tableName);
-            tableName=obj.data.tableName;
-            tableNameId=obj.data.id;
+            tableName = obj.data.tableName;
+            tableNameId = obj.data.id;
             //初始化数据
             colsArr = [];
             //动态拼接需要表格明细需要显示的列头
-            buildcol(obj.data.id);
-            // 表格数据明细初始化
-            tableIns  = spTable.render({
+            buildcol(tableNameId);
+            // 右侧表格数据明细初始化
+            rightInit(tableNameId,tableName )
+
+        });
+
+        /**
+         * 初始化右侧表格
+         * */
+        function rightInit(tableNameId, tableName) {
+            tableIns = spTable.render({
                 url: '${request.contextPath}/basedata/common/page',
                 cols: [colsArr],
-                where: {tableNameId: obj.data.id, tableName: obj.data.tableName},
+                where: {tableNameId: tableNameId, tableName: tableName},
                 done: function (res, curr, count) {
                 }
             });
-        });
+
+        }
 
         //动态拼接需要表格需要显示的列头
         function buildcol(id) {
@@ -189,8 +199,14 @@
                 var index = spLayer.open({
                     title: '添加',
                     area: ['60%', '90%'],
-                    spWhere: {tableNameId :tableNameId,tableName: tableName },
-                    content: '${request.contextPath}/basedata/common/add-or-update-ui'
+                    spWhere: {tableNameId: tableNameId, tableName: tableName},
+                    content: '${request.contextPath}/basedata/common/add-or-update-ui',
+                    spCallback: function (result) {
+                        if (result.code === 0) {
+                            // 手动刷新表格
+                            rightInit(tableNameId,tableName);
+                        }
+                    }
                 });
             }
         });
@@ -206,8 +222,14 @@
                     title: '编辑',
                     area: ['60%', '90%'],
                     // 请求url参数
-                    spWhere: {id: data.id, tableName: tableName ,tableNameId :tableNameId},
-                    content: '${request.contextPath}/basedata/common/add-or-update-ui'
+                    spWhere: {id: data.id, tableName: tableName, tableNameId: tableNameId},
+                    content: '${request.contextPath}/basedata/common/add-or-update-ui',
+                    spCallback: function (result) {
+                        if (result.code === 0) {
+                            // 手动刷新表格
+                            rightInit(tableNameId,tableName);
+                        }
+                    }
                 });
             }
             // 删除

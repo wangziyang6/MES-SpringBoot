@@ -22,6 +22,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="layui-form-item layui-hide">
                 <div class="layui-input-block">
                     <button id="js-submit" class="layui-btn" lay-submit lay-filter="js-submit-filter">确定</button>
@@ -93,13 +94,6 @@
                 $('#' + '${itemKey}').val('${map[itemKey]}');
                 </#list>
                 </#list>
-                <#--if ('${result}') {-->
-                <#--    var detailResult = JSON.parse('${result}');-->
-                //     console.log(detailResult);
-                // $.each(detailResult, function (index, item) {
-                //
-                // });
-                // }
                 form.render();
             }, 100);
         }
@@ -109,6 +103,7 @@
             data.field.jsTableName='${table.tableName}'
             data.field.jsTableNameId='${table.tableNameId}'
             spUtil.submitForm({
+                reload: false,
                 url: "${request.contextPath}/basedata/common/add-or-update",
                 data: data.field
             });
