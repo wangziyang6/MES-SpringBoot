@@ -105,7 +105,7 @@ public class CodeGenerator {
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         strategy.setSuperEntityClass("com.wangziyang.mes.common.BaseEntity");
-        strategy.setEntityLombokModel(true);
+       // strategy.setEntityLombokModel(true);
         //strategy.setRestControllerStyle(true);
         strategy.setRestControllerStyle(false);
         // 公共父类
