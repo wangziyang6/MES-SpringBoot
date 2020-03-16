@@ -33,7 +33,7 @@
                 <div class="layui-inline">
                     <label for="js-descr" class="layui-form-label sp-required">流程时序
                     </label>
-                    <div class="layui-input-inline">
+                    <div class="layui-input-inline" style="width: 200px">
                         <input type="text" id="js-process" name="process" lay-verify="required" autocomplete="off"
                                class="layui-input" value="${flow.process}">
                     </div>

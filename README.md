@@ -1,22 +1,23 @@
 # 黑科MES 本人重起了一套springboot 开源框架 代码标准规范化。
 
 ## 界面展示
-![](https://s2.ax1x.com/2020/03/06/3b89zD.gif)
+![1](https://s2.ax1x.com/2020/03/06/3b89zD.gif)
 
 ### 登录界面 含粒子特效
-![1](https://s2.ax1x.com/2020/03/06/3bQLqI.png)
+![1.1](https://s2.ax1x.com/2020/03/06/3bQLqI.png)
 
 ### 主菜单界面
-![1](https://s2.ax1x.com/2020/03/10/8CydC4.png)
+![1.1](https://s2.ax1x.com/2020/03/10/8CydC4.png)
 
 ### 功能界面
 
-![1](https://s2.ax1x.com/2020/03/06/3bQbMd.png)
+![1.1.1](https://s2.ax1x.com/2020/03/06/3bQbMd.png)
 主数据展示
-![1](https://s2.ax1x.com/2020/03/11/8AMcA1.png)
-
+![1.1.2](https://s2.ax1x.com/2020/03/11/8AMcA1.png)
+工序与流程管理界面
+![1.1.3](https://s1.ax1x.com/2020/03/16/8GOl28.png)
 ### swaggerAPI管理界面
-![](https://s2.ax1x.com/2020/03/06/3qC4Yt.png)
+![2](https://s2.ax1x.com/2020/03/06/3qC4Yt.png)
 ## 技术架构
 ### springBoot+mybatis-plus+redis+shiro+hutool+layui+jenkins+swagger+freemarker
 实现功能：
