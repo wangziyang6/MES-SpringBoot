@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>添加用户</title>
+    <title>工序与流程关系</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -30,18 +30,19 @@
                                class="layui-input" value="${flow.flowDesc}">
                     </div>
                 </div>
-                <div class="layui-inline">
-                    <label for="js-descr" class="layui-form-label ">流程时序
-                    </label>
-                    <div class="layui-input-inline" style="width: 200px">
-                        <input type="text" id="js-process" name="process" readonly autocomplete="off"
-                               class="layui-input" value="${flow.process}">
-                    </div>
+
+            </div>
+            <div class="layui-form-item">
+                <label for="js-descr" class="layui-form-label " >流程时序
+                </label>
+                <div class="layui-input-inline" style="width: 514px">
+                    <input type="text" id="js-process"  readonly autocomplete="off"
+                           class="layui-input" value="${flow.process}">
                 </div>
             </div>
 
             <div class="layui-form-item">
-                <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+                <fieldset class="layui-elem-field layui-field-title" >
                     <legend>流程与工序关系</legend>
                 </fieldset>
                 <div id="js-shuttle" class="demo-transfer"></div>

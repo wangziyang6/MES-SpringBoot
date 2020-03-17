@@ -20,5 +20,11 @@
         ORDER BY sort_num
     </select>
 
+    <delete id="deleteOperRelationByFlowId">
+        delete from sp_flow_oper_relation
+        <where>
+            flow_id = #{flowId}
+        </where>
+    </delete>
 
 </mapper>

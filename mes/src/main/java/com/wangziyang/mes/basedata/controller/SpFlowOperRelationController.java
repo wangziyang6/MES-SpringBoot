@@ -109,7 +109,7 @@ public class SpFlowOperRelationController extends BaseController {
      * @param spFlowDto 流程与工序DTO
      * @return 执行结果
      */
-    @ApiOperation("主数据表头修改")
+    @ApiOperation("流程与工序关系管理新增+修改")
     @PostMapping("/add-or-update")
     @ResponseBody
     public Result addOrUpdate(@RequestBody SpFlowDto spFlowDto) throws Exception {

@@ -18,9 +18,15 @@ import java.util.List;
 public interface SpFlowOperRelationMapper extends BaseMapper<SpFlowOperRelation> {
     /**
      * 根据流程ID查询下挂的全部工序
-     *
+     * @param flowId 流程关联ID
      * @return 工序关系集合
      */
     List<SpOperVo> queryOperRelationByFlowId(@Param("flowId") String flowId);
+
+    /**
+     * 删除流程下挂的全部工序
+     * @param flowId 流程关联ID
+     */
+    void  deleteOperRelationByFlowId(@Param("flowId") String flowId);
 
 }

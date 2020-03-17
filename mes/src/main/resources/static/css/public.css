@@ -30,7 +30,7 @@ body {
 }
 
 .splayui-form .layui-form-item > .layui-form-label {
-    width: 120px !important;
+    /*width: 120px !important;*/
 }
 
 .splayui-form > .layui-form-item > .layui-input-block {

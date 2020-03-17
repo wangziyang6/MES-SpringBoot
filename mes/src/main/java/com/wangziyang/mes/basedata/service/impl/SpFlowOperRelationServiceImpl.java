@@ -102,7 +102,11 @@ public class SpFlowOperRelationServiceImpl extends ServiceImpl<SpFlowOperRelatio
         String flowId = spFlow.getId();
         String flow = spFlow.getFlow();
         if (StringUtils.isNotEmpty(flowId)) {
-            //TODO  根据流程ID 批量删除下挂的工序
+            spFlowOperRelationMapper.deleteOperRelationByFlowId(flowId);
+        } else {
+            //如果流程头表为空先创建一下
+            iSpFlowService.saveOrUpdate(spFlow);
+            flowId = spFlow.getId();
         }
         // 批量处理需要插入数据库的工序
         log.info("开始处理流程下工序关系");
@@ -110,6 +114,7 @@ public class SpFlowOperRelationServiceImpl extends ServiceImpl<SpFlowOperRelatio
             SpFlowOperRelation relation = new SpFlowOperRelation();
             relation.setFlowId(flowId);//流程ID
             relation.setFlow(flow);//流程编号
+            SpOper oper = iSpOperService.getById(spOperVoList.get(i).getValue());
             if (i == 0) {//首个工序
                 relation.setPerOperId("");
                 relation.setPerOper("");
@@ -134,12 +139,16 @@ public class SpFlowOperRelationServiceImpl extends ServiceImpl<SpFlowOperRelatio
             relation.setOperId(spOperVoList.get(i).getValue());
             relation.setOper(spOperVoList.get(i).getTitle());
             relation.setSortNum(i + 1);//顺序
-            processBuild.append("123->");
+            if (i == 0) {
+                processBuild.append(oper.getOperDesc());
+            } else {
+                processBuild.append("->" + oper.getOperDesc());
+            }
             spFlowOperRelationList.add(relation);
         }
         log.info("本次流程时序" + processBuild.toString());
         spFlow.setProcess(processBuild.toString());
-        //保存流程头表信息
+        //更细流程头表信息
         iSpFlowService.saveOrUpdate(spFlow);
         saveOrUpdateBatch(spFlowOperRelationList);
         return Result.success();
