@@ -1,11 +1,8 @@
 package com.wangziyang.mes.basedata.controller;
 
 
-import cn.hutool.core.collection.CollectionUtil;
 import com.wangziyang.mes.basedata.dto.SpFlowDto;
 import com.wangziyang.mes.basedata.entity.SpFlow;
-import com.wangziyang.mes.basedata.entity.SpFlowOperRelation;
-import com.wangziyang.mes.basedata.entity.SpOper;
 import com.wangziyang.mes.basedata.request.SpTableManagerReq;
 import com.wangziyang.mes.basedata.service.ISpFlowOperRelationService;
 import com.wangziyang.mes.basedata.service.ISpFlowService;
@@ -17,13 +14,11 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -77,22 +72,16 @@ public class SpFlowOperRelationController extends BaseController {
      */
     @ApiOperation("流程与工序关系管理编辑界面")
     @GetMapping("/add-or-update-ui")
-    public String addOrUpdateUI(Model model, SpFlow record) {
-        List<SpOper> operList = iSpOperService.list();
-        List<SpOperVo> spOperVos = new ArrayList<>();
-        //得出全部的工序数据
-        for (SpOper spOper : operList) {
-            SpOperVo operVo = new SpOperVo();
-            operVo.setValue(spOper.getId());
-            operVo.setTitle(spOper.getOper());
-            spOperVos.add(operVo);
-        }
-        model.addAttribute("allOper", spOperVos);
+    public String addOrUpdateUI(Model model, SpFlow record) throws Exception {
+        List<SpOperVo> allSpOperVos = iSpFlowOperRelationService.allOperViewServer();
+        //全部工序
+        model.addAttribute("allOper", allSpOperVos);
         if (StringUtils.isNotEmpty(record.getId())) {
             SpFlow flowbyId = iSpFlowService.getById(record.getId());
             //当前流程信息
             model.addAttribute("flow", flowbyId);
-            // model.addAttribute("current", spOperVos);
+            List<SpOperVo> currentSpOperVos = iSpFlowOperRelationService.currentOperViewServer(record.getId());
+            model.addAttribute("currentOper", currentSpOperVos);
         }
         return "basedata/flowprocess/addOrUpdate";
     }
@@ -124,20 +113,7 @@ public class SpFlowOperRelationController extends BaseController {
     @PostMapping("/add-or-update")
     @ResponseBody
     public Result addOrUpdate(@RequestBody SpFlowDto spFlowDto) throws Exception {
-        List<SpFlowOperRelation> spFlowOperRelationList = spFlowDto.getSpFlowOperRelationList();
-
-        if(CollectionUtil.isEmpty(spFlowOperRelationList))
-        {
-            throw  new Exception("流程下的工序不能为空");
-        }
-        SpFlow spFlow =new SpFlow();
-        BeanUtils.copyProperties(spFlowDto,spFlow);
-
-
-        //保存流程头表信息
-        iSpFlowService.saveOrUpdate(spFlow);
-        iSpFlowOperRelationService.saveOrUpdateBatch(spFlowOperRelationList);
-        return Result.success();
+        return iSpFlowOperRelationService.addOrUpdate(spFlowDto);
     }
 
 }

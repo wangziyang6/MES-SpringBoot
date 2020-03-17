@@ -31,14 +31,15 @@
                     </div>
                 </div>
                 <div class="layui-inline">
-                    <label for="js-descr" class="layui-form-label sp-required">流程时序
+                    <label for="js-descr" class="layui-form-label ">流程时序
                     </label>
                     <div class="layui-input-inline" style="width: 200px">
-                        <input type="text" id="js-process" name="process" lay-verify="required" autocomplete="off"
+                        <input type="text" id="js-process" name="process" readonly autocomplete="off"
                                class="layui-input" value="${flow.process}">
                     </div>
                 </div>
             </div>
+
             <div class="layui-form-item">
                 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
                     <legend>流程与工序关系</legend>
@@ -47,7 +48,7 @@
             </div>
             <div class="layui-form-item layui-hide">
                 <div class="layui-input-block">
-                    <input id="js-id" name="id" value="${result.id}"/>
+                    <input id="js-id" name="id" value="${flow.id}"/>
                     <button id="js-submit" class="layui-btn" lay-demotransferactive="getData" lay-submit
                             lay-filter="js-submit-filter">确定
                     </button>
@@ -62,13 +63,12 @@
             util = layui.util,
             layer = layui.layer,
             transfer = layui.transfer;
-
-        console.log("1");
+        var requestParmaArr = [];
         //模拟数据
         data2 = [];
         <#list allOper as oper >
         oper = {};
-        oper.value =  '${oper.value}';
+        oper.value = '${oper.value}';
         oper.title = '${oper.title}';
         data2.push(oper);
         </#list>
@@ -78,24 +78,18 @@
             title: ['全部工序', '当前Flow下工序']
             , data: data2
             , value: ["1", "3", "5", "7", "9", "11"]
-            , id: 'key123' //定义唯一索引
-        })
-        //监听提交
-        form.on('submit(js-submit-filter)', function (data) {
-            spUtil.submitForm({
-                url: "${request.contextPath}/admin/sys/role/add-or-update",
-                data: data.field
-            });
+            , id: 'keyFlow' //定义唯一索引
         });
+
         //批量办法定事件
         util.event('lay-demoTransferActive', {
             getData: function (othis) {
-                var getData = transfer.getData('key123'); //获取右侧数据
-                console.log(JSON.stringify(getData));
+                var getData = transfer.getData('keyFlow'); //获取右侧数据
+                requestParmaArr = getData;
             }
             , reload: function () {
                 //实例重载
-                transfer.reload('key123', {
+                transfer.reload('keyFlow', {
                     title: ['文人', '喜欢的文人']
                     , value: ['2', '5', '9']
                     , showSearch: true
@@ -103,9 +97,19 @@
             }
         });
 
+        //监听提交
+        form.on('submit(js-submit-filter)', function (data) {
+            data.field.spOperVoList = requestParmaArr;
+            console.log(data.field)
+            spUtil.submitForm({
+                contentType: 'application/json;charset=UTF-8',
+                url: "${request.contextPath}/basedata/flow/process/add-or-update",
+                data: JSON.stringify(data.field)
+            });
+            return false;
+        });
 
     });
-
 
 </script>
 </body>
