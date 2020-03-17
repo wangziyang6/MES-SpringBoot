@@ -5,6 +5,12 @@ import com.wangziyang.mes.basedata.entity.SpTableManagerItem;
 
 import java.util.List;
 
+/**
+ * 基础主数据管理DTO
+ *
+ * @author wangziyang
+ * @since 20200316
+ */
 public class SpTableManagerDto extends SpTableManager {
     /**
      * 表显示的字段
