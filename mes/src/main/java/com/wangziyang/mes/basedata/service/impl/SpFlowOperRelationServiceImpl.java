@@ -46,6 +46,11 @@ public class SpFlowOperRelationServiceImpl extends ServiceImpl<SpFlowOperRelatio
      */
     @Autowired
     public ISpOperService iSpOperService;
+    /**
+     * 流程与工序关系
+     */
+    @Autowired
+    public SpFlowOperRelationMapper spFlowOperRelationMapper;
 
     /**
      * 全部工序集合
@@ -75,8 +80,7 @@ public class SpFlowOperRelationServiceImpl extends ServiceImpl<SpFlowOperRelatio
      */
     @Override
     public List<SpOperVo> currentOperViewServer(String flowId) throws Exception {
-
-        return null;
+        return spFlowOperRelationMapper.queryOperRelationByFlowId(flowId);
     }
 
     /**

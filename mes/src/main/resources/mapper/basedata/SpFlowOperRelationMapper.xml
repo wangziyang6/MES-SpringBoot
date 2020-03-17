@@ -2,4 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wangziyang.mes.basedata.mapper.SpFlowOperRelationMapper">
 
+    <resultMap id="ResultVoMap" type="com.wangziyang.mes.basedata.vo.SpOperVo">
+        <result column="oper_id" property="value" jdbcType="VARCHAR"/>
+        <result column="oper" property="title" jdbcType="VARCHAR"/>
+    </resultMap>
+    <!--查询编码规则明细分页信息-->
+    <select id="queryOperRelationByFlowId" parameterType="string"
+            resultMap="ResultVoMap">
+        SELECT
+        oper_id,
+        oper
+        FROM
+        sp_flow_oper_relation
+        <where>
+            flow_id = #{flowId}
+        </where>
+        ORDER BY sort_num
+    </select>
+
+
 </mapper>

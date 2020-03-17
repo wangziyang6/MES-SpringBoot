@@ -65,26 +65,35 @@
             transfer = layui.transfer;
         var requestParmaArr = [];
         //模拟数据
-        data2 = [];
+        allOpers = [];
+        currentOpers = [];
+        //初始化全部工序
         <#list allOper as oper >
-        oper = {};
-        oper.value = '${oper.value}';
-        oper.title = '${oper.title}';
-        data2.push(oper);
+        allOper = {};
+        allOper.value = '${oper.value}';
+        allOper.title = '${oper.title}';
+        allOpers.push(allOper);
         </#list>
-        //初始右侧数据
+        //初始化当前流程下挂的工序
+        if ('${flow.id}') {
+            <#list currentOper as oper >
+            currentOpers.push('${oper.value}');
+            </#list>
+        }
+
+        //初始穿梭框数据
         transfer.render({
             elem: '#js-shuttle',
             title: ['全部工序', '当前Flow下工序']
-            , data: data2
-            , value: ["1", "3", "5", "7", "9", "11"]
+            , data: allOpers
+            , value: currentOpers
             , id: 'keyFlow' //定义唯一索引
         });
 
-        //批量办法定事件
+        //获取右侧数据
         util.event('lay-demoTransferActive', {
             getData: function (othis) {
-                var getData = transfer.getData('keyFlow'); //获取右侧数据
+                var getData = transfer.getData('keyFlow');
                 requestParmaArr = getData;
             }
             , reload: function () {

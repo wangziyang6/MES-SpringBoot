@@ -36,7 +36,7 @@
     {{#  layui.each(d, function(index, item){ }}
     {{# if(item.mustFill === 'Y'){ }}
     <div class="layui-form-item">
-        <label class="layui-form-label  sp-required">{{item.fieldDesc}}</label>
+        <label class="layui-form-label sp-required">{{item.fieldDesc}}</label>
         <div class="layui-input-inline">
             <input id="{{item.field}}" name="{{item.field}}"  type="text" class="layui-input " lay-verify="required">
         </div>
