@@ -97,14 +97,6 @@
                 var getData = transfer.getData('keyFlow');
                 requestParmaArr = getData;
             }
-            , reload: function () {
-                //实例重载
-                transfer.reload('keyFlow', {
-                    title: ['文人', '喜欢的文人']
-                    , value: ['2', '5', '9']
-                    , showSearch: true
-                })
-            }
         });
 
         //监听提交
