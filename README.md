@@ -12,14 +12,16 @@
 ### 功能界面
 
 ![1.1.1](https://s2.ax1x.com/2020/03/06/3bQbMd.png)
+数据化图表 echart
+![1.1.2](https://s1.ax1x.com/2020/03/18/80UxQP.png)
 主数据展示
-![1.1.2](https://s2.ax1x.com/2020/03/11/8AMcA1.png)
+![1.1.3](https://s2.ax1x.com/2020/03/11/8AMcA1.png)
 工序与流程管理界面
-![1.1.3](https://s1.ax1x.com/2020/03/16/8GOl28.png)
+![1.1.4](https://s1.ax1x.com/2020/03/16/8GOl28.png)
 ### swaggerAPI管理界面
 ![2](https://s2.ax1x.com/2020/03/06/3qC4Yt.png)
 ## 技术架构
-### springBoot+mybatis-plus+redis+shiro+hutool+layui+jenkins+swagger+freemarker+mysql
+### springBoot+mybatis-plus+redis+shiro+hutool+layui+jenkins+swagger+freemarker+mysql+echart
 实现功能：
 1. 用户管理：用户是系统操作者，该功能主要完成系统用户配置。
 2. 主数据管理：动态配置表以及所需要显示的字段，只需要简单维护既可以完成增删改成操作。
