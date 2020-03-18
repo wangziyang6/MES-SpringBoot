@@ -13,7 +13,7 @@
 </head>
 <style>
     .splayUi-container {
-        background-image: url(../image/hk.png);
+        background-image: url(/image/hk.png);
         background-size: cover;
         height: 670px;
     }
