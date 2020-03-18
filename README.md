@@ -1,7 +1,7 @@
 # 黑科MES 本人重起了一套springboot 开源框架 代码标准规范化。
 
 ## 界面展示
-![1](https://s2.ax1x.com/2020/03/06/3b89zD.gif)
+![1](https://s1.ax1x.com/2020/03/18/8d4GQS.gif)
 
 ### 登录界面 含粒子特效
 ![1.1](https://s2.ax1x.com/2020/03/06/3bQLqI.png)
@@ -19,7 +19,7 @@
 ### swaggerAPI管理界面
 ![2](https://s2.ax1x.com/2020/03/06/3qC4Yt.png)
 ## 技术架构
-### springBoot+mybatis-plus+redis+shiro+hutool+layui+jenkins+swagger+freemarker
+### springBoot+mybatis-plus+redis+shiro+hutool+layui+jenkins+swagger+freemarker+mysql
 实现功能：
 1. 用户管理：用户是系统操作者，该功能主要完成系统用户配置。
 2. 主数据管理：动态配置表以及所需要显示的字段，只需要简单维护既可以完成增删改成操作。
