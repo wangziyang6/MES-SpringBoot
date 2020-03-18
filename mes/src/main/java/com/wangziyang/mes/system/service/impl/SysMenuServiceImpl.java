@@ -1,5 +1,6 @@
 package com.wangziyang.mes.system.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wangziyang.mes.common.util.TreeUtil;
 import com.wangziyang.mes.system.dto.SysMenuDTO;
@@ -47,8 +48,9 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     @Override
     public Map<String, Object> listIndexMenuTree() throws Exception {
         Map<String, Object> result = new LinkedHashMap<>(4);
-
-        List<SysMenu> sysMenus = sysMenuMapper.selectList(null);
+        QueryWrapper queryWrapper =new QueryWrapper();
+        queryWrapper.orderBy(true,true,"sort_num");
+        List<SysMenu> sysMenus = sysMenuMapper.selectList(queryWrapper);
 
         Map<String, String> clearInfo = new HashMap<>(2);
         clearInfo.put("clearUrl", "json/clear.json");

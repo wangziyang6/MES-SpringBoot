@@ -51,5 +51,5 @@ spring:
 logging:
   level:
     root: info
-    com.songpeng: debug
+    com.wangziyang: debug
     config: classpath:logback.xml
