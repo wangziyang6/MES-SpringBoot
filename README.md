@@ -48,7 +48,9 @@
     * Layui 树形表格插件
         * https://gitee.com/whvse/treetable-lay
     * 图标库使用
-        * http://www.fontawesome.com.cn/faicons
+        *http://www.fontawesome.com.cn/faicons
+    *echart
+        *https://www.echartsjs.com/zh/api.html#echarts    
     * 发送 Ajax 示例：[详情](./docs/ajax.md)
     * FreeMarker 文档：[详情](./docs/FreeMarker.md)
     * Layui 自定义组件 spLayer：[详情](./docs/spLayer.md)
