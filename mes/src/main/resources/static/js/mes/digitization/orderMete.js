@@ -78,7 +78,7 @@ threeMeteOption = {
                     color: '#fff'
                 }
             },
-            data: [{value: 40, name: 'km/h'}]
+            data: [{value: 40, name: '湿度'}]
         },
         {
             name: '转速',
@@ -149,7 +149,7 @@ threeMeteOption = {
                     color: '#fff'
                 }
             },
-            data: [{value: 1.5, name: 'x1000 r/min'}]
+            data: [{value: 1.5, name: '500 r/min'}]
         },
         {
             name: '油表',
