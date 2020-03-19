@@ -48,9 +48,9 @@
     * Layui 树形表格插件
         * https://gitee.com/whvse/treetable-lay
     * 图标库使用
-        *http://www.fontawesome.com.cn/faicons
-    *echart
-        *https://www.echartsjs.com/zh/api.html#echarts    
+        * http://www.fontawesome.com.cn/faicons
+    * echart
+        * https://www.echartsjs.com/zh/api.html#echarts    
     * 发送 Ajax 示例：[详情](./docs/ajax.md)
     * FreeMarker 文档：[详情](./docs/FreeMarker.md)
     * Layui 自定义组件 spLayer：[详情](./docs/spLayer.md)
@@ -63,7 +63,7 @@
     * 请求参数
         * 每张表的分页查询参数，严格按照一张表对应一个请求参数对象进行开发，如系统用户分页查询参数：SysUserPageReq
 # 总结
-欢迎想一起开发的小伙伴。。本人前端太弱，都是自己乱摸索。还请有一个前端选手能一起弄
+欢迎想一起开发的小伙伴。。此项目也支持大学生毕业设计。
 ## QQ Group87652870
 [![QQ](https://img.shields.io/badge/QQ-87652870-green.svg?logo=tencent%20qq&logoColor=red)](https://jq.qq.com/?_wv=1027&k=55NGCxl)
 
