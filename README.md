@@ -8,7 +8,7 @@
 
 ### 主菜单界面
 ![1.1](https://s2.ax1x.com/2020/03/10/8CydC4.png)
-数字化图表 echart
+数字化图表 echarts
 ![1.1.2](https://s1.ax1x.com/2020/03/19/8rCo2q.png)
 ### 功能界面
 菜单界面
@@ -20,7 +20,7 @@
 ### swaggerAPI管理界面
 ![2](https://s2.ax1x.com/2020/03/06/3qC4Yt.png)
 ## 技术架构
-### springBoot+mybatis-plus+redis+shiro+hutool+layui+jenkins+swagger+freemarker+mysql+echart
+### springBoot+mybatis-plus+redis+shiro+hutool+layui+jenkins+swagger+freemarker+mysql+echarts
 实现功能：
 1. 用户管理：用户是系统操作者，该功能主要完成系统用户配置。
 2. 主数据管理：动态配置表以及所需要显示的字段，只需要简单维护既可以完成增删改成操作。
