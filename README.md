@@ -1,6 +1,9 @@
 # 黑科MES 本人重起了一套springboot 开源框架 代码标准规范化。
 
 ## 界面展示
+* 演示地址 
+* http://wangziyangmes.pzzd.xyz/
+
 ![1](https://s1.ax1x.com/2020/03/18/8d4GQS.gif)
 
 ### 登录界面 含粒子特效
