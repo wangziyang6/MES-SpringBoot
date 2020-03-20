@@ -8,10 +8,10 @@
         <version>2.1.7.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.songpeng</groupId>
+    <groupId>com.wangziyang</groupId>
     <artifactId>sparchetype</artifactId>
     <version>1.0.0</version>
-    <name>sparchetype</name>
+    <name>mes</name>
     <description>maven 骨架生成所需项目</description>
     <packaging>jar</packaging>
 

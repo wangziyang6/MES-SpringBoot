@@ -1,7 +1,6 @@
 package com.wangziyang.mes.basedata.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.sun.istack.internal.NotNull;
 import com.wangziyang.mes.common.BaseEntity;
 
 /**
@@ -44,7 +43,6 @@ public class SpMaterile extends BaseEntity {
     /**
      * 尺寸
      */
-    @NotNull
     private String size;
 
     /**
