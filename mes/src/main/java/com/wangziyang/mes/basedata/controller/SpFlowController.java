@@ -1,7 +1,9 @@
 package com.wangziyang.mes.basedata.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.wangziyang.mes.basedata.entity.SpFlow;
 import com.wangziyang.mes.basedata.request.SpFlowReq;
 import com.wangziyang.mes.basedata.service.ISpFlowService;
 import com.wangziyang.mes.common.BaseController;
@@ -11,9 +13,12 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 /**
  * <p>
@@ -45,5 +50,20 @@ public class SpFlowController extends BaseController {
         return Result.success(result);
     }
 
+
+    /**
+     * 流程全部信息查询
+     *
+     * @return Result 执行结果
+     */
+    @ApiOperation("流程全部信息查询")
+    @GetMapping("/list")
+    @ResponseBody
+    public Result list() {
+        QueryWrapper queryWrapper = new QueryWrapper();
+        //queryWrapper.eq("is_deleted", "0");
+        List<SpFlow> list = iSpFlowService.list(queryWrapper);
+        return Result.success(list);
+    }
 
 }
