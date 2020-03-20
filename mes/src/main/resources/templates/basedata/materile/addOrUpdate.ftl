@@ -73,40 +73,40 @@
                                    class="layui-input" value="${result.size}">
                         </div>
                     </div>
-                    <div class="layui-form-item">
-                        <div class="layui-form-item">
-                            <label for="js-flowId" class="layui-form-label sp-required">工艺流程
-                            </label>
-                            <div class="layui-input-inline">
-                                <select id="js-flowId" name="flowId" lay-filter="aihao" lay-verify="required"
-                                        value="${result.flow}">
-                                </select>
-                            </div>
+                    <div class="layui-form-item"style="width: 1000px;" >
+                        <label for="js-flowId" class="layui-form-label sp-required">工艺流程
+                        </label>
+                        <div class="layui-input-inline">
+                            <select id="js-flowId" name="flowId" lay-filter="flow-filter" lay-verify="required"
+                                    value="${result.flowDesc}">
+                            </select>
                         </div>
-                        <div class="layui-form-item">
-                            <label for="js-is-deleted" class="layui-form-label sp-required">状态
-                            </label>
-                            <div class="layui-input-block" id="js-is-deleted" style="width: 310px;">
-                                <input type="radio" name="deleted" value="0" title="正常"
-                                       <#if result.deleted == "0" || !(result??)>checked</#if>>
-                                <input type="radio" name="deleted" value="1" title="已删除"
-                                       <#if result.deleted == "1">checked</#if>>
-                                <input type="radio" name="deleted" value="2" title="已禁用"
-                                       <#if result.deleted == "2">checked</#if>>
-                            </div>
-                        </div>
+                        <p id="js-flowProcess" style="font-size:23px">测试->dd->dd</p>
                     </div>
-                    <div class="layui-form-item layui-hide">
-                        <div class="layui-input-block">
-                            <input id="js-id" name="id" value="${result.id}"/>
-                            <button id="js-submit" class="layui-btn" lay-submit lay-filter="js-submit-filter">确定
-                            </button>
+                    <div class="layui-form-item">
+                        <label for="js-is-deleted" class="layui-form-label sp-required">状态
+                        </label>
+                        <div class="layui-input-block" id="js-is-deleted" style="width: 310px;">
+                            <input type="radio" name="deleted" value="0" title="正常"
+                                   <#if result.deleted == "0" || !(result??)>checked</#if>>
+                            <input type="radio" name="deleted" value="1" title="已删除"
+                                   <#if result.deleted == "1">checked</#if>>
+                            <input type="radio" name="deleted" value="2" title="已禁用"
+                                   <#if result.deleted == "2">checked</#if>>
                         </div>
                     </div>
                 </div>
+                <div class="layui-form-item layui-hide">
+                    <div class="layui-input-block">
+                        <input id="js-id" name="id" value="${result.id}"/>
+                        <button id="js-submit" class="layui-btn" lay-submit lay-filter="js-submit-filter">确定
+                        </button>
+                    </div>
+                </div>
             </div>
-        </form>
     </div>
+    </form>
+</div>
 </div>
 <script>
     layui.use(['form', 'util'], function () {
@@ -114,9 +114,8 @@
             util = layui.util;
         var flowRows = [];
         getFlowData();
-        console.log(flowRows);
         $.each(flowRows, function (index, item) {
-            $('#js-flowId').append(new Option(item.flowDesc,item.id));
+            $('#js-flowId').append(new Option(item.flowDesc, item.id));
         });
         //给表单赋值
         form.val("formTest", { //formTest 即 class="layui-form" 所在元素属性 lay-filter="" 对应的值
@@ -146,6 +145,14 @@
             });
         }
 
+        //下拉框选择 绘制流程时序图
+        form.on('select(flow-filter)', function (data) {
+            var newArr = flowRows.filter(function (obj) {
+                return obj.id == data.value;
+            });
+            var lb_p = document.getElementById("js-flowProcess");
+            lb_p.innerHTML = newArr[0].process;
+        });
         //监听提交
         form.on('submit(js-submit-filter)', function (data) {
             spUtil.submitForm({
