@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.wangziyang</groupId>
-    <artifactId>sparchetype</artifactId>
-    <version>1.0.0</version>
+    <artifactId>mes</artifactId>
     <name>mes</name>
+    <version>1.0.0</version>
     <description>maven 骨架生成所需项目</description>
     <packaging>jar</packaging>
 

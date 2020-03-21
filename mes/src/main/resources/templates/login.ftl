@@ -171,17 +171,14 @@
                     })
                 }
             });
-
             return false;
         });
-
         /**
          * 获取图形验证码
          */
         $('#captchaPic').click(function () {
             this.src = "${request.contextPath}/verification/code?" + Math.random();
         });
-
         $("#captchaPic").click();
     });
 </script>

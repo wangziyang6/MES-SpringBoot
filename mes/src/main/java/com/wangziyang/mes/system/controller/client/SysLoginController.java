@@ -29,7 +29,7 @@ public class SysLoginController {
     Logger logger = LoggerFactory.getLogger(SysLoginController.class);
 
 	/**
-	 * 首页默认跳转到博客主页
+	 * 首页默认
 	 *
 	 * @param model
 	 * @return
