@@ -4,7 +4,7 @@
 * 演示地址 
 * http://wangziyangmes.pzzd.xyz  用户名admin  密码123
 
-![1](https://s1.ax1x.com/2020/03/18/8d4GQS.gif)
+<img src="https://s1.ax1x.com/2020/03/18/8d4GQS.gif" width = "1000" height = "500" div align=center />
 
 ### 登录界面 含粒子特效
 * 登录界面

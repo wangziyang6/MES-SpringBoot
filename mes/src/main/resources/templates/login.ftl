@@ -115,6 +115,9 @@
             <form class="layui-form" action="">
                 <div class="layui-form-item logo-title">
                     <h1>黑科开源免费-MES系统</h1>
+                    <div class="layui-anim layui-anim-rotate">
+                        <a href='https://gitee.com/wangziyangyang/MES-Sprongboot'><img src='https://gitee.com/wangziyangyang/MES-Sprongboot/widgets/widget_3.svg?color=170317' alt='Fork me on Gitee'></img></a>
+                    </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-icon layui-icon-username" for="username"></label>
@@ -131,7 +134,7 @@
                         <img id="captchaPic" >
                     </div>
                 </div>
-                <div class="layui-form-item">
+                <div class="layui-form-item ">
                     <input type="checkbox" name="rememberMe" value="true" lay-skin="primary" title="记住密码">
                 </div>
                 <div class="layui-form-item">
