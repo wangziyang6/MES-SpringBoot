@@ -3,8 +3,7 @@
 ## 界面展示
 * 演示地址 
 * http://wangziyangmes.pzzd.xyz  用户名admin  密码123
-
-<img src="https://s1.ax1x.com/2020/03/18/8d4GQS.gif" width = "1000" height = "500" div align=right />
+![1](https://s1.ax1x.com/2020/03/18/8d4GQS.gif)
 
 登录界面[MES]
 
