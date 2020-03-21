@@ -2,7 +2,7 @@
 
 ## 界面展示
 * 演示地址 
-* http://wangziyangmes.pzzd.xyz/ 用户名admin  密码123
+* http://wangziyangmes.pzzd.xyz  用户名admin  密码123
 
 ![1](https://s1.ax1x.com/2020/03/18/8d4GQS.gif)
 
@@ -11,14 +11,14 @@
 
 ### 主菜单界面
 ![1.1](https://s2.ax1x.com/2020/03/10/8CydC4.png)
-数字化图表 echarts
+* 数字化图表 echarts
 ![1.1.2](https://s1.ax1x.com/2020/03/19/8rCo2q.png)
 ### 功能界面
 菜单界面
 ![1.1.1](https://s2.ax1x.com/2020/03/06/3bQbMd.png)
-主数据展示
+* 主数据展示
 ![1.1.3](https://s2.ax1x.com/2020/03/11/8AMcA1.png)
-工序与流程管理界面
+* 工艺路线界面
 ![1.1.4](https://s1.ax1x.com/2020/03/16/8GOl28.png)
 ### swaggerAPI管理界面
 ![2](https://s2.ax1x.com/2020/03/06/3qC4Yt.png)
