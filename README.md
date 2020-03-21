@@ -4,13 +4,15 @@
 * 演示地址 
 * http://wangziyangmes.pzzd.xyz  用户名admin  密码123
 
-<img src="https://s1.ax1x.com/2020/03/18/8d4GQS.gif" width = "1000" height = "500" div align=center />
+<img src="https://s1.ax1x.com/2020/03/18/8d4GQS.gif" width = "1000" height = "500" div align=right />
 
-### 登录界面 含粒子特效
-* 登录界面
+登录界面[MES]
+
+[MES]: 这个很感兴趣！
+
 ![1.1](https://s2.ax1x.com/2020/03/06/3bQLqI.png)
 
-* 数字化图表 echarts
+数字化图表 echarts
 ![1.1.2](https://s1.ax1x.com/2020/03/19/8rCo2q.png)
 ### 功能界面
 * 菜单界面
