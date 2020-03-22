@@ -171,7 +171,7 @@
             },
             xAxis: [{
                 type: 'category',
-                data: ['浙江', '上海', '江苏', '广东', '北京', '深圳', '安徽'],
+                data: ['模具工厂', '注塑工厂', '组装工厂', '包装工厂', '丝印工厂', '涂色工厂', '燃料工厂'],
                 axisLine: {
                     show: true,
                     lineStyle: {
@@ -270,7 +270,7 @@
             },
             xAxis: [{
                 type: 'category',
-                data: ['浙江', '上海', '江苏', '广东', '北京', '深圳', '安徽', '四川'],
+                data: ['车间1', '车间2', '车间3', '车间4', '车间5', '车间6', '车间7', '车间8'],
                 axisLine: {
                     show: true,
                     lineStyle: {
@@ -359,7 +359,7 @@
             },
             legend: {
                 top: '0%',
-                data: ['安卓', 'IOS'],
+                data: ['良率', '不良率'],
                 textStyle: {
                     color: 'rgba(255,255,255,.5)',
                     fontSize: '12',
@@ -424,7 +424,7 @@
             }],
             series: [
                 {
-                    name: '安卓',
+                    name: '良率',
                     type: 'line',
                     smooth: true,
                     symbol: 'circle',
@@ -460,7 +460,7 @@
 
                 },
                 {
-                    name: 'IOS',
+                    name: '不良率',
                     type: 'line',
                     smooth: true,
                     symbol: 'circle',
@@ -657,7 +657,7 @@
         option = {
 
             title: [{
-                text: '年龄分布',
+                text: '安徽基地',
                 left: 'center',
                 textStyle: {
                     color: '#fff',
@@ -685,7 +685,7 @@
             },
             series: [
                 {
-                    name: '年龄分布',
+                    name: '安徽基地',
                     type: 'pie',
                     center: ['50%', '42%'],
                     radius: ['40%', '60%'],
@@ -716,7 +716,7 @@
         option = {
 
             title: [{
-                text: '职业分布',
+                text: '上海基地',
                 left: 'center',
                 textStyle: {
                     color: '#fff',
@@ -744,7 +744,7 @@
             },
             series: [
                 {
-                    name: '年龄分布',
+                    name: '上海基地',
                     type: 'pie',
                     center: ['50%', '42%'],
                     radius: ['40%', '60%'],
@@ -775,7 +775,7 @@
         var myChart = echarts.init(document.getElementById('fb3'));
         option = {
             title: [{
-                text: '兴趣分布',
+                text: '华北基地',
                 left: 'center',
                 textStyle: {
                     color: '#fff',
@@ -802,7 +802,7 @@
             },
             series: [
                 {
-                    name: '兴趣分布',
+                    name: '华北基地',
                     type: 'pie',
                     center: ['50%', '42%'],
                     radius: ['40%', '60%'],

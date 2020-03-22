@@ -6,7 +6,6 @@
     <script type="text/javascript" src="${request.contextPath}/lib/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="${request.contextPath}/css/planDemo.css">
     <script type="text/javascript" src="${request.contextPath}/lib/echarts/echarts.min.js"></script>
-    <script type="text/javascript" src="${request.contextPath}/js/mes/digitization/area_echarts.js"></script>
 </head>
 <script>
     $(window).load(function () {
@@ -31,7 +30,7 @@
 </div>
 <div class="head">
     <h1>大数据可视化展板通用模板</h1>
-    <div class="weather"><!--<img src="picture/weather.png"><span>多云转小雨</span>--><span id="showTime"></span></div>
+    <div class="weather"><span id="showTime"></span></div>
 
     <script>
         var t = null;
@@ -57,12 +56,12 @@
     <ul class="clearfix">
         <li>
             <div class="boxall" style="height: 3.2rem">
-                <div class="alltitle">模块标题样式</div>
+                <div class="alltitle">智慧排程</div>
                 <div class="allnav" id="orderStatus"></div>
                 <div class="boxfoot"></div>
             </div>
             <div class="boxall" style="height: 3.2rem">
-                <div class="alltitle">模块标题样式</div>
+                <div class="alltitle">工厂出库</div>
                 <div class="allnav" id="echart2"></div>
                 <div class="boxfoot"></div>
             </div>
@@ -98,20 +97,21 @@
                 <div class="map3"><img src="${request.contextPath}/picture/map.png"></div>
                 <div class="map4" id="map_1"></div>
             </div>
+
         </li>
         <li>
             <div class="boxall" style="height:3.4rem">
-                <div class="alltitle">模块标题样式</div>
+                <div class="alltitle">工厂不良率</div>
                 <div class="allnav" id="echart4"></div>
                 <div class="boxfoot"></div>
             </div>
             <div class="boxall" style="height: 3.2rem">
-                <div class="alltitle">模块标题样式</div>
+                <div class="alltitle">工厂入库</div>
                 <div class="allnav" id="echart5"></div>
                 <div class="boxfoot"></div>
             </div>
             <div class="boxall" style="height: 3rem">
-                <div class="alltitle">模块标题样式</div>
+                <div class="alltitle">人员分布图</div>
                 <div class="allnav" id="echart6"></div>
                 <div class="boxfoot"></div>
             </div>
@@ -119,6 +119,9 @@
     </ul>
 </div>
 <div class="back"></div>
+<script type="text/javascript" src="${request.contextPath}/js/mes/digitization/china.js"></script>
 <script type="text/javascript" src="${request.contextPath}/js/mes/digitization/js.js"></script>
+<script type="text/javascript" src="${request.contextPath}/js/mes/digitization/area_echarts.js"></script>
+
 </body>
 </html>
