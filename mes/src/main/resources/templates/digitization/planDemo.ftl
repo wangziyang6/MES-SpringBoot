@@ -29,7 +29,7 @@
     <div class="loadbox"><img src="${request.contextPath}/picture/loading.gif"> 页面加载中...</div>
 </div>
 <div class="head">
-    <h1>大数据可视化展板通用模板</h1>
+    <h1>黑科智慧大屏</h1>
     <div class="weather"><span id="showTime"></span></div>
 
     <script>
@@ -86,8 +86,8 @@
                 </div>
                 <div class="barbox2">
                     <ul class="clearfix">
-                        <li class="pulll_left">真香</li>
-                        <li class="pulll_left">真香</li>
+                        <li class="pulll_left">真香（王子杨1）</li>
+                        <li class="pulll_left">真香（王子杨2）</li>
                     </ul>
                 </div>
             </div>
