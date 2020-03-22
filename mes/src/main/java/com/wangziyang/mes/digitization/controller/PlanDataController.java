@@ -30,7 +30,7 @@ public class PlanDataController extends BaseController {
     @ApiOperation("工单计划数字化看板")
     @GetMapping("/plan-ui")
     public String welcomeUI(Model model) {
-        return "digitization/plandg";
+        return "digitization/planDemo";
     }
 
 
