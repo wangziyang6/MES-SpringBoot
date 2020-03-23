@@ -1,0 +1,41 @@
+.paoma{background: #111111;}
+.text-effect{
+    color: #fff;
+    font-family: 'Monoton', cursive;
+    text-transform: uppercase;
+    display: block;
+}
+.text-effect span{ animation: animate linear 1000ms infinite; }
+.text-effect span:nth-child(1n){ animation-delay: 0s; }
+.text-effect span:nth-child(2n){ animation-delay: 100ms; }
+.text-effect span:nth-child(3n){ animation-delay: 200ms; }
+.text-effect span:nth-child(4n){ animation-delay: 300ms; }
+.text-effect span:nth-child(5n){ animation-delay: 400ms; }
+.text-effect span:nth-child(6n){ animation-delay: 500ms; }
+.text-effect span:nth-child(7n){ animation-delay: 600ms; }
+.text-effect span:nth-child(8n){ animation-delay: 700ms; }
+.text-effect span:nth-child(9n){ animation-delay: 800ms; }
+.text-effect span:nth-child(10n){ animation-delay: 900ms; }
+.text-effect span:nth-child(11n){ animation-delay: 1000ms; }
+.text-effect span:nth-child(12n){ animation-delay: 1100ms; }
+.text-effect span:nth-child(13n){ animation-delay: 1200ms; }
+.text-effect span:nth-child(14n){ animation-delay: 1300ms; }
+@keyframes animate{
+    0%{ opacity: 0.3; }
+    100%{
+        opacity:1;
+        text-shadow:0 0 6px DarkRed ,0 0 30px red,0 0 80px black;
+    }
+}
+@media only screen and (max-width: 990px){
+    .text-effect{ font-size: 65px; }
+}
+@media only screen and (max-width: 767px){
+    .text-effect{ font-size: 50px; }
+}
+@media only screen and (max-width: 479px){
+    .text-effect{ font-size: 36px; }
+}
+@media only screen and (max-width: 359px){
+    .text-effect{ font-size: 27px; }
+}

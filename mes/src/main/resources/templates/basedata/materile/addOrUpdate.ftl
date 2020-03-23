@@ -8,13 +8,14 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <#include "${request.contextPath}/common/common.ftl">
+    <link href="${request.contextPath}/css/effect.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div class="splayui-container">
     <div class="splayui-main">
         <form class="layui-form splayui-form" lay-filter="formTest">
             <div class="layui-row">
-                <div class="layui-col-xs6 layui-col-sm6 layui-col-md6">
+                <div class="layui-col-xs6 layui-col-sm6 layui-col-md10">
                     <div class="layui-form-item">
                         <label for="js-materiel" class="layui-form-label sp-required">物料编号
                         </label>
@@ -61,27 +62,30 @@
                         <label for="js-matType" class="layui-form-label sp-required">物料类型
                         </label>
                         <div class="layui-input-inline">
-                            <input type="text" id="js-matType" name="matType" lay-verify="required" autocomplete="off"
-                                   class="layui-input" value="${result.matType}">
+                            <select id="js-matType" name="matType" lay-filter="matType-filter" lay-verify="required">
+                            </select>
                         </div>
                     </div>
                     <div class="layui-form-item">
-                        <label for="js-size" class="layui-form-label sp-required">尺寸
+                        <label for="js-size" class="layui-form-label ">尺寸
                         </label>
                         <div class="layui-input-inline">
-                            <input type="text" id="js-size" name="size" lay-verify="required" autocomplete="off"
+                            <input type="text" id="js-size" name="size" autocomplete="off"
                                    class="layui-input" value="${result.size}">
                         </div>
                     </div>
-                    <div class="layui-form-item" style="width: 1000px;">
-                        <label for="js-flowId" class="layui-form-label sp-required">工艺流程
+                    <div class="layui-form-item" style="width: 1200px">
+                        <label for="js-flowId" class="layui-form-label ">工艺流程
                         </label>
                         <div class="layui-input-inline">
-                            <select id="js-flowId" name="flowId" lay-filter="flow-filter" lay-verify="required">
+                            <select id="js-flowId" name="flowId" lay-filter="flow-filter">
                             </select>
                         </div>
-                        <p id="js-flowProcess" style="font-size:23px"></p>
+                        <div class=" text-effect  " id="js-flowProcess" name="flowDesc"
+                             style="font-size:30px ;font-size: 30px;margin-left: 310PX;background: black;">
+                        </div>
                     </div>
+
                     <div class="layui-form-item">
                         <label for="js-is-deleted" class="layui-form-label sp-required">状态
                         </label>
@@ -114,6 +118,32 @@
         var flowRows = [];
         //流程添加下拉框
         getFlowData();
+        //物料类型
+        getMatTypeData();
+
+        /**
+         * 初始化物料类型数据
+         */
+        function getMatTypeData() {
+            spUtil.ajax({
+                url: '${request.contextPath}/basedata/dict/list/material_type',
+                async: false,
+                type: 'GET',
+                // 是否显示 loading
+                // showLoading: true,
+                // 是否序列化参数
+                serializable: false,
+                // 参数
+                data: {},
+                success: function (data) {
+                    $.each(data.data, function (index, item) {
+                        $('#js-matType').append(new Option(item.name, item.value));
+                    });
+                }
+            });
+
+        }
+
 
         /**
          * 初始化流程数据
@@ -140,7 +170,6 @@
             //编辑时候根据回显的ID 绘制流程
             flowProssbyId("${result.flowId}")
         }
-        //初始化 物料类型
 
         //下拉框选择 绘制流程时序图
         form.on('select(flow-filter)', function (data) {
@@ -153,17 +182,24 @@
                 return obj.id == flowId;
             });
             if (newArr.length > 0) {
-                var lb_p = document.getElementById("js-flowProcess");
-                lb_p.innerHTML = newArr[0].process;
-            }
+                procssArr = newArr[0].process.split("->")
+                $("#js-flowProcess").empty();
+                $.each(procssArr, function (i, val) {
 
+                    if (i == procssArr.length - 1) {
+                        $("#js-flowProcess").append("<span >" + val + "</span>");
+                    } else {
+                        $("#js-flowProcess").append("<span >" + val + '->' + "</span>");
+                    }
+                });
+            }
         }
 
         //给表单赋值
         form.val("formTest", { //formTest 即 class="layui-form" 所在元素属性 lay-filter="" 对应的值
-            "flowId": "${result.flowId}"
+            "flowId": "${result.flowId}",
+            "matType": "${result.matType}"
         });
-
 
         //监听提交
         form.on('submit(js-submit-filter)', function (data) {
@@ -171,9 +207,9 @@
                 url: "${request.contextPath}/basedata/materile/add-or-update",
                 data: data.field
             });
-
             return false;
         });
+
     });
 </script>
 </body>
