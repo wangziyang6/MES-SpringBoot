@@ -9,6 +9,17 @@
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <#include "${request.contextPath}/common/common.ftl">
     <link href="${request.contextPath}/css/effect.css" rel="stylesheet" type="text/css"/>
+    <style>
+        .flowProcss {
+            font-size: 27px;
+            margin-left: 310PX;
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: row;
+        }
+
+    </style>
+
 </head>
 <body>
 <div class="splayui-container">
@@ -74,15 +85,14 @@
                                    class="layui-input" value="${result.size}">
                         </div>
                     </div>
-                    <div class="layui-form-item" style="width: 1200px">
+                    <div class="layui-form-item">
                         <label for="js-flowId" class="layui-form-label ">工艺流程
                         </label>
                         <div class="layui-input-inline">
                             <select id="js-flowId" name="flowId" lay-filter="flow-filter">
                             </select>
                         </div>
-                        <div class=" text-effect  " id="js-flowProcess" name="flowDesc"
-                             style="font-size:30px ;font-size: 30px;margin-left: 310PX;background: black;">
+                        <div class=" text-effect flowProcss  " id="js-flowProcess" name="flowDesc">
                         </div>
                     </div>
 
@@ -187,9 +197,9 @@
                 $.each(procssArr, function (i, val) {
 
                     if (i == procssArr.length - 1) {
-                        $("#js-flowProcess").append("<span >" + val + "</span>");
+                        $("#js-flowProcess").append("<span style='display: inline-flex;' >" + val + "</span>");
                     } else {
-                        $("#js-flowProcess").append("<span >" + val + '->' + "</span>");
+                        $("#js-flowProcess").append("<span style='display: inline-flex;' >" + val + '->' + "</span>");
                     }
                 });
             }

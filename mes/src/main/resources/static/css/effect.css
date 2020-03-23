@@ -1,6 +1,6 @@
-.paoma{background: #111111;}
+.paoma{background: #111111; }
 .text-effect{
-    color: #fff;
+    color: #150aff;
     font-family: 'Monoton', cursive;
     text-transform: uppercase;
     display: block;
@@ -24,7 +24,7 @@
     0%{ opacity: 0.3; }
     100%{
         opacity:1;
-        text-shadow:0 0 6px DarkRed ,0 0 30px red,0 0 80px black;
+        text-shadow:0 0 6px #ff1212,0 0 30px #020002,0 0 80px #ff06ed;
     }
 }
 @media only screen and (max-width: 990px){
