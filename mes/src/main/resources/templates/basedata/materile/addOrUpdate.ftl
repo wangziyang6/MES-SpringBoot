@@ -73,15 +73,14 @@
                                    class="layui-input" value="${result.size}">
                         </div>
                     </div>
-                    <div class="layui-form-item"style="width: 1000px;" >
+                    <div class="layui-form-item" style="width: 1000px;">
                         <label for="js-flowId" class="layui-form-label sp-required">工艺流程
                         </label>
                         <div class="layui-input-inline">
-                            <select id="js-flowId" name="flowId" lay-filter="flow-filter" lay-verify="required"
-                                    value="${result.flowDesc}">
+                            <select id="js-flowId" name="flowId" lay-filter="flow-filter" lay-verify="required">
                             </select>
                         </div>
-                        <p id="js-flowProcess" style="font-size:23px">测试->dd->dd</p>
+                        <p id="js-flowProcess" style="font-size:23px"></p>
                     </div>
                     <div class="layui-form-item">
                         <label for="js-is-deleted" class="layui-form-label sp-required">状态
@@ -104,26 +103,17 @@
                     </div>
                 </div>
             </div>
+
+        </form>
     </div>
-    </form>
-</div>
 </div>
 <script>
     layui.use(['form', 'util'], function () {
         var form = layui.form,
             util = layui.util;
         var flowRows = [];
+        //流程添加下拉框
         getFlowData();
-        $.each(flowRows, function (index, item) {
-            $('#js-flowId').append(new Option(item.flowDesc, item.id));
-        });
-        //给表单赋值
-        form.val("formTest", { //formTest 即 class="layui-form" 所在元素属性 lay-filter="" 对应的值
-            "size": "100*100*100",// "name": "value"
-            "flowId": 3
-        });
-//获取表单区域所有值
-        var data1 = form.val("formTest");
 
         /**
          * 初始化流程数据
@@ -143,20 +133,42 @@
                     flowRows = data.data;
                 }
             });
+
+            $.each(flowRows, function (index, item) {
+                $('#js-flowId').append(new Option(item.flowDesc, item.id));
+            });
+            //编辑时候根据回显的ID 绘制流程
+            flowProssbyId("${result.flowId}")
         }
+        //初始化 物料类型
 
         //下拉框选择 绘制流程时序图
         form.on('select(flow-filter)', function (data) {
-            var newArr = flowRows.filter(function (obj) {
-                return obj.id == data.value;
-            });
-            var lb_p = document.getElementById("js-flowProcess");
-            lb_p.innerHTML = newArr[0].process;
+            flowProssbyId(data.value)
         });
+
+        //通过ID 获取流程时序 绘制
+        function flowProssbyId(flowId) {
+            var newArr = flowRows.filter(function (obj) {
+                return obj.id == flowId;
+            });
+            if (newArr.length > 0) {
+                var lb_p = document.getElementById("js-flowProcess");
+                lb_p.innerHTML = newArr[0].process;
+            }
+
+        }
+
+        //给表单赋值
+        form.val("formTest", { //formTest 即 class="layui-form" 所在元素属性 lay-filter="" 对应的值
+            "flowId": "${result.flowId}"
+        });
+
+
         //监听提交
         form.on('submit(js-submit-filter)', function (data) {
             spUtil.submitForm({
-                url: "${request.contextPath}/admin/sys/role/add-or-update",
+                url: "${request.contextPath}/basedata/materile/add-or-update",
                 data: data.field
             });
 

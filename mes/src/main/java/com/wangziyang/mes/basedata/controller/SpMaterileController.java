@@ -6,24 +6,20 @@ import com.wangziyang.mes.basedata.entity.SpMaterile;
 import com.wangziyang.mes.basedata.entity.SpTableManager;
 import com.wangziyang.mes.basedata.request.SpFlowReq;
 import com.wangziyang.mes.basedata.service.ISpMaterileService;
+import com.wangziyang.mes.common.BaseController;
 import com.wangziyang.mes.common.Result;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.stereotype.Controller;
-import com.wangziyang.mes.common.BaseController;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
- *  物料控制器
+ * 物料控制器
  * </p>
  *
  * @author WangZiYang
@@ -38,6 +34,7 @@ public class SpMaterileController extends BaseController {
      */
     @Autowired
     private ISpMaterileService iSpMaterileService;
+
     /**
      * 物料管理界面
      *
@@ -83,5 +80,35 @@ public class SpMaterileController extends BaseController {
     public Result page(SpFlowReq req) {
         IPage result = iSpMaterileService.page(req);
         return Result.success(result);
+    }
+
+    /**
+     * 物料管理修改、新增
+     *
+     * @param record 物料实体类
+     * @return 执行结果
+     */
+    @ApiOperation("物料管理修改、新增")
+    @PostMapping("/add-or-update")
+    @ResponseBody
+    public Result addOrUpdate( SpMaterile record) {
+        iSpMaterileService.saveOrUpdate(record);
+        return Result.success();
+    }
+
+
+    /**
+     * 删除物料信息
+     *
+     * @param req 请求参数
+     * @return Result 执行结果
+     */
+    @ApiOperation("删除物料信息")
+    @ApiImplicitParams({@ApiImplicitParam(name = "req", value = "物料实体", defaultValue = "物料实体")})
+    @PostMapping("/delete")
+    @ResponseBody
+    public Result deleteByTableNameId(SpMaterile req) throws Exception {
+        iSpMaterileService.removeById(req.getId());
+        return Result.success();
     }
 }
