@@ -20,6 +20,10 @@
 ![1.1.3](https://s2.ax1x.com/2020/03/11/8AMcA1.png)
 * 工艺路线界面
 ![1.1.4](https://s1.ax1x.com/2020/03/16/8GOl28.png)
+
+* 物料维护界面
+![1.1.5](https://s1.ax1x.com/2020/03/23/8HrLin.png)
+
 ### swaggerAPI管理界面
 ![2](https://s2.ax1x.com/2020/03/06/3qC4Yt.png)
 ## 技术架构
