@@ -57,7 +57,7 @@
                         <div class="layui-input-inline">
                             <input type="text" id="js-productGroup" name="productGroup" lay-verify="required"
                                    autocomplete="off"
-                                   class="layui-input" value="${result.unit}">
+                                   class="layui-input" value="${result.productGroup}">
                         </div>
                     </div>
                     <div class="layui-form-item">
@@ -92,7 +92,7 @@
                             <select id="js-flowId" name="flowId" lay-filter="flow-filter">
                             </select>
                         </div>
-                        <div class=" text-effect flowProcss  " id="js-flowProcess" name="flowDesc">
+                        <div class=" text-effect flowProcss  " id="js-flowProcess" name="flowProcss">
                         </div>
                     </div>
 

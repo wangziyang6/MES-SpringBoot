@@ -2,9 +2,11 @@ package com.wangziyang.mes.basedata.controller;
 
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.wangziyang.mes.basedata.entity.SpFlow;
 import com.wangziyang.mes.basedata.entity.SpMaterile;
 import com.wangziyang.mes.basedata.entity.SpTableManager;
 import com.wangziyang.mes.basedata.request.SpFlowReq;
+import com.wangziyang.mes.basedata.service.ISpFlowService;
 import com.wangziyang.mes.basedata.service.ISpMaterileService;
 import com.wangziyang.mes.common.BaseController;
 import com.wangziyang.mes.common.Result;
@@ -34,6 +36,11 @@ public class SpMaterileController extends BaseController {
      */
     @Autowired
     private ISpMaterileService iSpMaterileService;
+    /**
+     * 流程服务
+     */
+    @Autowired
+    private ISpFlowService iSpFlowService;
 
     /**
      * 物料管理界面
@@ -92,6 +99,8 @@ public class SpMaterileController extends BaseController {
     @PostMapping("/add-or-update")
     @ResponseBody
     public Result addOrUpdate( SpMaterile record) {
+         SpFlow spflow = iSpFlowService.getById(record.getFlowId());
+        record.setFlowDesc(spflow.getFlowDesc());
         iSpMaterileService.saveOrUpdate(record);
         return Result.success();
     }
