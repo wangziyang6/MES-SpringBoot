@@ -62,7 +62,7 @@ public class SysUser extends BaseEntity {
     /**
      * 出生年月日
      */
-    private LocalDateTime birthday;
+    private String birthday;
 
     /**
      * 图片id，对应sys_file表中的id
@@ -179,11 +179,11 @@ public class SysUser extends BaseEntity {
 		this.sex = sex;
 	}
 
-	public LocalDateTime getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(LocalDateTime birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 

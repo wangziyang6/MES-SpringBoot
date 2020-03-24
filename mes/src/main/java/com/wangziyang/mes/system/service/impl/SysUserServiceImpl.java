@@ -10,6 +10,7 @@ import com.wangziyang.mes.system.service.ISysMenuService;
 import com.wangziyang.mes.system.service.ISysRoleService;
 import com.wangziyang.mes.system.service.ISysUserService;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,6 +46,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void save(SysUserDTO record) throws Exception {
+        //MD5算法计算3次
+        String result = new Md5Hash(record.getPassword(), record.getUsername(),3).toString();
+        record.setPassword(result);
         sysUserMapper.insert(record);
         sysRoleService.rebuild(record);
     }

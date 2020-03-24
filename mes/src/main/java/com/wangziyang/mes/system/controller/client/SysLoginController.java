@@ -102,8 +102,8 @@ public class SysLoginController {
             logger.error("登录失败次数过多", e);
             return Result.failure("登录失败次数过多");
         } catch (IncorrectCredentialsException e) {
-            logger.error("错误的凭证", e);
-            return Result.failure("错误的凭证");
+            logger.error("密码错误", e);
+            return Result.failure("密码错误");
         } catch (ExpiredCredentialsException e) {
             logger.error("过期的凭证", e);
             return Result.failure("过期的凭证");
