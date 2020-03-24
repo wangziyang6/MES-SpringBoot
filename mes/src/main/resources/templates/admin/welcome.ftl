@@ -21,7 +21,7 @@
         background-size: 100% 100%;
         -moz-background-size: 100% 100%;
         background-image: url(/image/hk.png);
-        height: 97%;
+        height: 98%;
         width: 100%;
         position: relative;
         display: flex;
@@ -43,9 +43,7 @@
     <div class="splayUi-container">
     </div>
     <div class="flexBox">
-        <div>
-            <b>开发者：王子杨</b>
-        </div>
+
         <div id="div_timer" style="margin-left:auto">
         </div>
     </div>
@@ -64,7 +62,7 @@
         document.getElementById("div_timer").innerText = '当前时间：' + year + "." + p(month) + "." + p(day) + " " + p(hour) + ":" + p(minutes) + ":" + p(seconds);
     }
 
-  //  setInterval("showTime()", 1000);
+    setInterval("showTime()", 1000);
 
     //月日时分秒小于10补0
     function p(s) {
