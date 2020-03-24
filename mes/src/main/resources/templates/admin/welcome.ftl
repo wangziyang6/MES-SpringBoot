@@ -11,44 +11,48 @@
     <meta name="format-detection" content="telephone=no">
     <#include "${request.contextPath}/common/common.ftl">
     <style type="text/css">
-        html,body{
-            height:100%;
+        html, body {
+            height: 100%;
         }
     </style>
 </head>
 <style>
     .splayUi-container {
         background-size: 100% 100%;
-        -moz-background-size:100% 100%;
-        background-image: url(/image/hk.png) ;
-        height: 98.5%;
+        -moz-background-size: 100% 100%;
+        background-image: url(/image/hk.png);
+        height: 97%;
         width: 100%;
         position: relative;
+        display: flex;
     }
 
-    .box {
-        display: inline-flex;
+    .flexBox {
+        display: flex;
+        flex-direction: row;
         justify-content: space-between;
     }
-    .wrap {
-        flex-wrap: wrap;
-        display: flex;
-        align-items:stretch;
 
+    .wrap {
+        flex-direction: column;
+        display: flex;
     }
 </style>
-<body >
+<body>
 <div class="wrap" style="height: 100%">
     <div class="splayUi-container">
     </div>
-    <div class=" box">
-        <b>开发者：王子杨</b>
-        <div class="box" id="div_timer">
+    <div class="flexBox">
+        <div>
+            <b>开发者：王子杨</b>
+        </div>
+        <div id="div_timer" style="margin-left:auto">
         </div>
     </div>
 </div>
 <script type="text/javascript">
     //获取系统时间
+    showTime();
     function showTime() {
         nowtime = new Date();
         year = nowtime.getFullYear();//年
@@ -57,10 +61,11 @@
         hour = nowtime.getHours();//时
         minutes = nowtime.getMinutes();//分
         seconds = nowtime.getSeconds();//秒//文字增加空格
-        document.getElementById("div_timer").style = "white-space:pre;";//显示时间
         document.getElementById("div_timer").innerText = '当前时间：' + year + "." + p(month) + "." + p(day) + " " + p(hour) + ":" + p(minutes) + ":" + p(seconds);
     }
-    setInterval("showTime()", 1000);
+
+  //  setInterval("showTime()", 1000);
+
     //月日时分秒小于10补0
     function p(s) {
         return s < 10 ? '0' + s : s;

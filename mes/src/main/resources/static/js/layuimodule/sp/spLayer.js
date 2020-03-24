@@ -30,7 +30,7 @@ layui.define(['layer'], function (exports) {
 
                         if (param.reload !== false) {
                             // 刷新父页面，注意一定要在关闭当前iframe层之前执行刷新
-                            parent.location.reload();
+                            location.reload();
                         }
                     }
                 },
