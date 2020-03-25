@@ -28,7 +28,7 @@
 ![2](https://s2.ax1x.com/2020/03/06/3qC4Yt.png)
 ## 技术架构
 
-### springBoot+mybatis-plus+redis+shiro+hutool+layui+swagger+freemarker+mysql+echarts
+### springBoot+mybatis-plus+redis+shiro+hutool+layui+swagger+freemarker+mysql8+echarts
 ### jenkins+docker+nginx
 
 ## 部署云平台 使用阿里云 （https://www.aliyun.com）
