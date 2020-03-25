@@ -9,9 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -56,11 +54,30 @@ public class SysLoginController extends BaseController {
         return "admin/welcome";
     }
 
+    /**
+     * 系统首页初始化菜单树数据
+     * @return 菜单树数据
+     * @throws Exception 异常
+     */
     @ApiOperation("系统首页初始化菜单树数据")
     @GetMapping("/list/index/menu/tree")
     @ResponseBody
     public Result tree() throws Exception {
         Map<String, Object> result = sysMenuService.listIndexMenuTree();
+        return Result.success(result);
+    }
+
+    /**
+     * 用户搜索系统首页初始化菜单树数据
+     * @param menuName 菜单名字
+     * @return 菜单树数据
+     * @throws Exception 异常
+     */
+    @ApiOperation("系统首页初始化菜单树数据")
+    @GetMapping("/list/index/menu/search/tree/{menuName}")
+    @ResponseBody
+    public Result searchTree(@PathVariable String menuName) throws Exception {
+        Map<String, Object> result = sysMenuService.listIndexMenuSearchTree(menuName);
         return Result.success(result);
     }
 

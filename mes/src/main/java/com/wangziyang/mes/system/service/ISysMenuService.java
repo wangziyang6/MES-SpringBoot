@@ -36,6 +36,16 @@ public interface ISysMenuService extends IService<SysMenu> {
      */
     Map<String, Object> listIndexMenuTree() throws Exception;
 
+
+    /**
+     * 用户搜索系统首页初始化菜单树数据
+     *
+     * @return 系统首页初始化菜单树数据
+     * @throws Exception 异常
+     */
+    Map<String, Object> listIndexMenuSearchTree(String menuName) throws Exception;
+
+
     /**
      * 获取系统菜单树
      *

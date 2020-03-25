@@ -48,8 +48,8 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     @Override
     public Map<String, Object> listIndexMenuTree() throws Exception {
         Map<String, Object> result = new LinkedHashMap<>(4);
-        QueryWrapper queryWrapper =new QueryWrapper();
-        queryWrapper.orderBy(true,true,"sort_num");
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.orderBy(true, true, "sort_num");
         List<SysMenu> sysMenus = sysMenuMapper.selectList(queryWrapper);
 
         Map<String, String> clearInfo = new HashMap<>(2);
@@ -60,10 +60,10 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
         homeInfo.put("icon", "fa fa-home");
         homeInfo.put("url", "admin/welcome-ui");
 
-		Map<String, String> logoInfo = new HashMap<>(4);
-		logoInfo.put("name", "黑科制造MES");
-		logoInfo.put("image", "image/logo.png");
-		logoInfo.put("url", "");
+        Map<String, String> logoInfo = new HashMap<>(4);
+        logoInfo.put("name", "黑科制造MES");
+        logoInfo.put("image", "image/logo.png");
+        logoInfo.put("url", "");
 
         Map<String, Object> menuInfo = new LinkedHashMap<>(8);
 
@@ -92,6 +92,40 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
         result.put("logoInfo", logoInfo);
         result.put("menuInfo", menuInfo);
 
+        return result;
+    }
+
+    /**
+     * 用户搜索系统首页初始化菜单树数据
+     * @param menuName 菜单名字
+     * @return 菜单树数据
+     * @throws Exception 异常
+     */
+    @Override
+    public Map<String, Object> listIndexMenuSearchTree(String menuName) throws Exception {
+        Map<String, Object> result = new LinkedHashMap<>(4);
+        Map<String, Object> menuInfo = new LinkedHashMap<>(8);
+        List<SysMenu> sysMenus = sysMenuMapper.listBySearchByName(menuName);
+        List<TreeVO<SysMenu>> menus = new ArrayList<>();
+        for (SysMenu m : sysMenus) {
+            TreeVO<SysMenu> tree = new TreeVO<>();
+            tree.setId(m.getId());
+            tree.setPid(m.getParentId());
+            tree.setCode(m.getCode());
+            tree.setName(m.getName());
+            tree.setUrl(m.getUrl());
+            tree.setIcon(m.getIcon());
+            tree.setType(m.getType());
+            tree.setPermission(m.getPermission());
+            // TODO 是否需要更改？
+            tree.setTarget("_self");
+            menus.add(tree);
+        }
+        List<TreeVO<SysMenu>> treeVOS = TreeUtil.buildList(menus, "0");
+        for (TreeVO<SysMenu> mTree : treeVOS) {
+            menuInfo.put(mTree.getCode(), mTree);
+        }
+        result.put("menuInfo", menuInfo);
         return result;
     }
 

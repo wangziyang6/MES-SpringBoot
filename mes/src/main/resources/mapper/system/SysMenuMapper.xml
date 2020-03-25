@@ -28,4 +28,22 @@
         ON ssrm.role_id = #{roleId}
         WHERE t.id = ssrm.menu_id
     </select>
+
+    <!--根据输入菜单模糊匹配-->
+    <select id="listBySearchByName" parameterType="java.lang.String" resultMap="resultMap">
+        SELECT * FROM
+        (
+        SELECT * FROM sp_sys_menu
+        <where>
+            name LIKE CONCAT(CONCAT('%', #{menuName}), '%')
+        </where>
+        UNION
+        SELECT *
+        FROM sp_sys_menu
+        <where>
+            grade !='3'
+        </where>
+        ) A
+        order by  A.grade, A.sort_num
+    </select>
 </mapper>

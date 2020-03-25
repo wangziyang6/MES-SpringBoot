@@ -49,7 +49,7 @@ layui.define(["element", "jquery"], function (exports) {
                     spLayui.initHome(data.data.homeInfo);
                     spLayui.initLogo(data.data.logoInfo);
                     spLayui.initClear(data.data.clearInfo);
-                    spLayui.initMenu(data.data.menuInfo);
+                    spLayui.initMenu(data.data.menuInfo,false);
                     spLayui.initTab();
                 }
             }).fail(function () {
@@ -124,7 +124,7 @@ layui.define(["element", "jquery"], function (exports) {
          * 初始化菜单栏
          * @param data
          */
-        this.initMenu = function (data) {
+        this.initMenu = function (data,booleanNav) {
             var headerMenuHtml = '',
                 headerMobileMenuHtml = '',
                 leftMenuHtml = '',
@@ -137,7 +137,14 @@ layui.define(["element", "jquery"], function (exports) {
                 leftMenuHtml += '<ul class="layui-nav layui-nav-tree layui-left-nav-tree ' + leftMenuCheckDefault + '" id="' + key + '">\n';
                 var menuList = val.children;
                 $.each(menuList, function (index, menu) {
-                    leftMenuHtml += '<li class="layui-nav-item">\n';
+                    if (booleanNav)
+                    {
+                        leftMenuHtml += '<li class="layui-nav-item layui-nav-itemed">\n';
+                    }
+                   else
+                    {
+                        leftMenuHtml += '<li class="layui-nav-item ">\n';
+                    }
                     if (menu.children && menu.children.length > 0) {
                         leftMenuHtml += '<a href="javascript:;" class="layui-menu-tips" ><i style="width: 14px;" class="' + menu.icon + '"></i><span class="layui-left-nav"> ' + menu.name + '</span> </a>';
                         var buildChildHtml = function (html, children, menuParameId) {

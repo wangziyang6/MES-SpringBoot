@@ -73,7 +73,7 @@
             <div layui-left-menu style="display: flex; height: 6% ;margin-right: 4px;">
                 <i class="layui-icon layui-icon-search" style=" width: 30px;margin-top: 5px;font-size:24px ;"></i>
                 <input name="search" type="text" placeholder="搜索..." class="layui-input layui-input-search"
-                       autocomplete="off" >
+                       autocomplete="off">
             </div>
             <button class="layui-btn layui-hide" lay-submit lay-filter="js-search-filter">搜索</button>
         </div>
@@ -112,10 +112,28 @@
         spLayui.init('${request.contextPath}/admin/list/index/menu/tree');
 
         form.on('submit(js-search-filter)', function (data) {
-            console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
-            console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
-            console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
-            // 阻止表单跳转。如果需要表单跳转，去掉这段即可。
+
+            if (data.field.search) {
+                var urlPath = '${request.contextPath}/admin/list/index/menu/search/tree/' + data.field.search;
+                itemNav =true;
+            } else {
+                var urlPath = '${request.contextPath}/admin/list/index/menu/tree';
+                itemNav =false;
+            }
+            spUtil.ajax({
+                url: urlPath,
+                async: false,
+                type: 'GET',
+                // 是否显示 loading
+                // showLoading: true,
+                // 是否序列化参数
+                serializable: false,
+                // 参数
+                data: {},
+                success: function (data) {
+                    spLayui.initMenu(data.data.menuInfo,itemNav);
+                }
+            });
             return false;
         });
     });
