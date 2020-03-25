@@ -65,15 +65,15 @@
     </div>
     <form class="layui-form" style=" display: flex; flex-direction: column;">
         <div class="layui-side layui-bg-black" style="display: flex; flex-direction: column;">
-            <div style="height: 96% ; display: flex;">
+            <div style="height: 94% ; display: flex;">
                 <div class="layui-side-scroll layui-left-menu">
                 </div>
             </div>
 
-            <div layui-left-menu style="display: flex; height: 4% ;margin-right: 4px;">
-                <i class="layui-icon layui-icon-search" style=" width: 30px;margin-top: 13px;font-size:24px ;"></i>
+            <div layui-left-menu style="display: flex; height: 6% ;margin-right: 4px;">
+                <i class="layui-icon layui-icon-search" style=" width: 30px;margin-top: 5px;font-size:24px ;"></i>
                 <input name="search" type="text" placeholder="搜索..." class="layui-input layui-input-search"
-                       autocomplete="off" style="margin-top: 8px">
+                       autocomplete="off" >
             </div>
             <button class="layui-btn layui-hide" lay-submit lay-filter="js-search-filter">搜索</button>
         </div>
