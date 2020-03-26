@@ -11,7 +11,7 @@
     <link href="${request.contextPath}/css/effect.css" rel="stylesheet" type="text/css"/>
     <style>
         .flowProcss {
-            font-size: 27px;
+            font-size: 25px;
             margin-left: 310PX;
             display: flex;
             justify-content: flex-start;
