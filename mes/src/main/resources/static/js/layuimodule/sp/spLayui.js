@@ -155,7 +155,7 @@ layui.define(["element", "jquery"], function (exports) {
                                     html += '<a href="javascript:;" class="layui-menu-tips" ><i style="width: 14px;" class="' + childMenu.icon + '"></i><span class="layui-left-nav"> ' + childMenu.name + '</span></a>';
                                     html = buildChildHtml(html, childMenu.children, menuParameId);
                                 } else {
-                                    html += '<a href="javascript:;" class="layui-menu-tips" data-type="tabAdd"  data-tab-mpi="m-p-i-' + menuParameId + '" data-tab="' + childMenu.url + '" target="' + childMenu.target + '"><i style="width: 14px;" class="' + childMenu.icon + '"></i><span class="layui-left-nav"> ' + childMenu.name + '</span></a>\n';
+                                    html += '<a href="javascript:;" class="layui-menu-tips" data-type="tabAdd"  data-tab-mpi= "'+childMenu.name +'" data-tab="' + childMenu.url + '" target="' + childMenu.target + '"><i style="width: 14px;" class="' + childMenu.icon + '"></i><span class="layui-left-nav"> ' + childMenu.name + '</span></a>\n';
                                     menuParameId++;
                                     window.menuParameId = menuParameId;
                                 }
@@ -166,7 +166,7 @@ layui.define(["element", "jquery"], function (exports) {
                         };
                         leftMenuHtml = buildChildHtml(leftMenuHtml, menu.children, menuParameId);
                     } else {
-                        leftMenuHtml += '<a href="javascript:;" class="layui-menu-tips"  data-type="tabAdd" data-tab-mpi="m-p-i-' + menuParameId + '" data-tab="' + menu.url + '" target="' + menu.target + '"><i style="width: 14px;" class="' + menu.icon + '"></i><span class="layui-left-nav"> ' + menu.name + '</span></a>\n';
+                        leftMenuHtml += '<a href="javascript:;" class="layui-menu-tips"  data-type="tabAdd" data-tab-mpi="m-p-i-' + menuParameId + '"  target="' + menu.target + '"><i style="width: 14px;" class="' + menu.icon + '"></i><span class="layui-left-nav"> ' + menu.name + '</span></a>\n';
                         menuParameId++;
                     }
                     leftMenuHtml += '</li>\n';
