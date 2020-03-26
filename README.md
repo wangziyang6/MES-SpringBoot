@@ -5,11 +5,12 @@
 * http://wangziyangmes.pzzd.xyz  用户名admin  密码123
 ![1](https://s1.ax1x.com/2020/03/18/8d4GQS.gif)
 
+个人设计的MES系统功能架构图[还请各位大佬指点]，该项目的开发规划
+![1.1](https://s1.ax1x.com/2020/03/26/GSfGS1.png)
 登录界面[MES]
 ![1.1](https://s2.ax1x.com/2020/03/06/3bQLqI.png)
 
-个人设计的MES系统功能架构图[还请各位大佬指点]，该项目的开发规划
-![1.1](https://s1.ax1x.com/2020/03/26/GSfGS1.png)
+
 数字化平台 echarts
 ![1.1.2](https://s1.ax1x.com/2020/03/23/8o7wbq.png)
 ### 功能界面

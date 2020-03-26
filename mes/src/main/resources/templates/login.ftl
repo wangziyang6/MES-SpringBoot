@@ -116,7 +116,7 @@
                 <div class="layui-form-item logo-title">
                     <h1>黑科开源免费-MES系统</h1>
                     <div class="layui-anim layui-anim-rotate">
-                        <a href='https://gitee.com/wangziyangyang/MES-Sprongboot'><img src='https://gitee.com/wangziyangyang/MES-Sprongboot/widgets/widget_3.svg?color=170317' alt='Fork me on Gitee'></img></a>
+                        <a href='https://gitee.com/wangziyangyang/MES-Springboot'><img src='https://gitee.com/wangziyangyang/MES-Springboot/widgets/widget_3.svg?color=170317' alt='Fork me on Gitee'></img></a>
                     </div>
                 </div>
                 <div class="layui-form-item">
