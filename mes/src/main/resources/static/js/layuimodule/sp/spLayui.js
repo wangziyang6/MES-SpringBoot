@@ -86,7 +86,7 @@ layui.define(["element", "jquery"], function (exports) {
          */
         this.initLogo = function (data) {
             var html = '<a href="' + data.url + '">\n' +
-                '<img src="' + data.image + '" alt="logo">\n' +
+                '<img src="' + data.image + '" alt="logo" οnerrοr="javascript:this.src=\'image/logo.png\'">\n' +
                 '<h1>' + data.name + '</h1>\n' +
                 '</a>';
             $('.layui-layout-admin .layui-logo').html(html);
