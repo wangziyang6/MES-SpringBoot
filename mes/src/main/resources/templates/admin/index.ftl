@@ -110,7 +110,9 @@
             form = layui.form;
 
         spLayui.init('${request.contextPath}/admin/list/index/menu/tree');
-
+        /**
+         * 搜索后重新绘制菜单
+         */
         form.on('submit(js-search-filter)', function (data) {
 
             if (data.field.search) {

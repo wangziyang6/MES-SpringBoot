@@ -62,7 +62,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
 
         Map<String, String> logoInfo = new HashMap<>(4);
         logoInfo.put("name", "黑科制造MES");
-        logoInfo.put("image", "image/logo.png");
+        logoInfo.put("image", "/image/logo.png");
         logoInfo.put("url", "");
 
         Map<String, Object> menuInfo = new LinkedHashMap<>(8);
