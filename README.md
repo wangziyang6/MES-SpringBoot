@@ -3,6 +3,7 @@
 ## 界面展示
 * 演示地址 
 * http://wangziyangmes.pzzd.xyz  用户名admin  密码123
+
 ![1](https://s1.ax1x.com/2020/03/18/8d4GQS.gif)
 
 个人设计的MES系统功能架构图[还请各位大佬指点]，该项目的开发规划
@@ -16,35 +17,35 @@
         <th bgcolor=#218868 ><font color=#0F0F0F >物料管理</font></th> 
    </tr>
     <tr >
-        <td bgcolor=#C6E2FF ><font color=#EE0000 >用户管理</font></td>
-        <td bgcolor=#C6E2FF><font color=#EE0000 >工艺路线管理</font></td>
+        <td bgcolor=#C6E2FF ><font color=#EE0000 >*用户管理*</font></td>
+        <td bgcolor=#C6E2FF><font color=#EE0000 >*工艺路线管理*</font></td>
         <td bgcolor=#C6E2FF><font color=#0F0F0F >工单下达</font></td>
         <td bgcolor=#C6E2FF><font color=#0F0F0F >物料出入库</font></td>
    </tr>
  <tr>
-        <td bgcolor=#D1D1D1><font color=#EE0000 >组织管理</font></td>
+        <td bgcolor=#D1D1D1><font color=#EE0000 >*组织管理*</font></td>
         <td bgcolor=#D1D1D1><font color=#0F0F0F >MOM管理</font></td>
         <td bgcolor=#D1D1D1><font color=#0F0F0F >工序工单分解</font></td>
         <td bgcolor=#D1D1D1><font color=#0F0F0F >智能货架</font></td>
    </tr>
    <tr>
-        <td bgcolor=#C6E2FF><font color=#EE0000 >菜单管理</font></td>
+        <td bgcolor=#C6E2FF><font color=#EE0000 >*菜单管理*</font></td>
         <td bgcolor=#C6E2FF><font color=#0F0F0F >BOM管理</font></td>
         <td bgcolor=#C6E2FF><font color=#0F0F0F >工单流程变更</font></td>
         <td bgcolor=#C6E2FF><font color=#0F0F0F >物料标签管理</font></td>
        
    </tr>
     <tr>
-        <td bgcolor=#D1D1D1><font color=#EE0000 >基础数据维护</font></td>
+        <td bgcolor=#D1D1D1><font color=#EE0000 >*基础数据维护*</font></td>
         <td bgcolor=#D1D1D1><font color=#0F0F0F >SOP管理</font></td>
         <td bgcolor=#D1D1D1><font color=#0F0F0F >工单锁定</font></td>
         <td bgcolor=#D1D1D1><font color=#0F0F0F >AGV+WCS</font></td>
    </tr>
     <tr>
-        <td bgcolor=#C6E2FF><font color=#EE0000 >基础数据配置</font></td>
+        <td bgcolor=#C6E2FF><font color=#EE0000 >*基础数据配置*</font></td>
         <td bgcolor=#C6E2FF><font color=#0F0F0F >其他工艺文件</font></td>
         <td bgcolor=#C6E2FF><font color=#0F0F0F >工单特殊设置</font></td>
-        <td bgcolor=#C6E2FF><font color=#EE0000 >物料基础数据</font></td>
+        <td bgcolor=#C6E2FF><font color=#EE0000 >*物料基础数据*</font></td>
        
    </tr>
     
@@ -91,8 +92,8 @@
     <tr>
         <td bgcolor=#C6E2FF style="text-align:left"><font color=#0F0F0F >说明：</font></td>
         <td bgcolor=#C6E2FF><font color=#0F0F0F ></font></td>
-        <td bgcolor=#C6E2FF><font color=#EE0000 >*红色完成</font></td>
-        <td bgcolor=#C6E2FF><font color=#0F0F0F >*黑色未开发</font></td>
+        <td bgcolor=#C6E2FF><font color=#EE0000 >*完成</font></td>
+        <td bgcolor=#C6E2FF><font color=#0F0F0F >未开发</font></td>
        
    </tr>
 </table>
