@@ -536,9 +536,9 @@ layui.define(["element", "jquery"], function (exports) {
                 type: 'get',
                 contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                 async: false,
-                error: function (xhr, textstatus, thrown) {
-                    msg = 'Status:' + xhr.status + '，' + xhr.statusText + '，请稍后再试！';
-                }
+                // error: function (xhr, textstatus, thrown) {
+                //     msg = 'Status:' + xhr.status + '，' + xhr.statusText + '，请稍后再试！';
+                // }
             });
             return msg;
         };
