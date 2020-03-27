@@ -49,7 +49,7 @@ layui.define(["element", "jquery"], function (exports) {
                     spLayui.initHome(data.data.homeInfo);
                     spLayui.initLogo(data.data.logoInfo);
                     spLayui.initClear(data.data.clearInfo);
-                    spLayui.initMenu(data.data.menuInfo,false);
+                    spLayui.initMenu(data.data.menuInfo, false);
                     spLayui.initTab();
                 }
             }).fail(function () {
@@ -124,7 +124,7 @@ layui.define(["element", "jquery"], function (exports) {
          * 初始化菜单栏
          * @param data
          */
-        this.initMenu = function (data,booleanNav) {
+        this.initMenu = function (data, booleanNav) {
             var headerMenuHtml = '',
                 headerMobileMenuHtml = '',
                 leftMenuHtml = '',
@@ -137,12 +137,9 @@ layui.define(["element", "jquery"], function (exports) {
                 leftMenuHtml += '<ul class="layui-nav layui-nav-tree layui-left-nav-tree ' + leftMenuCheckDefault + '" id="' + key + '">\n';
                 var menuList = val.children;
                 $.each(menuList, function (index, menu) {
-                    if (booleanNav)
-                    {
+                    if (booleanNav) {
                         leftMenuHtml += '<li class="layui-nav-item layui-nav-itemed">\n';
-                    }
-                   else
-                    {
+                    } else {
                         leftMenuHtml += '<li class="layui-nav-item ">\n';
                     }
                     if (menu.children && menu.children.length > 0) {
@@ -155,7 +152,7 @@ layui.define(["element", "jquery"], function (exports) {
                                     html += '<a href="javascript:;" class="layui-menu-tips" ><i style="width: 14px;" class="' + childMenu.icon + '"></i><span class="layui-left-nav"> ' + childMenu.name + '</span></a>';
                                     html = buildChildHtml(html, childMenu.children, menuParameId);
                                 } else {
-                                    html += '<a href="javascript:;" class="layui-menu-tips" data-type="tabAdd"  data-tab-mpi= "'+childMenu.name +'" data-tab="' + childMenu.url + '" target="' + childMenu.target + '"><i style="width: 14px;" class="' + childMenu.icon + '"></i><span class="layui-left-nav"> ' + childMenu.name + '</span></a>\n';
+                                    html += '<a href="javascript:;" class="layui-menu-tips" data-type="tabAdd"  data-tab-mpi= "' + childMenu.name + '" data-tab="' + childMenu.url + '" target="' + childMenu.target + '"><i style="width: 14px;" class="' + childMenu.icon + '"></i><span class="layui-left-nav"> ' + childMenu.name + '</span></a>\n';
                                     menuParameId++;
                                     window.menuParameId = menuParameId;
                                 }
@@ -264,6 +261,8 @@ layui.define(["element", "jquery"], function (exports) {
                     }
 
                     if (splayuiHomeTab != href && splayuiHomeHref != href) {
+                        var decodeLocationHref = decodeURI(href, "utf-8").split("mpi=");
+                        title = "<i style=\"width: 14px;\" class=\"fa fa-microchip\"></i><span class=\"layui-left-nav\">" + decodeLocationHref.pop() + "</span>"
                         spLayui.addTab(tabId, href, title, true);
                         spLayui.changeTab(tabId);
                     }
@@ -465,6 +464,7 @@ layui.define(["element", "jquery"], function (exports) {
                 splayuiTabInfo[tabId] = {href: href, title: title}
                 sessionStorage.setItem("splayuiTabInfo", JSON.stringify(splayuiTabInfo));
             }
+
             element.tabAdd('splayuiTab', {
                 title: title + '<i data-tab-close="" class="layui-icon layui-unselect layui-tab-close">ဆ</i>' //用于演示
                 , content: '<iframe width="100%" height="100%" frameborder="0"  src="' + href + '"></iframe>'
@@ -687,7 +687,6 @@ layui.define(["element", "jquery"], function (exports) {
             return false;
         }
         title = title.replace('style="display: none;"', '');
-
         // 拼接参数
         if (spLayui.config('urlSuffixDefault')) {
             var menuParameId = $(this).attr('data-tab-mpi');
@@ -699,7 +698,6 @@ layui.define(["element", "jquery"], function (exports) {
                 tabId = href;
             }
         }
-
         // 判断链接是否有效
         var checkUrl = spLayui.checkUrl(href);
         if (checkUrl != true) {
