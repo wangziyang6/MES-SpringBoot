@@ -1,8 +1,7 @@
-package com.wangziyang.mes.basedata.dto;
+package com.wangziyang.mes.technology.dto;
 
-import com.wangziyang.mes.basedata.entity.SpFlow;
-import com.wangziyang.mes.basedata.entity.SpFlowOperRelation;
-import com.wangziyang.mes.basedata.vo.SpOperVo;
+import com.wangziyang.mes.technology.entity.SpFlow;
+import com.wangziyang.mes.technology.vo.SpOperVo;
 
 import java.util.List;
 

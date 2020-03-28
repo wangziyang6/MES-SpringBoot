@@ -1,8 +1,8 @@
-package com.wangziyang.mes.basedata.service.impl;
+package com.wangziyang.mes.technology.service.impl;
 
-import com.wangziyang.mes.basedata.entity.SpOper;
-import com.wangziyang.mes.basedata.mapper.SpOperMapper;
-import com.wangziyang.mes.basedata.service.ISpOperService;
+import com.wangziyang.mes.technology.entity.SpOper;
+import com.wangziyang.mes.technology.mapper.SpOperMapper;
+import com.wangziyang.mes.technology.service.ISpOperService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

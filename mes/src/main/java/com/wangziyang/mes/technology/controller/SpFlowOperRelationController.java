@@ -1,13 +1,13 @@
-package com.wangziyang.mes.basedata.controller;
+package com.wangziyang.mes.technology.controller;
 
 
-import com.wangziyang.mes.basedata.dto.SpFlowDto;
-import com.wangziyang.mes.basedata.entity.SpFlow;
+import com.wangziyang.mes.technology.dto.SpFlowDto;
+import com.wangziyang.mes.technology.entity.SpFlow;
 import com.wangziyang.mes.basedata.request.SpTableManagerReq;
-import com.wangziyang.mes.basedata.service.ISpFlowOperRelationService;
-import com.wangziyang.mes.basedata.service.ISpFlowService;
-import com.wangziyang.mes.basedata.service.ISpOperService;
-import com.wangziyang.mes.basedata.vo.SpOperVo;
+import com.wangziyang.mes.technology.service.ISpFlowOperRelationService;
+import com.wangziyang.mes.technology.service.ISpFlowService;
+import com.wangziyang.mes.technology.service.ISpOperService;
+import com.wangziyang.mes.technology.vo.SpOperVo;
 import com.wangziyang.mes.common.BaseController;
 import com.wangziyang.mes.common.Result;
 import io.swagger.annotations.ApiImplicitParam;

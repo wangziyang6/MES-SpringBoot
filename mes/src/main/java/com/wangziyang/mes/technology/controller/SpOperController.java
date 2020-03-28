@@ -1,4 +1,4 @@
-package com.wangziyang.mes.basedata.controller;
+package com.wangziyang.mes.technology.controller;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;

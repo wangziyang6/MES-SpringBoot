@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.wangziyang.mes.basedata.mapper.SpFlowOperRelationMapper">
+<mapper namespace="com.wangziyang.mes.technology.mapper.SpFlowOperRelationMapper">
 
-    <resultMap id="ResultVoMap" type="com.wangziyang.mes.basedata.vo.SpOperVo">
+    <resultMap id="ResultVoMap" type="com.wangziyang.mes.technology.vo.SpOperVo">
         <result column="oper_id" property="value" jdbcType="VARCHAR"/>
         <result column="oper" property="title" jdbcType="VARCHAR"/>
     </resultMap>

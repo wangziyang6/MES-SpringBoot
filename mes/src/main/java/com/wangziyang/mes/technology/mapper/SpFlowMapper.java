@@ -1,6 +1,6 @@
-package com.wangziyang.mes.basedata.mapper;
+package com.wangziyang.mes.technology.mapper;
 
-import com.wangziyang.mes.basedata.entity.SpFlow;
+import com.wangziyang.mes.technology.entity.SpFlow;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

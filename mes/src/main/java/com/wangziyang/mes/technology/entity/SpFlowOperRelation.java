@@ -1,4 +1,4 @@
-package com.wangziyang.mes.basedata.entity;
+package com.wangziyang.mes.technology.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.wangziyang.mes.common.BaseEntity;

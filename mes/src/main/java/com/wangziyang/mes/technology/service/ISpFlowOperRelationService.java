@@ -1,9 +1,9 @@
-package com.wangziyang.mes.basedata.service;
+package com.wangziyang.mes.technology.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.wangziyang.mes.basedata.dto.SpFlowDto;
-import com.wangziyang.mes.basedata.entity.SpFlowOperRelation;
-import com.wangziyang.mes.basedata.vo.SpOperVo;
+import com.wangziyang.mes.technology.dto.SpFlowDto;
+import com.wangziyang.mes.technology.entity.SpFlowOperRelation;
+import com.wangziyang.mes.technology.vo.SpOperVo;
 import com.wangziyang.mes.common.Result;
 
 import java.util.List;

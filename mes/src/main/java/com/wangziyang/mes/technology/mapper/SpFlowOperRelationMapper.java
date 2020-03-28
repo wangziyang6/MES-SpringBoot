@@ -1,8 +1,8 @@
-package com.wangziyang.mes.basedata.mapper;
+package com.wangziyang.mes.technology.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.wangziyang.mes.basedata.entity.SpFlowOperRelation;
-import com.wangziyang.mes.basedata.vo.SpOperVo;
+import com.wangziyang.mes.technology.entity.SpFlowOperRelation;
+import com.wangziyang.mes.technology.vo.SpOperVo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

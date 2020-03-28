@@ -1,16 +1,16 @@
-package com.wangziyang.mes.basedata.service.impl;
+package com.wangziyang.mes.technology.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.wangziyang.mes.basedata.dto.SpFlowDto;
-import com.wangziyang.mes.basedata.entity.SpFlow;
-import com.wangziyang.mes.basedata.entity.SpFlowOperRelation;
-import com.wangziyang.mes.basedata.entity.SpOper;
-import com.wangziyang.mes.basedata.mapper.SpFlowOperRelationMapper;
-import com.wangziyang.mes.basedata.service.ISpFlowOperRelationService;
-import com.wangziyang.mes.basedata.service.ISpFlowService;
-import com.wangziyang.mes.basedata.service.ISpOperService;
-import com.wangziyang.mes.basedata.vo.SpOperVo;
+import com.wangziyang.mes.technology.dto.SpFlowDto;
+import com.wangziyang.mes.technology.entity.SpFlow;
+import com.wangziyang.mes.technology.entity.SpFlowOperRelation;
+import com.wangziyang.mes.technology.entity.SpOper;
+import com.wangziyang.mes.technology.mapper.SpFlowOperRelationMapper;
+import com.wangziyang.mes.technology.service.ISpFlowOperRelationService;
+import com.wangziyang.mes.technology.service.ISpFlowService;
+import com.wangziyang.mes.technology.service.ISpOperService;
+import com.wangziyang.mes.technology.vo.SpOperVo;
 import com.wangziyang.mes.common.Result;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -94,8 +94,8 @@ public class SpFlowOperRelationServiceImpl extends ServiceImpl<SpFlowOperRelatio
         List<SpOperVo> spOperVoList = spFlowDto.getSpOperVoList();
         List<SpFlowOperRelation> spFlowOperRelationList = new ArrayList<>();
         StringBuilder processBuild = new StringBuilder();
-        if (CollectionUtil.isEmpty(spOperVoList)) {
-            throw new Exception("流程下的工序不能为空");
+        if (CollectionUtil.isEmpty(spOperVoList)||spOperVoList.size() <= 1) {
+            throw new Exception("流程下必须存在至少两个工序");
         }
         SpFlow spFlow = new SpFlow();
         BeanUtils.copyProperties(spFlowDto, spFlow);

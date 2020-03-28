@@ -1,4 +1,4 @@
-package com.wangziyang.mes.basedata.vo;
+package com.wangziyang.mes.technology.vo;
 
 /**
  * 流程与工序穿梭数据展示对象

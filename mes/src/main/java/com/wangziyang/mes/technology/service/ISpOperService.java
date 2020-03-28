@@ -1,6 +1,6 @@
-package com.wangziyang.mes.basedata.service;
+package com.wangziyang.mes.technology.service;
 
-import com.wangziyang.mes.basedata.entity.SpOper;
+import com.wangziyang.mes.technology.entity.SpOper;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

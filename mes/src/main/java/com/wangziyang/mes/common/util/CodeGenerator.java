@@ -17,8 +17,8 @@ import java.util.Scanner;
 /**
  * 代码生成器
  *
- * @author SongPeng
- * @date 2019/8/26
+ * @author wangziyang
+ * @date 2020/3/01
  */
 public class CodeGenerator {
 
