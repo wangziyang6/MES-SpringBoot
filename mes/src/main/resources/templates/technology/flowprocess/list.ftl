@@ -146,7 +146,8 @@
             if (obj.event === 'edit') {
                 spLayer.open({
                     title: '编辑',
-                    area: ['80%', '90%'],
+                    area: ['80%', '90%'],.
+
                     // 请求url参数
                     spWhere: {id: data.id},
                     content: '${request.contextPath}/basedata/flow/process/add-or-update-ui'
@@ -156,8 +157,25 @@
             // 删除
             if (obj.event === 'delete') {
                 layer.confirm('确认要删除吗？', function (index) {
-                    obj.del();
-                    layer.close(index);
+                    spUtil.ajax({
+                        url: '${request.contextPath}/basedata/flow/process/delete',
+                        async: false,
+                        type: 'POST',
+                        // 是否显示 loading
+                        showLoading: true,
+                        // 是否序列化参数
+                        serializable: false,
+                        // 参数
+                        data: {
+                            id: data.id
+                        },
+                        success: function (data) {
+                            tableIns.reload();
+                            layer.close(index);
+                        },
+                        error: function () {
+                        }
+                    });
                 });
             }
         });

@@ -1,5 +1,6 @@
 package com.wangziyang.mes.technology.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.wangziyang.mes.common.BaseEntity;
 
@@ -52,9 +53,10 @@ public class SpBom extends BaseEntity {
     private String factory;
 
     /**
-     * 逻辑删除：1 表示删除，0 表示未删除，2 表示禁用
+     * 状态(00:删除;01:正常;02:禁用)
      */
-    private String isDeleted;
+    @TableField(value = "is_deleted")
+    private String deleted;
 
     public String getBomCode() {
         return bomCode;
@@ -112,13 +114,6 @@ public class SpBom extends BaseEntity {
         this.factory = factory;
     }
 
-    public String getIsDeleted() {
-        return isDeleted;
-    }
-
-    public void setIsDeleted(String isDeleted) {
-        this.isDeleted = isDeleted;
-    }
 
     @Override
     public String toString() {
@@ -130,7 +125,24 @@ public class SpBom extends BaseEntity {
                 ", versionNumber=" + versionNumber +
                 ", state=" + state +
                 ", factory=" + factory +
-                ", isDeleted=" + isDeleted +
                 "}";
+    }
+
+    /**
+     * 获取 状态(00:删除;01:正常;02:禁用)
+     *
+     * @return deleted 状态(00:删除;01:正常;02:禁用)
+     */
+    public String getDeleted() {
+        return this.deleted;
+    }
+
+    /**
+     * 设置 状态(00:删除;01:正常;02:禁用)
+     *
+     * @param deleted 状态(00:删除;01:正常;02:禁用)
+     */
+    public void setDeleted(String deleted) {
+        this.deleted = deleted;
     }
 }

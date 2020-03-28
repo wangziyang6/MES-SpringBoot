@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.wangziyang.mes.technology.entity.SpFlow;
 import com.wangziyang.mes.basedata.entity.SpMaterile;
 import com.wangziyang.mes.basedata.entity.SpTableManager;
-import com.wangziyang.mes.basedata.request.SpFlowReq;
+import com.wangziyang.mes.technology.request.SpFlowReq;
 import com.wangziyang.mes.technology.service.ISpFlowService;
 import com.wangziyang.mes.basedata.service.ISpMaterileService;
 import com.wangziyang.mes.common.BaseController;

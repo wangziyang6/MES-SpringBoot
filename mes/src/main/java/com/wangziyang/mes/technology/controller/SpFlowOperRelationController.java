@@ -1,15 +1,16 @@
 package com.wangziyang.mes.technology.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.wangziyang.mes.basedata.request.SpTableManagerReq;
+import com.wangziyang.mes.common.BaseController;
+import com.wangziyang.mes.common.Result;
 import com.wangziyang.mes.technology.dto.SpFlowDto;
 import com.wangziyang.mes.technology.entity.SpFlow;
-import com.wangziyang.mes.basedata.request.SpTableManagerReq;
 import com.wangziyang.mes.technology.service.ISpFlowOperRelationService;
 import com.wangziyang.mes.technology.service.ISpFlowService;
 import com.wangziyang.mes.technology.service.ISpOperService;
 import com.wangziyang.mes.technology.vo.SpOperVo;
-import com.wangziyang.mes.common.BaseController;
-import com.wangziyang.mes.common.Result;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -18,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 
 import java.util.List;
 
@@ -115,6 +115,27 @@ public class SpFlowOperRelationController extends BaseController {
     @ResponseBody
     public Result addOrUpdate(@RequestBody SpFlowDto spFlowDto) throws Exception {
         return iSpFlowOperRelationService.addOrUpdate(spFlowDto);
+    }
+
+    /**
+     * 删除流程与工序关系
+     *
+     *
+     * @param req 请求参数
+     * @return Result 执行结果
+     */
+    @ApiOperation("删除流程与工序关系")
+    @ApiImplicitParams({@ApiImplicitParam(name = "req", value = "流程实体", defaultValue = "流程实体")})
+    @PostMapping("/delete")
+    @ResponseBody
+    public Result deleteByTableNameId(SpFlowDto req) throws Exception {
+        //先删除流程头表
+        iSpFlowService.removeById(req.getId());
+        //删除流程关系表
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.eq("flow_id", req.getId());
+        iSpFlowOperRelationService.remove(queryWrapper);
+        return Result.success();
     }
 
 }

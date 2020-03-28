@@ -60,16 +60,26 @@
 
         // 表格及数据初始化
         var tableIns = spTable.render({
-            url: '${request.contextPath}/basedata/flow/page',
+            url: '${request.contextPath}/technology/bom/page',
             cols: [
                 [{
                     type: 'checkbox'
                 }, {
-                    field: 'flow', title: '流程'
+                    field: 'bomCode', title: 'bom编号'
                 }, {
-                    field: 'flowDesc', title: '流程描述'
+                    field: 'materielCode', title: '物料编号'
                 }, {
-                    field: 'process', title: '流程时序过程'
+                    field: 'versionNumber', title: '版本号'
+                }, {
+                    field: 'state', title: 'BOM状态'
+                }, {
+                    field: 'factory', title: '所属工厂'
+                }, {
+                    field: 'remark', title: '备注'
+                }, {
+                    field: 'deleted', title: '状态', templet: function (d) {
+                        return spConfig.isDeletedDict[d.deleted];
+                    }
                 }, {
                     fixed: 'right',
                     field: 'operate',
@@ -131,7 +141,7 @@
                 var index = spLayer.open({
                     title: '添加',
                     area: ['80%', '90%'],
-                    content: '${request.contextPath}/basedata/flow/process/add-or-update-ui'
+                    content: '${request.contextPath}/technology/bom/add-or-update-ui'
                 });
             }
         });
@@ -149,15 +159,32 @@
                     area: ['80%', '90%'],
                     // 请求url参数
                     spWhere: {id: data.id},
-                    content: '${request.contextPath}/basedata/flow/process/add-or-update-ui'
+                    content: '${request.contextPath}/technology/bom/add-or-update-ui'
                 });
             }
 
             // 删除
             if (obj.event === 'delete') {
                 layer.confirm('确认要删除吗？', function (index) {
-                    obj.del();
-                    layer.close(index);
+                    spUtil.ajax({
+                        url: '${request.contextPath}/basedata/materile/delete',
+                        async: false,
+                        type: 'POST',
+                        // 是否显示 loading
+                        showLoading: true,
+                        // 是否序列化参数
+                        serializable: false,
+                        // 参数
+                        data: {
+                            id: data.id
+                        },
+                        success: function (data) {
+                            tableIns.reload();
+                            layer.close(index);
+                        },
+                        error: function () {
+                        }
+                    });
                 });
             }
         });

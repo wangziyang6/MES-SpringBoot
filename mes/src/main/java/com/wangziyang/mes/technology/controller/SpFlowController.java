@@ -4,7 +4,7 @@ package com.wangziyang.mes.technology.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.wangziyang.mes.technology.entity.SpFlow;
-import com.wangziyang.mes.basedata.request.SpFlowReq;
+import com.wangziyang.mes.technology.request.SpFlowReq;
 import com.wangziyang.mes.technology.service.ISpFlowService;
 import com.wangziyang.mes.common.BaseController;
 import com.wangziyang.mes.common.Result;

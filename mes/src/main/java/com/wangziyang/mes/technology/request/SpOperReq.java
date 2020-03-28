@@ -1,4 +1,4 @@
-package com.wangziyang.mes.basedata.request;
+package com.wangziyang.mes.technology.request;
 
 import com.wangziyang.mes.common.BasePageReq;
 
