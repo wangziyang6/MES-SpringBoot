@@ -1,15 +1,17 @@
 package com.wangziyang.mes.technology.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.wangziyang.mes.common.BaseEntity;
 
 /**
  * <p>
- * 
+ * bom头表实体
  * </p>
  *
  * @author WangZiYang
  * @since 2020-03-28
  */
+@TableName(value = "sp_bom")
 public class SpBom extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
@@ -40,7 +42,7 @@ public class SpBom extends BaseEntity {
     private String versionNumber;
 
     /**
-     * BOM状态 creat创建 pass审核通过 
+     * BOM状态 creat创建 pass审核通过
      */
     private String state;
 
@@ -61,6 +63,7 @@ public class SpBom extends BaseEntity {
     public void setBomCode(String bomCode) {
         this.bomCode = bomCode;
     }
+
     public String getMaterielCode() {
         return materielCode;
     }
@@ -68,6 +71,7 @@ public class SpBom extends BaseEntity {
     public void setMaterielCode(String materielCode) {
         this.materielCode = materielCode;
     }
+
     public String getMaterielDesc() {
         return materielDesc;
     }
@@ -75,6 +79,7 @@ public class SpBom extends BaseEntity {
     public void setMaterielDesc(String materielDesc) {
         this.materielDesc = materielDesc;
     }
+
     public String getRemark() {
         return remark;
     }
@@ -82,6 +87,7 @@ public class SpBom extends BaseEntity {
     public void setRemark(String remark) {
         this.remark = remark;
     }
+
     public String getVersionNumber() {
         return versionNumber;
     }
@@ -89,6 +95,7 @@ public class SpBom extends BaseEntity {
     public void setVersionNumber(String versionNumber) {
         this.versionNumber = versionNumber;
     }
+
     public String getState() {
         return state;
     }
@@ -96,6 +103,7 @@ public class SpBom extends BaseEntity {
     public void setState(String state) {
         this.state = state;
     }
+
     public String getFactory() {
         return factory;
     }
@@ -103,6 +111,7 @@ public class SpBom extends BaseEntity {
     public void setFactory(String factory) {
         this.factory = factory;
     }
+
     public String getIsDeleted() {
         return isDeleted;
     }
@@ -114,14 +123,14 @@ public class SpBom extends BaseEntity {
     @Override
     public String toString() {
         return "SpBom{" +
-            "bomCode=" + bomCode +
-            ", materielCode=" + materielCode +
-            ", materielDesc=" + materielDesc +
-            ", remark=" + remark +
-            ", versionNumber=" + versionNumber +
-            ", state=" + state +
-            ", factory=" + factory +
-            ", isDeleted=" + isDeleted +
-        "}";
+                "bomCode=" + bomCode +
+                ", materielCode=" + materielCode +
+                ", materielDesc=" + materielDesc +
+                ", remark=" + remark +
+                ", versionNumber=" + versionNumber +
+                ", state=" + state +
+                ", factory=" + factory +
+                ", isDeleted=" + isDeleted +
+                "}";
     }
 }

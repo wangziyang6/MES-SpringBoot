@@ -1,16 +1,19 @@
 package com.wangziyang.mes.technology.entity;
 
-import java.math.BigDecimal;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.wangziyang.mes.common.BaseEntity;
+
+import java.math.BigDecimal;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author WangZiYang
  * @since 2020-03-28
  */
+@TableName(value = "sp_bom_item")
 public class SpBomItem extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
@@ -57,6 +60,7 @@ public class SpBomItem extends BaseEntity {
     public void setBomHeadId(String bomHeadId) {
         this.bomHeadId = bomHeadId;
     }
+
     public String getMaterielItemCode() {
         return materielItemCode;
     }
@@ -64,6 +68,7 @@ public class SpBomItem extends BaseEntity {
     public void setMaterielItemCode(String materielItemCode) {
         this.materielItemCode = materielItemCode;
     }
+
     public String getMaterielItemDesc() {
         return materielItemDesc;
     }
@@ -71,6 +76,7 @@ public class SpBomItem extends BaseEntity {
     public void setMaterielItemDesc(String materielItemDesc) {
         this.materielItemDesc = materielItemDesc;
     }
+
     public String getLineNo() {
         return lineNo;
     }
@@ -78,6 +84,7 @@ public class SpBomItem extends BaseEntity {
     public void setLineNo(String lineNo) {
         this.lineNo = lineNo;
     }
+
     public BigDecimal getItemNum() {
         return itemNum;
     }
@@ -85,6 +92,7 @@ public class SpBomItem extends BaseEntity {
     public void setItemNum(BigDecimal itemNum) {
         this.itemNum = itemNum;
     }
+
     public String getItemUnit() {
         return itemUnit;
     }
@@ -92,6 +100,7 @@ public class SpBomItem extends BaseEntity {
     public void setItemUnit(String itemUnit) {
         this.itemUnit = itemUnit;
     }
+
     public String getOperTyper() {
         return operTyper;
     }
@@ -103,13 +112,13 @@ public class SpBomItem extends BaseEntity {
     @Override
     public String toString() {
         return "SpBomItem{" +
-            "bomHeadId=" + bomHeadId +
-            ", materielItemCode=" + materielItemCode +
-            ", materielItemDesc=" + materielItemDesc +
-            ", lineNo=" + lineNo +
-            ", itemNum=" + itemNum +
-            ", itemUnit=" + itemUnit +
-            ", operTyper=" + operTyper +
-        "}";
+                "bomHeadId=" + bomHeadId +
+                ", materielItemCode=" + materielItemCode +
+                ", materielItemDesc=" + materielItemDesc +
+                ", lineNo=" + lineNo +
+                ", itemNum=" + itemNum +
+                ", itemUnit=" + itemUnit +
+                ", operTyper=" + operTyper +
+                "}";
     }
 }
