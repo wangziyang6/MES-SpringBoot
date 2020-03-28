@@ -60,7 +60,7 @@ public class SpFlowOperRelationController extends BaseController {
     @ApiImplicitParams({@ApiImplicitParam(name = "model", value = "模型", defaultValue = "模型")})
     @GetMapping("/list-ui")
     public String listUI(Model model) {
-        return "basedata/flowprocess/list";
+        return "technology/flowprocess/list";
     }
 
 
@@ -84,7 +84,7 @@ public class SpFlowOperRelationController extends BaseController {
             List<SpOperVo> currentSpOperVos = iSpFlowOperRelationService.currentOperViewServer(record.getId());
             model.addAttribute("currentOper", currentSpOperVos);
         }
-        return "basedata/flowprocess/addOrUpdate";
+        return "technology/flowprocess/addOrUpdate";
     }
 
 
