@@ -162,7 +162,6 @@
         //监听提交
         form.on('submit(js-submit-filter)', function (data) {
             data.field.spOperVoList = requestParmaArr;
-            console.log(data.field)
             spUtil.submitForm({
                 contentType: 'application/json;charset=UTF-8',
                 url: "${request.contextPath}/basedata/flow/process/add-or-update",
@@ -174,7 +173,6 @@
 
         // 测试搜索弹框
         $('#js-test-btn').click(function () {
-            console.log('开始');
             var index = spLayer.open({
                 type: 2,
                 area: ['680px', '500px'],
@@ -188,7 +186,6 @@
                     }
                 }
             });
-            console.log('结束');
         });
 
     });
