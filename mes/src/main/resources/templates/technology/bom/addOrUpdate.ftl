@@ -16,7 +16,6 @@
             <div carousel-item>
                 <div>
                     <form class="layui-form" style="margin: 0 auto;max-width: 460px;padding-top: 40px;">
-
                         <div class="layui-form-item">
                             <div class="layui-inline">
                                 <label for="js-bomCode" class="layui-form-label sp-required">BOM编码
@@ -31,11 +30,12 @@
                         <div class="layui-form-item">
                             <label for="js-bomCode" class="layui-form-label sp-required">物料编码
                             </label>
-                            <div class="layui-inline">
+                            <div  style="display: flex;   flex-direction: row;">
+                            <button type="button" id="js-test-btn" class="layui-btn" style="height:37px "><i class="layui-icon layui-icon-search "></i>
+                            </button>
                                 <input id="js-test-input" placeholder="搜索物料" autocomplete="off" value=""
-                                       class="layui-input">
+                                       class="layui-input" style="width: 133PX">
                             </div>
-                            <button id="js-test-btn" class="layui-btn"><i class="layui-icon layui-icon-search "></i></button>
                         </div>
                         <div class="layui-form-item">
                             <div class="layui-inline">
@@ -63,6 +63,7 @@
                             </div>
                         </div>
                     </form>
+
                 </div>
                 <div>
                     <form class="layui-form" style="margin: 0 auto;max-width: 460px;padding-top: 40px;">
@@ -121,9 +122,10 @@
     </div>
 </div>
 <script>
-    layui.use(['form', 'util', 'step', 'spLayer'], function () {
+    layui.use(['form', 'util', 'layer','step', 'spLayer'], function () {
         var form = layui.form,
             spLayer = layui.spLayer,
+            layer = layui.layer,
             step = layui.step;
 
         step.render({
@@ -172,6 +174,7 @@
 
         // 测试搜索弹框
         $('#js-test-btn').click(function () {
+            console.log('开始');
             var index = spLayer.open({
                 type: 2,
                 area: ['680px', '500px'],
@@ -185,6 +188,7 @@
                     }
                 }
             });
+            console.log('结束');
         });
 
     });
