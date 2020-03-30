@@ -12,91 +12,148 @@
 <body>
 <div class="splayui-container">
     <div class="splayui-main">
-        <form class="layui-form splayui-form">
-            <div class="layui-form-item">
-                <div class="layui-inline">
-                    <label for="js-name" class="layui-form-label sp-required">流程编码123
-                    </label>
-                    <div class="layui-input-inline">
-                        <input type="text" id="js-flow" name="flow" lay-verify="required" autocomplete="off"
-                               class="layui-input" value="${flow.flow}">
-                    </div>
+        <div class="layui-carousel" id="stepForm" lay-filter="stepForm" style="margin: 0 auto;">
+            <div carousel-item>
+                <div>
+                    <form class="layui-form" style="margin: 0 auto;max-width: 460px;padding-top: 40px;">
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label for="js-bomCode" class="layui-form-label sp-required">BOM编码
+                                </label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="js-bomCode" name="bomCode" lay-verify="required" autocomplete="off"
+                                           class="layui-input" value="${result.bomCode}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-inline">
+                            <label for="js-bomCode" class="layui-form-label sp-required">物料编码
+                            </label>
+                            <div class="layui-input-inline">
+                                <input id="js-test-input" placeholder="搜索物料" autocomplete="off" value="" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline">
+                                <button id="js-test-btn" class="layui-btn"><i class="layui-icon layui-icon-search "></i></button>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label for="js-bomCode" class="layui-form-label sp-required">版本号
+                                </label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="js-bomCode" name="bomCode" lay-verify="required" autocomplete="off"
+                                           class="layui-input" value="${result.bomCode}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">备注说明:</label>
+                            <div class="layui-input-block">
+                                <textarea placeholder="入款备注" value="" class="layui-textarea"></textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit lay-filter="formStep">
+                                    &emsp;下一步&emsp;
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="layui-inline">
-                    <label for="js-code" class="layui-form-label sp-required">流程描述
-                    </label>
-                    <div class="layui-input-inline">
-                        <input type="text" id="js-flowDesc" name="flowDesc" lay-verify="required" autocomplete="off"
-                               class="layui-input" value="${flow.flowDesc}">
-                    </div>
+                <div>
+                    <form class="layui-form" style="margin: 0 auto;max-width: 460px;padding-top: 40px;">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">游戏ID:</label>
+                            <div class="layui-input-block">
+                                <div class="layui-form-mid layui-word-aux">639537</div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">账户余额:</label>
+                            <div class="layui-input-block">
+                                <div class="layui-form-mid layui-word-aux">3000 元（保险箱：1000，现金：2000）</div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">入款金额:</label>
+                            <div class="layui-input-block">
+                                <div class="layui-form-mid layui-word-aux">
+                                    <span style="font-size: 18px;color: #333;">1800 元</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">入款类型:</label>
+                            <div class="layui-input-block">
+                                <div class="layui-form-mid layui-word-aux">保险箱</div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">入款方式:</label>
+                            <div class="layui-input-block">
+                                <div class="layui-form-mid layui-word-aux">人工入款</div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">备注说明:</label>
+                            <div class="layui-input-block">
+                                <div class="layui-form-mid layui-word-aux">备注说明</div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn layui-bg-green layui-btn-primary pre" lay-submit lay-filter="formStep">
+                                    &emsp;上一步&emsp;
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
 
             </div>
-            <div class="layui-form-item">
-                <label for="js-descr" class="layui-form-label " >流程时序
-                </label>
-                <div class="layui-input-inline" style="width: 514px">
-                    <input type="text" id="js-process"  readonly autocomplete="off"
-                           class="layui-input" value="${flow.process}">
-                </div>
-            </div>
-
-            <div class="layui-form-item">
-                <fieldset class="layui-elem-field layui-field-title" >
-                    <legend>流程与工序关系</legend>
-                </fieldset>
-                <div id="js-shuttle" class="demo-transfer"></div>
-            </div>
-            <div class="layui-form-item layui-hide">
-                <div class="layui-input-block">
-                    <input id="js-id" name="id" value="${flow.id}"/>
-                    <button id="js-submit" class="layui-btn" lay-demotransferactive="getData" lay-submit
-                            lay-filter="js-submit-filter">确定
-                    </button>
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 <script>
-    layui.use(['form', 'util', 'transfer', 'util'], function () {
+    layui.use(['form', 'util', 'step','spLayer'], function () {
         var form = layui.form,
-            util = layui.util,
-            layer = layui.layer,
-            transfer = layui.transfer;
-        var requestParmaArr = [];
-        //模拟数据
-        allOpers = [];
-        currentOpers = [];
-        //初始化全部工序
-        <#list allOper as oper >
-        allOper = {};
-        allOper.value = '${oper.value}';
-        allOper.title = '${oper.title}';
-        allOpers.push(allOper);
-        </#list>
-        //初始化当前流程下挂的工序
-        if ('${flow.id}') {
-            <#list currentOper as oper >
-            currentOpers.push('${oper.value}');
-            </#list>
-        }
+            spLayer = layui.spLayer,
+            step = layui.step;
 
-        //初始穿梭框数据
-        transfer.render({
-            elem: '#js-shuttle',
-            title: ['全部工序', '当前Flow下工序']
-            , data: allOpers
-            , value: currentOpers
-            , id: 'keyFlow' //定义唯一索引
+        step.render({
+            elem: '#stepForm',
+            filter: 'stepForm',
+            width: '100%', //设置容器宽度
+            stepWidth: '700px',
+            height: '500px',
+            stepItems: [{
+                title: 'BOM主信息'
+            }, {
+                title: 'BOM子项信息'
+            }]
         });
 
-        //获取右侧数据
-        util.event('lay-demoTransferActive', {
-            getData: function (othis) {
-                var getData = transfer.getData('keyFlow');
-                requestParmaArr = getData;
-            }
+        form.on('submit(formStep)', function (data) {
+            step.next('#stepForm');
+            return false;
+        });
+
+        form.on('submit(formStep2)', function (data) {
+            step.next('#stepForm');
+            return false;
+        });
+
+        $('.pre').click(function () {
+            step.pre('#stepForm');
+        });
+
+        $('.next').click(function () {
+            step.next('#stepForm');
         });
 
         //监听提交
@@ -109,6 +166,24 @@
                 data: JSON.stringify(data.field)
             });
             return false;
+        });
+
+
+        // 测试搜索弹框
+        $('#js-test-btn').click(function () {
+            var index = spLayer.open({
+                type: 2,
+                area: ['680px', '500px'],
+                reload: false,
+                content: '${request.contextPath}/admin/common/ui/spSearchPanel4SysUser',
+                // 如果是搜索弹窗，需要添加回调函数来获取选中数据
+                spCallback: function (result) {
+                    console.log(result)
+                    if (result.code === 0 && result.data.length > 0) {
+                        $('#js-test-input').val(result.data[0].name);
+                    }
+                }
+            });
         });
 
     });

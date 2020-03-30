@@ -2,14 +2,15 @@ package com.wangziyang.mes.technology.controller;
 
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.wangziyang.mes.basedata.request.SpTableManagerReq;
 import com.wangziyang.mes.common.BaseController;
 import com.wangziyang.mes.common.Result;
+import com.wangziyang.mes.technology.entity.SpBom;
 import com.wangziyang.mes.technology.request.SpBomReq;
 import com.wangziyang.mes.technology.service.ISpBomService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +35,7 @@ public class SpBomController extends BaseController {
      */
     @Autowired
     private ISpBomService iSpBomService;
+
     /**
      * 工艺BOM管理界面
      *
@@ -50,6 +52,25 @@ public class SpBomController extends BaseController {
 
 
     /**
+     * 工艺BOM管理修改界面
+     *
+     * @param model 模型
+     * @param spBom bom实体
+     * @return 更改界面
+     */
+    @ApiOperation("主数据维护修改界面")
+    @GetMapping("/add-or-update-ui")
+    public String addOrUpdateUI(Model model, SpBom spBom) throws Exception {
+        if (StringUtils.isNotEmpty(spBom.getId())) {
+            SpBom result = iSpBomService.getById(spBom.getId());
+            model.addAttribute("result", result);
+        }
+
+        return "technology/bom/addOrUpdate";
+    }
+
+
+    /**
      * 工艺BOM分页查询
      *
      * @param req 请求参数
@@ -60,10 +81,9 @@ public class SpBomController extends BaseController {
     @PostMapping("/page")
     @ResponseBody
     public Result page(SpBomReq req) {
-           IPage result = iSpBomService.page(req);
+        IPage result = iSpBomService.page(req);
         return Result.success(result);
     }
-
 
 
 }
