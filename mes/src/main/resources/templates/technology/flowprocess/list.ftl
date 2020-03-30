@@ -146,7 +146,7 @@
             if (obj.event === 'edit') {
                 spLayer.open({
                     title: '编辑',
-                    area: ['80%', '90%'],.
+                    area: ['80%', '90%'],
 
                     // 请求url参数
                     spWhere: {id: data.id},

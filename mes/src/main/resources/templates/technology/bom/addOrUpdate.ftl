@@ -12,7 +12,7 @@
 <body>
 <div class="splayui-container">
     <div class="splayui-main">
-        <div class="layui-carousel" id="stepForm" lay-filter="stepForm" style="margin: 0 auto;">
+        <div class="layui-carousel" id="stepForm" lay-filter="stepForm">
             <div carousel-item>
                 <div>
                     <form class="layui-form" style="margin: 0 auto;max-width: 460px;padding-top: 40px;">
@@ -22,28 +22,28 @@
                                 <label for="js-bomCode" class="layui-form-label sp-required">BOM编码
                                 </label>
                                 <div class="layui-input-inline">
-                                    <input type="text" id="js-bomCode" name="bomCode" lay-verify="required" autocomplete="off"
+                                    <input type="text" id="js-bomCode" name="bomCode" lay-verify="required"
+                                           autocomplete="off"
                                            class="layui-input" value="${result.bomCode}">
                                 </div>
                             </div>
                         </div>
-
-                        <div class="layui-inline">
+                        <div class="layui-form-item">
                             <label for="js-bomCode" class="layui-form-label sp-required">物料编码
                             </label>
-                            <div class="layui-input-inline">
-                                <input id="js-test-input" placeholder="搜索物料" autocomplete="off" value="" class="layui-input">
+                            <div class="layui-inline">
+                                <input id="js-test-input" placeholder="搜索物料" autocomplete="off" value=""
+                                       class="layui-input">
                             </div>
-                            <div class="layui-input-inline">
-                                <button id="js-test-btn" class="layui-btn"><i class="layui-icon layui-icon-search "></i></button>
-                            </div>
+                            <button id="js-test-btn" class="layui-btn"><i class="layui-icon layui-icon-search "></i></button>
                         </div>
                         <div class="layui-form-item">
                             <div class="layui-inline">
                                 <label for="js-bomCode" class="layui-form-label sp-required">版本号
                                 </label>
                                 <div class="layui-input-inline">
-                                    <input type="text" id="js-bomCode" name="bomCode" lay-verify="required" autocomplete="off"
+                                    <input type="text" id="js-bomCode" name="bomCode" lay-verify="required"
+                                           autocomplete="off"
                                            class="layui-input" value="${result.bomCode}">
                                 </div>
                             </div>
@@ -107,7 +107,8 @@
 
                         <div class="layui-form-item">
                             <div class="layui-input-block">
-                                <button class="layui-btn layui-bg-green layui-btn-primary pre" lay-submit lay-filter="formStep">
+                                <button class="layui-btn layui-bg-green layui-btn-primary pre" lay-submit
+                                        lay-filter="formStep">
                                     &emsp;上一步&emsp;
                                 </button>
                             </div>
@@ -120,7 +121,7 @@
     </div>
 </div>
 <script>
-    layui.use(['form', 'util', 'step','spLayer'], function () {
+    layui.use(['form', 'util', 'step', 'spLayer'], function () {
         var form = layui.form,
             spLayer = layui.spLayer,
             step = layui.step;
