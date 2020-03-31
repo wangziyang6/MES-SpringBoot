@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>工序与流程关系</title>
@@ -28,23 +28,41 @@
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <label for="js-bomCode" class="layui-form-label sp-required">物料编码
+                            <label for="js-materielCode" class="layui-form-label sp-required">物料编码
                             </label>
-                            <div  style="display: flex;   flex-direction: row;">
-                            <button type="button" id="js-test-btn" class="layui-btn" style="height:37px "><i class="layui-icon layui-icon-search "></i>
-                            </button>
-                                <input id="js-test-input" placeholder="搜索物料" autocomplete="off" value=""
+                            <div style="display: flex;   flex-direction: row;">
+                                <button type="button" id="js-test-btn" class="layui-btn" style="height:37px "><i
+                                            class="layui-icon layui-icon-search "></i>
+                                </button>
+                                <input id="js-test-input" name="materielCode" placeholder="搜索物料" autocomplete="off"
+                                       value="${result.materielCode}"
                                        class="layui-input" style="width: 133PX">
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <div class="layui-inline">
-                                <label for="js-bomCode" class="layui-form-label sp-required">版本号
+                                <label for="js-version-number" class="layui-form-label sp-required">版本号
                                 </label>
-                                <div class="layui-input-inline">
-                                    <input type="text" id="js-bomCode" name="bomCode" lay-verify="required"
+                                <div style="display: flex;   flex-direction: row;">
+                                    <input type="text" id="js-versionNumber" readonly="true" name="versionNumber" lay-verify="required"
                                            autocomplete="off"
-                                           class="layui-input" value="${result.bomCode}">
+                                           class="layui-input"
+                                           {value="${result.versionNumber}" | value='1' style=" width: 163PX;" }>
+                                    <div style="display: flex;   flex-direction: column;">
+                                        <div style="display: flex">
+                                            <button onclick="FN('plus')" type="button" style="height: 19PX"
+                                                    class="layui-btn  layui-btn-xs"><i
+                                                        class="layui-icon layui-icon-up"></i>
+                                            </button>
+                                        </div>
+                                        <div style="display: flex">
+                                            <button onclick="FN('minus')" type="button" style="height: 19PX"
+                                                    class="layui-btn  layui-btn-xs"><i
+                                                        class="layui-icon layui-icon-down"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -52,7 +70,7 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">备注说明:</label>
                             <div class="layui-input-block">
-                                <textarea placeholder="入款备注" value="" class="layui-textarea"></textarea>
+                                <textarea placeholder="BOM备注" value="" class="layui-textarea"></textarea>
                             </div>
                         </div>
                         <div class="layui-form-item">
@@ -63,6 +81,8 @@
                             </div>
                         </div>
                     </form>
+
+
 
                 </div>
                 <div>
@@ -122,7 +142,7 @@
     </div>
 </div>
 <script>
-    layui.use(['form', 'util', 'layer','step', 'spLayer'], function () {
+    layui.use(['form', 'util', 'layer', 'step', 'spLayer'], function () {
         var form = layui.form,
             spLayer = layui.spLayer,
             layer = layui.layer,
@@ -189,6 +209,22 @@
         });
 
     });
+
+    function FN(btnType) {
+        var versionNumber = $('#js-versionNumber')
+        if (btnType == 'plus') {
+            versionNumber.val(parseInt(versionNumber.val()) + 1);
+        } else if (btnType == 'minus') {
+
+            versionNumber.val(parseInt(versionNumber.val()) - 1);
+            if (parseInt(versionNumber.val()) <= 0) {
+                versionNumber.val('1')
+                layer.alert('版本号最小为1', {
+                    icon: 2
+                });
+            }
+        }
+    }
 
 </script>
 </body>
