@@ -151,7 +151,6 @@
 
         // 登录过期的时候，跳出ifram框架
         if (top.location != self.location) top.location = self.location;
-        console.log('------------^_^');
         // 进行登录操作
         form.on('submit(login)', function (data) {
             $.ajax({

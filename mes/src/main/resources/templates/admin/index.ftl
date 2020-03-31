@@ -37,6 +37,9 @@
 
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
+                <button type="button"  class="fa fa-github-alt " onclick="notice()"  data-method="setTop" >B站视频</button>
+            </li>
+            <li class="layui-nav-item">
                 <a href="javascript:;" data-refresh="刷新"><i class="fa fa-refresh"></i></a>
             </li>
             <li class="layui-nav-item">
@@ -139,6 +142,25 @@
             return false;
         });
     });
+    //视频弹框
+    function  notice(){
+        layer.open({
+            type: 1
+            ,title: false //不显示标题栏
+            ,closeBtn: true
+            ,area: ['40%', '45%']
+            ,move: '.mine-move'
+            ,shade: 0.8
+            ,scrollbar: false
+            ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+            ,btnAlign: 'c'
+            ,moveType: 1 //拖拽模式，0或者1
+            ,content: '<iframe style="height: 99%;width: 100%" src="//player.bilibili.com/player.html?bvid=BV1k7411U7KX&page=1"  border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>'
+            ,success: function(layero){
+
+            }
+        });
+    }
 </script>
 </body>
 </html>
