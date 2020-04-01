@@ -42,7 +42,9 @@
                 <div class="layui-form-item layui-hide">
                     <div class="layui-input-block">
                         <input id="js-id" name="id" value=""/>
-                        <button id="js-submit" type="button" class="layui-btn" lay-submit lay-filter="js-submit-filter">确定</button>
+                        <button id="js-submit" type="button" class="layui-btn" lay-submit lay-filter="js-submit-filter">
+                            确定
+                        </button>
                     </div>
                 </div>
             </div>
@@ -100,12 +102,12 @@
             return false;
         });
 
-
         //监听行双击事件
         table.on('rowDouble(js-record-table-filter)', function (obj) {
             //选中radio样式
             obj.tr.find('i[class="layui-anim layui-icon"]').trigger("click");
-            $("#js-submit").click();
+            $('.layui-layer-btn0', parent.document)[0].trigger("click");
+
         });
     });
 

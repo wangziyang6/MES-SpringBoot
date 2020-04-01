@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>工序与流程关系</title>
+    <title>维护BOM信息</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -136,6 +136,14 @@
                         </div>
                     </form>
                 </div>
+                <div class="layui-form-item layui-hide">
+                    <div class="layui-input-block">
+                        <input id="js-id" name="id" value="${result.id}"/>
+                        <button id="js-submit" class="layui-btn" lay-demotransferactive="getData" lay-submit
+                                lay-filter="js-submit-filter">确定
+                        </button>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -190,7 +198,7 @@
         });
 
 
-        // 测试搜索弹框
+        // 物料主数据搜索弹框
         $('#js-test-btn').click(function () {
             var index = spLayer.open({
                 type: 2,
