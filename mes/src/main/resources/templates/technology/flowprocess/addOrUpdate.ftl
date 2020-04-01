@@ -102,7 +102,6 @@
         //监听提交
         form.on('submit(js-submit-filter)', function (data) {
             data.field.spOperVoList = requestParmaArr;
-            console.log(data.field)
             spUtil.submitForm({
                 contentType: 'application/json;charset=UTF-8',
                 url: "${request.contextPath}/basedata/flow/process/add-or-update",

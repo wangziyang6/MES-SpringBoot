@@ -34,7 +34,7 @@
                                 <button type="button" id="js-test-btn" class="layui-btn" style="height:37px "><i
                                             class="layui-icon layui-icon-search "></i>
                                 </button>
-                                <input id="js-test-input" name="materielCode" placeholder="搜索物料" autocomplete="off"
+                                <input id="js-test-input" name="materielCode" readonly="true" lay-verify="required" placeholder="搜索物料" autocomplete="off"
                                        value="${result.materielCode}"
                                        class="layui-input" style="width: 133PX">
                             </div>
@@ -181,11 +181,10 @@
 
         //监听提交
         form.on('submit(js-submit-filter)', function (data) {
-            data.field.spOperVoList = requestParmaArr;
             spUtil.submitForm({
                 contentType: 'application/json;charset=UTF-8',
                 url: "${request.contextPath}/basedata/flow/process/add-or-update",
-                data: JSON.stringify(data.field)
+                data:data.field
             });
             return false;
         });
@@ -197,19 +196,19 @@
                 type: 2,
                 area: ['680px', '500px'],
                 reload: false,
-                content: '${request.contextPath}/admin/common/ui/spSearchPanel4SysUser',
+                content: '${request.contextPath}/admin/common/ui/searchPanelMaterile',
                 // 如果是搜索弹窗，需要添加回调函数来获取选中数据
                 spCallback: function (result) {
                     console.log(result)
                     if (result.code === 0 && result.data.length > 0) {
-                        $('#js-test-input').val(result.data[0].name);
+                        $('#js-test-input').val(result.data[0].materiel);
                     }
                 }
             });
         });
 
     });
-
+  //版本号
     function FN(btnType) {
         var versionNumber = $('#js-versionNumber')
         if (btnType == 'plus') {

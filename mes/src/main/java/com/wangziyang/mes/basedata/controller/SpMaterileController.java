@@ -1,15 +1,16 @@
 package com.wangziyang.mes.basedata.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.wangziyang.mes.technology.entity.SpFlow;
 import com.wangziyang.mes.basedata.entity.SpMaterile;
 import com.wangziyang.mes.basedata.entity.SpTableManager;
-import com.wangziyang.mes.technology.request.SpFlowReq;
-import com.wangziyang.mes.technology.service.ISpFlowService;
+import com.wangziyang.mes.basedata.request.spMaterileReq;
 import com.wangziyang.mes.basedata.service.ISpMaterileService;
 import com.wangziyang.mes.common.BaseController;
 import com.wangziyang.mes.common.Result;
+import com.wangziyang.mes.technology.entity.SpFlow;
+import com.wangziyang.mes.technology.service.ISpFlowService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -17,7 +18,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * <p>
@@ -84,8 +88,17 @@ public class SpMaterileController extends BaseController {
     @ApiImplicitParams({@ApiImplicitParam(name = "req", value = "请求参数", defaultValue = "请求参数")})
     @PostMapping("/page")
     @ResponseBody
-    public Result page(SpFlowReq req) {
-        IPage result = iSpMaterileService.page(req);
+    public Result page(spMaterileReq req) {
+        QueryWrapper queryWrapper =new QueryWrapper();
+        if (StringUtils.isNotEmpty(req.getMaterielLike()))
+        {
+            queryWrapper.like("materiel",req.getMaterielLike());
+        }
+        if (StringUtils.isNotEmpty(req.getMaterielDescLike()))
+        {
+            queryWrapper.like("materiel_desc",req.getMaterielDescLike());
+        }
+        IPage result = iSpMaterileService.page(req,queryWrapper);
         return Result.success(result);
     }
 
@@ -98,8 +111,8 @@ public class SpMaterileController extends BaseController {
     @ApiOperation("物料管理修改、新增")
     @PostMapping("/add-or-update")
     @ResponseBody
-    public Result addOrUpdate( SpMaterile record) {
-         SpFlow spflow = iSpFlowService.getById(record.getFlowId());
+    public Result addOrUpdate(SpMaterile record) {
+        SpFlow spflow = iSpFlowService.getById(record.getFlowId());
         record.setFlowDesc(spflow.getFlowDesc());
         iSpMaterileService.saveOrUpdate(record);
         return Result.success();
