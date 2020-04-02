@@ -416,7 +416,6 @@ layui.define(["element", "jquery"], function (exports) {
          * @param tabId
          **/
         this.checkTab = function (tabId, isIframe) {
-            console.log('this'+tabId);
             // 判断选项卡上是否有
             var checkTab = false;
             if (isIframe == undefined || isIframe == false) {
@@ -429,7 +428,6 @@ layui.define(["element", "jquery"], function (exports) {
             } else {
                 parent.layui.$(".layui-tab-title li").each(function () {
                     checkTabId = $(this).attr('lay-id');
-                    console.log('search'+checkTabId);
                     if (checkTabId != null && checkTabId == tabId) {
                         checkTab = true;
                     }
@@ -703,7 +701,6 @@ layui.define(["element", "jquery"], function (exports) {
      * 打开新窗口
      */
     $('body').on('click', '[data-tab]', function () {
-        console.log('打开新窗口');
         var loading = layer.load(0, {shade: false, time: 2 * 1000});
         var tabId = $(this).attr('data-tab'),
             href = $(this).attr('data-tab'),
@@ -750,7 +747,6 @@ layui.define(["element", "jquery"], function (exports) {
      * 在iframe子菜单上打开新窗口
      */
     $('body').on('click', '[data-iframe-tab]', function () {
-        console.log('在iframe子菜单上打开新窗口');
         var loading = parent.layer.load(0, {shade: false, time: 2 * 1000});
         var tabId = $(this).attr('data-iframe-tab'),
             href = $(this).attr('data-iframe-tab'),

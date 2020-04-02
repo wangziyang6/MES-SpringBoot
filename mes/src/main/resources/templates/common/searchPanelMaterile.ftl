@@ -106,8 +106,7 @@
         table.on('rowDouble(js-record-table-filter)', function (obj) {
             //选中radio样式
             obj.tr.find('i[class="layui-anim layui-icon"]').trigger("click");
-            $('.layui-layer-btn0', parent.document)[0].trigger("click");
-
+            parent.layui.$('.layui-layer-btn0').click();
         });
     });
 
