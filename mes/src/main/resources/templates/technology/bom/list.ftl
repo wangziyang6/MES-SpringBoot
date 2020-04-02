@@ -52,10 +52,11 @@
 
 <!--js逻辑-->
 <script>
-    layui.use(['form', 'table', 'spLayer', 'spTable'], function () {
+    layui.use(['form', 'table', 'spLayer', 'spTable','spLayui'], function () {
         var form = layui.form,
             table = layui.table,
             spLayer = layui.spLayer,
+            spLayui=  layui.spLayui,
             spTable = layui.spTable;
 
         // 表格及数据初始化
@@ -135,14 +136,9 @@
                     layer.msg("请先选择需要删除的数据！");
                 }
             }
-
             // 添加
             if (obj.event === 'add') {
-                var index = spLayer.open({
-                    title: '添加',
-                    area: ['80%', '90%'],
-                    content: '${request.contextPath}/technology/bom/add-or-update-ui'
-                });
+                spLayui.createTableItem('/technology/bom/add-or-update-ui?mpi=bom-1','BOM信息','fa fa-dropbox');
             }
         });
 

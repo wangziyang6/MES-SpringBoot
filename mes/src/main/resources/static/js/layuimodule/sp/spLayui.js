@@ -416,6 +416,7 @@ layui.define(["element", "jquery"], function (exports) {
          * @param tabId
          **/
         this.checkTab = function (tabId, isIframe) {
+            console.log('this'+tabId);
             // 判断选项卡上是否有
             var checkTab = false;
             if (isIframe == undefined || isIframe == false) {
@@ -428,6 +429,7 @@ layui.define(["element", "jquery"], function (exports) {
             } else {
                 parent.layui.$(".layui-tab-title li").each(function () {
                     checkTabId = $(this).attr('lay-id');
+                    console.log('search'+checkTabId);
                     if (checkTabId != null && checkTabId == tabId) {
                         checkTab = true;
                     }
@@ -656,6 +658,31 @@ layui.define(["element", "jquery"], function (exports) {
                 }
             }).resize();
         };
+        /**
+         * 手动新增一个选项卡
+         * @author wangziyang
+         * @param url
+         */
+        this.createTableItem = function (tabId, title, icon) {
+            title = '<i class="' + icon + '"></i><span class="layui-left-nav"> ' + title + '</span>';
+            // 判断该窗口是否已经打开过
+            var checkTab = spLayui.checkTab(tabId,true);
+            if (!checkTab) {
+                var splayuiTabInfo = JSON.parse(sessionStorage.getItem("splayuiTabInfo"));
+                if (splayuiTabInfo == null) {
+                    splayuiTabInfo = {};
+                }
+                splayuiTabInfo[tabId] = {href: tabId, title: title}
+                sessionStorage.setItem("splayuiTabInfo", JSON.stringify(splayuiTabInfo));
+                parent.layui.element.tabAdd('splayuiTab', {
+                    title: title + '<i data-tab-close="" class="layui-icon layui-unselect layui-tab-close">ဆ</i>' //用于演示
+                    , content: '<iframe width="100%" height="100%" frameborder="0"  src="' + tabId + '"></iframe>'
+                    , id: tabId
+                });
+            }
+            parent.layui.element.tabChange('splayuiTab', tabId);
+            spLayui.tabRoll();
+        };
     };
 
     /**
@@ -676,6 +703,7 @@ layui.define(["element", "jquery"], function (exports) {
      * 打开新窗口
      */
     $('body').on('click', '[data-tab]', function () {
+        console.log('打开新窗口');
         var loading = layer.load(0, {shade: false, time: 2 * 1000});
         var tabId = $(this).attr('data-tab'),
             href = $(this).attr('data-tab'),
@@ -722,6 +750,7 @@ layui.define(["element", "jquery"], function (exports) {
      * 在iframe子菜单上打开新窗口
      */
     $('body').on('click', '[data-iframe-tab]', function () {
+        console.log('在iframe子菜单上打开新窗口');
         var loading = parent.layer.load(0, {shade: false, time: 2 * 1000});
         var tabId = $(this).attr('data-iframe-tab'),
             href = $(this).attr('data-iframe-tab'),
@@ -756,6 +785,7 @@ layui.define(["element", "jquery"], function (exports) {
         spLayui.tabRoll();
         parent.layer.close(loading);
     });
+
 
     /**
      * 左侧菜单的切换

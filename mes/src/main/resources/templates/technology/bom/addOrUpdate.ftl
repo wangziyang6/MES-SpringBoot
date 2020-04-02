@@ -66,7 +66,18 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="layui-form-item">
+                            <label for="js-is-deleted" class="layui-form-label sp-required">状态
+                            </label>
+                            <div class="layui-input-block" id="js-is-deleted" style="width: 310px;">
+                                <input type="radio" name="deleted" value="0" title="正常"
+                                       <#if result.deleted == "0" || !(result??)>checked</#if>>
+                                <input type="radio" name="deleted" value="1" title="已删除"
+                                       <#if result.deleted == "1">checked</#if>>
+                                <input type="radio" name="deleted" value="2" title="已禁用"
+                                       <#if result.deleted == "2">checked</#if>>
+                            </div>
+                        </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">备注说明:</label>
                             <div class="layui-input-block">
@@ -81,58 +92,18 @@
                             </div>
                         </div>
                     </form>
-
-
-
                 </div>
                 <div>
-                    <form class="layui-form" style="margin: 0 auto;max-width: 460px;padding-top: 40px;">
+                    <form class="layui-form" >
                         <div class="layui-form-item">
-                            <label class="layui-form-label">游戏ID:</label>
-                            <div class="layui-input-block">
-                                <div class="layui-form-mid layui-word-aux">639537</div>
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">账户余额:</label>
-                            <div class="layui-input-block">
-                                <div class="layui-form-mid layui-word-aux">3000 元（保险箱：1000，现金：2000）</div>
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">入款金额:</label>
-                            <div class="layui-input-block">
-                                <div class="layui-form-mid layui-word-aux">
-                                    <span style="font-size: 18px;color: #333;">1800 元</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">入款类型:</label>
-                            <div class="layui-input-block">
-                                <div class="layui-form-mid layui-word-aux">保险箱</div>
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">入款方式:</label>
-                            <div class="layui-input-block">
-                                <div class="layui-form-mid layui-word-aux">人工入款</div>
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">备注说明:</label>
-                            <div class="layui-input-block">
-                                <div class="layui-form-mid layui-word-aux">备注说明</div>
-                            </div>
-                        </div>
-
-                        <div class="layui-form-item">
-                            <div class="layui-input-block">
                                 <button class="layui-btn layui-bg-green layui-btn-primary pre" lay-submit
                                         lay-filter="formStep">
                                     &emsp;上一步&emsp;
                                 </button>
-                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <!--表格-->
+                            <table class="layui-hide"style="height: 350px" id="js-record-table" lay-filter="js-record-table-filter"></table>
                         </div>
                     </form>
                 </div>
@@ -144,17 +115,60 @@
                         </button>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
+<!--表格头操作模板-->
+<script type="text/html" id="js-record-table-toolbar-top">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="deleteBatch"><i
+                    class="layui-icon">&#xe640;</i>批量删除
+        </button>
+        <@shiro.hasPermission name="user:add">
+            <button class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon">&#xe61f;</i>添加</button>
+        </@shiro.hasPermission>
+    </div>
+</script>
+<!--行操作模板-->
+<script type="text/html" id="js-record-table-toolbar-right">
+    <a class="layui-btn layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete"><i class="layui-icon layui-icon-delete"></i>删除</a>
+</script>
+
 <script>
-    layui.use(['form', 'util', 'layer', 'step', 'spLayer'], function () {
+    layui.use(['form', 'util', 'layer', 'step', 'spLayer','spTable','table'], function () {
         var form = layui.form,
             spLayer = layui.spLayer,
             layer = layui.layer,
+            spTable = layui.spTable,
+            table = layui.table,
             step = layui.step;
+
+        // 表格及数据初始化
+        var tableIns = spTable.render({
+            url: '${request.contextPath}/basedata/flow/page',
+            cols: [
+                [{
+                    type: 'checkbox'
+                }, {
+                    field: 'flow', title: '流程'
+                }, {
+                    field: 'flowDesc', title: '流程描述'
+                }, {
+                    field: 'process', title: '流程时序过程'
+                }, {
+                    fixed: 'right',
+                    field: 'operate',
+                    title: '操作',
+                    toolbar: '#js-record-table-toolbar-right',
+                    unresize: true,
+                    width: 150
+                }]
+            ],
+            done: function (res, curr, count) {
+            }
+        });
 
         step.render({
             elem: '#stepForm',
@@ -213,6 +227,91 @@
                     }
                 }
             });
+        });
+
+
+        /**
+         * 头工具栏事件
+         */
+        table.on('toolbar(js-record-table-filter)', function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id);
+
+            // 批量删除
+            if (obj.event === 'deleteBatch') {
+                var checkStatus = table.checkStatus('js-record-table'),
+                    data = checkStatus.data;
+                if (data.length > 0) {
+                    layer.confirm('确认要删除吗？', function (index) {
+
+                    });
+                } else {
+                    layer.msg("请先选择需要删除的数据！");
+                }
+            }
+
+            // 添加
+            if (obj.event === 'add') {
+                var index = spLayer.open({
+                    title: '添加',
+                    area: ['60%', '90%'],
+                    reload: false,
+                    spWhere: {},
+                    content: '${request.contextPath}/basedata/flow/process/add-or-update-ui',
+                    spCallback: function (result) {
+                        if (result.code === 0) {
+
+                        }
+                    }
+                });
+            }
+        });
+
+        /**
+         * 监听行工具事件
+         */
+        table.on('tool(js-record-table-filter)', function (obj) {
+            var data = obj.data;
+            // 编辑
+            if (obj.event === 'edit') {
+                spLayer.open({
+                    title: '编辑',
+                    area: ['60%', '90%'],
+                    reload: false,
+                    // 请求url参数
+                    spWhere: {},
+                    content: '${request.contextPath}/basedata/common/add-or-update-ui',
+                    spCallback: function (result) {
+                        if (result.code === 0) {
+
+                        }
+                    }
+                });
+            }
+            // 删除
+            if (obj.event === 'delete') {
+                layer.confirm('确认要删除吗？', function (index) {
+                    spUtil.ajax({
+                        url: '${request.contextPath}/basedata/common/delete',
+                        async: false,
+                        type: 'POST',
+                        // 是否显示 loading
+                        showLoading: true,
+                        // 是否序列化参数
+                        serializable: false,
+                        // 参数
+                        data: {
+                            id: data.id,
+                            tableName: tableName
+                        },
+                        success: function (data) {
+                            tableIns.reload();
+                            layer.close(index);
+                        },
+                        error: function () {
+                        }
+                    });
+                });
+            }
         });
 
     });
