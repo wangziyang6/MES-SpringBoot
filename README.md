@@ -139,6 +139,10 @@
 ### springBoot+mybatis-plus+redis+shiro+hutool+layui+swagger+freemarker+mysql8+echarts
 ### jenkins+docker+nginx
 
+## MES个人笔记
+
+[MES笔记有道云](http://note.youdao.com/noteshare?id=3d843775354cc7a503ad247a29997848)
+
 ## 部署云平台 使用阿里云 （https://www.aliyun.com）
 实现功能：
 1. 用户管理：用户是系统操作者，该功能主要完成系统用户配置。
