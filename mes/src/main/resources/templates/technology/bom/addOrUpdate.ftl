@@ -34,7 +34,8 @@
                                 <button type="button" id="js-test-btn" class="layui-btn" style="height:37px "><i
                                             class="layui-icon layui-icon-search "></i>
                                 </button>
-                                <input id="js-test-input" name="materielCode" readonly="true" lay-verify="required" placeholder="搜索物料" autocomplete="off"
+                                <input id="js-test-input" name="materielCode" readonly="true" lay-verify="required"
+                                       placeholder="搜索物料" autocomplete="off"
                                        value="${result.materielCode}"
                                        class="layui-input" style="width: 133PX">
                             </div>
@@ -44,7 +45,8 @@
                                 <label for="js-version-number" class="layui-form-label sp-required">版本号
                                 </label>
                                 <div style="display: flex;   flex-direction: row;">
-                                    <input type="text" id="js-versionNumber" readonly="true" name="versionNumber" lay-verify="required"
+                                    <input type="text" id="js-versionNumber" readonly="true" name="versionNumber"
+                                           lay-verify="required"
                                            autocomplete="off"
                                            class="layui-input"
                                            {value="${result.versionNumber}" | value='1' style=" width: 163PX;" }>
@@ -86,7 +88,7 @@
                         </div>
                         <div class="layui-form-item">
                             <div class="layui-input-block">
-                                <button class="layui-btn" lay-submit lay-filter="formStep">
+                                <button type="button" class="layui-btn" lay-submit lay-filter="formStep">
                                     &emsp;下一步&emsp;
                                 </button>
                             </div>
@@ -94,27 +96,25 @@
                     </form>
                 </div>
                 <div>
-                    <form class="layui-form" >
+                    <form class="layui-form">
                         <div class="layui-form-item">
-                                <button class="layui-btn layui-bg-green layui-btn-primary pre" lay-submit
-                                        lay-filter="formStep">
-                                    &emsp;上一步&emsp;
-                                </button>
+                            <input id="js-id" name="id" class="layui-hide" value="${result.id}"/>
+                            <button type="button" class="layui-btn layui-bg-green  pre" lay-submit
+                                    lay-filter="formStep">
+                                &emsp;上一步&emsp;
+                            </button>
+                            <button id="js-submit" class="layui-btn  pre" lay-demotransferactive="getData" lay-submit
+                                    lay-filter="js-submit-filter">&emsp;保存&emsp;
+                            </button>
                         </div>
                         <div class="layui-form-item">
                             <!--表格-->
-                            <table class="layui-hide"style="height: 350px" id="js-record-table" lay-filter="js-record-table-filter"></table>
+                            <table class="layui-hide" id="layTableId" lay-filter="js-record-table-filter"></table>
                         </div>
+
                     </form>
                 </div>
-                <div class="layui-form-item layui-hide">
-                    <div class="layui-input-block">
-                        <input id="js-id" name="id" value="${result.id}"/>
-                        <button id="js-submit" class="layui-btn" lay-demotransferactive="getData" lay-submit
-                                lay-filter="js-submit-filter">确定
-                        </button>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
@@ -122,60 +122,36 @@
 <!--表格头操作模板-->
 <script type="text/html" id="js-record-table-toolbar-top">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="deleteBatch"><i
-                    class="layui-icon">&#xe640;</i>批量删除
-        </button>
         <@shiro.hasPermission name="user:add">
-            <button class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon">&#xe61f;</i>添加</button>
+            <div>
+                <button type="button" class="layui-btn layui-btn-sm" lay-event="add" title="添加一行">
+                    <i class="layui-icon layui-icon-add-1"></i> 添加一行
+                </button>
+            </div>
         </@shiro.hasPermission>
     </div>
 </script>
 <!--行操作模板-->
 <script type="text/html" id="js-record-table-toolbar-right">
-    <a class="layui-btn layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete"><i class="layui-icon layui-icon-delete"></i>删除</a>
 </script>
 
 <script>
-    layui.use(['form', 'util', 'layer', 'step', 'spLayer','spTable','table'], function () {
+    layui.use(['form', 'util', 'layer', 'step', 'spLayer', 'spTable', 'table'], function () {
         var form = layui.form,
             spLayer = layui.spLayer,
             layer = layui.layer,
             spTable = layui.spTable,
             table = layui.table,
             step = layui.step;
-
-        // 表格及数据初始化
-        var tableIns = spTable.render({
-            url: '${request.contextPath}/basedata/flow/page',
-            cols: [
-                [{
-                    type: 'checkbox'
-                }, {
-                    field: 'flow', title: '流程'
-                }, {
-                    field: 'flowDesc', title: '流程描述'
-                }, {
-                    field: 'process', title: '流程时序过程'
-                }, {
-                    fixed: 'right',
-                    field: 'operate',
-                    title: '操作',
-                    toolbar: '#js-record-table-toolbar-right',
-                    unresize: true,
-                    width: 150
-                }]
-            ],
-            done: function (res, curr, count) {
-            }
-        });
-
+        //分步表单绘制
         step.render({
             elem: '#stepForm',
             filter: 'stepForm',
             width: '100%', //设置容器宽度
             stepWidth: '700px',
             height: '500px',
+            scrollbar:true,
             stepItems: [{
                 title: 'BOM主信息'
             }, {
@@ -200,68 +176,51 @@
         $('.next').click(function () {
             step.next('#stepForm');
         });
-
         //监听提交
         form.on('submit(js-submit-filter)', function (data) {
             spUtil.submitForm({
                 contentType: 'application/json;charset=UTF-8',
                 url: "${request.contextPath}/basedata/flow/process/add-or-update",
-                data:data.field
+                data: data.field
             });
             return false;
         });
-
-
-        // 物料主数据搜索弹框
-        $('#js-test-btn').click(function () {
-            var index = spLayer.open({
-                type: 2,
-                area: ['680px', '500px'],
-                reload: false,
-                content: '${request.contextPath}/admin/common/ui/searchPanelMaterile',
-                // 如果是搜索弹窗，需要添加回调函数来获取选中数据
-                spCallback: function (result) {
-                    console.log(result)
-                    if (result.code === 0 && result.data.length > 0) {
-                        $('#js-test-input').val(result.data[0].materiel);
-                    }
+        var layTableId = "layTableId";
+        /**
+         * 表格绘制
+         */
+        var tableIns = spTable.render({
+            page: true,
+            even: false, //不开启隔行背景
+            height: 'full-200',
+            elem: "#layTableId",
+            page: false,
+            cols: [[ //标题栏
+                {title: '序号', type: 'numbers'}
+                , {field: 'LocationID', title: '仓位编码', width: 158, edit: 'text', align: "center"}
+                , {field: 'InventoryQuantity', title: '拆分数量', edit: 'text', width: 158, align: "center"}
+                ,{field: 'site', title: '位置', edit: 'text', width: 158, align: "center"}
+                , {
+                    field: 'operate',
+                    title: '操作',
+                    toolbar: '#js-record-table-toolbar-right',
+                    unresize: true,
+                    width: 150
                 }
-            });
+            ]],
+            data: [{"LocationID": "123", "InventoryQuantity": "0",site:"001"}]
         });
-
-
         /**
          * 头工具栏事件
          */
         table.on('toolbar(js-record-table-filter)', function (obj) {
-            var checkStatus = table.checkStatus(obj.config.id);
-
-            // 批量删除
-            if (obj.event === 'deleteBatch') {
-                var checkStatus = table.checkStatus('js-record-table'),
-                    data = checkStatus.data;
-                if (data.length > 0) {
-                    layer.confirm('确认要删除吗？', function (index) {
-
-                    });
-                } else {
-                    layer.msg("请先选择需要删除的数据！");
-                }
-            }
-
-            // 添加
+            // 添加一行可编辑数据
             if (obj.event === 'add') {
-                var index = spLayer.open({
-                    title: '添加',
-                    area: ['60%', '90%'],
-                    reload: false,
-                    spWhere: {},
-                    content: '${request.contextPath}/basedata/flow/process/add-or-update-ui',
-                    spCallback: function (result) {
-                        if (result.code === 0) {
-
-                        }
-                    }
+                var Data = table.cache[layTableId];
+                var datas = {}
+                Data.push(datas);
+                tableIns.reload({
+                    data: Data
                 });
             }
         });
@@ -270,52 +229,43 @@
          * 监听行工具事件
          */
         table.on('tool(js-record-table-filter)', function (obj) {
-            var data = obj.data;
             // 编辑
-            if (obj.event === 'edit') {
-                spLayer.open({
-                    title: '编辑',
-                    area: ['60%', '90%'],
-                    reload: false,
-                    // 请求url参数
-                    spWhere: {},
-                    content: '${request.contextPath}/basedata/common/add-or-update-ui',
-                    spCallback: function (result) {
-                        if (result.code === 0) {
-
-                        }
-                    }
-                });
-            }
-            // 删除
             if (obj.event === 'delete') {
                 layer.confirm('确认要删除吗？', function (index) {
-                    spUtil.ajax({
-                        url: '${request.contextPath}/basedata/common/delete',
-                        async: false,
-                        type: 'POST',
-                        // 是否显示 loading
-                        showLoading: true,
-                        // 是否序列化参数
-                        serializable: false,
-                        // 参数
-                        data: {
-                            id: data.id,
-                            tableName: tableName
-                        },
-                        success: function (data) {
-                            tableIns.reload();
-                            layer.close(index);
-                        },
-                        error: function () {
-                        }
-                    });
-                });
+                    obj.del();
+                    layer.close(index);
+                })
             }
+        })
+
+        // 物料主数据搜索弹框
+        $('#js-test-btn').click(function () {
+            searchMaterile();
         });
+        /**
+         * 物料搜索功能
+         * @param obj
+         */
+        window.searchMaterile = function (obj) {
+            spLayer.open({
+                type: 2,
+                area: ['680px', '500px'],
+                reload: false,
+                content: '${request.contextPath}/admin/common/ui/searchPanelMaterile',
+                // 如果是搜索弹窗，需要添加回调函数来获取选中数据
+                spCallback: function (result) {
+                    if (result.code === 0 && result.data.length > 0) {
+                        $('#js-test-input').val(result.data[0].materiel);
+                    }
+                }
+            });
+        }
+
 
     });
-  //版本号
+
+
+    //版本号
     function FN(btnType) {
         var versionNumber = $('#js-versionNumber')
         if (btnType == 'plus') {

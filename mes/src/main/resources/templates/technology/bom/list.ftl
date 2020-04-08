@@ -138,6 +138,7 @@
             }
             // 添加
             if (obj.event === 'add') {
+                //新开一个TAB标签 url  标题名称 图标
                 spLayui.createTableItem('/technology/bom/add-or-update-ui?mpi=bom-1','BOM信息','fa fa-dropbox');
             }
         });

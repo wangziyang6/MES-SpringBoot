@@ -97,6 +97,7 @@ public class SpFlowOperRelationServiceImpl extends ServiceImpl<SpFlowOperRelatio
         if (CollectionUtil.isEmpty(spOperVoList)||spOperVoList.size() <= 1) {
             throw new Exception("流程下必须存在至少两个工序");
         }
+        //TODO 这个逻辑待处理
         SpFlow spFlow = new SpFlow();
         BeanUtils.copyProperties(spFlowDto, spFlow);
         String flowId = spFlow.getId();

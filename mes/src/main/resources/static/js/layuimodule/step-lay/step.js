@@ -67,7 +67,9 @@ layui.define(['layer', 'carousel'], function (exports) {
             param.autoplay = false;  // 关闭自动播放
             if (!param.stepWidth) {
                 param.stepWidth = '400px';
+
             }
+            param.position='relative'
 
             // 渲染轮播图
             carousel.render(param);
@@ -76,7 +78,7 @@ layui.define(['layer', 'carousel'], function (exports) {
             var stepItems = param.stepItems;
             renderDom(param.elem, stepItems, 0);
             $('.lay-step').css('width', param.stepWidth);
-
+            $('.lay-step').css('position', param.stepWidth);
             //监听轮播切换事件
             carousel.on('change(' + param.filter + ')', function (obj) {
                 $(param.elem).find('.lay-step').remove();
