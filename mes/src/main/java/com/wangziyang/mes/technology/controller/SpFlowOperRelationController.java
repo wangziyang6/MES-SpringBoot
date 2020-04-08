@@ -94,7 +94,7 @@ public class SpFlowOperRelationController extends BaseController {
      * @param req 请求参数
      * @return Result 执行结果
      */
-    @ApiOperation("主数据表头分页查询")
+    @ApiOperation("流程信息分页查询")
     @ApiImplicitParams({@ApiImplicitParam(name = "req", value = "请求参数", defaultValue = "请求参数")})
     @PostMapping("/page")
     @ResponseBody
