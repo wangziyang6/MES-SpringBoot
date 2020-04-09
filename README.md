@@ -122,8 +122,6 @@
 数字化平台 echarts
 ![1.1.2](https://s1.ax1x.com/2020/03/23/8o7wbq.png)
 ### 功能界面
-* 菜单界面
-![1.1.1](https://s2.ax1x.com/2020/03/06/3bQbMd.png)
 * 主数据展示
 ![1.1.3](https://s2.ax1x.com/2020/03/11/8AMcA1.png)
 * 工艺路线界面
@@ -131,6 +129,9 @@
 
 * 物料维护界面
 ![1.1.5](https://s1.ax1x.com/2020/03/23/8HrLin.png)
+
+* BOM维护界面
+![1.1.6](https://s1.ax1x.com/2020/04/09/G4yQMt.png)
 
 ### swaggerAPI管理界面
 ![2](https://s2.ax1x.com/2020/03/06/3qC4Yt.png)

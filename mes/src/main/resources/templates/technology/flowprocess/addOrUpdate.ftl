@@ -102,11 +102,12 @@
         //监听提交
         form.on('submit(js-submit-filter)', function (data) {
             data.field.spOperVoList = requestParmaArr;
-            spUtil.submitForm({
-                contentType: 'application/json;charset=UTF-8',
-                url: "${request.contextPath}/basedata/flow/process/add-or-update",
-                data: JSON.stringify(data.field)
-            });
+            layer.alert("嘿嘿！！暂时无法保存，开发loading....");
+            <#--spUtil.submitForm({-->
+            <#--    contentType: 'application/json;charset=UTF-8',-->
+            <#--    url: "${request.contextPath}/basedata/flow/process/add-or-update",-->
+            <#--    data: JSON.stringify(data.field)-->
+            <#--});-->
             return false;
         });
 
