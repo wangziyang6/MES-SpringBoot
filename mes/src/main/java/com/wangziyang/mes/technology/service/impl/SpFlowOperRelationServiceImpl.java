@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,6 +91,8 @@ public class SpFlowOperRelationServiceImpl extends ServiceImpl<SpFlowOperRelatio
      * @return 执行结果
      * @throws Exception 异常
      */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
     public Result addOrUpdate(SpFlowDto spFlowDto) throws Exception {
         List<SpOperVo> spOperVoList = spFlowDto.getSpOperVoList();
         List<SpFlowOperRelation> spFlowOperRelationList = new ArrayList<>();

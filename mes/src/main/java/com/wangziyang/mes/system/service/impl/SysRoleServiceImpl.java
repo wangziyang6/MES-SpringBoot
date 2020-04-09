@@ -16,6 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +75,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
      * @throws Exception 异常
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void rebuild(SysUserDTO sysUserDTO) throws Exception {
         if (StringUtils.isNotEmpty(sysUserDTO.getId())) {
             QueryWrapper<SysUserRole> deleteWrapper = new QueryWrapper<>();

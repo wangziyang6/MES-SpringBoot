@@ -12,6 +12,7 @@ import com.wangziyang.mes.system.entity.SysUser;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -101,6 +102,7 @@ public class TableNameDataServiceImpl implements TableNameDataService {
      * @throws Exception 异常
      */
     @Override
+    @Transactional
     public void commonSave(HttpServletRequest request, SysUser user) throws Exception {
         CommonDto commonDto = new CommonDto();
         //拼接插入的SQL语句
