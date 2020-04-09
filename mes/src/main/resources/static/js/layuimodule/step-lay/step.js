@@ -10,9 +10,14 @@ layui.define(['layer', 'carousel'], function (exports) {
 
     // 添加步骤条dom节点
     var renderDom = function (elem, stepItems, postion) {
-        var stepDiv = '<div class="lay-step">';
+        var stepDiv = '<div class="lay-step" style=" display: flex;justify-content: center">';
         for (var i = 0; i < stepItems.length; i++) {
-            stepDiv += '<div class="step-item">';
+            if (i == 0) {
+                stepDiv += '<div class="step-item" style="width: 50%" >';
+            } else {
+                stepDiv += '<div class="step-item">';
+            }
+
             // 线
             if (i < (stepItems.length - 1)) {
                 if (i < postion) {
@@ -55,8 +60,8 @@ layui.define(['layer', 'carousel'], function (exports) {
         $(elem).prepend(stepDiv);
 
         // 计算每一个条目的宽度
-        var bfb = 100 / stepItems.length;
-        $('.step-item').css('width', bfb + '%');
+        // var bfb = 100 / stepItems.length;
+        // $('.step-item').css('width', bfb + '%');
     };
 
     var step = {
@@ -69,7 +74,6 @@ layui.define(['layer', 'carousel'], function (exports) {
                 param.stepWidth = '400px';
 
             }
-            param.position='relative'
 
             // 渲染轮播图
             carousel.render(param);
@@ -78,7 +82,6 @@ layui.define(['layer', 'carousel'], function (exports) {
             var stepItems = param.stepItems;
             renderDom(param.elem, stepItems, 0);
             $('.lay-step').css('width', param.stepWidth);
-            $('.lay-step').css('position', param.stepWidth);
             //监听轮播切换事件
             carousel.on('change(' + param.filter + ')', function (obj) {
                 $(param.elem).find('.lay-step').remove();
