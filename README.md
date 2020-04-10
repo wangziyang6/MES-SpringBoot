@@ -2,12 +2,13 @@
 
 ## 界面展示
 * 演示地址 
-* http://wangziyangmes.pzzd.xyz  用户名admin  密码123
-
+* http://wangziyangmes.pzzd.xyz  
+用户名admin  密码123
 ![1](https://s1.ax1x.com/2020/03/18/8d4GQS.gif)
 
 个人设计的MES系统功能架构图[还请各位大佬指点]，该项目的开发规划
 ![1.1](https://s1.ax1x.com/2020/03/26/GSfGS1.png)
+
 
 <table style="text-align:center">
     <tr>
@@ -97,6 +98,8 @@
        
    </tr>
 </table>
+
+
 
 ## ISA-95 层级
 ![1.0](https://s1.ax1x.com/2020/04/03/GN9vid.png)
@@ -188,6 +191,8 @@
         * 每张表的分页查询参数，严格按照一张表对应一个请求参数对象进行开发，如系统用户分页查询参数：SysUserPageReq
 # 总结
 欢迎想一起开发的小伙伴。。此项目也支持大学生毕业设计。
+
+![1.0](https://s1.ax1x.com/2020/04/10/GIRPEt.png)
 ## QQ Group87652870
 [![QQ](https://img.shields.io/badge/QQ-87652870-green.svg?logo=tencent%20qq&logoColor=red)](https://jq.qq.com/?_wv=1027&k=55NGCxl)
 
