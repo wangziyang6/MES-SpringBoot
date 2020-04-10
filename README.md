@@ -192,7 +192,7 @@
 # 总结
 欢迎想一起开发的小伙伴。。此项目也支持大学生毕业设计。
 
-[![MES](https://s1.ax1x.com/2020/04/10/GIRPEt.png "title")](http://www.mesa.org/)
+[![MES](https://s1.ax1x.com/2020/04/10/GIRPEt.png "MESA认证")](http://www.mesa.org/)
 ## QQ Group87652870
 [![QQ](https://img.shields.io/badge/QQ-87652870-green.svg?logo=tencent%20qq&logoColor=red)](https://jq.qq.com/?_wv=1027&k=55NGCxl)
 
